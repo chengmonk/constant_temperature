@@ -329,16 +329,6 @@ namespace 恒温测试机.UI
                         FlowTestRbt.Checked = true;
                     }
 
-                    if (sensitivityRbt.Checked)
-                    {
-                        sensitivityRbt.Checked = false;
-                        freRbt.Checked = true;
-                    }
-                    if (freRbt.Checked)
-                    {
-                        freRbt.Checked = false;
-                        TmSteadyRbt.Checked = true;
-                    }
                 }
             }
             catch (Exception ex)
@@ -572,9 +562,6 @@ namespace 恒温测试机.UI
         /// </summary>
         private void InitControl()
         {
-            sensitivityRbt.Visible = false;
-            freRbt.Visible = false;
-            TmSteadyRbt.Visible = false;
             //safeTestRbt.Checked = true;
             //hslCurve1.SetLeftCurve("冷水箱温度", null, Color.OrangeRed);
             //hslCurve1.SetLeftCurve("热水箱温度", null, Color.Orchid);
@@ -893,9 +880,6 @@ namespace 恒温测试机.UI
                     coolTestRbt.Visible = true;
                     tmpTestRbt.Visible = true;
                     FlowTestRbt.Visible = true;
-                    sensitivityRbt.Visible = false;
-                    freRbt.Visible = false;
-                    TmSteadyRbt.Visible = false;
                     break;
                 case "灵敏度流程":
                     testStandard = TestStandardEnum.sensitivityProcess;
@@ -904,9 +888,6 @@ namespace 恒温测试机.UI
                     coolTestRbt.Visible = false;
                     tmpTestRbt.Visible = false;
                     FlowTestRbt.Visible = false;
-                    sensitivityRbt.Visible = true;
-                    freRbt.Visible = true;
-                    TmSteadyRbt.Visible = true;
                     break;
                 case "自定义":
                     testStandard = TestStandardEnum.blank;

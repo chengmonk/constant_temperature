@@ -94,94 +94,91 @@
             this.hslButton2 = new HslControls.HslButton();
             this.right1 = new System.Windows.Forms.Panel();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.TmSteadyRbt = new System.Windows.Forms.RadioButton();
-            this.freRbt = new System.Windows.Forms.RadioButton();
-            this.sensitivityRbt = new System.Windows.Forms.RadioButton();
             this.FlowTestRbt = new System.Windows.Forms.RadioButton();
             this.tmpTestRbt = new System.Windows.Forms.RadioButton();
             this.coolTestRbt = new System.Windows.Forms.RadioButton();
             this.pressureTestRbt = new System.Windows.Forms.RadioButton();
             this.safeTestRbt = new System.Windows.Forms.RadioButton();
-            this.centerPanel = new System.Windows.Forms.Panel();
-            this.center1 = new System.Windows.Forms.Panel();
-            this.hslCurve1 = new HslControls.HslCurve();
-            this.Title = new System.Windows.Forms.Label();
             this.m_instantAoCtrl = new Automation.BDaq.InstantAoCtrl(this.components);
             this.instantDoCtrl1 = new Automation.BDaq.InstantDoCtrl(this.components);
             this.instantDiCtrl1 = new Automation.BDaq.InstantDiCtrl(this.components);
             this.waveformAiCtrl1 = new Automation.BDaq.WaveformAiCtrl(this.components);
+            this.Title = new System.Windows.Forms.Label();
+            this.hslCurve1 = new HslControls.HslCurve();
+            this.center1 = new System.Windows.Forms.Panel();
             this.label11 = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
-            this.label9 = new System.Windows.Forms.Label();
-            this.label8 = new System.Windows.Forms.Label();
-            this.label7 = new System.Windows.Forms.Label();
-            this.label6 = new System.Windows.Forms.Label();
-            this.label12 = new System.Windows.Forms.Label();
-            this.label13 = new System.Windows.Forms.Label();
-            this.label18 = new System.Windows.Forms.Label();
-            this.label19 = new System.Windows.Forms.Label();
-            this.hslLedQm5 = new HslControls.HslLedDisplay();
-            this.hslLedQm = new HslControls.HslLedDisplay();
-            this.hslLedTm = new HslControls.HslLedDisplay();
-            this.hslLedQh = new HslControls.HslLedDisplay();
-            this.hslLedTh = new HslControls.HslLedDisplay();
-            this.hslLedPm = new HslControls.HslLedDisplay();
             this.hslLedPh = new HslControls.HslLedDisplay();
+            this.label9 = new System.Windows.Forms.Label();
+            this.hslPipeLine17 = new HslControls.HslPipeLine();
+            this.label8 = new System.Windows.Forms.Label();
+            this.hslPumpOne1 = new HslControls.HslPumpOne();
+            this.label7 = new System.Windows.Forms.Label();
+            this.hslPumpOne2 = new HslControls.HslPumpOne();
+            this.label6 = new System.Windows.Forms.Label();
+            this.hslPumpOne3 = new HslControls.HslPumpOne();
+            this.label12 = new System.Windows.Forms.Label();
+            this.hslPumpOne4 = new HslControls.HslPumpOne();
+            this.label13 = new System.Windows.Forms.Label();
+            this.hslPumpOne5 = new HslControls.HslPumpOne();
+            this.label18 = new System.Windows.Forms.Label();
+            this.hslPipeLine4 = new HslControls.HslPipeLine();
+            this.label19 = new System.Windows.Forms.Label();
+            this.hslPipeLine1 = new HslControls.HslPipeLine();
+            this.hslLedQm5 = new HslControls.HslLedDisplay();
+            this.hslValves1 = new HslControls.HslValves();
+            this.hslLedQm = new HslControls.HslLedDisplay();
+            this.hslPipeLine5 = new HslControls.HslPipeLine();
+            this.hslLedTm = new HslControls.HslLedDisplay();
+            this.hslValves2 = new HslControls.HslValves();
+            this.hslLedQh = new HslControls.HslLedDisplay();
+            this.hslPipeLine6 = new HslControls.HslPipeLine();
+            this.hslLedTh = new HslControls.HslLedDisplay();
+            this.hslPipeLine7 = new HslControls.HslPipeLine();
+            this.hslLedPm = new HslControls.HslLedDisplay();
+            this.hslValves3 = new HslControls.HslValves();
+            this.reshui = new HslControls.HslPumpOne();
             this.hslLedQc = new HslControls.HslLedDisplay();
+            this.hslPipeLine9 = new HslControls.HslPipeLine();
             this.hslLedTc = new HslControls.HslLedDisplay();
+            this.hslPipeLine10 = new HslControls.HslPipeLine();
             this.hslLedPc = new HslControls.HslLedDisplay();
+            this.hslPipeLine11 = new HslControls.HslPipeLine();
             this.hslValves13 = new HslControls.HslValves();
+            this.hslPipeLine12 = new HslControls.HslPipeLine();
             this.hslValves12 = new HslControls.HslValves();
+            this.hslPumpOne7 = new HslControls.HslPumpOne();
             this.hslPipeLine19 = new HslControls.HslPipeLine();
+            this.hslPipeLine13 = new HslControls.HslPipeLine();
             this.hslValves11 = new HslControls.HslValves();
+            this.hslPipeLine14 = new HslControls.HslPipeLine();
             this.label20 = new System.Windows.Forms.Label();
+            this.hslPipeLine15 = new HslControls.HslPipeLine();
             this.hslPipeLine30 = new HslControls.HslPipeLine();
+            this.hslPipeLine16 = new HslControls.HslPipeLine();
             this.hslPipeLine31 = new HslControls.HslPipeLine();
+            this.hslValves4 = new HslControls.HslValves();
             this.hslPipeLine28 = new HslControls.HslPipeLine();
+            this.hslValves5 = new HslControls.HslValves();
             this.hslPipeLine29 = new HslControls.HslPipeLine();
+            this.hslPipeLine8 = new HslControls.HslPipeLine();
             this.hslValves9 = new HslControls.HslValves();
+            this.hslValves6 = new HslControls.HslValves();
             this.hslValves10 = new HslControls.HslValves();
+            this.hslPipeLine18 = new HslControls.HslPipeLine();
             this.hslPipeLine24 = new HslControls.HslPipeLine();
+            this.hslPipeLine20 = new HslControls.HslPipeLine();
             this.hslPipeLine25 = new HslControls.HslPipeLine();
+            this.hslValves7 = new HslControls.HslValves();
             this.hslPumpOne6 = new HslControls.HslPumpOne();
+            this.hslPipeLine21 = new HslControls.HslPipeLine();
             this.hslPipeLine26 = new HslControls.HslPipeLine();
+            this.hslValves8 = new HslControls.HslValves();
             this.hslPipeLine27 = new HslControls.HslPipeLine();
+            this.hslPipeLine22 = new HslControls.HslPipeLine();
             this.hslPumpOne8 = new HslControls.HslPumpOne();
             this.hslPipeLine23 = new HslControls.HslPipeLine();
-            this.hslPipeLine22 = new HslControls.HslPipeLine();
-            this.hslValves8 = new HslControls.HslValves();
-            this.hslPipeLine21 = new HslControls.HslPipeLine();
-            this.hslValves7 = new HslControls.HslValves();
-            this.hslPipeLine20 = new HslControls.HslPipeLine();
-            this.hslPipeLine18 = new HslControls.HslPipeLine();
-            this.hslValves6 = new HslControls.HslValves();
-            this.hslPipeLine8 = new HslControls.HslPipeLine();
-            this.hslValves5 = new HslControls.HslValves();
-            this.hslValves4 = new HslControls.HslValves();
-            this.hslPipeLine16 = new HslControls.HslPipeLine();
-            this.hslPipeLine15 = new HslControls.HslPipeLine();
-            this.hslPipeLine14 = new HslControls.HslPipeLine();
-            this.hslPipeLine13 = new HslControls.HslPipeLine();
-            this.hslPumpOne7 = new HslControls.HslPumpOne();
-            this.hslPipeLine12 = new HslControls.HslPipeLine();
-            this.hslPipeLine11 = new HslControls.HslPipeLine();
-            this.hslPipeLine10 = new HslControls.HslPipeLine();
-            this.hslPipeLine9 = new HslControls.HslPipeLine();
-            this.reshui = new HslControls.HslPumpOne();
-            this.hslValves3 = new HslControls.HslValves();
-            this.hslPipeLine7 = new HslControls.HslPipeLine();
-            this.hslPipeLine6 = new HslControls.HslPipeLine();
-            this.hslValves2 = new HslControls.HslValves();
-            this.hslPipeLine5 = new HslControls.HslPipeLine();
-            this.hslValves1 = new HslControls.HslValves();
-            this.hslPipeLine1 = new HslControls.HslPipeLine();
-            this.hslPipeLine4 = new HslControls.HslPipeLine();
-            this.hslPumpOne5 = new HslControls.HslPumpOne();
-            this.hslPumpOne4 = new HslControls.HslPumpOne();
-            this.hslPumpOne3 = new HslControls.HslPumpOne();
-            this.hslPumpOne2 = new HslControls.HslPumpOne();
-            this.hslPumpOne1 = new HslControls.HslPumpOne();
-            this.hslPipeLine17 = new HslControls.HslPipeLine();
+            this.centerPanel = new System.Windows.Forms.Panel();
             this.leftPanel.SuspendLayout();
             this.left3.SuspendLayout();
             this.waterBoxGbx.SuspendLayout();
@@ -196,8 +193,8 @@
             this.tableLayoutPanel1.SuspendLayout();
             this.right1.SuspendLayout();
             this.groupBox2.SuspendLayout();
-            this.centerPanel.SuspendLayout();
             this.center1.SuspendLayout();
+            this.centerPanel.SuspendLayout();
             this.SuspendLayout();
             // 
             // leftPanel
@@ -401,7 +398,7 @@
             this.hslWaterBox3.Size = new System.Drawing.Size(90, 171);
             this.hslWaterBox3.TabIndex = 8;
             this.hslWaterBox3.Text = "高温水箱";
-            this.hslWaterBox3.WaterColor = System.Drawing.Color.Salmon;
+            this.hslWaterBox3.WaterColor = System.Drawing.Color.Tomato;
             // 
             // hslWaterBox4
             // 
@@ -425,7 +422,7 @@
             this.hslWaterBox2.Size = new System.Drawing.Size(90, 171);
             this.hslWaterBox2.TabIndex = 5;
             this.hslWaterBox2.Text = "热水箱";
-            this.hslWaterBox2.WaterColor = System.Drawing.Color.Tomato;
+            this.hslWaterBox2.WaterColor = System.Drawing.Color.Salmon;
             // 
             // hslWaterBox1
             // 
@@ -675,28 +672,29 @@
             this.rightPanel.Controls.Add(this.right4);
             this.rightPanel.Controls.Add(this.right1);
             this.rightPanel.Dock = System.Windows.Forms.DockStyle.Right;
-            this.rightPanel.Location = new System.Drawing.Point(1580, 0);
+            this.rightPanel.Location = new System.Drawing.Point(1347, 0);
+            this.rightPanel.Margin = new System.Windows.Forms.Padding(0);
             this.rightPanel.Name = "rightPanel";
-            this.rightPanel.Size = new System.Drawing.Size(324, 1061);
+            this.rightPanel.Size = new System.Drawing.Size(577, 1061);
             this.rightPanel.TabIndex = 1;
             // 
             // right3
             // 
             this.right3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.right3.Controls.Add(this.groupBox4);
-            this.right3.Location = new System.Drawing.Point(0, 117);
+            this.right3.Location = new System.Drawing.Point(0, 118);
             this.right3.Margin = new System.Windows.Forms.Padding(0);
             this.right3.Name = "right3";
-            this.right3.Size = new System.Drawing.Size(500, 742);
+            this.right3.Size = new System.Drawing.Size(585, 741);
             this.right3.TabIndex = 7;
             // 
             // groupBox4
             // 
             this.groupBox4.Controls.Add(this.systemInfoTb);
             this.groupBox4.Font = new System.Drawing.Font("微软雅黑", 12.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.groupBox4.Location = new System.Drawing.Point(11, 8);
+            this.groupBox4.Location = new System.Drawing.Point(22, 5);
             this.groupBox4.Name = "groupBox4";
-            this.groupBox4.Size = new System.Drawing.Size(309, 729);
+            this.groupBox4.Size = new System.Drawing.Size(525, 729);
             this.groupBox4.TabIndex = 0;
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "数据结果";
@@ -709,7 +707,7 @@
             this.systemInfoTb.Name = "systemInfoTb";
             this.systemInfoTb.ReadOnly = true;
             this.systemInfoTb.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.systemInfoTb.Size = new System.Drawing.Size(289, 691);
+            this.systemInfoTb.Size = new System.Drawing.Size(500, 691);
             this.systemInfoTb.TabIndex = 22;
             // 
             // right4
@@ -719,7 +717,7 @@
             this.right4.Location = new System.Drawing.Point(0, 859);
             this.right4.Margin = new System.Windows.Forms.Padding(0);
             this.right4.Name = "right4";
-            this.right4.Size = new System.Drawing.Size(500, 199);
+            this.right4.Size = new System.Drawing.Size(577, 199);
             this.right4.TabIndex = 8;
             // 
             // groupBox1
@@ -727,9 +725,9 @@
             this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.groupBox1.Controls.Add(this.tableLayoutPanel1);
             this.groupBox1.Font = new System.Drawing.Font("微软雅黑", 13F);
-            this.groupBox1.Location = new System.Drawing.Point(11, 14);
+            this.groupBox1.Location = new System.Drawing.Point(22, 8);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(309, 185);
+            this.groupBox1.Size = new System.Drawing.Size(525, 185);
             this.groupBox1.TabIndex = 2;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "系统控制区";
@@ -743,65 +741,65 @@
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 20F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 20F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 20F));
-            this.tableLayoutPanel1.Controls.Add(this.hslButton6, 0, 2);
             this.tableLayoutPanel1.Controls.Add(this.hslButton5, 0, 2);
             this.tableLayoutPanel1.Controls.Add(this.hslButton4, 0, 2);
             this.tableLayoutPanel1.Controls.Add(this.setParamBtn, 2, 0);
             this.tableLayoutPanel1.Controls.Add(this.autoRunBtn, 3, 0);
-            this.tableLayoutPanel1.Controls.Add(this.stopBtn, 0, 1);
             this.tableLayoutPanel1.Controls.Add(this.clearDataBtn, 1, 1);
             this.tableLayoutPanel1.Controls.Add(this.hslButton7, 2, 1);
             this.tableLayoutPanel1.Controls.Add(this.hslButton8, 3, 1);
             this.tableLayoutPanel1.Controls.Add(this.saveDataBtn, 1, 0);
             this.tableLayoutPanel1.Controls.Add(this.startBtn, 0, 0);
             this.tableLayoutPanel1.Controls.Add(this.hslButton11, 4, 0);
-            this.tableLayoutPanel1.Controls.Add(this.hslButton3, 0, 2);
             this.tableLayoutPanel1.Controls.Add(this.hslButton1, 4, 1);
             this.tableLayoutPanel1.Controls.Add(this.hslButton2, 1, 2);
+            this.tableLayoutPanel1.Controls.Add(this.stopBtn, 0, 1);
+            this.tableLayoutPanel1.Controls.Add(this.hslButton6, 1, 2);
+            this.tableLayoutPanel1.Controls.Add(this.hslButton3, 0, 2);
             this.tableLayoutPanel1.Font = new System.Drawing.Font("微软雅黑", 11F);
-            this.tableLayoutPanel1.Location = new System.Drawing.Point(9, 26);
+            this.tableLayoutPanel1.Location = new System.Drawing.Point(11, 27);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 3;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(291, 153);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(497, 153);
             this.tableLayoutPanel1.TabIndex = 0;
             // 
             // hslButton6
             // 
             this.hslButton6.CustomerInformation = null;
             this.hslButton6.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.hslButton6.Location = new System.Drawing.Point(177, 105);
+            this.hslButton6.Location = new System.Drawing.Point(399, 105);
             this.hslButton6.Name = "hslButton6";
-            this.hslButton6.Size = new System.Drawing.Size(52, 44);
+            this.hslButton6.Size = new System.Drawing.Size(95, 44);
             this.hslButton6.TabIndex = 18;
             // 
             // hslButton5
             // 
             this.hslButton5.CustomerInformation = null;
             this.hslButton5.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.hslButton5.Location = new System.Drawing.Point(61, 105);
+            this.hslButton5.Location = new System.Drawing.Point(201, 105);
             this.hslButton5.Name = "hslButton5";
-            this.hslButton5.Size = new System.Drawing.Size(52, 44);
+            this.hslButton5.Size = new System.Drawing.Size(93, 44);
             this.hslButton5.TabIndex = 17;
             // 
             // hslButton4
             // 
             this.hslButton4.CustomerInformation = null;
             this.hslButton4.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.hslButton4.Location = new System.Drawing.Point(119, 105);
+            this.hslButton4.Location = new System.Drawing.Point(102, 105);
             this.hslButton4.Name = "hslButton4";
-            this.hslButton4.Size = new System.Drawing.Size(52, 44);
+            this.hslButton4.Size = new System.Drawing.Size(93, 44);
             this.hslButton4.TabIndex = 16;
             // 
             // setParamBtn
             // 
             this.setParamBtn.CustomerInformation = null;
-            this.setParamBtn.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.setParamBtn.Location = new System.Drawing.Point(119, 3);
+            this.setParamBtn.Font = new System.Drawing.Font("微软雅黑", 13F);
+            this.setParamBtn.Location = new System.Drawing.Point(201, 3);
             this.setParamBtn.Name = "setParamBtn";
-            this.setParamBtn.Size = new System.Drawing.Size(52, 44);
+            this.setParamBtn.Size = new System.Drawing.Size(93, 44);
             this.setParamBtn.TabIndex = 2;
             this.setParamBtn.Text = "设置参数";
             this.setParamBtn.Click += new System.EventHandler(this.SetParamBtn_Click);
@@ -809,10 +807,10 @@
             // autoRunBtn
             // 
             this.autoRunBtn.CustomerInformation = null;
-            this.autoRunBtn.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.autoRunBtn.Location = new System.Drawing.Point(177, 3);
+            this.autoRunBtn.Font = new System.Drawing.Font("微软雅黑", 13F);
+            this.autoRunBtn.Location = new System.Drawing.Point(300, 3);
             this.autoRunBtn.Name = "autoRunBtn";
-            this.autoRunBtn.Size = new System.Drawing.Size(52, 44);
+            this.autoRunBtn.Size = new System.Drawing.Size(93, 44);
             this.autoRunBtn.TabIndex = 4;
             this.autoRunBtn.Text = "自动运行";
             this.autoRunBtn.Click += new System.EventHandler(this.AutoRunBtn_Click);
@@ -820,10 +818,10 @@
             // stopBtn
             // 
             this.stopBtn.CustomerInformation = null;
-            this.stopBtn.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.stopBtn.Font = new System.Drawing.Font("微软雅黑", 13F);
             this.stopBtn.Location = new System.Drawing.Point(3, 54);
             this.stopBtn.Name = "stopBtn";
-            this.stopBtn.Size = new System.Drawing.Size(52, 44);
+            this.stopBtn.Size = new System.Drawing.Size(93, 44);
             this.stopBtn.TabIndex = 5;
             this.stopBtn.Text = "停止";
             this.stopBtn.Click += new System.EventHandler(this.StopBtn_Click);
@@ -831,10 +829,10 @@
             // clearDataBtn
             // 
             this.clearDataBtn.CustomerInformation = null;
-            this.clearDataBtn.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.clearDataBtn.Location = new System.Drawing.Point(61, 54);
+            this.clearDataBtn.Font = new System.Drawing.Font("微软雅黑", 13F);
+            this.clearDataBtn.Location = new System.Drawing.Point(102, 54);
             this.clearDataBtn.Name = "clearDataBtn";
-            this.clearDataBtn.Size = new System.Drawing.Size(52, 44);
+            this.clearDataBtn.Size = new System.Drawing.Size(93, 44);
             this.clearDataBtn.TabIndex = 6;
             this.clearDataBtn.Text = "清空数据";
             this.clearDataBtn.Click += new System.EventHandler(this.ClearDataBtn_Click);
@@ -842,10 +840,10 @@
             // hslButton7
             // 
             this.hslButton7.CustomerInformation = null;
-            this.hslButton7.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.hslButton7.Location = new System.Drawing.Point(119, 54);
+            this.hslButton7.Font = new System.Drawing.Font("微软雅黑", 13F);
+            this.hslButton7.Location = new System.Drawing.Point(201, 54);
             this.hslButton7.Name = "hslButton7";
-            this.hslButton7.Size = new System.Drawing.Size(52, 44);
+            this.hslButton7.Size = new System.Drawing.Size(93, 44);
             this.hslButton7.TabIndex = 7;
             this.hslButton7.Text = "查看图像";
             this.hslButton7.Click += new System.EventHandler(this.GraphDataBtn_Click);
@@ -853,10 +851,10 @@
             // hslButton8
             // 
             this.hslButton8.CustomerInformation = null;
-            this.hslButton8.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.hslButton8.Location = new System.Drawing.Point(177, 54);
+            this.hslButton8.Font = new System.Drawing.Font("微软雅黑", 13F);
+            this.hslButton8.Location = new System.Drawing.Point(300, 54);
             this.hslButton8.Name = "hslButton8";
-            this.hslButton8.Size = new System.Drawing.Size(52, 44);
+            this.hslButton8.Size = new System.Drawing.Size(93, 44);
             this.hslButton8.TabIndex = 8;
             this.hslButton8.Text = "导出报告";
             this.hslButton8.Click += new System.EventHandler(this.ExportReportBtn_Click);
@@ -864,10 +862,10 @@
             // saveDataBtn
             // 
             this.saveDataBtn.CustomerInformation = null;
-            this.saveDataBtn.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.saveDataBtn.Location = new System.Drawing.Point(61, 3);
+            this.saveDataBtn.Font = new System.Drawing.Font("微软雅黑", 13F);
+            this.saveDataBtn.Location = new System.Drawing.Point(102, 3);
             this.saveDataBtn.Name = "saveDataBtn";
-            this.saveDataBtn.Size = new System.Drawing.Size(52, 44);
+            this.saveDataBtn.Size = new System.Drawing.Size(93, 44);
             this.saveDataBtn.TabIndex = 3;
             this.saveDataBtn.Text = "保存数据";
             this.saveDataBtn.Click += new System.EventHandler(this.SaveDataBtn_Click);
@@ -875,9 +873,10 @@
             // startBtn
             // 
             this.startBtn.CustomerInformation = null;
+            this.startBtn.Font = new System.Drawing.Font("微软雅黑", 13F);
             this.startBtn.Location = new System.Drawing.Point(3, 3);
             this.startBtn.Name = "startBtn";
-            this.startBtn.Size = new System.Drawing.Size(52, 44);
+            this.startBtn.Size = new System.Drawing.Size(93, 45);
             this.startBtn.TabIndex = 1;
             this.startBtn.Text = "开始";
             this.startBtn.Click += new System.EventHandler(this.StartBtn_Click);
@@ -885,10 +884,10 @@
             // hslButton11
             // 
             this.hslButton11.CustomerInformation = null;
-            this.hslButton11.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.hslButton11.Location = new System.Drawing.Point(235, 3);
+            this.hslButton11.Font = new System.Drawing.Font("微软雅黑", 13F);
+            this.hslButton11.Location = new System.Drawing.Point(399, 3);
             this.hslButton11.Name = "hslButton11";
-            this.hslButton11.Size = new System.Drawing.Size(52, 44);
+            this.hslButton11.Size = new System.Drawing.Size(95, 44);
             this.hslButton11.TabIndex = 11;
             this.hslButton11.Text = "通讯控制";
             this.hslButton11.Click += new System.EventHandler(this.ElectControlBtn_Click);
@@ -896,10 +895,10 @@
             // hslButton3
             // 
             this.hslButton3.CustomerInformation = null;
-            this.hslButton3.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.hslButton3.Font = new System.Drawing.Font("微软雅黑", 13F);
             this.hslButton3.Location = new System.Drawing.Point(3, 105);
             this.hslButton3.Name = "hslButton3";
-            this.hslButton3.Size = new System.Drawing.Size(52, 44);
+            this.hslButton3.Size = new System.Drawing.Size(93, 44);
             this.hslButton3.TabIndex = 15;
             this.hslButton3.Text = "停止电机";
             this.hslButton3.Click += new System.EventHandler(this.ShutDownBtn_Click);
@@ -907,10 +906,10 @@
             // hslButton1
             // 
             this.hslButton1.CustomerInformation = null;
-            this.hslButton1.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.hslButton1.Location = new System.Drawing.Point(235, 54);
+            this.hslButton1.Font = new System.Drawing.Font("微软雅黑", 13F);
+            this.hslButton1.Location = new System.Drawing.Point(399, 54);
             this.hslButton1.Name = "hslButton1";
-            this.hslButton1.Size = new System.Drawing.Size(52, 44);
+            this.hslButton1.Size = new System.Drawing.Size(95, 44);
             this.hslButton1.TabIndex = 13;
             this.hslButton1.Text = "输出控制";
             this.hslButton1.Click += new System.EventHandler(this.DOControlBtn_Click);
@@ -919,83 +918,44 @@
             // 
             this.hslButton2.CustomerInformation = null;
             this.hslButton2.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.hslButton2.Location = new System.Drawing.Point(235, 105);
+            this.hslButton2.Location = new System.Drawing.Point(300, 105);
             this.hslButton2.Name = "hslButton2";
-            this.hslButton2.Size = new System.Drawing.Size(52, 44);
+            this.hslButton2.Size = new System.Drawing.Size(93, 44);
             this.hslButton2.TabIndex = 14;
             // 
             // right1
             // 
             this.right1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.right1.Controls.Add(this.groupBox2);
-            this.right1.Location = new System.Drawing.Point(-1, 1);
+            this.right1.Location = new System.Drawing.Point(-9, 0);
             this.right1.Margin = new System.Windows.Forms.Padding(0);
             this.right1.Name = "right1";
-            this.right1.Size = new System.Drawing.Size(325, 117);
+            this.right1.Size = new System.Drawing.Size(586, 117);
             this.right1.TabIndex = 5;
             // 
             // groupBox2
             // 
-            this.groupBox2.Controls.Add(this.TmSteadyRbt);
-            this.groupBox2.Controls.Add(this.freRbt);
-            this.groupBox2.Controls.Add(this.sensitivityRbt);
             this.groupBox2.Controls.Add(this.FlowTestRbt);
             this.groupBox2.Controls.Add(this.tmpTestRbt);
             this.groupBox2.Controls.Add(this.coolTestRbt);
             this.groupBox2.Controls.Add(this.pressureTestRbt);
             this.groupBox2.Controls.Add(this.safeTestRbt);
             this.groupBox2.Font = new System.Drawing.Font("微软雅黑", 12.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.groupBox2.Location = new System.Drawing.Point(11, 8);
+            this.groupBox2.Location = new System.Drawing.Point(31, 7);
             this.groupBox2.Margin = new System.Windows.Forms.Padding(0);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(303, 103);
+            this.groupBox2.Size = new System.Drawing.Size(525, 103);
             this.groupBox2.TabIndex = 0;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "子操作界面选择";
             // 
-            // TmSteadyRbt
-            // 
-            this.TmSteadyRbt.AutoSize = true;
-            this.TmSteadyRbt.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.TmSteadyRbt.Location = new System.Drawing.Point(123, 29);
-            this.TmSteadyRbt.Name = "TmSteadyRbt";
-            this.TmSteadyRbt.Size = new System.Drawing.Size(134, 21);
-            this.TmSteadyRbt.TabIndex = 12;
-            this.TmSteadyRbt.Text = "出水温度稳定性测试";
-            this.TmSteadyRbt.UseVisualStyleBackColor = true;
-            this.TmSteadyRbt.CheckedChanged += new System.EventHandler(this.RadioBtn_CheckedChange);
-            // 
-            // freRbt
-            // 
-            this.freRbt.AutoSize = true;
-            this.freRbt.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.freRbt.Location = new System.Drawing.Point(6, 63);
-            this.freRbt.Name = "freRbt";
-            this.freRbt.Size = new System.Drawing.Size(86, 21);
-            this.freRbt.TabIndex = 11;
-            this.freRbt.Text = "保真度测试";
-            this.freRbt.UseVisualStyleBackColor = true;
-            this.freRbt.CheckedChanged += new System.EventHandler(this.RadioBtn_CheckedChange);
-            // 
-            // sensitivityRbt
-            // 
-            this.sensitivityRbt.AutoSize = true;
-            this.sensitivityRbt.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.sensitivityRbt.Location = new System.Drawing.Point(7, 29);
-            this.sensitivityRbt.Name = "sensitivityRbt";
-            this.sensitivityRbt.Size = new System.Drawing.Size(86, 21);
-            this.sensitivityRbt.TabIndex = 10;
-            this.sensitivityRbt.Text = "灵敏度测试";
-            this.sensitivityRbt.UseVisualStyleBackColor = true;
-            this.sensitivityRbt.CheckedChanged += new System.EventHandler(this.RadioBtn_CheckedChange);
-            // 
             // FlowTestRbt
             // 
             this.FlowTestRbt.AutoSize = true;
-            this.FlowTestRbt.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.FlowTestRbt.Location = new System.Drawing.Point(123, 63);
+            this.FlowTestRbt.Font = new System.Drawing.Font("微软雅黑", 12F);
+            this.FlowTestRbt.Location = new System.Drawing.Point(221, 62);
             this.FlowTestRbt.Name = "FlowTestRbt";
-            this.FlowTestRbt.Size = new System.Drawing.Size(98, 21);
+            this.FlowTestRbt.Size = new System.Drawing.Size(124, 25);
             this.FlowTestRbt.TabIndex = 9;
             this.FlowTestRbt.Text = "流量减少测试";
             this.FlowTestRbt.UseVisualStyleBackColor = true;
@@ -1004,10 +964,10 @@
             // tmpTestRbt
             // 
             this.tmpTestRbt.AutoSize = true;
-            this.tmpTestRbt.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.tmpTestRbt.Location = new System.Drawing.Point(7, 63);
+            this.tmpTestRbt.Font = new System.Drawing.Font("微软雅黑", 12F);
+            this.tmpTestRbt.Location = new System.Drawing.Point(48, 63);
             this.tmpTestRbt.Name = "tmpTestRbt";
-            this.tmpTestRbt.Size = new System.Drawing.Size(110, 21);
+            this.tmpTestRbt.Size = new System.Drawing.Size(140, 25);
             this.tmpTestRbt.TabIndex = 8;
             this.tmpTestRbt.Text = "温度稳定性测试";
             this.tmpTestRbt.UseVisualStyleBackColor = true;
@@ -1016,10 +976,10 @@
             // coolTestRbt
             // 
             this.coolTestRbt.AutoSize = true;
-            this.coolTestRbt.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.coolTestRbt.Location = new System.Drawing.Point(225, 29);
+            this.coolTestRbt.Font = new System.Drawing.Font("微软雅黑", 12F);
+            this.coolTestRbt.Location = new System.Drawing.Point(389, 29);
             this.coolTestRbt.Name = "coolTestRbt";
-            this.coolTestRbt.Size = new System.Drawing.Size(74, 21);
+            this.coolTestRbt.Size = new System.Drawing.Size(92, 25);
             this.coolTestRbt.TabIndex = 7;
             this.coolTestRbt.Text = "降温测试";
             this.coolTestRbt.UseVisualStyleBackColor = true;
@@ -1028,10 +988,10 @@
             // pressureTestRbt
             // 
             this.pressureTestRbt.AutoSize = true;
-            this.pressureTestRbt.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.pressureTestRbt.Location = new System.Drawing.Point(123, 30);
+            this.pressureTestRbt.Font = new System.Drawing.Font("微软雅黑", 12F);
+            this.pressureTestRbt.Location = new System.Drawing.Point(221, 30);
             this.pressureTestRbt.Name = "pressureTestRbt";
-            this.pressureTestRbt.Size = new System.Drawing.Size(98, 21);
+            this.pressureTestRbt.Size = new System.Drawing.Size(124, 25);
             this.pressureTestRbt.TabIndex = 6;
             this.pressureTestRbt.Text = "压力变化测试";
             this.pressureTestRbt.UseVisualStyleBackColor = true;
@@ -1041,129 +1001,15 @@
             // 
             this.safeTestRbt.AutoSize = true;
             this.safeTestRbt.Checked = true;
-            this.safeTestRbt.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.safeTestRbt.Location = new System.Drawing.Point(7, 29);
+            this.safeTestRbt.Font = new System.Drawing.Font("微软雅黑", 12F);
+            this.safeTestRbt.Location = new System.Drawing.Point(48, 29);
             this.safeTestRbt.Name = "safeTestRbt";
-            this.safeTestRbt.Size = new System.Drawing.Size(86, 21);
+            this.safeTestRbt.Size = new System.Drawing.Size(108, 25);
             this.safeTestRbt.TabIndex = 5;
             this.safeTestRbt.TabStop = true;
             this.safeTestRbt.Text = "安全性测试";
             this.safeTestRbt.UseVisualStyleBackColor = true;
             this.safeTestRbt.CheckedChanged += new System.EventHandler(this.RadioBtn_CheckedChange);
-            // 
-            // centerPanel
-            // 
-            this.centerPanel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.centerPanel.Controls.Add(this.label11);
-            this.centerPanel.Controls.Add(this.label10);
-            this.centerPanel.Controls.Add(this.label9);
-            this.centerPanel.Controls.Add(this.label8);
-            this.centerPanel.Controls.Add(this.label7);
-            this.centerPanel.Controls.Add(this.label6);
-            this.centerPanel.Controls.Add(this.label12);
-            this.centerPanel.Controls.Add(this.label13);
-            this.centerPanel.Controls.Add(this.label18);
-            this.centerPanel.Controls.Add(this.label19);
-            this.centerPanel.Controls.Add(this.hslLedQm5);
-            this.centerPanel.Controls.Add(this.hslLedQm);
-            this.centerPanel.Controls.Add(this.hslLedTm);
-            this.centerPanel.Controls.Add(this.hslLedQh);
-            this.centerPanel.Controls.Add(this.hslLedTh);
-            this.centerPanel.Controls.Add(this.hslLedPm);
-            this.centerPanel.Controls.Add(this.hslLedPh);
-            this.centerPanel.Controls.Add(this.hslLedQc);
-            this.centerPanel.Controls.Add(this.hslLedTc);
-            this.centerPanel.Controls.Add(this.hslLedPc);
-            this.centerPanel.Controls.Add(this.hslValves13);
-            this.centerPanel.Controls.Add(this.hslValves12);
-            this.centerPanel.Controls.Add(this.hslPipeLine19);
-            this.centerPanel.Controls.Add(this.hslValves11);
-            this.centerPanel.Controls.Add(this.label20);
-            this.centerPanel.Controls.Add(this.hslPipeLine30);
-            this.centerPanel.Controls.Add(this.hslPipeLine31);
-            this.centerPanel.Controls.Add(this.hslPipeLine28);
-            this.centerPanel.Controls.Add(this.hslPipeLine29);
-            this.centerPanel.Controls.Add(this.hslValves9);
-            this.centerPanel.Controls.Add(this.hslValves10);
-            this.centerPanel.Controls.Add(this.hslPipeLine24);
-            this.centerPanel.Controls.Add(this.hslPipeLine25);
-            this.centerPanel.Controls.Add(this.hslPumpOne6);
-            this.centerPanel.Controls.Add(this.hslPipeLine26);
-            this.centerPanel.Controls.Add(this.hslPipeLine27);
-            this.centerPanel.Controls.Add(this.hslPumpOne8);
-            this.centerPanel.Controls.Add(this.hslPipeLine23);
-            this.centerPanel.Controls.Add(this.hslPipeLine22);
-            this.centerPanel.Controls.Add(this.hslValves8);
-            this.centerPanel.Controls.Add(this.hslPipeLine21);
-            this.centerPanel.Controls.Add(this.hslValves7);
-            this.centerPanel.Controls.Add(this.hslPipeLine20);
-            this.centerPanel.Controls.Add(this.hslPipeLine18);
-            this.centerPanel.Controls.Add(this.hslValves6);
-            this.centerPanel.Controls.Add(this.hslPipeLine8);
-            this.centerPanel.Controls.Add(this.hslValves5);
-            this.centerPanel.Controls.Add(this.hslValves4);
-            this.centerPanel.Controls.Add(this.hslPipeLine16);
-            this.centerPanel.Controls.Add(this.hslPipeLine15);
-            this.centerPanel.Controls.Add(this.hslPipeLine14);
-            this.centerPanel.Controls.Add(this.hslPipeLine13);
-            this.centerPanel.Controls.Add(this.hslPumpOne7);
-            this.centerPanel.Controls.Add(this.hslPipeLine12);
-            this.centerPanel.Controls.Add(this.hslPipeLine11);
-            this.centerPanel.Controls.Add(this.hslPipeLine10);
-            this.centerPanel.Controls.Add(this.hslPipeLine9);
-            this.centerPanel.Controls.Add(this.reshui);
-            this.centerPanel.Controls.Add(this.hslValves3);
-            this.centerPanel.Controls.Add(this.hslPipeLine7);
-            this.centerPanel.Controls.Add(this.hslPipeLine6);
-            this.centerPanel.Controls.Add(this.hslValves2);
-            this.centerPanel.Controls.Add(this.hslPipeLine5);
-            this.centerPanel.Controls.Add(this.hslValves1);
-            this.centerPanel.Controls.Add(this.hslPipeLine1);
-            this.centerPanel.Controls.Add(this.hslPipeLine4);
-            this.centerPanel.Controls.Add(this.hslPumpOne5);
-            this.centerPanel.Controls.Add(this.hslPumpOne4);
-            this.centerPanel.Controls.Add(this.hslPumpOne3);
-            this.centerPanel.Controls.Add(this.hslPumpOne2);
-            this.centerPanel.Controls.Add(this.hslPumpOne1);
-            this.centerPanel.Controls.Add(this.hslPipeLine17);
-            this.centerPanel.Controls.Add(this.center1);
-            this.centerPanel.Controls.Add(this.Title);
-            this.centerPanel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.centerPanel.Location = new System.Drawing.Point(320, 0);
-            this.centerPanel.Name = "centerPanel";
-            this.centerPanel.Size = new System.Drawing.Size(1260, 1061);
-            this.centerPanel.TabIndex = 2;
-            // 
-            // center1
-            // 
-            this.center1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.center1.Controls.Add(this.hslCurve1);
-            this.center1.Location = new System.Drawing.Point(0, 116);
-            this.center1.Margin = new System.Windows.Forms.Padding(0);
-            this.center1.Name = "center1";
-            this.center1.Size = new System.Drawing.Size(1277, 432);
-            this.center1.TabIndex = 2;
-            // 
-            // hslCurve1
-            // 
-            this.hslCurve1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(46)))), ((int)(((byte)(46)))));
-            this.hslCurve1.ColorDashLines = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.hslCurve1.ColorLinesAndText = System.Drawing.Color.LightGray;
-            this.hslCurve1.Location = new System.Drawing.Point(2, 1);
-            this.hslCurve1.Name = "hslCurve1";
-            this.hslCurve1.Size = new System.Drawing.Size(1270, 430);
-            this.hslCurve1.TabIndex = 7;
-            this.hslCurve1.ValueSegment = 20;
-            // 
-            // Title
-            // 
-            this.Title.Font = new System.Drawing.Font("微软雅黑", 36F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.Title.Location = new System.Drawing.Point(439, 8);
-            this.Title.Name = "Title";
-            this.Title.Size = new System.Drawing.Size(393, 80);
-            this.Title.TabIndex = 1;
-            this.Title.Text = "恒温测试界面";
-            this.Title.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // m_instantAoCtrl
             // 
@@ -1181,12 +1027,114 @@
             // 
             this.waveformAiCtrl1._StateStream = ((Automation.BDaq.DeviceStateStreamer)(resources.GetObject("waveformAiCtrl1._StateStream")));
             // 
+            // Title
+            // 
+            this.Title.Font = new System.Drawing.Font("微软雅黑", 36F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.Title.Location = new System.Drawing.Point(356, 8);
+            this.Title.Name = "Title";
+            this.Title.Size = new System.Drawing.Size(393, 80);
+            this.Title.TabIndex = 1;
+            this.Title.Text = "恒温测试界面";
+            this.Title.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // hslCurve1
+            // 
+            this.hslCurve1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(46)))), ((int)(((byte)(46)))));
+            this.hslCurve1.ColorDashLines = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.hslCurve1.ColorLinesAndText = System.Drawing.Color.LightGray;
+            this.hslCurve1.Location = new System.Drawing.Point(-1, 581);
+            this.hslCurve1.Name = "hslCurve1";
+            this.hslCurve1.Size = new System.Drawing.Size(1028, 479);
+            this.hslCurve1.TabIndex = 7;
+            this.hslCurve1.ValueSegment = 20;
+            // 
+            // center1
+            // 
+            this.center1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.center1.Controls.Add(this.hslValves3);
+            this.center1.Controls.Add(this.hslValves1);
+            this.center1.Controls.Add(this.hslValves2);
+            this.center1.Controls.Add(this.hslValves7);
+            this.center1.Controls.Add(this.hslValves8);
+            this.center1.Controls.Add(this.hslValves6);
+            this.center1.Controls.Add(this.hslValves5);
+            this.center1.Controls.Add(this.hslValves4);
+            this.center1.Controls.Add(this.label11);
+            this.center1.Controls.Add(this.label10);
+            this.center1.Controls.Add(this.hslLedPh);
+            this.center1.Controls.Add(this.label9);
+            this.center1.Controls.Add(this.hslPipeLine17);
+            this.center1.Controls.Add(this.label8);
+            this.center1.Controls.Add(this.hslPumpOne1);
+            this.center1.Controls.Add(this.label7);
+            this.center1.Controls.Add(this.hslPumpOne2);
+            this.center1.Controls.Add(this.label6);
+            this.center1.Controls.Add(this.hslPumpOne3);
+            this.center1.Controls.Add(this.label12);
+            this.center1.Controls.Add(this.hslPumpOne4);
+            this.center1.Controls.Add(this.label13);
+            this.center1.Controls.Add(this.hslPumpOne5);
+            this.center1.Controls.Add(this.label18);
+            this.center1.Controls.Add(this.hslPipeLine4);
+            this.center1.Controls.Add(this.label19);
+            this.center1.Controls.Add(this.hslPipeLine1);
+            this.center1.Controls.Add(this.hslLedQm5);
+            this.center1.Controls.Add(this.hslLedQm);
+            this.center1.Controls.Add(this.hslPipeLine5);
+            this.center1.Controls.Add(this.hslLedTm);
+            this.center1.Controls.Add(this.hslLedQh);
+            this.center1.Controls.Add(this.hslPipeLine6);
+            this.center1.Controls.Add(this.hslLedTh);
+            this.center1.Controls.Add(this.hslPipeLine7);
+            this.center1.Controls.Add(this.hslLedPm);
+            this.center1.Controls.Add(this.reshui);
+            this.center1.Controls.Add(this.hslLedQc);
+            this.center1.Controls.Add(this.hslPipeLine9);
+            this.center1.Controls.Add(this.hslLedTc);
+            this.center1.Controls.Add(this.hslPipeLine10);
+            this.center1.Controls.Add(this.hslLedPc);
+            this.center1.Controls.Add(this.hslPipeLine11);
+            this.center1.Controls.Add(this.hslValves13);
+            this.center1.Controls.Add(this.hslPipeLine12);
+            this.center1.Controls.Add(this.hslValves12);
+            this.center1.Controls.Add(this.hslPumpOne7);
+            this.center1.Controls.Add(this.hslPipeLine19);
+            this.center1.Controls.Add(this.hslPipeLine13);
+            this.center1.Controls.Add(this.hslValves11);
+            this.center1.Controls.Add(this.hslPipeLine14);
+            this.center1.Controls.Add(this.label20);
+            this.center1.Controls.Add(this.hslPipeLine15);
+            this.center1.Controls.Add(this.hslPipeLine30);
+            this.center1.Controls.Add(this.hslPipeLine16);
+            this.center1.Controls.Add(this.hslPipeLine31);
+            this.center1.Controls.Add(this.hslPipeLine28);
+            this.center1.Controls.Add(this.hslPipeLine29);
+            this.center1.Controls.Add(this.hslPipeLine8);
+            this.center1.Controls.Add(this.hslValves9);
+            this.center1.Controls.Add(this.hslValves10);
+            this.center1.Controls.Add(this.hslPipeLine18);
+            this.center1.Controls.Add(this.hslPipeLine24);
+            this.center1.Controls.Add(this.hslPipeLine20);
+            this.center1.Controls.Add(this.hslPipeLine25);
+            this.center1.Controls.Add(this.hslPumpOne6);
+            this.center1.Controls.Add(this.hslPipeLine21);
+            this.center1.Controls.Add(this.hslPipeLine26);
+            this.center1.Controls.Add(this.hslPipeLine27);
+            this.center1.Controls.Add(this.hslPipeLine22);
+            this.center1.Controls.Add(this.hslPumpOne8);
+            this.center1.Controls.Add(this.hslPipeLine23);
+            this.center1.Location = new System.Drawing.Point(0, 116);
+            this.center1.Margin = new System.Windows.Forms.Padding(0);
+            this.center1.Name = "center1";
+            this.center1.Size = new System.Drawing.Size(1026, 462);
+            this.center1.TabIndex = 2;
+            // 
             // label11
             // 
             this.label11.AutoSize = true;
             this.label11.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.label11.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label11.Location = new System.Drawing.Point(532, 981);
+            this.label11.Location = new System.Drawing.Point(423, 381);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(76, 23);
             this.label11.TabIndex = 148;
@@ -1197,201 +1145,11 @@
             this.label10.AutoSize = true;
             this.label10.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.label10.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label10.Location = new System.Drawing.Point(532, 864);
+            this.label10.Location = new System.Drawing.Point(423, 264);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(76, 23);
             this.label10.TabIndex = 147;
             this.label10.Text = "出水流量";
-            // 
-            // label9
-            // 
-            this.label9.AutoSize = true;
-            this.label9.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.label9.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label9.Location = new System.Drawing.Point(532, 829);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(76, 23);
-            this.label9.TabIndex = 146;
-            this.label9.Text = "出水温度";
-            // 
-            // label8
-            // 
-            this.label8.AutoSize = true;
-            this.label8.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.label8.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label8.Location = new System.Drawing.Point(532, 793);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(76, 23);
-            this.label8.TabIndex = 145;
-            this.label8.Text = "出水压力";
-            // 
-            // label7
-            // 
-            this.label7.AutoSize = true;
-            this.label7.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.label7.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label7.Location = new System.Drawing.Point(808, 637);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(76, 23);
-            this.label7.TabIndex = 144;
-            this.label7.Text = "冷水温度";
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.label6.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label6.Location = new System.Drawing.Point(712, 637);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(76, 23);
-            this.label6.TabIndex = 143;
-            this.label6.Text = "冷水压力";
-            // 
-            // label12
-            // 
-            this.label12.AutoSize = true;
-            this.label12.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.label12.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label12.Location = new System.Drawing.Point(927, 637);
-            this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(76, 23);
-            this.label12.TabIndex = 142;
-            this.label12.Text = "冷水流量";
-            // 
-            // label13
-            // 
-            this.label13.AutoSize = true;
-            this.label13.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.label13.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label13.Location = new System.Drawing.Point(528, 638);
-            this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(76, 23);
-            this.label13.TabIndex = 141;
-            this.label13.Text = "热水压力";
-            // 
-            // label18
-            // 
-            this.label18.AutoSize = true;
-            this.label18.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.label18.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label18.Location = new System.Drawing.Point(429, 638);
-            this.label18.Name = "label18";
-            this.label18.Size = new System.Drawing.Size(76, 23);
-            this.label18.TabIndex = 140;
-            this.label18.Text = "热水温度";
-            // 
-            // label19
-            // 
-            this.label19.AutoSize = true;
-            this.label19.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.label19.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label19.Location = new System.Drawing.Point(317, 637);
-            this.label19.Name = "label19";
-            this.label19.Size = new System.Drawing.Size(76, 23);
-            this.label19.TabIndex = 139;
-            this.label19.Text = "热水流量";
-            // 
-            // hslLedQm5
-            // 
-            this.hslLedQm5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(46)))), ((int)(((byte)(46)))));
-            this.hslLedQm5.DisplayBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(62)))), ((int)(((byte)(62)))), ((int)(((byte)(62)))));
-            this.hslLedQm5.DisplayNumber = 4;
-            this.hslLedQm5.DisplayText = "0";
-            this.hslLedQm5.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.hslLedQm5.ForeColor = System.Drawing.Color.SkyBlue;
-            this.hslLedQm5.LedNumberSize = 1;
-            this.hslLedQm5.LeftRightOffect = 15;
-            this.hslLedQm5.Location = new System.Drawing.Point(609, 981);
-            this.hslLedQm5.Margin = new System.Windows.Forms.Padding(3, 8, 3, 8);
-            this.hslLedQm5.Name = "hslLedQm5";
-            this.hslLedQm5.Size = new System.Drawing.Size(85, 23);
-            this.hslLedQm5.TabIndex = 138;
-            this.hslLedQm5.UnitText = "ml";
-            // 
-            // hslLedQm
-            // 
-            this.hslLedQm.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(46)))), ((int)(((byte)(46)))));
-            this.hslLedQm.DisplayBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(62)))), ((int)(((byte)(62)))), ((int)(((byte)(62)))));
-            this.hslLedQm.DisplayNumber = 4;
-            this.hslLedQm.DisplayText = "0";
-            this.hslLedQm.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.hslLedQm.ForeColor = System.Drawing.Color.Yellow;
-            this.hslLedQm.LedNumberSize = 1;
-            this.hslLedQm.LeftRightOffect = 15;
-            this.hslLedQm.Location = new System.Drawing.Point(609, 863);
-            this.hslLedQm.Margin = new System.Windows.Forms.Padding(3, 8, 3, 8);
-            this.hslLedQm.Name = "hslLedQm";
-            this.hslLedQm.Size = new System.Drawing.Size(110, 23);
-            this.hslLedQm.TabIndex = 137;
-            this.hslLedQm.UnitText = "L/Min";
-            // 
-            // hslLedTm
-            // 
-            this.hslLedTm.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(46)))), ((int)(((byte)(46)))));
-            this.hslLedTm.DisplayBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(62)))), ((int)(((byte)(62)))), ((int)(((byte)(62)))));
-            this.hslLedTm.DisplayNumber = 4;
-            this.hslLedTm.DisplayText = "0";
-            this.hslLedTm.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.hslLedTm.ForeColor = System.Drawing.Color.Lime;
-            this.hslLedTm.LedNumberSize = 1;
-            this.hslLedTm.LeftRightOffect = 15;
-            this.hslLedTm.Location = new System.Drawing.Point(609, 829);
-            this.hslLedTm.Margin = new System.Windows.Forms.Padding(3, 8, 3, 8);
-            this.hslLedTm.Name = "hslLedTm";
-            this.hslLedTm.Size = new System.Drawing.Size(85, 23);
-            this.hslLedTm.TabIndex = 136;
-            this.hslLedTm.UnitText = "℃";
-            // 
-            // hslLedQh
-            // 
-            this.hslLedQh.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(46)))), ((int)(((byte)(46)))));
-            this.hslLedQh.DisplayBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(62)))), ((int)(((byte)(62)))), ((int)(((byte)(62)))));
-            this.hslLedQh.DisplayNumber = 4;
-            this.hslLedQh.DisplayText = "0";
-            this.hslLedQh.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.hslLedQh.ForeColor = System.Drawing.Color.Yellow;
-            this.hslLedQh.LedNumberSize = 1;
-            this.hslLedQh.LeftRightOffect = 15;
-            this.hslLedQh.Location = new System.Drawing.Point(302, 606);
-            this.hslLedQh.Margin = new System.Windows.Forms.Padding(3, 8, 3, 8);
-            this.hslLedQh.Name = "hslLedQh";
-            this.hslLedQh.Size = new System.Drawing.Size(110, 25);
-            this.hslLedQh.TabIndex = 135;
-            this.hslLedQh.UnitText = "L/Min";
-            // 
-            // hslLedTh
-            // 
-            this.hslLedTh.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(46)))), ((int)(((byte)(46)))));
-            this.hslLedTh.DisplayBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(62)))), ((int)(((byte)(62)))), ((int)(((byte)(62)))));
-            this.hslLedTh.DisplayNumber = 4;
-            this.hslLedTh.DisplayText = "0";
-            this.hslLedTh.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.hslLedTh.ForeColor = System.Drawing.Color.Lime;
-            this.hslLedTh.LedNumberSize = 1;
-            this.hslLedTh.LeftRightOffect = 15;
-            this.hslLedTh.Location = new System.Drawing.Point(422, 607);
-            this.hslLedTh.Margin = new System.Windows.Forms.Padding(3, 8, 3, 8);
-            this.hslLedTh.Name = "hslLedTh";
-            this.hslLedTh.Size = new System.Drawing.Size(85, 25);
-            this.hslLedTh.TabIndex = 134;
-            this.hslLedTh.UnitText = "℃";
-            // 
-            // hslLedPm
-            // 
-            this.hslLedPm.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(46)))), ((int)(((byte)(46)))));
-            this.hslLedPm.DisplayBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(62)))), ((int)(((byte)(62)))), ((int)(((byte)(62)))));
-            this.hslLedPm.DisplayNumber = 4;
-            this.hslLedPm.DisplayText = "0";
-            this.hslLedPm.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.hslLedPm.ForeColor = System.Drawing.Color.Snow;
-            this.hslLedPm.LedNumberSize = 1;
-            this.hslLedPm.LeftRightOffect = 15;
-            this.hslLedPm.Location = new System.Drawing.Point(609, 793);
-            this.hslLedPm.Margin = new System.Windows.Forms.Padding(3, 8, 3, 8);
-            this.hslLedPm.Name = "hslLedPm";
-            this.hslLedPm.Size = new System.Drawing.Size(95, 23);
-            this.hslLedPm.TabIndex = 133;
-            this.hslLedPm.UnitText = "bar";
             // 
             // hslLedPh
             // 
@@ -1403,709 +1161,45 @@
             this.hslLedPh.ForeColor = System.Drawing.Color.Snow;
             this.hslLedPh.LedNumberSize = 1;
             this.hslLedPh.LeftRightOffect = 15;
-            this.hslLedPh.Location = new System.Drawing.Point(515, 606);
+            this.hslLedPh.Location = new System.Drawing.Point(300, 192);
             this.hslLedPh.Margin = new System.Windows.Forms.Padding(3, 8, 3, 8);
             this.hslLedPh.Name = "hslLedPh";
-            this.hslLedPh.Size = new System.Drawing.Size(95, 25);
+            this.hslLedPh.Size = new System.Drawing.Size(110, 25);
             this.hslLedPh.TabIndex = 132;
             this.hslLedPh.UnitText = "bar";
             // 
-            // hslLedQc
-            // 
-            this.hslLedQc.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(46)))), ((int)(((byte)(46)))));
-            this.hslLedQc.DisplayBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(62)))), ((int)(((byte)(62)))), ((int)(((byte)(62)))));
-            this.hslLedQc.DisplayNumber = 4;
-            this.hslLedQc.DisplayText = "0";
-            this.hslLedQc.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.hslLedQc.ForeColor = System.Drawing.Color.Yellow;
-            this.hslLedQc.LedNumberSize = 1;
-            this.hslLedQc.LeftRightOffect = 15;
-            this.hslLedQc.Location = new System.Drawing.Point(898, 605);
-            this.hslLedQc.Margin = new System.Windows.Forms.Padding(3, 8, 3, 8);
-            this.hslLedQc.Name = "hslLedQc";
-            this.hslLedQc.Size = new System.Drawing.Size(110, 25);
-            this.hslLedQc.TabIndex = 131;
-            this.hslLedQc.UnitText = "L/Min";
-            // 
-            // hslLedTc
-            // 
-            this.hslLedTc.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(46)))), ((int)(((byte)(46)))));
-            this.hslLedTc.DisplayBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(62)))), ((int)(((byte)(62)))), ((int)(((byte)(62)))));
-            this.hslLedTc.DisplayNumber = 4;
-            this.hslLedTc.DisplayText = "0";
-            this.hslLedTc.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.hslLedTc.ForeColor = System.Drawing.Color.Lime;
-            this.hslLedTc.LedNumberSize = 1;
-            this.hslLedTc.LeftRightOffect = 15;
-            this.hslLedTc.Location = new System.Drawing.Point(806, 605);
-            this.hslLedTc.Margin = new System.Windows.Forms.Padding(3, 8, 3, 8);
-            this.hslLedTc.Name = "hslLedTc";
-            this.hslLedTc.Size = new System.Drawing.Size(85, 25);
-            this.hslLedTc.TabIndex = 130;
-            this.hslLedTc.UnitText = "℃";
-            // 
-            // hslLedPc
-            // 
-            this.hslLedPc.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(46)))), ((int)(((byte)(46)))));
-            this.hslLedPc.DisplayBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(62)))), ((int)(((byte)(62)))), ((int)(((byte)(62)))));
-            this.hslLedPc.DisplayNumber = 4;
-            this.hslLedPc.DisplayText = "0";
-            this.hslLedPc.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.hslLedPc.ForeColor = System.Drawing.Color.Snow;
-            this.hslLedPc.LedNumberSize = 1;
-            this.hslLedPc.LeftRightOffect = 15;
-            this.hslLedPc.Location = new System.Drawing.Point(699, 605);
-            this.hslLedPc.Margin = new System.Windows.Forms.Padding(3, 8, 3, 8);
-            this.hslLedPc.Name = "hslLedPc";
-            this.hslLedPc.Size = new System.Drawing.Size(95, 25);
-            this.hslLedPc.TabIndex = 129;
-            this.hslLedPc.UnitText = "bar";
-            // 
-            // hslValves13
-            // 
-            this.hslValves13.EdgeColor = System.Drawing.Color.DodgerBlue;
-            this.hslValves13.Font = new System.Drawing.Font("微软雅黑", 6F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.hslValves13.Location = new System.Drawing.Point(866, 713);
-            this.hslValves13.Name = "hslValves13";
-            this.hslValves13.Size = new System.Drawing.Size(44, 30);
-            this.hslValves13.TabIndex = 128;
-            this.hslValves13.Text = "冷水进水阀";
-            // 
-            // hslValves12
-            // 
-            this.hslValves12.EdgeColor = System.Drawing.Color.Gray;
-            this.hslValves12.Font = new System.Drawing.Font("微软雅黑", 6F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.hslValves12.Location = new System.Drawing.Point(573, 897);
-            this.hslValves12.Name = "hslValves12";
-            this.hslValves12.Size = new System.Drawing.Size(40, 30);
-            this.hslValves12.TabIndex = 127;
-            this.hslValves12.Text = "5s出水阀";
-            // 
-            // hslPipeLine19
-            // 
-            this.hslPipeLine19.ActiveLineCenterColor = System.Drawing.Color.Yellow;
-            this.hslPipeLine19.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("hslPipeLine19.BackgroundImage")));
-            this.hslPipeLine19.Font = new System.Drawing.Font("微软雅黑", 6F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.hslPipeLine19.Location = new System.Drawing.Point(563, 913);
-            this.hslPipeLine19.Name = "hslPipeLine19";
-            this.hslPipeLine19.PipeLineActive = true;
-            this.hslPipeLine19.Size = new System.Drawing.Size(94, 10);
-            this.hslPipeLine19.TabIndex = 126;
-            // 
-            // hslValves11
-            // 
-            this.hslValves11.EdgeColor = System.Drawing.Color.Goldenrod;
-            this.hslValves11.Font = new System.Drawing.Font("微软雅黑", 6F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.hslValves11.Location = new System.Drawing.Point(645, 930);
-            this.hslValves11.Name = "hslValves11";
-            this.hslValves11.PipeLineStyle = HslControls.HslDirectionStyle.Vertical;
-            this.hslValves11.Size = new System.Drawing.Size(30, 40);
-            this.hslValves11.TabIndex = 125;
-            this.hslValves11.Text = "出水阀";
-            // 
-            // label20
-            // 
-            this.label20.AutoSize = true;
-            this.label20.BackColor = System.Drawing.Color.Thistle;
-            this.label20.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.label20.Font = new System.Drawing.Font("微软雅黑", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label20.ForeColor = System.Drawing.Color.Black;
-            this.label20.Location = new System.Drawing.Point(623, 716);
-            this.label20.Name = "label20";
-            this.label20.Size = new System.Drawing.Size(64, 33);
-            this.label20.TabIndex = 103;
-            this.label20.Text = "产品";
-            // 
-            // hslPipeLine30
-            // 
-            this.hslPipeLine30.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("hslPipeLine30.BackgroundImage")));
-            this.hslPipeLine30.Font = new System.Drawing.Font("微软雅黑", 6F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.hslPipeLine30.Location = new System.Drawing.Point(1064, 722);
-            this.hslPipeLine30.MoveSpeed = -1F;
-            this.hslPipeLine30.Name = "hslPipeLine30";
-            this.hslPipeLine30.PipeLineActive = true;
-            this.hslPipeLine30.PipeLineStyle = HslControls.HslDirectionStyle.Vertical;
-            this.hslPipeLine30.PipeTurnLeft = HslControls.HslPipeTurnDirection.Right;
-            this.hslPipeLine30.PipeTurnRight = HslControls.HslPipeTurnDirection.Left;
-            this.hslPipeLine30.Size = new System.Drawing.Size(10, 44);
-            this.hslPipeLine30.TabIndex = 124;
-            // 
-            // hslPipeLine31
-            // 
-            this.hslPipeLine31.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("hslPipeLine31.BackgroundImage")));
-            this.hslPipeLine31.Font = new System.Drawing.Font("微软雅黑", 6F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.hslPipeLine31.Location = new System.Drawing.Point(1064, 694);
-            this.hslPipeLine31.MoveSpeed = -1F;
-            this.hslPipeLine31.Name = "hslPipeLine31";
-            this.hslPipeLine31.PipeLineActive = true;
-            this.hslPipeLine31.PipeLineStyle = HslControls.HslDirectionStyle.Vertical;
-            this.hslPipeLine31.PipeTurnLeft = HslControls.HslPipeTurnDirection.Left;
-            this.hslPipeLine31.PipeTurnRight = HslControls.HslPipeTurnDirection.Right;
-            this.hslPipeLine31.Size = new System.Drawing.Size(10, 38);
-            this.hslPipeLine31.TabIndex = 123;
-            // 
-            // hslPipeLine28
-            // 
-            this.hslPipeLine28.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("hslPipeLine28.BackgroundImage")));
-            this.hslPipeLine28.Font = new System.Drawing.Font("微软雅黑", 6F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.hslPipeLine28.Location = new System.Drawing.Point(921, 694);
-            this.hslPipeLine28.MoveSpeed = -1F;
-            this.hslPipeLine28.Name = "hslPipeLine28";
-            this.hslPipeLine28.PipeLineActive = true;
-            this.hslPipeLine28.PipeLineStyle = HslControls.HslDirectionStyle.Vertical;
-            this.hslPipeLine28.PipeTurnLeft = HslControls.HslPipeTurnDirection.Right;
-            this.hslPipeLine28.PipeTurnRight = HslControls.HslPipeTurnDirection.Left;
-            this.hslPipeLine28.Size = new System.Drawing.Size(10, 44);
-            this.hslPipeLine28.TabIndex = 122;
-            // 
-            // hslPipeLine29
-            // 
-            this.hslPipeLine29.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("hslPipeLine29.BackgroundImage")));
-            this.hslPipeLine29.Font = new System.Drawing.Font("微软雅黑", 6F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.hslPipeLine29.Location = new System.Drawing.Point(921, 728);
-            this.hslPipeLine29.MoveSpeed = -1F;
-            this.hslPipeLine29.Name = "hslPipeLine29";
-            this.hslPipeLine29.PipeLineActive = true;
-            this.hslPipeLine29.PipeLineStyle = HslControls.HslDirectionStyle.Vertical;
-            this.hslPipeLine29.PipeTurnLeft = HslControls.HslPipeTurnDirection.Left;
-            this.hslPipeLine29.PipeTurnRight = HslControls.HslPipeTurnDirection.Right;
-            this.hslPipeLine29.Size = new System.Drawing.Size(10, 38);
-            this.hslPipeLine29.TabIndex = 121;
-            // 
-            // hslValves9
-            // 
-            this.hslValves9.EdgeColor = System.Drawing.Color.Gray;
-            this.hslValves9.Font = new System.Drawing.Font("微软雅黑", 6F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.hslValves9.Location = new System.Drawing.Point(943, 740);
-            this.hslValves9.Name = "hslValves9";
-            this.hslValves9.Size = new System.Drawing.Size(48, 30);
-            this.hslValves9.TabIndex = 120;
-            this.hslValves9.Text = "变压冷水阀";
-            // 
-            // hslValves10
-            // 
-            this.hslValves10.EdgeColor = System.Drawing.Color.Gray;
-            this.hslValves10.Font = new System.Drawing.Font("微软雅黑", 6F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.hslValves10.Location = new System.Drawing.Point(943, 679);
-            this.hslValves10.Name = "hslValves10";
-            this.hslValves10.Size = new System.Drawing.Size(40, 30);
-            this.hslValves10.TabIndex = 119;
-            this.hslValves10.Text = "冷水阀";
-            // 
-            // hslPipeLine24
-            // 
-            this.hslPipeLine24.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("hslPipeLine24.BackgroundImage")));
-            this.hslPipeLine24.Font = new System.Drawing.Font("微软雅黑", 6F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.hslPipeLine24.Location = new System.Drawing.Point(930, 756);
-            this.hslPipeLine24.Name = "hslPipeLine24";
-            this.hslPipeLine24.PipeLineActive = true;
-            this.hslPipeLine24.Size = new System.Drawing.Size(69, 10);
-            this.hslPipeLine24.TabIndex = 118;
-            // 
-            // hslPipeLine25
-            // 
-            this.hslPipeLine25.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("hslPipeLine25.BackgroundImage")));
-            this.hslPipeLine25.Font = new System.Drawing.Font("微软雅黑", 6F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.hslPipeLine25.Location = new System.Drawing.Point(931, 694);
-            this.hslPipeLine25.Name = "hslPipeLine25";
-            this.hslPipeLine25.PipeLineActive = true;
-            this.hslPipeLine25.Size = new System.Drawing.Size(69, 10);
-            this.hslPipeLine25.TabIndex = 117;
-            // 
-            // hslPumpOne6
-            // 
-            this.hslPumpOne6.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(209)))), ((int)(((byte)(218)))), ((int)(((byte)(227)))));
-            this.hslPumpOne6.Color2 = System.Drawing.Color.FromArgb(((int)(((byte)(157)))), ((int)(((byte)(164)))), ((int)(((byte)(173)))));
-            this.hslPumpOne6.Color3 = System.Drawing.Color.FromArgb(((int)(((byte)(195)))), ((int)(((byte)(200)))), ((int)(((byte)(207)))));
-            this.hslPumpOne6.Color4 = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(208)))), ((int)(((byte)(214)))));
-            this.hslPumpOne6.Color5 = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(213)))), ((int)(((byte)(220)))));
-            this.hslPumpOne6.Color6 = System.Drawing.Color.FromArgb(((int)(((byte)(153)))), ((int)(((byte)(160)))), ((int)(((byte)(169)))));
-            this.hslPumpOne6.Color7 = System.Drawing.Color.FromArgb(((int)(((byte)(92)))), ((int)(((byte)(100)))), ((int)(((byte)(111)))));
-            this.hslPumpOne6.Entrance = 2;
-            this.hslPumpOne6.Export = 5;
-            this.hslPumpOne6.Font = new System.Drawing.Font("微软雅黑", 6F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.hslPumpOne6.Location = new System.Drawing.Point(998, 744);
-            this.hslPumpOne6.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
-            this.hslPumpOne6.Name = "hslPumpOne6";
-            this.hslPumpOne6.Size = new System.Drawing.Size(49, 89);
-            this.hslPumpOne6.TabIndex = 116;
-            this.hslPumpOne6.Text = "冷水变压泵";
-            // 
-            // hslPipeLine26
-            // 
-            this.hslPipeLine26.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("hslPipeLine26.BackgroundImage")));
-            this.hslPipeLine26.Font = new System.Drawing.Font("微软雅黑", 6F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.hslPipeLine26.Location = new System.Drawing.Point(1045, 756);
-            this.hslPipeLine26.Name = "hslPipeLine26";
-            this.hslPipeLine26.PipeLineActive = true;
-            this.hslPipeLine26.Size = new System.Drawing.Size(19, 10);
-            this.hslPipeLine26.TabIndex = 115;
-            // 
-            // hslPipeLine27
-            // 
-            this.hslPipeLine27.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("hslPipeLine27.BackgroundImage")));
-            this.hslPipeLine27.Font = new System.Drawing.Font("微软雅黑", 6F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.hslPipeLine27.Location = new System.Drawing.Point(1045, 694);
-            this.hslPipeLine27.Name = "hslPipeLine27";
-            this.hslPipeLine27.PipeLineActive = true;
-            this.hslPipeLine27.Size = new System.Drawing.Size(19, 10);
-            this.hslPipeLine27.TabIndex = 114;
-            // 
-            // hslPumpOne8
-            // 
-            this.hslPumpOne8.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(209)))), ((int)(((byte)(218)))), ((int)(((byte)(227)))));
-            this.hslPumpOne8.Color2 = System.Drawing.Color.FromArgb(((int)(((byte)(157)))), ((int)(((byte)(164)))), ((int)(((byte)(173)))));
-            this.hslPumpOne8.Color3 = System.Drawing.Color.FromArgb(((int)(((byte)(195)))), ((int)(((byte)(200)))), ((int)(((byte)(207)))));
-            this.hslPumpOne8.Color4 = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(208)))), ((int)(((byte)(214)))));
-            this.hslPumpOne8.Color5 = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(213)))), ((int)(((byte)(220)))));
-            this.hslPumpOne8.Color6 = System.Drawing.Color.FromArgb(((int)(((byte)(153)))), ((int)(((byte)(160)))), ((int)(((byte)(169)))));
-            this.hslPumpOne8.Color7 = System.Drawing.Color.FromArgb(((int)(((byte)(92)))), ((int)(((byte)(100)))), ((int)(((byte)(111)))));
-            this.hslPumpOne8.Entrance = 2;
-            this.hslPumpOne8.Export = 5;
-            this.hslPumpOne8.Font = new System.Drawing.Font("微软雅黑", 6F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.hslPumpOne8.Location = new System.Drawing.Point(996, 683);
-            this.hslPumpOne8.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
-            this.hslPumpOne8.Name = "hslPumpOne8";
-            this.hslPumpOne8.Size = new System.Drawing.Size(49, 89);
-            this.hslPumpOne8.TabIndex = 113;
-            this.hslPumpOne8.Text = "冷水泵";
-            // 
-            // hslPipeLine23
-            // 
-            this.hslPipeLine23.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("hslPipeLine23.BackgroundImage")));
-            this.hslPipeLine23.Font = new System.Drawing.Font("微软雅黑", 6F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.hslPipeLine23.Location = new System.Drawing.Point(1074, 720);
-            this.hslPipeLine23.Name = "hslPipeLine23";
-            this.hslPipeLine23.PipeLineActive = true;
-            this.hslPipeLine23.Size = new System.Drawing.Size(77, 10);
-            this.hslPipeLine23.TabIndex = 112;
-            // 
-            // hslPipeLine22
-            // 
-            this.hslPipeLine22.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("hslPipeLine22.BackgroundImage")));
-            this.hslPipeLine22.Font = new System.Drawing.Font("微软雅黑", 6F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.hslPipeLine22.Location = new System.Drawing.Point(675, 729);
-            this.hslPipeLine22.Name = "hslPipeLine22";
-            this.hslPipeLine22.PipeLineActive = true;
-            this.hslPipeLine22.Size = new System.Drawing.Size(246, 10);
-            this.hslPipeLine22.TabIndex = 111;
-            // 
-            // hslValves8
-            // 
-            this.hslValves8.EdgeColor = System.Drawing.Color.Gray;
-            this.hslValves8.Font = new System.Drawing.Font("微软雅黑", 6F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.hslValves8.Location = new System.Drawing.Point(1087, 791);
-            this.hslValves8.Name = "hslValves8";
-            this.hslValves8.PipeLineStyle = HslControls.HslDirectionStyle.Vertical;
-            this.hslValves8.Size = new System.Drawing.Size(30, 40);
-            this.hslValves8.TabIndex = 110;
-            this.hslValves8.Text = "进冷水阀";
-            // 
-            // hslPipeLine21
-            // 
-            this.hslPipeLine21.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("hslPipeLine21.BackgroundImage")));
-            this.hslPipeLine21.Font = new System.Drawing.Font("微软雅黑", 6F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.hslPipeLine21.Location = new System.Drawing.Point(1092, 728);
-            this.hslPipeLine21.MoveSpeed = -1F;
-            this.hslPipeLine21.Name = "hslPipeLine21";
-            this.hslPipeLine21.PipeLineActive = true;
-            this.hslPipeLine21.PipeLineStyle = HslControls.HslDirectionStyle.Vertical;
-            this.hslPipeLine21.Size = new System.Drawing.Size(10, 126);
-            this.hslPipeLine21.TabIndex = 109;
-            // 
-            // hslValves7
-            // 
-            this.hslValves7.EdgeColor = System.Drawing.Color.Gray;
-            this.hslValves7.Font = new System.Drawing.Font("微软雅黑", 6F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.hslValves7.Location = new System.Drawing.Point(1146, 793);
-            this.hslValves7.Name = "hslValves7";
-            this.hslValves7.PipeLineStyle = HslControls.HslDirectionStyle.Vertical;
-            this.hslValves7.Size = new System.Drawing.Size(30, 40);
-            this.hslValves7.TabIndex = 108;
-            this.hslValves7.Text = "进常温阀";
-            // 
-            // hslPipeLine20
-            // 
-            this.hslPipeLine20.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("hslPipeLine20.BackgroundImage")));
-            this.hslPipeLine20.Font = new System.Drawing.Font("微软雅黑", 6F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.hslPipeLine20.Location = new System.Drawing.Point(1151, 720);
-            this.hslPipeLine20.MoveSpeed = -1F;
-            this.hslPipeLine20.Name = "hslPipeLine20";
-            this.hslPipeLine20.PipeLineActive = true;
-            this.hslPipeLine20.PipeLineStyle = HslControls.HslDirectionStyle.Vertical;
-            this.hslPipeLine20.PipeTurnLeft = HslControls.HslPipeTurnDirection.Left;
-            this.hslPipeLine20.Size = new System.Drawing.Size(10, 135);
-            this.hslPipeLine20.TabIndex = 107;
-            // 
-            // hslPipeLine18
-            // 
-            this.hslPipeLine18.ActiveLineCenterColor = System.Drawing.Color.Yellow;
-            this.hslPipeLine18.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("hslPipeLine18.BackgroundImage")));
-            this.hslPipeLine18.Font = new System.Drawing.Font("微软雅黑", 6F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.hslPipeLine18.Location = new System.Drawing.Point(650, 745);
-            this.hslPipeLine18.MoveSpeed = -1F;
-            this.hslPipeLine18.Name = "hslPipeLine18";
-            this.hslPipeLine18.PipeLineActive = true;
-            this.hslPipeLine18.PipeLineStyle = HslControls.HslDirectionStyle.Vertical;
-            this.hslPipeLine18.Size = new System.Drawing.Size(10, 275);
-            this.hslPipeLine18.TabIndex = 106;
-            // 
-            // hslValves6
-            // 
-            this.hslValves6.EdgeColor = System.Drawing.Color.Red;
-            this.hslValves6.Font = new System.Drawing.Font("微软雅黑", 6F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.hslValves6.Location = new System.Drawing.Point(390, 711);
-            this.hslValves6.Name = "hslValves6";
-            this.hslValves6.Size = new System.Drawing.Size(44, 30);
-            this.hslValves6.TabIndex = 105;
-            this.hslValves6.Text = "热水进水阀";
-            // 
-            // hslPipeLine8
-            // 
-            this.hslPipeLine8.ActiveLineCenterColor = System.Drawing.Color.Tomato;
-            this.hslPipeLine8.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("hslPipeLine8.BackgroundImage")));
-            this.hslPipeLine8.Font = new System.Drawing.Font("微软雅黑", 6F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.hslPipeLine8.Location = new System.Drawing.Point(201, 725);
-            this.hslPipeLine8.Name = "hslPipeLine8";
-            this.hslPipeLine8.PipeLineActive = true;
-            this.hslPipeLine8.PipeLineStyle = HslControls.HslDirectionStyle.Vertical;
-            this.hslPipeLine8.Size = new System.Drawing.Size(10, 14);
-            this.hslPipeLine8.TabIndex = 102;
-            // 
-            // hslValves5
-            // 
-            this.hslValves5.EdgeColor = System.Drawing.Color.Gray;
-            this.hslValves5.Font = new System.Drawing.Font("微软雅黑", 6F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.hslValves5.Location = new System.Drawing.Point(313, 746);
-            this.hslValves5.Name = "hslValves5";
-            this.hslValves5.Size = new System.Drawing.Size(49, 30);
-            this.hslValves5.TabIndex = 101;
-            this.hslValves5.Text = "变压热水阀";
-            // 
-            // hslValves4
-            // 
-            this.hslValves4.EdgeColor = System.Drawing.Color.Red;
-            this.hslValves4.Font = new System.Drawing.Font("微软雅黑", 6F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.hslValves4.Location = new System.Drawing.Point(312, 685);
-            this.hslValves4.Name = "hslValves4";
-            this.hslValves4.Size = new System.Drawing.Size(40, 30);
-            this.hslValves4.TabIndex = 100;
-            this.hslValves4.Text = "热水阀";
-            // 
-            // hslPipeLine16
-            // 
-            this.hslPipeLine16.ActiveLineCenterColor = System.Drawing.Color.Tomato;
-            this.hslPipeLine16.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("hslPipeLine16.BackgroundImage")));
-            this.hslPipeLine16.Font = new System.Drawing.Font("微软雅黑", 6F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.hslPipeLine16.Location = new System.Drawing.Point(368, 728);
-            this.hslPipeLine16.MoveSpeed = -1F;
-            this.hslPipeLine16.Name = "hslPipeLine16";
-            this.hslPipeLine16.PipeLineActive = true;
-            this.hslPipeLine16.PipeLineStyle = HslControls.HslDirectionStyle.Vertical;
-            this.hslPipeLine16.PipeTurnLeft = HslControls.HslPipeTurnDirection.Right;
-            this.hslPipeLine16.PipeTurnRight = HslControls.HslPipeTurnDirection.Left;
-            this.hslPipeLine16.Size = new System.Drawing.Size(10, 44);
-            this.hslPipeLine16.TabIndex = 99;
-            // 
-            // hslPipeLine15
-            // 
-            this.hslPipeLine15.ActiveLineCenterColor = System.Drawing.Color.Tomato;
-            this.hslPipeLine15.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("hslPipeLine15.BackgroundImage")));
-            this.hslPipeLine15.Font = new System.Drawing.Font("微软雅黑", 6F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.hslPipeLine15.Location = new System.Drawing.Point(368, 700);
-            this.hslPipeLine15.MoveSpeed = -1F;
-            this.hslPipeLine15.Name = "hslPipeLine15";
-            this.hslPipeLine15.PipeLineActive = true;
-            this.hslPipeLine15.PipeLineStyle = HslControls.HslDirectionStyle.Vertical;
-            this.hslPipeLine15.PipeTurnLeft = HslControls.HslPipeTurnDirection.Left;
-            this.hslPipeLine15.PipeTurnRight = HslControls.HslPipeTurnDirection.Right;
-            this.hslPipeLine15.Size = new System.Drawing.Size(10, 38);
-            this.hslPipeLine15.TabIndex = 98;
-            // 
-            // hslPipeLine14
-            // 
-            this.hslPipeLine14.ActiveLineCenterColor = System.Drawing.Color.Tomato;
-            this.hslPipeLine14.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("hslPipeLine14.BackgroundImage")));
-            this.hslPipeLine14.Font = new System.Drawing.Font("微软雅黑", 6F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.hslPipeLine14.Location = new System.Drawing.Point(299, 762);
-            this.hslPipeLine14.Name = "hslPipeLine14";
-            this.hslPipeLine14.PipeLineActive = true;
-            this.hslPipeLine14.Size = new System.Drawing.Size(69, 10);
-            this.hslPipeLine14.TabIndex = 97;
-            // 
-            // hslPipeLine13
-            // 
-            this.hslPipeLine13.ActiveLineCenterColor = System.Drawing.Color.Tomato;
-            this.hslPipeLine13.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("hslPipeLine13.BackgroundImage")));
-            this.hslPipeLine13.Font = new System.Drawing.Font("微软雅黑", 6F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.hslPipeLine13.Location = new System.Drawing.Point(299, 700);
-            this.hslPipeLine13.Name = "hslPipeLine13";
-            this.hslPipeLine13.PipeLineActive = true;
-            this.hslPipeLine13.Size = new System.Drawing.Size(69, 10);
-            this.hslPipeLine13.TabIndex = 96;
-            // 
-            // hslPumpOne7
-            // 
-            this.hslPumpOne7.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(209)))), ((int)(((byte)(218)))), ((int)(((byte)(227)))));
-            this.hslPumpOne7.Color2 = System.Drawing.Color.FromArgb(((int)(((byte)(157)))), ((int)(((byte)(164)))), ((int)(((byte)(173)))));
-            this.hslPumpOne7.Color3 = System.Drawing.Color.FromArgb(((int)(((byte)(195)))), ((int)(((byte)(200)))), ((int)(((byte)(207)))));
-            this.hslPumpOne7.Color4 = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(208)))), ((int)(((byte)(214)))));
-            this.hslPumpOne7.Color5 = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(213)))), ((int)(((byte)(220)))));
-            this.hslPumpOne7.Color6 = System.Drawing.Color.FromArgb(((int)(((byte)(153)))), ((int)(((byte)(160)))), ((int)(((byte)(169)))));
-            this.hslPumpOne7.Color7 = System.Drawing.Color.FromArgb(((int)(((byte)(92)))), ((int)(((byte)(100)))), ((int)(((byte)(111)))));
-            this.hslPumpOne7.Entrance = 2;
-            this.hslPumpOne7.Export = 5;
-            this.hslPumpOne7.Font = new System.Drawing.Font("微软雅黑", 6F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.hslPumpOne7.Location = new System.Drawing.Point(253, 751);
-            this.hslPumpOne7.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
-            this.hslPumpOne7.Name = "hslPumpOne7";
-            this.hslPumpOne7.Size = new System.Drawing.Size(49, 89);
-            this.hslPumpOne7.TabIndex = 95;
-            this.hslPumpOne7.Text = "热水变压泵";
-            // 
-            // hslPipeLine12
-            // 
-            this.hslPipeLine12.ActiveLineCenterColor = System.Drawing.Color.Tomato;
-            this.hslPipeLine12.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("hslPipeLine12.BackgroundImage")));
-            this.hslPipeLine12.Font = new System.Drawing.Font("微软雅黑", 6F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.hslPipeLine12.Location = new System.Drawing.Point(234, 762);
-            this.hslPipeLine12.Name = "hslPipeLine12";
-            this.hslPipeLine12.PipeLineActive = true;
-            this.hslPipeLine12.Size = new System.Drawing.Size(19, 10);
-            this.hslPipeLine12.TabIndex = 94;
-            // 
-            // hslPipeLine11
-            // 
-            this.hslPipeLine11.ActiveLineCenterColor = System.Drawing.Color.Tomato;
-            this.hslPipeLine11.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("hslPipeLine11.BackgroundImage")));
-            this.hslPipeLine11.Font = new System.Drawing.Font("微软雅黑", 6F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.hslPipeLine11.Location = new System.Drawing.Point(234, 700);
-            this.hslPipeLine11.Name = "hslPipeLine11";
-            this.hslPipeLine11.PipeLineActive = true;
-            this.hslPipeLine11.Size = new System.Drawing.Size(19, 10);
-            this.hslPipeLine11.TabIndex = 93;
-            // 
-            // hslPipeLine10
-            // 
-            this.hslPipeLine10.ActiveLineCenterColor = System.Drawing.Color.Tomato;
-            this.hslPipeLine10.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("hslPipeLine10.BackgroundImage")));
-            this.hslPipeLine10.Font = new System.Drawing.Font("微软雅黑", 6F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.hslPipeLine10.Location = new System.Drawing.Point(225, 700);
-            this.hslPipeLine10.MoveSpeed = -1F;
-            this.hslPipeLine10.Name = "hslPipeLine10";
-            this.hslPipeLine10.PipeLineActive = true;
-            this.hslPipeLine10.PipeLineStyle = HslControls.HslDirectionStyle.Vertical;
-            this.hslPipeLine10.PipeTurnLeft = HslControls.HslPipeTurnDirection.Right;
-            this.hslPipeLine10.PipeTurnRight = HslControls.HslPipeTurnDirection.Left;
-            this.hslPipeLine10.Size = new System.Drawing.Size(10, 44);
-            this.hslPipeLine10.TabIndex = 92;
-            // 
-            // hslPipeLine9
-            // 
-            this.hslPipeLine9.ActiveLineCenterColor = System.Drawing.Color.Tomato;
-            this.hslPipeLine9.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("hslPipeLine9.BackgroundImage")));
-            this.hslPipeLine9.Font = new System.Drawing.Font("微软雅黑", 6F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.hslPipeLine9.Location = new System.Drawing.Point(225, 734);
-            this.hslPipeLine9.MoveSpeed = -1F;
-            this.hslPipeLine9.Name = "hslPipeLine9";
-            this.hslPipeLine9.PipeLineActive = true;
-            this.hslPipeLine9.PipeLineStyle = HslControls.HslDirectionStyle.Vertical;
-            this.hslPipeLine9.PipeTurnLeft = HslControls.HslPipeTurnDirection.Left;
-            this.hslPipeLine9.PipeTurnRight = HslControls.HslPipeTurnDirection.Right;
-            this.hslPipeLine9.Size = new System.Drawing.Size(10, 38);
-            this.hslPipeLine9.TabIndex = 91;
-            // 
-            // reshui
-            // 
-            this.reshui.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(209)))), ((int)(((byte)(218)))), ((int)(((byte)(227)))));
-            this.reshui.Color2 = System.Drawing.Color.FromArgb(((int)(((byte)(157)))), ((int)(((byte)(164)))), ((int)(((byte)(173)))));
-            this.reshui.Color3 = System.Drawing.Color.FromArgb(((int)(((byte)(195)))), ((int)(((byte)(200)))), ((int)(((byte)(207)))));
-            this.reshui.Color4 = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(208)))), ((int)(((byte)(214)))));
-            this.reshui.Color5 = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(213)))), ((int)(((byte)(220)))));
-            this.reshui.Color6 = System.Drawing.Color.FromArgb(((int)(((byte)(153)))), ((int)(((byte)(160)))), ((int)(((byte)(169)))));
-            this.reshui.Color7 = System.Drawing.Color.FromArgb(((int)(((byte)(92)))), ((int)(((byte)(100)))), ((int)(((byte)(111)))));
-            this.reshui.Entrance = 2;
-            this.reshui.Export = 5;
-            this.reshui.Font = new System.Drawing.Font("微软雅黑", 6F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.reshui.Location = new System.Drawing.Point(252, 688);
-            this.reshui.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
-            this.reshui.Name = "reshui";
-            this.reshui.Size = new System.Drawing.Size(49, 89);
-            this.reshui.TabIndex = 90;
-            this.reshui.Text = "热水泵";
-            // 
-            // hslValves3
-            // 
-            this.hslValves3.EdgeColor = System.Drawing.Color.Gray;
-            this.hslValves3.Font = new System.Drawing.Font("微软雅黑", 6F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.hslValves3.Location = new System.Drawing.Point(75, 788);
-            this.hslValves3.Name = "hslValves3";
-            this.hslValves3.PipeLineStyle = HslControls.HslDirectionStyle.Vertical;
-            this.hslValves3.Size = new System.Drawing.Size(30, 40);
-            this.hslValves3.TabIndex = 89;
-            this.hslValves3.Text = "进中温阀";
-            // 
-            // hslPipeLine7
-            // 
-            this.hslPipeLine7.ActiveLineCenterColor = System.Drawing.Color.Tomato;
-            this.hslPipeLine7.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("hslPipeLine7.BackgroundImage")));
-            this.hslPipeLine7.Font = new System.Drawing.Font("微软雅黑", 6F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.hslPipeLine7.Location = new System.Drawing.Point(81, 719);
-            this.hslPipeLine7.Name = "hslPipeLine7";
-            this.hslPipeLine7.PipeLineActive = true;
-            this.hslPipeLine7.PipeTurnLeft = HslControls.HslPipeTurnDirection.Down;
-            this.hslPipeLine7.PipeTurnRight = HslControls.HslPipeTurnDirection.Down;
-            this.hslPipeLine7.Size = new System.Drawing.Size(130, 10);
-            this.hslPipeLine7.TabIndex = 88;
-            // 
-            // hslPipeLine6
-            // 
-            this.hslPipeLine6.ActiveLineCenterColor = System.Drawing.Color.Tomato;
-            this.hslPipeLine6.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("hslPipeLine6.BackgroundImage")));
-            this.hslPipeLine6.Font = new System.Drawing.Font("微软雅黑", 6F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.hslPipeLine6.Location = new System.Drawing.Point(80, 719);
-            this.hslPipeLine6.MoveSpeed = -1F;
-            this.hslPipeLine6.Name = "hslPipeLine6";
-            this.hslPipeLine6.PipeLineActive = true;
-            this.hslPipeLine6.PipeLineStyle = HslControls.HslDirectionStyle.Vertical;
-            this.hslPipeLine6.Size = new System.Drawing.Size(11, 130);
-            this.hslPipeLine6.TabIndex = 87;
-            // 
-            // hslValves2
-            // 
-            this.hslValves2.EdgeColor = System.Drawing.Color.Gray;
-            this.hslValves2.Font = new System.Drawing.Font("微软雅黑", 6F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.hslValves2.Location = new System.Drawing.Point(196, 788);
-            this.hslValves2.Name = "hslValves2";
-            this.hslValves2.PipeLineStyle = HslControls.HslDirectionStyle.Vertical;
-            this.hslValves2.Size = new System.Drawing.Size(30, 40);
-            this.hslValves2.TabIndex = 86;
-            this.hslValves2.Text = "进高温阀";
-            // 
-            // hslPipeLine5
-            // 
-            this.hslPipeLine5.ActiveLineCenterColor = System.Drawing.Color.Tomato;
-            this.hslPipeLine5.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("hslPipeLine5.BackgroundImage")));
-            this.hslPipeLine5.Font = new System.Drawing.Font("微软雅黑", 6F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.hslPipeLine5.Location = new System.Drawing.Point(201, 744);
-            this.hslPipeLine5.MoveSpeed = -1F;
-            this.hslPipeLine5.Name = "hslPipeLine5";
-            this.hslPipeLine5.PipeLineActive = true;
-            this.hslPipeLine5.PipeLineStyle = HslControls.HslDirectionStyle.Vertical;
-            this.hslPipeLine5.Size = new System.Drawing.Size(10, 105);
-            this.hslPipeLine5.TabIndex = 85;
-            // 
-            // hslValves1
-            // 
-            this.hslValves1.EdgeColor = System.Drawing.Color.Gray;
-            this.hslValves1.Font = new System.Drawing.Font("微软雅黑", 6F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.hslValves1.Location = new System.Drawing.Point(134, 788);
-            this.hslValves1.Name = "hslValves1";
-            this.hslValves1.PipeLineStyle = HslControls.HslDirectionStyle.Vertical;
-            this.hslValves1.Size = new System.Drawing.Size(30, 40);
-            this.hslValves1.TabIndex = 84;
-            this.hslValves1.Text = "进热水阀";
-            // 
-            // hslPipeLine1
-            // 
-            this.hslPipeLine1.ActiveLineCenterColor = System.Drawing.Color.Tomato;
-            this.hslPipeLine1.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("hslPipeLine1.BackgroundImage")));
-            this.hslPipeLine1.Font = new System.Drawing.Font("微软雅黑", 6F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.hslPipeLine1.Location = new System.Drawing.Point(140, 735);
-            this.hslPipeLine1.Name = "hslPipeLine1";
-            this.hslPipeLine1.PipeLineActive = true;
-            this.hslPipeLine1.PipeTurnLeft = HslControls.HslPipeTurnDirection.Down;
-            this.hslPipeLine1.Size = new System.Drawing.Size(87, 10);
-            this.hslPipeLine1.TabIndex = 83;
-            // 
-            // hslPipeLine4
-            // 
-            this.hslPipeLine4.ActiveLineCenterColor = System.Drawing.Color.Tomato;
-            this.hslPipeLine4.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("hslPipeLine4.BackgroundImage")));
-            this.hslPipeLine4.Font = new System.Drawing.Font("微软雅黑", 6F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.hslPipeLine4.Location = new System.Drawing.Point(140, 745);
-            this.hslPipeLine4.MoveSpeed = -1F;
-            this.hslPipeLine4.Name = "hslPipeLine4";
-            this.hslPipeLine4.PipeLineActive = true;
-            this.hslPipeLine4.PipeLineStyle = HslControls.HslDirectionStyle.Vertical;
-            this.hslPipeLine4.Size = new System.Drawing.Size(10, 104);
-            this.hslPipeLine4.TabIndex = 82;
-            // 
-            // hslPumpOne5
-            // 
-            this.hslPumpOne5.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(209)))), ((int)(((byte)(218)))), ((int)(((byte)(227)))));
-            this.hslPumpOne5.Color2 = System.Drawing.Color.FromArgb(((int)(((byte)(157)))), ((int)(((byte)(164)))), ((int)(((byte)(173)))));
-            this.hslPumpOne5.Color3 = System.Drawing.Color.FromArgb(((int)(((byte)(195)))), ((int)(((byte)(200)))), ((int)(((byte)(207)))));
-            this.hslPumpOne5.Color4 = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(208)))), ((int)(((byte)(214)))));
-            this.hslPumpOne5.Color5 = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(213)))), ((int)(((byte)(220)))));
-            this.hslPumpOne5.Color6 = System.Drawing.Color.FromArgb(((int)(((byte)(153)))), ((int)(((byte)(160)))), ((int)(((byte)(169)))));
-            this.hslPumpOne5.Color7 = System.Drawing.Color.FromArgb(((int)(((byte)(92)))), ((int)(((byte)(100)))), ((int)(((byte)(111)))));
-            this.hslPumpOne5.Entrance = 3;
-            this.hslPumpOne5.Export = 3;
-            this.hslPumpOne5.Font = new System.Drawing.Font("微软雅黑", 6F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.hslPumpOne5.Location = new System.Drawing.Point(1134, 855);
-            this.hslPumpOne5.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
-            this.hslPumpOne5.Name = "hslPumpOne5";
-            this.hslPumpOne5.Size = new System.Drawing.Size(70, 100);
-            this.hslPumpOne5.TabIndex = 81;
-            this.hslPumpOne5.Text = "常循环泵";
-            // 
-            // hslPumpOne4
-            // 
-            this.hslPumpOne4.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(209)))), ((int)(((byte)(218)))), ((int)(((byte)(227)))));
-            this.hslPumpOne4.Color2 = System.Drawing.Color.FromArgb(((int)(((byte)(157)))), ((int)(((byte)(164)))), ((int)(((byte)(173)))));
-            this.hslPumpOne4.Color3 = System.Drawing.Color.FromArgb(((int)(((byte)(195)))), ((int)(((byte)(200)))), ((int)(((byte)(207)))));
-            this.hslPumpOne4.Color4 = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(208)))), ((int)(((byte)(214)))));
-            this.hslPumpOne4.Color5 = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(213)))), ((int)(((byte)(220)))));
-            this.hslPumpOne4.Color6 = System.Drawing.Color.FromArgb(((int)(((byte)(153)))), ((int)(((byte)(160)))), ((int)(((byte)(169)))));
-            this.hslPumpOne4.Color7 = System.Drawing.Color.FromArgb(((int)(((byte)(92)))), ((int)(((byte)(100)))), ((int)(((byte)(111)))));
-            this.hslPumpOne4.Entrance = 3;
-            this.hslPumpOne4.Export = 3;
-            this.hslPumpOne4.Font = new System.Drawing.Font("微软雅黑", 6F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.hslPumpOne4.Location = new System.Drawing.Point(184, 848);
-            this.hslPumpOne4.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
-            this.hslPumpOne4.Name = "hslPumpOne4";
-            this.hslPumpOne4.Size = new System.Drawing.Size(70, 100);
-            this.hslPumpOne4.TabIndex = 80;
-            this.hslPumpOne4.Text = "高循环泵";
-            // 
-            // hslPumpOne3
-            // 
-            this.hslPumpOne3.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(209)))), ((int)(((byte)(218)))), ((int)(((byte)(227)))));
-            this.hslPumpOne3.Color2 = System.Drawing.Color.FromArgb(((int)(((byte)(157)))), ((int)(((byte)(164)))), ((int)(((byte)(173)))));
-            this.hslPumpOne3.Color3 = System.Drawing.Color.FromArgb(((int)(((byte)(195)))), ((int)(((byte)(200)))), ((int)(((byte)(207)))));
-            this.hslPumpOne3.Color4 = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(208)))), ((int)(((byte)(214)))));
-            this.hslPumpOne3.Color5 = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(213)))), ((int)(((byte)(220)))));
-            this.hslPumpOne3.Color6 = System.Drawing.Color.FromArgb(((int)(((byte)(153)))), ((int)(((byte)(160)))), ((int)(((byte)(169)))));
-            this.hslPumpOne3.Color7 = System.Drawing.Color.FromArgb(((int)(((byte)(92)))), ((int)(((byte)(100)))), ((int)(((byte)(111)))));
-            this.hslPumpOne3.Entrance = 3;
-            this.hslPumpOne3.Export = 3;
-            this.hslPumpOne3.Font = new System.Drawing.Font("微软雅黑", 6F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.hslPumpOne3.Location = new System.Drawing.Point(1074, 854);
-            this.hslPumpOne3.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
-            this.hslPumpOne3.Name = "hslPumpOne3";
-            this.hslPumpOne3.Size = new System.Drawing.Size(70, 100);
-            this.hslPumpOne3.TabIndex = 79;
-            this.hslPumpOne3.Text = "冷循环泵";
-            // 
-            // hslPumpOne2
-            // 
-            this.hslPumpOne2.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(209)))), ((int)(((byte)(218)))), ((int)(((byte)(227)))));
-            this.hslPumpOne2.Color2 = System.Drawing.Color.FromArgb(((int)(((byte)(157)))), ((int)(((byte)(164)))), ((int)(((byte)(173)))));
-            this.hslPumpOne2.Color3 = System.Drawing.Color.FromArgb(((int)(((byte)(195)))), ((int)(((byte)(200)))), ((int)(((byte)(207)))));
-            this.hslPumpOne2.Color4 = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(208)))), ((int)(((byte)(214)))));
-            this.hslPumpOne2.Color5 = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(213)))), ((int)(((byte)(220)))));
-            this.hslPumpOne2.Color6 = System.Drawing.Color.FromArgb(((int)(((byte)(153)))), ((int)(((byte)(160)))), ((int)(((byte)(169)))));
-            this.hslPumpOne2.Color7 = System.Drawing.Color.FromArgb(((int)(((byte)(92)))), ((int)(((byte)(100)))), ((int)(((byte)(111)))));
-            this.hslPumpOne2.Entrance = 3;
-            this.hslPumpOne2.Export = 3;
-            this.hslPumpOne2.Font = new System.Drawing.Font("微软雅黑", 6F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.hslPumpOne2.Location = new System.Drawing.Point(122, 848);
-            this.hslPumpOne2.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
-            this.hslPumpOne2.Name = "hslPumpOne2";
-            this.hslPumpOne2.Size = new System.Drawing.Size(70, 100);
-            this.hslPumpOne2.TabIndex = 78;
-            this.hslPumpOne2.Text = "热循环泵";
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.label9.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.label9.Location = new System.Drawing.Point(423, 229);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(76, 23);
+            this.label9.TabIndex = 146;
+            this.label9.Text = "出水温度";
+            // 
+            // hslPipeLine17
+            // 
+            this.hslPipeLine17.ActiveLineCenterColor = System.Drawing.Color.Tomato;
+            this.hslPipeLine17.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("hslPipeLine17.BackgroundImage")));
+            this.hslPipeLine17.Font = new System.Drawing.Font("微软雅黑", 6F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.hslPipeLine17.Location = new System.Drawing.Point(352, 74);
+            this.hslPipeLine17.Name = "hslPipeLine17";
+            this.hslPipeLine17.PipeLineActive = true;
+            this.hslPipeLine17.Size = new System.Drawing.Size(162, 10);
+            this.hslPipeLine17.TabIndex = 104;
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.label8.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.label8.Location = new System.Drawing.Point(423, 193);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(76, 23);
+            this.label8.TabIndex = 145;
+            this.label8.Text = "出水压力";
             // 
             // hslPumpOne1
             // 
@@ -2119,29 +1213,894 @@
             this.hslPumpOne1.Entrance = 3;
             this.hslPumpOne1.Export = 3;
             this.hslPumpOne1.Font = new System.Drawing.Font("微软雅黑", 6F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.hslPumpOne1.Location = new System.Drawing.Point(61, 848);
+            this.hslPumpOne1.Location = new System.Drawing.Point(32, 189);
             this.hslPumpOne1.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.hslPumpOne1.Name = "hslPumpOne1";
             this.hslPumpOne1.Size = new System.Drawing.Size(70, 100);
             this.hslPumpOne1.TabIndex = 77;
             this.hslPumpOne1.Text = "中循环泵";
             // 
-            // hslPipeLine17
+            // label7
             // 
-            this.hslPipeLine17.ActiveLineCenterColor = System.Drawing.Color.Tomato;
-            this.hslPipeLine17.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("hslPipeLine17.BackgroundImage")));
-            this.hslPipeLine17.Font = new System.Drawing.Font("微软雅黑", 6F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.hslPipeLine17.Location = new System.Drawing.Point(367, 728);
-            this.hslPipeLine17.Name = "hslPipeLine17";
-            this.hslPipeLine17.PipeLineActive = true;
-            this.hslPipeLine17.Size = new System.Drawing.Size(256, 10);
-            this.hslPipeLine17.TabIndex = 104;
+            this.label7.AutoSize = true;
+            this.label7.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.label7.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.label7.Location = new System.Drawing.Point(644, 229);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(76, 23);
+            this.label7.TabIndex = 144;
+            this.label7.Text = "冷水温度";
+            // 
+            // hslPumpOne2
+            // 
+            this.hslPumpOne2.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(209)))), ((int)(((byte)(218)))), ((int)(((byte)(227)))));
+            this.hslPumpOne2.Color2 = System.Drawing.Color.FromArgb(((int)(((byte)(157)))), ((int)(((byte)(164)))), ((int)(((byte)(173)))));
+            this.hslPumpOne2.Color3 = System.Drawing.Color.FromArgb(((int)(((byte)(195)))), ((int)(((byte)(200)))), ((int)(((byte)(207)))));
+            this.hslPumpOne2.Color4 = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(208)))), ((int)(((byte)(214)))));
+            this.hslPumpOne2.Color5 = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(213)))), ((int)(((byte)(220)))));
+            this.hslPumpOne2.Color6 = System.Drawing.Color.FromArgb(((int)(((byte)(153)))), ((int)(((byte)(160)))), ((int)(((byte)(169)))));
+            this.hslPumpOne2.Color7 = System.Drawing.Color.FromArgb(((int)(((byte)(92)))), ((int)(((byte)(100)))), ((int)(((byte)(111)))));
+            this.hslPumpOne2.Entrance = 3;
+            this.hslPumpOne2.Export = 3;
+            this.hslPumpOne2.Font = new System.Drawing.Font("微软雅黑", 6F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.hslPumpOne2.Location = new System.Drawing.Point(93, 189);
+            this.hslPumpOne2.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
+            this.hslPumpOne2.Name = "hslPumpOne2";
+            this.hslPumpOne2.Size = new System.Drawing.Size(70, 100);
+            this.hslPumpOne2.TabIndex = 78;
+            this.hslPumpOne2.Text = "热循环泵";
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.label6.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.label6.Location = new System.Drawing.Point(644, 263);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(76, 23);
+            this.label6.TabIndex = 143;
+            this.label6.Text = "冷水压力";
+            // 
+            // hslPumpOne3
+            // 
+            this.hslPumpOne3.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(209)))), ((int)(((byte)(218)))), ((int)(((byte)(227)))));
+            this.hslPumpOne3.Color2 = System.Drawing.Color.FromArgb(((int)(((byte)(157)))), ((int)(((byte)(164)))), ((int)(((byte)(173)))));
+            this.hslPumpOne3.Color3 = System.Drawing.Color.FromArgb(((int)(((byte)(195)))), ((int)(((byte)(200)))), ((int)(((byte)(207)))));
+            this.hslPumpOne3.Color4 = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(208)))), ((int)(((byte)(214)))));
+            this.hslPumpOne3.Color5 = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(213)))), ((int)(((byte)(220)))));
+            this.hslPumpOne3.Color6 = System.Drawing.Color.FromArgb(((int)(((byte)(153)))), ((int)(((byte)(160)))), ((int)(((byte)(169)))));
+            this.hslPumpOne3.Color7 = System.Drawing.Color.FromArgb(((int)(((byte)(92)))), ((int)(((byte)(100)))), ((int)(((byte)(111)))));
+            this.hslPumpOne3.Entrance = 3;
+            this.hslPumpOne3.Export = 3;
+            this.hslPumpOne3.Font = new System.Drawing.Font("微软雅黑", 6F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.hslPumpOne3.Location = new System.Drawing.Point(847, 201);
+            this.hslPumpOne3.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
+            this.hslPumpOne3.Name = "hslPumpOne3";
+            this.hslPumpOne3.Size = new System.Drawing.Size(70, 100);
+            this.hslPumpOne3.TabIndex = 79;
+            this.hslPumpOne3.Text = "冷循环泵";
+            // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.label12.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.label12.Location = new System.Drawing.Point(644, 193);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(76, 23);
+            this.label12.TabIndex = 142;
+            this.label12.Text = "冷水流量";
+            // 
+            // hslPumpOne4
+            // 
+            this.hslPumpOne4.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(209)))), ((int)(((byte)(218)))), ((int)(((byte)(227)))));
+            this.hslPumpOne4.Color2 = System.Drawing.Color.FromArgb(((int)(((byte)(157)))), ((int)(((byte)(164)))), ((int)(((byte)(173)))));
+            this.hslPumpOne4.Color3 = System.Drawing.Color.FromArgb(((int)(((byte)(195)))), ((int)(((byte)(200)))), ((int)(((byte)(207)))));
+            this.hslPumpOne4.Color4 = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(208)))), ((int)(((byte)(214)))));
+            this.hslPumpOne4.Color5 = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(213)))), ((int)(((byte)(220)))));
+            this.hslPumpOne4.Color6 = System.Drawing.Color.FromArgb(((int)(((byte)(153)))), ((int)(((byte)(160)))), ((int)(((byte)(169)))));
+            this.hslPumpOne4.Color7 = System.Drawing.Color.FromArgb(((int)(((byte)(92)))), ((int)(((byte)(100)))), ((int)(((byte)(111)))));
+            this.hslPumpOne4.Entrance = 3;
+            this.hslPumpOne4.Export = 3;
+            this.hslPumpOne4.Font = new System.Drawing.Font("微软雅黑", 6F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.hslPumpOne4.Location = new System.Drawing.Point(155, 189);
+            this.hslPumpOne4.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
+            this.hslPumpOne4.Name = "hslPumpOne4";
+            this.hslPumpOne4.Size = new System.Drawing.Size(70, 100);
+            this.hslPumpOne4.TabIndex = 80;
+            this.hslPumpOne4.Text = "高循环泵";
+            // 
+            // label13
+            // 
+            this.label13.AutoSize = true;
+            this.label13.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.label13.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.label13.Location = new System.Drawing.Point(222, 194);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(76, 23);
+            this.label13.TabIndex = 141;
+            this.label13.Text = "热水压力";
+            // 
+            // hslPumpOne5
+            // 
+            this.hslPumpOne5.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(209)))), ((int)(((byte)(218)))), ((int)(((byte)(227)))));
+            this.hslPumpOne5.Color2 = System.Drawing.Color.FromArgb(((int)(((byte)(157)))), ((int)(((byte)(164)))), ((int)(((byte)(173)))));
+            this.hslPumpOne5.Color3 = System.Drawing.Color.FromArgb(((int)(((byte)(195)))), ((int)(((byte)(200)))), ((int)(((byte)(207)))));
+            this.hslPumpOne5.Color4 = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(208)))), ((int)(((byte)(214)))));
+            this.hslPumpOne5.Color5 = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(213)))), ((int)(((byte)(220)))));
+            this.hslPumpOne5.Color6 = System.Drawing.Color.FromArgb(((int)(((byte)(153)))), ((int)(((byte)(160)))), ((int)(((byte)(169)))));
+            this.hslPumpOne5.Color7 = System.Drawing.Color.FromArgb(((int)(((byte)(92)))), ((int)(((byte)(100)))), ((int)(((byte)(111)))));
+            this.hslPumpOne5.Entrance = 3;
+            this.hslPumpOne5.Export = 3;
+            this.hslPumpOne5.Font = new System.Drawing.Font("微软雅黑", 6F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.hslPumpOne5.Location = new System.Drawing.Point(907, 202);
+            this.hslPumpOne5.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
+            this.hslPumpOne5.Name = "hslPumpOne5";
+            this.hslPumpOne5.Size = new System.Drawing.Size(70, 100);
+            this.hslPumpOne5.TabIndex = 81;
+            this.hslPumpOne5.Text = "常循环泵";
+            // 
+            // label18
+            // 
+            this.label18.AutoSize = true;
+            this.label18.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.label18.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.label18.Location = new System.Drawing.Point(223, 229);
+            this.label18.Name = "label18";
+            this.label18.Size = new System.Drawing.Size(76, 23);
+            this.label18.TabIndex = 140;
+            this.label18.Text = "热水温度";
+            // 
+            // hslPipeLine4
+            // 
+            this.hslPipeLine4.ActiveLineCenterColor = System.Drawing.Color.Tomato;
+            this.hslPipeLine4.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("hslPipeLine4.BackgroundImage")));
+            this.hslPipeLine4.Font = new System.Drawing.Font("微软雅黑", 6F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.hslPipeLine4.Location = new System.Drawing.Point(111, 86);
+            this.hslPipeLine4.MoveSpeed = -1F;
+            this.hslPipeLine4.Name = "hslPipeLine4";
+            this.hslPipeLine4.PipeLineActive = true;
+            this.hslPipeLine4.PipeLineStyle = HslControls.HslDirectionStyle.Vertical;
+            this.hslPipeLine4.Size = new System.Drawing.Size(10, 104);
+            this.hslPipeLine4.TabIndex = 82;
+            // 
+            // label19
+            // 
+            this.label19.AutoSize = true;
+            this.label19.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.label19.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.label19.Location = new System.Drawing.Point(223, 263);
+            this.label19.Name = "label19";
+            this.label19.Size = new System.Drawing.Size(76, 23);
+            this.label19.TabIndex = 139;
+            this.label19.Text = "热水流量";
+            // 
+            // hslPipeLine1
+            // 
+            this.hslPipeLine1.ActiveLineCenterColor = System.Drawing.Color.Tomato;
+            this.hslPipeLine1.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("hslPipeLine1.BackgroundImage")));
+            this.hslPipeLine1.Font = new System.Drawing.Font("微软雅黑", 6F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.hslPipeLine1.Location = new System.Drawing.Point(111, 76);
+            this.hslPipeLine1.Name = "hslPipeLine1";
+            this.hslPipeLine1.PipeLineActive = true;
+            this.hslPipeLine1.PipeTurnLeft = HslControls.HslPipeTurnDirection.Down;
+            this.hslPipeLine1.Size = new System.Drawing.Size(87, 10);
+            this.hslPipeLine1.TabIndex = 83;
+            // 
+            // hslLedQm5
+            // 
+            this.hslLedQm5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(46)))), ((int)(((byte)(46)))));
+            this.hslLedQm5.DisplayBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(62)))), ((int)(((byte)(62)))), ((int)(((byte)(62)))));
+            this.hslLedQm5.DisplayNumber = 4;
+            this.hslLedQm5.DisplayText = "0";
+            this.hslLedQm5.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.hslLedQm5.ForeColor = System.Drawing.Color.SkyBlue;
+            this.hslLedQm5.LedNumberSize = 1;
+            this.hslLedQm5.LeftRightOffect = 15;
+            this.hslLedQm5.Location = new System.Drawing.Point(500, 381);
+            this.hslLedQm5.Margin = new System.Windows.Forms.Padding(3, 8, 3, 8);
+            this.hslLedQm5.Name = "hslLedQm5";
+            this.hslLedQm5.Size = new System.Drawing.Size(110, 23);
+            this.hslLedQm5.TabIndex = 138;
+            this.hslLedQm5.UnitText = "ml";
+            // 
+            // hslValves1
+            // 
+            this.hslValves1.EdgeColor = System.Drawing.Color.Gray;
+            this.hslValves1.Font = new System.Drawing.Font("微软雅黑", 6F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.hslValves1.Location = new System.Drawing.Point(105, 129);
+            this.hslValves1.Name = "hslValves1";
+            this.hslValves1.PipeLineStyle = HslControls.HslDirectionStyle.Vertical;
+            this.hslValves1.Size = new System.Drawing.Size(30, 40);
+            this.hslValves1.TabIndex = 84;
+            this.hslValves1.Text = "进热水阀";
+            // 
+            // hslLedQm
+            // 
+            this.hslLedQm.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(46)))), ((int)(((byte)(46)))));
+            this.hslLedQm.DisplayBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(62)))), ((int)(((byte)(62)))), ((int)(((byte)(62)))));
+            this.hslLedQm.DisplayNumber = 4;
+            this.hslLedQm.DisplayText = "0";
+            this.hslLedQm.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.hslLedQm.ForeColor = System.Drawing.Color.Yellow;
+            this.hslLedQm.LedNumberSize = 1;
+            this.hslLedQm.LeftRightOffect = 15;
+            this.hslLedQm.Location = new System.Drawing.Point(500, 263);
+            this.hslLedQm.Margin = new System.Windows.Forms.Padding(3, 8, 3, 8);
+            this.hslLedQm.Name = "hslLedQm";
+            this.hslLedQm.Size = new System.Drawing.Size(110, 23);
+            this.hslLedQm.TabIndex = 137;
+            this.hslLedQm.UnitText = "L/Min";
+            // 
+            // hslPipeLine5
+            // 
+            this.hslPipeLine5.ActiveLineCenterColor = System.Drawing.Color.Tomato;
+            this.hslPipeLine5.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("hslPipeLine5.BackgroundImage")));
+            this.hslPipeLine5.Font = new System.Drawing.Font("微软雅黑", 6F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.hslPipeLine5.Location = new System.Drawing.Point(172, 85);
+            this.hslPipeLine5.MoveSpeed = -1F;
+            this.hslPipeLine5.Name = "hslPipeLine5";
+            this.hslPipeLine5.PipeLineActive = true;
+            this.hslPipeLine5.PipeLineStyle = HslControls.HslDirectionStyle.Vertical;
+            this.hslPipeLine5.Size = new System.Drawing.Size(10, 105);
+            this.hslPipeLine5.TabIndex = 85;
+            // 
+            // hslLedTm
+            // 
+            this.hslLedTm.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(46)))), ((int)(((byte)(46)))));
+            this.hslLedTm.DisplayBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(62)))), ((int)(((byte)(62)))), ((int)(((byte)(62)))));
+            this.hslLedTm.DisplayNumber = 4;
+            this.hslLedTm.DisplayText = "0";
+            this.hslLedTm.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.hslLedTm.ForeColor = System.Drawing.Color.Lime;
+            this.hslLedTm.LedNumberSize = 1;
+            this.hslLedTm.LeftRightOffect = 15;
+            this.hslLedTm.Location = new System.Drawing.Point(500, 229);
+            this.hslLedTm.Margin = new System.Windows.Forms.Padding(3, 8, 3, 8);
+            this.hslLedTm.Name = "hslLedTm";
+            this.hslLedTm.Size = new System.Drawing.Size(110, 23);
+            this.hslLedTm.TabIndex = 136;
+            this.hslLedTm.UnitText = "℃";
+            // 
+            // hslValves2
+            // 
+            this.hslValves2.EdgeColor = System.Drawing.Color.Gray;
+            this.hslValves2.Font = new System.Drawing.Font("微软雅黑", 6F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.hslValves2.Location = new System.Drawing.Point(167, 129);
+            this.hslValves2.Name = "hslValves2";
+            this.hslValves2.PipeLineStyle = HslControls.HslDirectionStyle.Vertical;
+            this.hslValves2.Size = new System.Drawing.Size(30, 40);
+            this.hslValves2.TabIndex = 86;
+            this.hslValves2.Text = "进高温阀";
+            // 
+            // hslLedQh
+            // 
+            this.hslLedQh.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(46)))), ((int)(((byte)(46)))));
+            this.hslLedQh.DisplayBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(62)))), ((int)(((byte)(62)))), ((int)(((byte)(62)))));
+            this.hslLedQh.DisplayNumber = 4;
+            this.hslLedQh.DisplayText = "0";
+            this.hslLedQh.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.hslLedQh.ForeColor = System.Drawing.Color.Yellow;
+            this.hslLedQh.LedNumberSize = 1;
+            this.hslLedQh.LeftRightOffect = 15;
+            this.hslLedQh.Location = new System.Drawing.Point(300, 261);
+            this.hslLedQh.Margin = new System.Windows.Forms.Padding(3, 8, 3, 8);
+            this.hslLedQh.Name = "hslLedQh";
+            this.hslLedQh.Size = new System.Drawing.Size(110, 25);
+            this.hslLedQh.TabIndex = 135;
+            this.hslLedQh.UnitText = "L/Min";
+            // 
+            // hslPipeLine6
+            // 
+            this.hslPipeLine6.ActiveLineCenterColor = System.Drawing.Color.Tomato;
+            this.hslPipeLine6.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("hslPipeLine6.BackgroundImage")));
+            this.hslPipeLine6.Font = new System.Drawing.Font("微软雅黑", 6F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.hslPipeLine6.Location = new System.Drawing.Point(51, 60);
+            this.hslPipeLine6.MoveSpeed = -1F;
+            this.hslPipeLine6.Name = "hslPipeLine6";
+            this.hslPipeLine6.PipeLineActive = true;
+            this.hslPipeLine6.PipeLineStyle = HslControls.HslDirectionStyle.Vertical;
+            this.hslPipeLine6.Size = new System.Drawing.Size(11, 130);
+            this.hslPipeLine6.TabIndex = 87;
+            // 
+            // hslLedTh
+            // 
+            this.hslLedTh.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(46)))), ((int)(((byte)(46)))));
+            this.hslLedTh.DisplayBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(62)))), ((int)(((byte)(62)))), ((int)(((byte)(62)))));
+            this.hslLedTh.DisplayNumber = 4;
+            this.hslLedTh.DisplayText = "0";
+            this.hslLedTh.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.hslLedTh.ForeColor = System.Drawing.Color.Lime;
+            this.hslLedTh.LedNumberSize = 1;
+            this.hslLedTh.LeftRightOffect = 15;
+            this.hslLedTh.Location = new System.Drawing.Point(300, 229);
+            this.hslLedTh.Margin = new System.Windows.Forms.Padding(3, 8, 3, 8);
+            this.hslLedTh.Name = "hslLedTh";
+            this.hslLedTh.Size = new System.Drawing.Size(110, 25);
+            this.hslLedTh.TabIndex = 134;
+            this.hslLedTh.UnitText = "℃";
+            // 
+            // hslPipeLine7
+            // 
+            this.hslPipeLine7.ActiveLineCenterColor = System.Drawing.Color.Tomato;
+            this.hslPipeLine7.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("hslPipeLine7.BackgroundImage")));
+            this.hslPipeLine7.Font = new System.Drawing.Font("微软雅黑", 6F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.hslPipeLine7.Location = new System.Drawing.Point(52, 60);
+            this.hslPipeLine7.Name = "hslPipeLine7";
+            this.hslPipeLine7.PipeLineActive = true;
+            this.hslPipeLine7.PipeTurnLeft = HslControls.HslPipeTurnDirection.Down;
+            this.hslPipeLine7.PipeTurnRight = HslControls.HslPipeTurnDirection.Down;
+            this.hslPipeLine7.Size = new System.Drawing.Size(130, 10);
+            this.hslPipeLine7.TabIndex = 88;
+            // 
+            // hslLedPm
+            // 
+            this.hslLedPm.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(46)))), ((int)(((byte)(46)))));
+            this.hslLedPm.DisplayBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(62)))), ((int)(((byte)(62)))), ((int)(((byte)(62)))));
+            this.hslLedPm.DisplayNumber = 4;
+            this.hslLedPm.DisplayText = "0";
+            this.hslLedPm.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.hslLedPm.ForeColor = System.Drawing.Color.Snow;
+            this.hslLedPm.LedNumberSize = 1;
+            this.hslLedPm.LeftRightOffect = 15;
+            this.hslLedPm.Location = new System.Drawing.Point(500, 193);
+            this.hslLedPm.Margin = new System.Windows.Forms.Padding(3, 8, 3, 8);
+            this.hslLedPm.Name = "hslLedPm";
+            this.hslLedPm.Size = new System.Drawing.Size(110, 23);
+            this.hslLedPm.TabIndex = 133;
+            this.hslLedPm.UnitText = "bar";
+            // 
+            // hslValves3
+            // 
+            this.hslValves3.EdgeColor = System.Drawing.Color.Gray;
+            this.hslValves3.Font = new System.Drawing.Font("微软雅黑", 6F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.hslValves3.Location = new System.Drawing.Point(46, 129);
+            this.hslValves3.Name = "hslValves3";
+            this.hslValves3.PipeLineStyle = HslControls.HslDirectionStyle.Vertical;
+            this.hslValves3.Size = new System.Drawing.Size(30, 40);
+            this.hslValves3.TabIndex = 89;
+            this.hslValves3.Text = "进中温阀";
+            // 
+            // reshui
+            // 
+            this.reshui.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(209)))), ((int)(((byte)(218)))), ((int)(((byte)(227)))));
+            this.reshui.Color2 = System.Drawing.Color.FromArgb(((int)(((byte)(157)))), ((int)(((byte)(164)))), ((int)(((byte)(173)))));
+            this.reshui.Color3 = System.Drawing.Color.FromArgb(((int)(((byte)(195)))), ((int)(((byte)(200)))), ((int)(((byte)(207)))));
+            this.reshui.Color4 = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(208)))), ((int)(((byte)(214)))));
+            this.reshui.Color5 = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(213)))), ((int)(((byte)(220)))));
+            this.reshui.Color6 = System.Drawing.Color.FromArgb(((int)(((byte)(153)))), ((int)(((byte)(160)))), ((int)(((byte)(169)))));
+            this.reshui.Color7 = System.Drawing.Color.FromArgb(((int)(((byte)(92)))), ((int)(((byte)(100)))), ((int)(((byte)(111)))));
+            this.reshui.Entrance = 2;
+            this.reshui.Export = 5;
+            this.reshui.Font = new System.Drawing.Font("微软雅黑", 6F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.reshui.Location = new System.Drawing.Point(223, 29);
+            this.reshui.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
+            this.reshui.Name = "reshui";
+            this.reshui.Size = new System.Drawing.Size(49, 68);
+            this.reshui.TabIndex = 90;
+            this.reshui.Text = "热水泵";
+            // 
+            // hslLedQc
+            // 
+            this.hslLedQc.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(46)))), ((int)(((byte)(46)))));
+            this.hslLedQc.DisplayBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(62)))), ((int)(((byte)(62)))), ((int)(((byte)(62)))));
+            this.hslLedQc.DisplayNumber = 4;
+            this.hslLedQc.DisplayText = "0";
+            this.hslLedQc.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.hslLedQc.ForeColor = System.Drawing.Color.Yellow;
+            this.hslLedQc.LedNumberSize = 1;
+            this.hslLedQc.LeftRightOffect = 15;
+            this.hslLedQc.Location = new System.Drawing.Point(723, 191);
+            this.hslLedQc.Margin = new System.Windows.Forms.Padding(3, 8, 3, 8);
+            this.hslLedQc.Name = "hslLedQc";
+            this.hslLedQc.Size = new System.Drawing.Size(113, 25);
+            this.hslLedQc.TabIndex = 131;
+            this.hslLedQc.UnitText = "L/Min";
+            // 
+            // hslPipeLine9
+            // 
+            this.hslPipeLine9.ActiveLineCenterColor = System.Drawing.Color.Tomato;
+            this.hslPipeLine9.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("hslPipeLine9.BackgroundImage")));
+            this.hslPipeLine9.Font = new System.Drawing.Font("微软雅黑", 6F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.hslPipeLine9.Location = new System.Drawing.Point(196, 75);
+            this.hslPipeLine9.MoveSpeed = -1F;
+            this.hslPipeLine9.Name = "hslPipeLine9";
+            this.hslPipeLine9.PipeLineActive = true;
+            this.hslPipeLine9.PipeLineStyle = HslControls.HslDirectionStyle.Vertical;
+            this.hslPipeLine9.PipeTurnLeft = HslControls.HslPipeTurnDirection.Left;
+            this.hslPipeLine9.PipeTurnRight = HslControls.HslPipeTurnDirection.Right;
+            this.hslPipeLine9.Size = new System.Drawing.Size(10, 38);
+            this.hslPipeLine9.TabIndex = 91;
+            // 
+            // hslLedTc
+            // 
+            this.hslLedTc.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(46)))), ((int)(((byte)(46)))));
+            this.hslLedTc.DisplayBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(62)))), ((int)(((byte)(62)))), ((int)(((byte)(62)))));
+            this.hslLedTc.DisplayNumber = 4;
+            this.hslLedTc.DisplayText = "0";
+            this.hslLedTc.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.hslLedTc.ForeColor = System.Drawing.Color.Lime;
+            this.hslLedTc.LedNumberSize = 1;
+            this.hslLedTc.LeftRightOffect = 15;
+            this.hslLedTc.Location = new System.Drawing.Point(723, 226);
+            this.hslLedTc.Margin = new System.Windows.Forms.Padding(3, 8, 3, 8);
+            this.hslLedTc.Name = "hslLedTc";
+            this.hslLedTc.Size = new System.Drawing.Size(113, 25);
+            this.hslLedTc.TabIndex = 130;
+            this.hslLedTc.UnitText = "℃";
+            // 
+            // hslPipeLine10
+            // 
+            this.hslPipeLine10.ActiveLineCenterColor = System.Drawing.Color.Tomato;
+            this.hslPipeLine10.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("hslPipeLine10.BackgroundImage")));
+            this.hslPipeLine10.Font = new System.Drawing.Font("微软雅黑", 6F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.hslPipeLine10.Location = new System.Drawing.Point(196, 41);
+            this.hslPipeLine10.MoveSpeed = -1F;
+            this.hslPipeLine10.Name = "hslPipeLine10";
+            this.hslPipeLine10.PipeLineActive = true;
+            this.hslPipeLine10.PipeLineStyle = HslControls.HslDirectionStyle.Vertical;
+            this.hslPipeLine10.PipeTurnLeft = HslControls.HslPipeTurnDirection.Right;
+            this.hslPipeLine10.PipeTurnRight = HslControls.HslPipeTurnDirection.Left;
+            this.hslPipeLine10.Size = new System.Drawing.Size(10, 44);
+            this.hslPipeLine10.TabIndex = 92;
+            // 
+            // hslLedPc
+            // 
+            this.hslLedPc.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(46)))), ((int)(((byte)(46)))));
+            this.hslLedPc.DisplayBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(62)))), ((int)(((byte)(62)))), ((int)(((byte)(62)))));
+            this.hslLedPc.DisplayNumber = 4;
+            this.hslLedPc.DisplayText = "0";
+            this.hslLedPc.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.hslLedPc.ForeColor = System.Drawing.Color.Snow;
+            this.hslLedPc.LedNumberSize = 1;
+            this.hslLedPc.LeftRightOffect = 15;
+            this.hslLedPc.Location = new System.Drawing.Point(723, 261);
+            this.hslLedPc.Margin = new System.Windows.Forms.Padding(3, 8, 3, 8);
+            this.hslLedPc.Name = "hslLedPc";
+            this.hslLedPc.Size = new System.Drawing.Size(113, 25);
+            this.hslLedPc.TabIndex = 129;
+            this.hslLedPc.UnitText = "bar";
+            // 
+            // hslPipeLine11
+            // 
+            this.hslPipeLine11.ActiveLineCenterColor = System.Drawing.Color.Tomato;
+            this.hslPipeLine11.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("hslPipeLine11.BackgroundImage")));
+            this.hslPipeLine11.Font = new System.Drawing.Font("微软雅黑", 6F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.hslPipeLine11.Location = new System.Drawing.Point(205, 41);
+            this.hslPipeLine11.Name = "hslPipeLine11";
+            this.hslPipeLine11.PipeLineActive = true;
+            this.hslPipeLine11.Size = new System.Drawing.Size(19, 10);
+            this.hslPipeLine11.TabIndex = 93;
+            // 
+            // hslValves13
+            // 
+            this.hslValves13.EdgeColor = System.Drawing.Color.DodgerBlue;
+            this.hslValves13.Font = new System.Drawing.Font("微软雅黑", 6F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.hslValves13.Location = new System.Drawing.Point(644, 60);
+            this.hslValves13.Name = "hslValves13";
+            this.hslValves13.Size = new System.Drawing.Size(44, 30);
+            this.hslValves13.TabIndex = 128;
+            this.hslValves13.Text = "冷水进水阀";
+            // 
+            // hslPipeLine12
+            // 
+            this.hslPipeLine12.ActiveLineCenterColor = System.Drawing.Color.Tomato;
+            this.hslPipeLine12.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("hslPipeLine12.BackgroundImage")));
+            this.hslPipeLine12.Font = new System.Drawing.Font("微软雅黑", 6F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.hslPipeLine12.Location = new System.Drawing.Point(205, 103);
+            this.hslPipeLine12.Name = "hslPipeLine12";
+            this.hslPipeLine12.PipeLineActive = true;
+            this.hslPipeLine12.Size = new System.Drawing.Size(19, 10);
+            this.hslPipeLine12.TabIndex = 94;
+            // 
+            // hslValves12
+            // 
+            this.hslValves12.EdgeColor = System.Drawing.Color.Gray;
+            this.hslValves12.Font = new System.Drawing.Font("微软雅黑", 6F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.hslValves12.Location = new System.Drawing.Point(464, 297);
+            this.hslValves12.Name = "hslValves12";
+            this.hslValves12.Size = new System.Drawing.Size(40, 30);
+            this.hslValves12.TabIndex = 127;
+            this.hslValves12.Text = "5s出水阀";
+            // 
+            // hslPumpOne7
+            // 
+            this.hslPumpOne7.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(209)))), ((int)(((byte)(218)))), ((int)(((byte)(227)))));
+            this.hslPumpOne7.Color2 = System.Drawing.Color.FromArgb(((int)(((byte)(157)))), ((int)(((byte)(164)))), ((int)(((byte)(173)))));
+            this.hslPumpOne7.Color3 = System.Drawing.Color.FromArgb(((int)(((byte)(195)))), ((int)(((byte)(200)))), ((int)(((byte)(207)))));
+            this.hslPumpOne7.Color4 = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(208)))), ((int)(((byte)(214)))));
+            this.hslPumpOne7.Color5 = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(213)))), ((int)(((byte)(220)))));
+            this.hslPumpOne7.Color6 = System.Drawing.Color.FromArgb(((int)(((byte)(153)))), ((int)(((byte)(160)))), ((int)(((byte)(169)))));
+            this.hslPumpOne7.Color7 = System.Drawing.Color.FromArgb(((int)(((byte)(92)))), ((int)(((byte)(100)))), ((int)(((byte)(111)))));
+            this.hslPumpOne7.Entrance = 2;
+            this.hslPumpOne7.Export = 5;
+            this.hslPumpOne7.Font = new System.Drawing.Font("微软雅黑", 6F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.hslPumpOne7.Location = new System.Drawing.Point(224, 92);
+            this.hslPumpOne7.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
+            this.hslPumpOne7.Name = "hslPumpOne7";
+            this.hslPumpOne7.Size = new System.Drawing.Size(49, 89);
+            this.hslPumpOne7.TabIndex = 95;
+            this.hslPumpOne7.Text = "热水变压泵";
+            // 
+            // hslPipeLine19
+            // 
+            this.hslPipeLine19.ActiveLineCenterColor = System.Drawing.Color.Yellow;
+            this.hslPipeLine19.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("hslPipeLine19.BackgroundImage")));
+            this.hslPipeLine19.Font = new System.Drawing.Font("微软雅黑", 6F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.hslPipeLine19.Location = new System.Drawing.Point(454, 313);
+            this.hslPipeLine19.Name = "hslPipeLine19";
+            this.hslPipeLine19.PipeLineActive = true;
+            this.hslPipeLine19.Size = new System.Drawing.Size(94, 10);
+            this.hslPipeLine19.TabIndex = 126;
+            // 
+            // hslPipeLine13
+            // 
+            this.hslPipeLine13.ActiveLineCenterColor = System.Drawing.Color.Tomato;
+            this.hslPipeLine13.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("hslPipeLine13.BackgroundImage")));
+            this.hslPipeLine13.Font = new System.Drawing.Font("微软雅黑", 6F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.hslPipeLine13.Location = new System.Drawing.Point(270, 41);
+            this.hslPipeLine13.Name = "hslPipeLine13";
+            this.hslPipeLine13.PipeLineActive = true;
+            this.hslPipeLine13.Size = new System.Drawing.Size(69, 10);
+            this.hslPipeLine13.TabIndex = 96;
+            // 
+            // hslValves11
+            // 
+            this.hslValves11.EdgeColor = System.Drawing.Color.Goldenrod;
+            this.hslValves11.Font = new System.Drawing.Font("微软雅黑", 6F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.hslValves11.Location = new System.Drawing.Point(536, 330);
+            this.hslValves11.Name = "hslValves11";
+            this.hslValves11.PipeLineStyle = HslControls.HslDirectionStyle.Vertical;
+            this.hslValves11.Size = new System.Drawing.Size(30, 40);
+            this.hslValves11.TabIndex = 125;
+            this.hslValves11.Text = "出水阀";
+            // 
+            // hslPipeLine14
+            // 
+            this.hslPipeLine14.ActiveLineCenterColor = System.Drawing.Color.Tomato;
+            this.hslPipeLine14.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("hslPipeLine14.BackgroundImage")));
+            this.hslPipeLine14.Font = new System.Drawing.Font("微软雅黑", 6F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.hslPipeLine14.Location = new System.Drawing.Point(270, 103);
+            this.hslPipeLine14.Name = "hslPipeLine14";
+            this.hslPipeLine14.PipeLineActive = true;
+            this.hslPipeLine14.Size = new System.Drawing.Size(69, 10);
+            this.hslPipeLine14.TabIndex = 97;
+            // 
+            // label20
+            // 
+            this.label20.AutoSize = true;
+            this.label20.BackColor = System.Drawing.Color.Thistle;
+            this.label20.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.label20.Font = new System.Drawing.Font("微软雅黑", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.label20.ForeColor = System.Drawing.Color.Black;
+            this.label20.Location = new System.Drawing.Point(514, 62);
+            this.label20.Name = "label20";
+            this.label20.Size = new System.Drawing.Size(64, 33);
+            this.label20.TabIndex = 103;
+            this.label20.Text = "产品";
+            // 
+            // hslPipeLine15
+            // 
+            this.hslPipeLine15.ActiveLineCenterColor = System.Drawing.Color.Tomato;
+            this.hslPipeLine15.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("hslPipeLine15.BackgroundImage")));
+            this.hslPipeLine15.Font = new System.Drawing.Font("微软雅黑", 6F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.hslPipeLine15.Location = new System.Drawing.Point(339, 41);
+            this.hslPipeLine15.MoveSpeed = -1F;
+            this.hslPipeLine15.Name = "hslPipeLine15";
+            this.hslPipeLine15.PipeLineActive = true;
+            this.hslPipeLine15.PipeLineStyle = HslControls.HslDirectionStyle.Vertical;
+            this.hslPipeLine15.PipeTurnLeft = HslControls.HslPipeTurnDirection.Left;
+            this.hslPipeLine15.PipeTurnRight = HslControls.HslPipeTurnDirection.Right;
+            this.hslPipeLine15.Size = new System.Drawing.Size(10, 38);
+            this.hslPipeLine15.TabIndex = 98;
+            // 
+            // hslPipeLine30
+            // 
+            this.hslPipeLine30.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("hslPipeLine30.BackgroundImage")));
+            this.hslPipeLine30.Font = new System.Drawing.Font("微软雅黑", 6F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.hslPipeLine30.Location = new System.Drawing.Point(837, 69);
+            this.hslPipeLine30.MoveSpeed = -1F;
+            this.hslPipeLine30.Name = "hslPipeLine30";
+            this.hslPipeLine30.PipeLineActive = true;
+            this.hslPipeLine30.PipeLineStyle = HslControls.HslDirectionStyle.Vertical;
+            this.hslPipeLine30.PipeTurnLeft = HslControls.HslPipeTurnDirection.Right;
+            this.hslPipeLine30.PipeTurnRight = HslControls.HslPipeTurnDirection.Left;
+            this.hslPipeLine30.Size = new System.Drawing.Size(10, 44);
+            this.hslPipeLine30.TabIndex = 124;
+            // 
+            // hslPipeLine16
+            // 
+            this.hslPipeLine16.ActiveLineCenterColor = System.Drawing.Color.Tomato;
+            this.hslPipeLine16.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("hslPipeLine16.BackgroundImage")));
+            this.hslPipeLine16.Font = new System.Drawing.Font("微软雅黑", 6F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.hslPipeLine16.Location = new System.Drawing.Point(339, 69);
+            this.hslPipeLine16.MoveSpeed = -1F;
+            this.hslPipeLine16.Name = "hslPipeLine16";
+            this.hslPipeLine16.PipeLineActive = true;
+            this.hslPipeLine16.PipeLineStyle = HslControls.HslDirectionStyle.Vertical;
+            this.hslPipeLine16.PipeTurnLeft = HslControls.HslPipeTurnDirection.Right;
+            this.hslPipeLine16.PipeTurnRight = HslControls.HslPipeTurnDirection.Left;
+            this.hslPipeLine16.Size = new System.Drawing.Size(10, 44);
+            this.hslPipeLine16.TabIndex = 99;
+            // 
+            // hslPipeLine31
+            // 
+            this.hslPipeLine31.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("hslPipeLine31.BackgroundImage")));
+            this.hslPipeLine31.Font = new System.Drawing.Font("微软雅黑", 6F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.hslPipeLine31.Location = new System.Drawing.Point(837, 41);
+            this.hslPipeLine31.MoveSpeed = -1F;
+            this.hslPipeLine31.Name = "hslPipeLine31";
+            this.hslPipeLine31.PipeLineActive = true;
+            this.hslPipeLine31.PipeLineStyle = HslControls.HslDirectionStyle.Vertical;
+            this.hslPipeLine31.PipeTurnLeft = HslControls.HslPipeTurnDirection.Left;
+            this.hslPipeLine31.PipeTurnRight = HslControls.HslPipeTurnDirection.Right;
+            this.hslPipeLine31.Size = new System.Drawing.Size(10, 38);
+            this.hslPipeLine31.TabIndex = 123;
+            // 
+            // hslValves4
+            // 
+            this.hslValves4.EdgeColor = System.Drawing.Color.Red;
+            this.hslValves4.Font = new System.Drawing.Font("微软雅黑", 6F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.hslValves4.Location = new System.Drawing.Point(290, 29);
+            this.hslValves4.Name = "hslValves4";
+            this.hslValves4.Size = new System.Drawing.Size(40, 30);
+            this.hslValves4.TabIndex = 100;
+            this.hslValves4.Text = "热水阀";
+            // 
+            // hslPipeLine28
+            // 
+            this.hslPipeLine28.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("hslPipeLine28.BackgroundImage")));
+            this.hslPipeLine28.Font = new System.Drawing.Font("微软雅黑", 6F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.hslPipeLine28.Location = new System.Drawing.Point(694, 41);
+            this.hslPipeLine28.MoveSpeed = -1F;
+            this.hslPipeLine28.Name = "hslPipeLine28";
+            this.hslPipeLine28.PipeLineActive = true;
+            this.hslPipeLine28.PipeLineStyle = HslControls.HslDirectionStyle.Vertical;
+            this.hslPipeLine28.PipeTurnLeft = HslControls.HslPipeTurnDirection.Right;
+            this.hslPipeLine28.PipeTurnRight = HslControls.HslPipeTurnDirection.Left;
+            this.hslPipeLine28.Size = new System.Drawing.Size(10, 44);
+            this.hslPipeLine28.TabIndex = 122;
+            // 
+            // hslValves5
+            // 
+            this.hslValves5.EdgeColor = System.Drawing.Color.Gray;
+            this.hslValves5.Font = new System.Drawing.Font("微软雅黑", 6F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.hslValves5.Location = new System.Drawing.Point(284, 87);
+            this.hslValves5.Name = "hslValves5";
+            this.hslValves5.Size = new System.Drawing.Size(49, 30);
+            this.hslValves5.TabIndex = 101;
+            this.hslValves5.Text = "变压热水阀";
+            // 
+            // hslPipeLine29
+            // 
+            this.hslPipeLine29.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("hslPipeLine29.BackgroundImage")));
+            this.hslPipeLine29.Font = new System.Drawing.Font("微软雅黑", 6F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.hslPipeLine29.Location = new System.Drawing.Point(694, 75);
+            this.hslPipeLine29.MoveSpeed = -1F;
+            this.hslPipeLine29.Name = "hslPipeLine29";
+            this.hslPipeLine29.PipeLineActive = true;
+            this.hslPipeLine29.PipeLineStyle = HslControls.HslDirectionStyle.Vertical;
+            this.hslPipeLine29.PipeTurnLeft = HslControls.HslPipeTurnDirection.Left;
+            this.hslPipeLine29.PipeTurnRight = HslControls.HslPipeTurnDirection.Right;
+            this.hslPipeLine29.Size = new System.Drawing.Size(10, 38);
+            this.hslPipeLine29.TabIndex = 121;
+            // 
+            // hslPipeLine8
+            // 
+            this.hslPipeLine8.ActiveLineCenterColor = System.Drawing.Color.Tomato;
+            this.hslPipeLine8.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("hslPipeLine8.BackgroundImage")));
+            this.hslPipeLine8.Font = new System.Drawing.Font("微软雅黑", 6F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.hslPipeLine8.Location = new System.Drawing.Point(172, 66);
+            this.hslPipeLine8.Name = "hslPipeLine8";
+            this.hslPipeLine8.PipeLineActive = true;
+            this.hslPipeLine8.PipeLineStyle = HslControls.HslDirectionStyle.Vertical;
+            this.hslPipeLine8.Size = new System.Drawing.Size(10, 14);
+            this.hslPipeLine8.TabIndex = 102;
+            // 
+            // hslValves9
+            // 
+            this.hslValves9.EdgeColor = System.Drawing.Color.Gray;
+            this.hslValves9.Font = new System.Drawing.Font("微软雅黑", 6F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.hslValves9.Location = new System.Drawing.Point(716, 87);
+            this.hslValves9.Name = "hslValves9";
+            this.hslValves9.Size = new System.Drawing.Size(48, 30);
+            this.hslValves9.TabIndex = 120;
+            this.hslValves9.Text = "变压冷水阀";
+            // 
+            // hslValves6
+            // 
+            this.hslValves6.EdgeColor = System.Drawing.Color.Red;
+            this.hslValves6.Font = new System.Drawing.Font("微软雅黑", 6F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.hslValves6.Location = new System.Drawing.Point(366, 54);
+            this.hslValves6.Name = "hslValves6";
+            this.hslValves6.Size = new System.Drawing.Size(44, 30);
+            this.hslValves6.TabIndex = 105;
+            this.hslValves6.Text = "热水进水阀";
+            // 
+            // hslValves10
+            // 
+            this.hslValves10.EdgeColor = System.Drawing.Color.Gray;
+            this.hslValves10.Font = new System.Drawing.Font("微软雅黑", 6F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.hslValves10.Location = new System.Drawing.Point(716, 26);
+            this.hslValves10.Name = "hslValves10";
+            this.hslValves10.Size = new System.Drawing.Size(40, 30);
+            this.hslValves10.TabIndex = 119;
+            this.hslValves10.Text = "冷水阀";
+            // 
+            // hslPipeLine18
+            // 
+            this.hslPipeLine18.ActiveLineCenterColor = System.Drawing.Color.Yellow;
+            this.hslPipeLine18.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("hslPipeLine18.BackgroundImage")));
+            this.hslPipeLine18.Font = new System.Drawing.Font("微软雅黑", 6F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.hslPipeLine18.Location = new System.Drawing.Point(541, 92);
+            this.hslPipeLine18.MoveSpeed = -1F;
+            this.hslPipeLine18.Name = "hslPipeLine18";
+            this.hslPipeLine18.PipeLineActive = true;
+            this.hslPipeLine18.PipeLineStyle = HslControls.HslDirectionStyle.Vertical;
+            this.hslPipeLine18.Size = new System.Drawing.Size(10, 328);
+            this.hslPipeLine18.TabIndex = 106;
+            // 
+            // hslPipeLine24
+            // 
+            this.hslPipeLine24.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("hslPipeLine24.BackgroundImage")));
+            this.hslPipeLine24.Font = new System.Drawing.Font("微软雅黑", 6F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.hslPipeLine24.Location = new System.Drawing.Point(703, 103);
+            this.hslPipeLine24.Name = "hslPipeLine24";
+            this.hslPipeLine24.PipeLineActive = true;
+            this.hslPipeLine24.Size = new System.Drawing.Size(69, 10);
+            this.hslPipeLine24.TabIndex = 118;
+            // 
+            // hslPipeLine20
+            // 
+            this.hslPipeLine20.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("hslPipeLine20.BackgroundImage")));
+            this.hslPipeLine20.Font = new System.Drawing.Font("微软雅黑", 6F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.hslPipeLine20.Location = new System.Drawing.Point(924, 67);
+            this.hslPipeLine20.MoveSpeed = -1F;
+            this.hslPipeLine20.Name = "hslPipeLine20";
+            this.hslPipeLine20.PipeLineActive = true;
+            this.hslPipeLine20.PipeLineStyle = HslControls.HslDirectionStyle.Vertical;
+            this.hslPipeLine20.PipeTurnLeft = HslControls.HslPipeTurnDirection.Left;
+            this.hslPipeLine20.Size = new System.Drawing.Size(10, 135);
+            this.hslPipeLine20.TabIndex = 107;
+            // 
+            // hslPipeLine25
+            // 
+            this.hslPipeLine25.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("hslPipeLine25.BackgroundImage")));
+            this.hslPipeLine25.Font = new System.Drawing.Font("微软雅黑", 6F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.hslPipeLine25.Location = new System.Drawing.Point(704, 41);
+            this.hslPipeLine25.Name = "hslPipeLine25";
+            this.hslPipeLine25.PipeLineActive = true;
+            this.hslPipeLine25.Size = new System.Drawing.Size(69, 10);
+            this.hslPipeLine25.TabIndex = 117;
+            // 
+            // hslValves7
+            // 
+            this.hslValves7.EdgeColor = System.Drawing.Color.Gray;
+            this.hslValves7.Font = new System.Drawing.Font("微软雅黑", 6F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.hslValves7.Location = new System.Drawing.Point(919, 140);
+            this.hslValves7.Name = "hslValves7";
+            this.hslValves7.PipeLineStyle = HslControls.HslDirectionStyle.Vertical;
+            this.hslValves7.Size = new System.Drawing.Size(30, 40);
+            this.hslValves7.TabIndex = 108;
+            this.hslValves7.Text = "进常温阀";
+            // 
+            // hslPumpOne6
+            // 
+            this.hslPumpOne6.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(209)))), ((int)(((byte)(218)))), ((int)(((byte)(227)))));
+            this.hslPumpOne6.Color2 = System.Drawing.Color.FromArgb(((int)(((byte)(157)))), ((int)(((byte)(164)))), ((int)(((byte)(173)))));
+            this.hslPumpOne6.Color3 = System.Drawing.Color.FromArgb(((int)(((byte)(195)))), ((int)(((byte)(200)))), ((int)(((byte)(207)))));
+            this.hslPumpOne6.Color4 = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(208)))), ((int)(((byte)(214)))));
+            this.hslPumpOne6.Color5 = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(213)))), ((int)(((byte)(220)))));
+            this.hslPumpOne6.Color6 = System.Drawing.Color.FromArgb(((int)(((byte)(153)))), ((int)(((byte)(160)))), ((int)(((byte)(169)))));
+            this.hslPumpOne6.Color7 = System.Drawing.Color.FromArgb(((int)(((byte)(92)))), ((int)(((byte)(100)))), ((int)(((byte)(111)))));
+            this.hslPumpOne6.Entrance = 2;
+            this.hslPumpOne6.Export = 5;
+            this.hslPumpOne6.Font = new System.Drawing.Font("微软雅黑", 6F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.hslPumpOne6.Location = new System.Drawing.Point(771, 91);
+            this.hslPumpOne6.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
+            this.hslPumpOne6.Name = "hslPumpOne6";
+            this.hslPumpOne6.Size = new System.Drawing.Size(49, 89);
+            this.hslPumpOne6.TabIndex = 116;
+            this.hslPumpOne6.Text = "冷水变压泵";
+            // 
+            // hslPipeLine21
+            // 
+            this.hslPipeLine21.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("hslPipeLine21.BackgroundImage")));
+            this.hslPipeLine21.Font = new System.Drawing.Font("微软雅黑", 6F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.hslPipeLine21.Location = new System.Drawing.Point(865, 75);
+            this.hslPipeLine21.MoveSpeed = -1F;
+            this.hslPipeLine21.Name = "hslPipeLine21";
+            this.hslPipeLine21.PipeLineActive = true;
+            this.hslPipeLine21.PipeLineStyle = HslControls.HslDirectionStyle.Vertical;
+            this.hslPipeLine21.Size = new System.Drawing.Size(10, 126);
+            this.hslPipeLine21.TabIndex = 109;
+            // 
+            // hslPipeLine26
+            // 
+            this.hslPipeLine26.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("hslPipeLine26.BackgroundImage")));
+            this.hslPipeLine26.Font = new System.Drawing.Font("微软雅黑", 6F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.hslPipeLine26.Location = new System.Drawing.Point(818, 103);
+            this.hslPipeLine26.Name = "hslPipeLine26";
+            this.hslPipeLine26.PipeLineActive = true;
+            this.hslPipeLine26.Size = new System.Drawing.Size(19, 10);
+            this.hslPipeLine26.TabIndex = 115;
+            // 
+            // hslValves8
+            // 
+            this.hslValves8.EdgeColor = System.Drawing.Color.Gray;
+            this.hslValves8.Font = new System.Drawing.Font("微软雅黑", 6F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.hslValves8.Location = new System.Drawing.Point(860, 138);
+            this.hslValves8.Name = "hslValves8";
+            this.hslValves8.PipeLineStyle = HslControls.HslDirectionStyle.Vertical;
+            this.hslValves8.Size = new System.Drawing.Size(30, 40);
+            this.hslValves8.TabIndex = 110;
+            this.hslValves8.Text = "进冷水阀";
+            // 
+            // hslPipeLine27
+            // 
+            this.hslPipeLine27.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("hslPipeLine27.BackgroundImage")));
+            this.hslPipeLine27.Font = new System.Drawing.Font("微软雅黑", 6F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.hslPipeLine27.Location = new System.Drawing.Point(818, 41);
+            this.hslPipeLine27.Name = "hslPipeLine27";
+            this.hslPipeLine27.PipeLineActive = true;
+            this.hslPipeLine27.Size = new System.Drawing.Size(19, 10);
+            this.hslPipeLine27.TabIndex = 114;
+            // 
+            // hslPipeLine22
+            // 
+            this.hslPipeLine22.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("hslPipeLine22.BackgroundImage")));
+            this.hslPipeLine22.Font = new System.Drawing.Font("微软雅黑", 6F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.hslPipeLine22.Location = new System.Drawing.Point(566, 75);
+            this.hslPipeLine22.Name = "hslPipeLine22";
+            this.hslPipeLine22.PipeLineActive = true;
+            this.hslPipeLine22.Size = new System.Drawing.Size(129, 10);
+            this.hslPipeLine22.TabIndex = 111;
+            // 
+            // hslPumpOne8
+            // 
+            this.hslPumpOne8.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(209)))), ((int)(((byte)(218)))), ((int)(((byte)(227)))));
+            this.hslPumpOne8.Color2 = System.Drawing.Color.FromArgb(((int)(((byte)(157)))), ((int)(((byte)(164)))), ((int)(((byte)(173)))));
+            this.hslPumpOne8.Color3 = System.Drawing.Color.FromArgb(((int)(((byte)(195)))), ((int)(((byte)(200)))), ((int)(((byte)(207)))));
+            this.hslPumpOne8.Color4 = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(208)))), ((int)(((byte)(214)))));
+            this.hslPumpOne8.Color5 = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(213)))), ((int)(((byte)(220)))));
+            this.hslPumpOne8.Color6 = System.Drawing.Color.FromArgb(((int)(((byte)(153)))), ((int)(((byte)(160)))), ((int)(((byte)(169)))));
+            this.hslPumpOne8.Color7 = System.Drawing.Color.FromArgb(((int)(((byte)(92)))), ((int)(((byte)(100)))), ((int)(((byte)(111)))));
+            this.hslPumpOne8.Entrance = 2;
+            this.hslPumpOne8.Export = 5;
+            this.hslPumpOne8.Font = new System.Drawing.Font("微软雅黑", 6F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.hslPumpOne8.Location = new System.Drawing.Point(769, 30);
+            this.hslPumpOne8.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
+            this.hslPumpOne8.Name = "hslPumpOne8";
+            this.hslPumpOne8.Size = new System.Drawing.Size(49, 89);
+            this.hslPumpOne8.TabIndex = 113;
+            this.hslPumpOne8.Text = "冷水泵";
+            // 
+            // hslPipeLine23
+            // 
+            this.hslPipeLine23.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("hslPipeLine23.BackgroundImage")));
+            this.hslPipeLine23.Font = new System.Drawing.Font("微软雅黑", 6F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.hslPipeLine23.Location = new System.Drawing.Point(847, 67);
+            this.hslPipeLine23.Name = "hslPipeLine23";
+            this.hslPipeLine23.PipeLineActive = true;
+            this.hslPipeLine23.Size = new System.Drawing.Size(77, 10);
+            this.hslPipeLine23.TabIndex = 112;
+            // 
+            // centerPanel
+            // 
+            this.centerPanel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.centerPanel.Controls.Add(this.center1);
+            this.centerPanel.Controls.Add(this.hslCurve1);
+            this.centerPanel.Controls.Add(this.Title);
+            this.centerPanel.Location = new System.Drawing.Point(320, 0);
+            this.centerPanel.Name = "centerPanel";
+            this.centerPanel.Size = new System.Drawing.Size(1028, 1061);
+            this.centerPanel.TabIndex = 2;
             // 
             // FormMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1904, 1061);
+            this.ClientSize = new System.Drawing.Size(1924, 1061);
             this.Controls.Add(this.centerPanel);
             this.Controls.Add(this.rightPanel);
             this.Controls.Add(this.leftPanel);
@@ -2169,9 +2128,9 @@
             this.right1.ResumeLayout(false);
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
-            this.centerPanel.ResumeLayout(false);
-            this.centerPanel.PerformLayout();
             this.center1.ResumeLayout(false);
+            this.center1.PerformLayout();
+            this.centerPanel.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -2187,7 +2146,6 @@
         private System.Windows.Forms.Panel right3;
         private System.Windows.Forms.Panel right4;
         private System.Windows.Forms.GroupBox dataGbx;
-        private System.Windows.Forms.Panel centerPanel;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label3;
@@ -2216,8 +2174,6 @@
         private HslControls.HslButton hslButton8;
         private HslControls.HslButton setParamBtn;
         private System.Windows.Forms.Label ICON;
-        private System.Windows.Forms.Label Title;
-        private System.Windows.Forms.Panel center1;
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.RadioButton FlowTestRbt;
         private System.Windows.Forms.RadioButton tmpTestRbt;
@@ -2230,7 +2186,6 @@
         private Automation.BDaq.InstantDoCtrl instantDoCtrl1;
         private Automation.BDaq.InstantDiCtrl instantDiCtrl1;
         private Automation.BDaq.WaveformAiCtrl waveformAiCtrl1;
-        private HslControls.HslCurve hslCurve1;
         private System.Windows.Forms.GroupBox waterBoxGbx;
         private HslControls.HslWaterBox hslWaterBox5;
         private System.Windows.Forms.Label Temp5Status;
@@ -2255,80 +2210,81 @@
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.RadioButton sensitivityRbt;
-        private System.Windows.Forms.RadioButton freRbt;
-        private System.Windows.Forms.RadioButton TmSteadyRbt;
+        private System.Windows.Forms.Label Title;
+        private HslControls.HslCurve hslCurve1;
+        private System.Windows.Forms.Panel center1;
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.Label label10;
-        private System.Windows.Forms.Label label9;
-        private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.Label label12;
-        private System.Windows.Forms.Label label13;
-        private System.Windows.Forms.Label label18;
-        private System.Windows.Forms.Label label19;
-        private HslControls.HslLedDisplay hslLedQm5;
-        private HslControls.HslLedDisplay hslLedQm;
-        private HslControls.HslLedDisplay hslLedTm;
-        private HslControls.HslLedDisplay hslLedQh;
-        private HslControls.HslLedDisplay hslLedTh;
-        private HslControls.HslLedDisplay hslLedPm;
         private HslControls.HslLedDisplay hslLedPh;
+        private System.Windows.Forms.Label label9;
+        private HslControls.HslPipeLine hslPipeLine17;
+        private System.Windows.Forms.Label label8;
+        private HslControls.HslPumpOne hslPumpOne1;
+        private System.Windows.Forms.Label label7;
+        private HslControls.HslPumpOne hslPumpOne2;
+        private System.Windows.Forms.Label label6;
+        private HslControls.HslPumpOne hslPumpOne3;
+        private System.Windows.Forms.Label label12;
+        private HslControls.HslPumpOne hslPumpOne4;
+        private System.Windows.Forms.Label label13;
+        private HslControls.HslPumpOne hslPumpOne5;
+        private System.Windows.Forms.Label label18;
+        private HslControls.HslPipeLine hslPipeLine4;
+        private System.Windows.Forms.Label label19;
+        private HslControls.HslPipeLine hslPipeLine1;
+        private HslControls.HslLedDisplay hslLedQm5;
+        private HslControls.HslValves hslValves1;
+        private HslControls.HslLedDisplay hslLedQm;
+        private HslControls.HslPipeLine hslPipeLine5;
+        private HslControls.HslLedDisplay hslLedTm;
+        private HslControls.HslValves hslValves2;
+        private HslControls.HslLedDisplay hslLedQh;
+        private HslControls.HslPipeLine hslPipeLine6;
+        private HslControls.HslLedDisplay hslLedTh;
+        private HslControls.HslPipeLine hslPipeLine7;
+        private HslControls.HslLedDisplay hslLedPm;
+        private HslControls.HslValves hslValves3;
+        private HslControls.HslPumpOne reshui;
         private HslControls.HslLedDisplay hslLedQc;
+        private HslControls.HslPipeLine hslPipeLine9;
         private HslControls.HslLedDisplay hslLedTc;
+        private HslControls.HslPipeLine hslPipeLine10;
         private HslControls.HslLedDisplay hslLedPc;
+        private HslControls.HslPipeLine hslPipeLine11;
         private HslControls.HslValves hslValves13;
+        private HslControls.HslPipeLine hslPipeLine12;
         private HslControls.HslValves hslValves12;
+        private HslControls.HslPumpOne hslPumpOne7;
         private HslControls.HslPipeLine hslPipeLine19;
+        private HslControls.HslPipeLine hslPipeLine13;
         private HslControls.HslValves hslValves11;
+        private HslControls.HslPipeLine hslPipeLine14;
         private System.Windows.Forms.Label label20;
+        private HslControls.HslPipeLine hslPipeLine15;
         private HslControls.HslPipeLine hslPipeLine30;
+        private HslControls.HslPipeLine hslPipeLine16;
         private HslControls.HslPipeLine hslPipeLine31;
+        private HslControls.HslValves hslValves4;
         private HslControls.HslPipeLine hslPipeLine28;
+        private HslControls.HslValves hslValves5;
         private HslControls.HslPipeLine hslPipeLine29;
+        private HslControls.HslPipeLine hslPipeLine8;
         private HslControls.HslValves hslValves9;
+        private HslControls.HslValves hslValves6;
         private HslControls.HslValves hslValves10;
+        private HslControls.HslPipeLine hslPipeLine18;
         private HslControls.HslPipeLine hslPipeLine24;
+        private HslControls.HslPipeLine hslPipeLine20;
         private HslControls.HslPipeLine hslPipeLine25;
+        private HslControls.HslValves hslValves7;
         private HslControls.HslPumpOne hslPumpOne6;
+        private HslControls.HslPipeLine hslPipeLine21;
         private HslControls.HslPipeLine hslPipeLine26;
+        private HslControls.HslValves hslValves8;
         private HslControls.HslPipeLine hslPipeLine27;
+        private HslControls.HslPipeLine hslPipeLine22;
         private HslControls.HslPumpOne hslPumpOne8;
         private HslControls.HslPipeLine hslPipeLine23;
-        private HslControls.HslPipeLine hslPipeLine22;
-        private HslControls.HslValves hslValves8;
-        private HslControls.HslPipeLine hslPipeLine21;
-        private HslControls.HslValves hslValves7;
-        private HslControls.HslPipeLine hslPipeLine20;
-        private HslControls.HslPipeLine hslPipeLine18;
-        private HslControls.HslValves hslValves6;
-        private HslControls.HslPipeLine hslPipeLine8;
-        private HslControls.HslValves hslValves5;
-        private HslControls.HslValves hslValves4;
-        private HslControls.HslPipeLine hslPipeLine16;
-        private HslControls.HslPipeLine hslPipeLine15;
-        private HslControls.HslPipeLine hslPipeLine14;
-        private HslControls.HslPipeLine hslPipeLine13;
-        private HslControls.HslPumpOne hslPumpOne7;
-        private HslControls.HslPipeLine hslPipeLine12;
-        private HslControls.HslPipeLine hslPipeLine11;
-        private HslControls.HslPipeLine hslPipeLine10;
-        private HslControls.HslPipeLine hslPipeLine9;
-        private HslControls.HslPumpOne reshui;
-        private HslControls.HslValves hslValves3;
-        private HslControls.HslPipeLine hslPipeLine7;
-        private HslControls.HslPipeLine hslPipeLine6;
-        private HslControls.HslValves hslValves2;
-        private HslControls.HslPipeLine hslPipeLine5;
-        private HslControls.HslValves hslValves1;
-        private HslControls.HslPipeLine hslPipeLine1;
-        private HslControls.HslPipeLine hslPipeLine4;
-        private HslControls.HslPumpOne hslPumpOne5;
-        private HslControls.HslPumpOne hslPumpOne4;
-        private HslControls.HslPumpOne hslPumpOne3;
-        private HslControls.HslPumpOne hslPumpOne2;
-        private HslControls.HslPumpOne hslPumpOne1;
-        private HslControls.HslPipeLine hslPipeLine17;
+        private System.Windows.Forms.Panel centerPanel;
     }
 }
