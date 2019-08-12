@@ -42,7 +42,6 @@ namespace 恒温测试机.UI
         System.Timers.Timer tmSteadyTimer;        //出水温度稳定性测试 定时器
 
         System.Timers.Timer monitorWhTimer;          //监控液面高度定时器
-        //System.Timers.Timer monitorTimer;            //监控阀门定时器
         System.Timers.Timer monitorDiTimer;          //监控数字量定时器
         COMconfig bpq_conf;
         public M_485Rtu bpq;
@@ -65,9 +64,9 @@ namespace 恒温测试机.UI
         bool autoRunFlag = false;               //是否自动运行
         bool stopFlag = false;                  //是否手动停止
 
-        public static DataTable dt;
-        public static DataTable GraphDt;
-        public static DataTable ElectDt;
+        public DataTable dt;
+        public DataTable GraphDt;
+        public DataTable ElectDt;
         public double Temp1;
         public double Temp2;
         public double Temp3;
@@ -99,48 +98,6 @@ namespace 恒温测试机.UI
 
         #region 委托
 
-        private delegate void MonitorActiveDelegate(byte[] data);//控制阀的状态监控
-        private void MonitorActive(byte[] data)
-        {
-            try
-            {
-                if (this.InvokeRequired)
-                {
-                    MonitorActiveDelegate monitorActiveDelegate = MonitorActive;
-                    this.Invoke(monitorActiveDelegate, new object[] { data });
-                }
-                else
-                {
-                    if (doData[0].get_bit(0) == 1)
-                        Temp1Status.ForeColor = Color.Red;
-                    else
-                        Temp1Status.ForeColor = Color.Black;
-
-                    if (doData[0].get_bit(1) == 1)
-                        Temp2Status.ForeColor = Color.Red;
-                    else
-                        Temp2Status.ForeColor = Color.Black;
-                    if (doData[0].get_bit(2) == 1)
-                        Temp3Status.ForeColor = Color.Red;
-                    else
-                        Temp3Status.ForeColor = Color.Black;
-                    if (doData[0].get_bit(3) == 1)
-                        Temp4Status.ForeColor = Color.Red;
-                    else
-                        Temp4Status.ForeColor = Color.Black;
-                    if (doData[0].get_bit(4) == 1)
-                        Temp5Status.ForeColor = Color.Red;
-                    else
-                        Temp5Status.ForeColor = Color.Black;
-                }
-            }
-            catch (Exception ex)
-            {
-                Log.Error(ex.ToString());
-                return;
-            }
-
-        }
 
         private delegate void MonitorWhActiveDelegate();//液面高度状态的监控，进行对应行为逻辑
         private void MonitorWhActive()
@@ -179,9 +136,6 @@ namespace 恒温测试机.UI
                         else
                             set_bit(ref doData[3], 4, false);
                     }
-                    //set_bit(ref doData[3], 3, false);//wh
-                    //WhCool = Wh;
-                    //whFlag = false;
                     if (whFlag) //热水箱->冷水箱
                     {
                         WhHeat = Wh;
@@ -198,7 +152,7 @@ namespace 恒温测试机.UI
             }
             catch (Exception ex)
             {
-                Log.Error(ex.ToString());
+                Log.Error("液面监控异常：" + ex.ToString());
                 return;
             }
         }
@@ -313,7 +267,7 @@ namespace 恒温测试机.UI
             }
             catch (Exception ex)
             {
-                Log.Error(ex.ToString());
+                Log.Error("数字量输入监控异常:" + ex.ToString());
                 return;
             }
         }
@@ -414,6 +368,21 @@ namespace 恒温测试机.UI
                     PmShow.Text = Pm.ToString();
                     PcShow.Text = Pc.ToString();
                     PhShow.Text = Ph.ToString();
+
+
+                    #region LED显示
+                    hslLedQm.DisplayText = Qm.ToString();
+                    hslLedQc.DisplayText = Qc.ToString();
+                    hslLedQh.DisplayText = Qh.ToString();
+                    hslLedTm.DisplayText = Tm.ToString();
+                    hslLedTc.DisplayText = Tc.ToString();
+                    hslLedTh.DisplayText = Th.ToString();
+                    hslLedPm.DisplayText = Pm.ToString();
+                    hslLedPc.DisplayText = Pc.ToString();
+                    hslLedPh.DisplayText = Ph.ToString();
+                    hslLedQm5.DisplayText = Qm5.ToString();
+                    #endregion
+
                     //if (graphFlag)
                     //{
                     for (int i = 3; i < 103; i++)
@@ -441,49 +410,12 @@ namespace 恒温测试机.UI
                             }
                         );
                     }
-                    #region 注释
-                    //hslCurve1.AddCurveData(
-                    //        new string[] {
-                    //                "temp1","temp2","temp3","temp4","temp5"
-                    //                //"冷水流量Qc", "热水流量Qh", "出水流量Qm",
-                    //                //"冷水温度Tc", "热水温度Th", "出水温度Tm",
-                    //                //"冷水压力Pc", "热水压力Ph", "出水压力Pm",
-                    //                //"出水重量Qm5"
-                    //        },
-                    //        new float[]
-                    //        {
-                    //            (float)Temp1,(float)Temp2,(float)Temp3,(float)Temp4,(float)Temp5
-                    //                //(float)Qc,(float)Qh,(float)Qm,
-                    //                //(float)Tc,(float)Th,(float)Tm,
-                    //                //(float)Pc,(float)Ph,(float)Pm,
-                    //                //(float)Qm5
-                    //                //(float)sourceDataQc[i],(float)sourceDataQh[i],(float)sourceDataQm[i],
-                    //                //(float)sourceDataTc[i],(float)sourceDataTh[i],(float)sourceDataTm[i],
-                    //                //(float)sourceDataPc[i],(float)sourceDataPh[i],(float)sourceDataPm[i],
-                    //                //(float)sourceDataQm5[i]
-                    //        }
-                    //    );
-                    ////}
-                    //if (logicType == LogicTypeEnum.safeTest || logicType == LogicTypeEnum.PressureTest)
-                    //{
-                    //    if (Qm > (double)Properties.Settings.Default.QmMax || Qm < (double)Properties.Settings.Default.QmMin)
-                    //    {
-                    //        QmShow.ForeColor = Color.Red;
-                    //        systemInfoTb.AppendText("[时间:" + DateTime.Now.ToString("yyyy-MM-dd hh:mm:ss") + "] " + "[出水流量Qm" + "超出上下限！]");
-                    //        systemInfoTb.AppendText("\n");
-                    //    }
-                    //    else
-                    //    {
-                    //        QmShow.ForeColor = Color.Black;
-                    //    }
-                    //}
-                    #endregion
                     DataReadyToControlTemp();
                 }
             }
             catch (Exception ex)
             {
-                Log.Error(ex.ToString());
+                Log.Error("数据采集异常:" + ex.ToString());
                 return;
             }
 
@@ -491,172 +423,103 @@ namespace 恒温测试机.UI
         public bool IsOpenDC = false;
         private void DataReadyToControlTemp()   //程序不自动控制温度，仅用按钮颜色表示是否加热制冷
         {
-            //if (!IsOpenDC)
-            //{
             if (doData[0].get_bit(0) == 0)//制冷控温
             {
                 button1.BackColor = Color.LightGray;
-                //if (Temp1 <= (double)(Properties.Settings.Default.Temp1Set + Properties.Settings.Default.Temp1Range))
-                //    Temp1Status.Text = Temp1 + "℃\n"+ WhCool + "mm\n" + "保持温度";
-                //else
-                //{
-                //    if (WhCool > (double)(Properties.Settings.Default.WhMin))
-                //    {
-                //        Temp1Status.Text = Temp1 + "℃\n"+WhCool + "mm\n" + "制冷中";
-                //        set_bit(ref doData[0], 0, true);
-                //        set_bit(ref doData[1], 2, true);    //冷循环泵
-                //    }
-                //}
             }
             else
             {
                 if (Temp1 <= (double)(Properties.Settings.Default.Temp1Set))
                 {
                     button1.BackColor = Color.LightGray;
-                    //Temp1Status.Text = Temp1 + "℃\n" + WhCool + "mm\n";// + "保持温度";
                     set_bit(ref doData[0], 0, false);
                     set_bit(ref doData[1], 2, false);    //冷循环泵
                 }
                 else
                 {
                     button1.BackColor = Color.Green;
-                    //Temp1Status.Text =  Temp1 + "℃\n"+ WhCool + "mm\n" + "制冷中";
                 }
             }
 
             if (doData[0].get_bit(1) == 0)//制热控温
             {
                 button2.BackColor = Color.LightGray;
-                //if (Temp2 >= (double)(Properties.Settings.Default.Temp2Set - Properties.Settings.Default.Temp2Range))
-                //    Temp2Status.Text = Temp2 + "℃\n" + WhHeat + "mm\n" + "保持温度";
-                //else
-                //{
-                //    //加热需热水箱液面高度>下限，同时开启循环泵
-                //    if (WhHeat > (double)(Properties.Settings.Default.WhMin))
-                //    {
-                //        Temp2Status.Text = Temp2 + "℃\n" + WhHeat + "mm\n" + "加热中";
-                //        set_bit(ref doData[0], 1, true);
-                //        set_bit(ref doData[1], 3, true);    //热循环泵
-                //    }
-                //}
             }
             else
             {
                 if (Temp2 >= (double)(Properties.Settings.Default.Temp2Set))
                 {
                     button2.BackColor = Color.LightGray;
-                    //Temp2Status.Text = Temp2 + "℃\n" + WhHeat + "mm\n" + "保持温度";
                     set_bit(ref doData[0], 1, false);
                     set_bit(ref doData[1], 3, false);    //热循环泵
                 }
                 else
                 {
                     button2.BackColor = Color.Green;
-                    //Temp2Status.Text = Temp2 + "℃\n" + WhHeat + "mm\n" + "加热中";
                 }
             }
 
             if (doData[0].get_bit(2) == 0)//制热控温
             {
                 button3.BackColor = Color.LightGray;
-                //if (Temp3 >= (double)(Properties.Settings.Default.Temp3Set - Properties.Settings.Default.Temp3Range))
-                //    Temp3Status.Text = Temp3 + "℃\n" + "保持温度";
-                //else
-                //{
-                //    Temp3Status.Text = Temp3 + "℃\n" + "加热中";
-                //    set_bit(ref doData[0], 2, true);
-                //    set_bit(ref doData[1], 4, true);    //高循环泵
-                //}
             }
             else
             {
                 if (Temp3 >= (double)(Properties.Settings.Default.Temp3Set))
                 {
                     button3.BackColor = Color.LightGray;
-                    //Temp3Status.Text = Temp3 + "℃\n" + "保持温度";
                     set_bit(ref doData[0], 2, false);
                     set_bit(ref doData[1], 4, false);    //高循环泵
                 }
                 else
                 {
                     button3.BackColor = Color.Green;
-                    //Temp3Status.Text = Temp3 + "℃\n" + "加热中";
                 }
             }
 
             if (doData[0].get_bit(3) == 0)//制热控温
             {
                 button4.BackColor = Color.LightGray;
-                //if (Temp4 >= (double)(Properties.Settings.Default.Temp4Set - Properties.Settings.Default.Temp4Range))
-                //    Temp4Status.Text = Temp4 + "℃\n" + "保持温度";
-                //else
-                //{
-                //    Temp4Status.Text = Temp4 + "℃\n" + "加热中";
-                //    set_bit(ref doData[0], 3, true);
-                //    set_bit(ref doData[1], 5, true);    //中循环泵
-                //}
             }
             else
             {
                 if (Temp4 >= (double)(Properties.Settings.Default.Temp4Set))
                 {
                     button4.BackColor = Color.LightGray;
-                    //Temp4Status.Text = Temp4 + "℃\n" + "保持温度";
                     set_bit(ref doData[0], 3, false);
                     set_bit(ref doData[1], 5, false);    //中循环泵
                 }
                 else
                 {
                     button4.BackColor = Color.Green;
-                    //Temp4Status.Text = Temp4 + "℃\n" + "加热中";
                 }
             }
 
             if (doData[0].get_bit(4) == 0)//制冷控温
             {
                 button5.BackColor = Color.LightGray;
-                //if (Temp5 <= (double)(Properties.Settings.Default.Temp5Set + Properties.Settings.Default.Temp5Range))
-                //    Temp5Status.Text = Temp5 + "℃\n" + "保持温度";
-                //else
-                //{
-                //    Temp5Status.Text = Temp5 + "℃\n" + "制冷中";
-                //    set_bit(ref doData[0], 4, true);
-                //    set_bit(ref doData[1], 6, true);    //常循环泵
-                //}
             }
             else
             {
                 if (Temp5 <= (double)(Properties.Settings.Default.Temp5Set))
                 {
                     button5.BackColor = Color.LightGray;
-                    //Temp5Status.Text = Temp5 + "℃\n" + "保持温度";
                     set_bit(ref doData[0], 4, false);
                     set_bit(ref doData[1], 6, false);    //常循环泵
                 }
                 else
                 {
                     button5.BackColor = Color.Green;
-                    //Temp5Status.Text = Temp5 + "℃\n" + "制冷中";
                 }
             }
             control.InstantDo_Write(doData);
-            //}
-            //else
-            //{
-            //    Temp1Status.Text =  Temp1 + "℃\n"+ WhCool + "mm\n";
-            //    Temp2Status.Text =  Temp2 + "℃\n"+ WhHeat + "mm\n";
-            //    Temp3Status.Text = Temp3 + "℃\n";
-            //    Temp4Status.Text = Temp4 + "℃\n";
-            //    Temp5Status.Text = Temp5 + "℃\n";
-            //}
-            Temp1Status.Text = Temp1 + "℃\n";// + WhCool + "mm\n";// + "保持温度";
+            Temp1Status.Text = Temp1 + "℃\n";
             label1.Text = WhCool + "mm";
-            Temp2Status.Text = Temp2 + "℃\n";// + WhCool + "mm\n";// + "保持温度";
+            Temp2Status.Text = Temp2 + "℃\n";
             label5.Text = WhHeat + "mm";
-            Temp3Status.Text = Temp3 + "℃\n";// + WhCool + "mm\n";// + "保持温度";
-            Temp4Status.Text = Temp4 + "℃\n";// + WhCool + "mm\n";// + "保持温度";
-            Temp5Status.Text = Temp5 + "℃\n";// + WhCool + "mm\n";// + "保持温度";
-
+            Temp3Status.Text = Temp3 + "℃\n";
+            Temp4Status.Text = Temp4 + "℃\n";
+            Temp5Status.Text = Temp5 + "℃\n";
         }
 
 
@@ -693,7 +556,7 @@ namespace 恒温测试机.UI
             }
             catch (Exception ex)
             {
-                Log.Error(ex.ToString());
+                Log.Error("手动停止异常:" + ex.ToString());
                 return;
             }
 
@@ -709,7 +572,6 @@ namespace 恒温测试机.UI
         /// </summary>
         private void InitControl()
         {
-            standardCbx.Text = "EN1111-2017";
             sensitivityRbt.Visible = false;
             freRbt.Visible = false;
             TmSteadyRbt.Visible = false;
@@ -828,7 +690,6 @@ namespace 恒温测试机.UI
             Console.WriteLine("D4" + diData[0].get_bit(4));
             Console.WriteLine("D5" + diData[0].get_bit(5));
             Console.WriteLine("D6" + diData[0].get_bit(6));
-            //Log.Info("diData:" + diData[0]);
             WaveformAi();//
             WaveformAiCtrl1_Start();//开始高速读取模拟量数据
 
@@ -839,29 +700,21 @@ namespace 恒温测试机.UI
         /// </summary>
         private void InitTimer()
         {
-            //monitorTimer = new System.Timers.Timer(100);
-            //monitorTimer.Elapsed += (o, a) =>
-            //{
-            //    MonitorActive(doData);
-            //};//到达时间的时候执行事件； 
-            //monitorTimer.AutoReset = true;//设置是执行一次（false）还是一直执行(true)；
-            //monitorTimer.Enabled = true;//是否执行System.Timers.Timer.Elapsed事件；
+            monitorDiTimer = new System.Timers.Timer(5000);
+            monitorDiTimer.Elapsed += (o, a) =>
+            {
+                MonitorDiActive();
+            };//到达时间的时候执行事件； 
+            monitorDiTimer.AutoReset = true;//设置是执行一次（false）还是一直执行(true)；
+            monitorDiTimer.Enabled = true;//是否执行System.Timers.Timer.Elapsed事件；
 
-            //monitorDiTimer = new System.Timers.Timer(5000);
-            //monitorDiTimer.Elapsed += (o, a) =>
-            //{
-            //    MonitorDiActive();
-            //};//到达时间的时候执行事件； 
-            //monitorDiTimer.AutoReset = true;//设置是执行一次（false）还是一直执行(true)；
-            //monitorDiTimer.Enabled = true;//是否执行System.Timers.Timer.Elapsed事件；
-
-            //monitorWhTimer = new System.Timers.Timer(5000);
-            //monitorWhTimer.Elapsed += (o, a) =>
-            //{
-            //    MonitorWhActive();
-            //};//到达时间的时候执行事件； 
-            //monitorWhTimer.AutoReset = true;
-            //monitorWhTimer.Enabled = true;
+            monitorWhTimer = new System.Timers.Timer(5000);
+            monitorWhTimer.Elapsed += (o, a) =>
+            {
+                MonitorWhActive();
+            };//到达时间的时候执行事件； 
+            monitorWhTimer.AutoReset = true;
+            monitorWhTimer.Enabled = true;
 
 
             safetyTimer = new System.Timers.Timer(2);
@@ -2721,16 +2574,16 @@ namespace 恒温测试机.UI
             }
         }
 
-        public void Read(string address, byte station)
+        public short Read(string address, byte station)
         {
             var val = bpq.read_short(address, station);
-            SystemInfoPrint("读取：【" + address + "】【" + val + "】\n");
+            return val;
         }
 
         public void Write(string address, short val, byte station)
         {
             bpq.write_short(address, val, station);
-            SystemInfoPrint("写入：【" + address + "】【" + val + "】\n");
+            
         }
 
 
@@ -2914,7 +2767,7 @@ namespace 恒温测试机.UI
                 int index = 0;
                 for (int i = 0; i < m_dataScaled.Length; i += 16)
                 {
-                    Qc = Math.Round(m_dataScaled[i + 0], 2, MidpointRounding.AwayFromZero);// * 5;
+                    Qc = Math.Round(m_dataScaled[i + 0], 2, MidpointRounding.AwayFromZero);// * 5;          流量的量程 1-5V 对应  0-50L/min
                     Qh = Math.Round(m_dataScaled[i + 1], 2, MidpointRounding.AwayFromZero);// * 5;
                     Qm = Math.Round(m_dataScaled[i + 2], 2, MidpointRounding.AwayFromZero);// * 5;
                     Tc = Math.Round(m_dataScaled[i + 3], 2, MidpointRounding.AwayFromZero);// * 10;
@@ -2972,22 +2825,8 @@ namespace 恒温测试机.UI
                 //Console.WriteLine("液面高度：" + Wh);
 
                 sourceDataQc = averge(ref sourceDataQc, 0);
-                if (isFirstAver == false)
-                {
-                    for (int i = 3; i < sourceDataQc.Length - 3; i++)
-                    {
-                        Log.Info("before" + i + "-》" + sourceDataQc[i]);
-                    }
-                }
                 sourceDataQc = filterKalMan(sourceDataQc);
                 sourceDataQc = averge(ref sourceDataQc, 0);
-                if (isFirstAver == false)
-                {
-                    for (int i = 3; i < sourceDataQc.Length - 3; i++)
-                    {
-                        Log.Info("after" + i + "-》" + sourceDataQc[i]);
-                    }
-                }
 
                 sourceDataQh = averge(ref sourceDataQh, 1);
                 //sourceDataQh = filter(ref sourceDataQh, 10);
@@ -3047,9 +2886,9 @@ namespace 恒温测试机.UI
                         {
                             dt.Rows.Add(t.ToString("yyyy-MM-dd hh:mm:ss:fff"),
                                 t,
-                                sourceDataQc[i] * 5,
-                                sourceDataQh[i] * 5,
-                                sourceDataQm[i] * 5,
+                                (sourceDataQc[i] - 1) < 0 ? 0 : (sourceDataQc[i] - 1) * 12.5,
+                                (sourceDataQh[i] - 1) < 0 ? 0 : (sourceDataQh[i] - 1) * 12.5,
+                                (sourceDataQm[i] - 1) < 0 ? 0 : (sourceDataQm[i] - 1) * 12.5,
                                 sourceDataTc[i] * 10,
                                 sourceDataTh[i] * 10,
                                 sourceDataTm[i] * 10,
@@ -3064,9 +2903,9 @@ namespace 恒温测试机.UI
                         if (graphFlag)          //记录流程测试中的，曲线变化
                         {
                             GraphDt.Rows.Add(t.ToString("yyyy-MM-dd hh:mm:ss:fff"),
-                                sourceDataQc[i] * 5,
-                                sourceDataQh[i] * 5,
-                                sourceDataQm[i] * 5,
+                                (sourceDataQc[i] - 1) < 0 ? 0 : (sourceDataQc[i] - 1) * 12.5,
+                                (sourceDataQh[i] - 1) < 0 ? 0 : (sourceDataQh[i] - 1) * 12.5,
+                                (sourceDataQm[i] - 1) < 0 ? 0 : (sourceDataQm[i] - 1) * 12.5,
                                 sourceDataTc[i] * 10,
                                 sourceDataTh[i] * 10,
                                 sourceDataTm[i] * 10,
@@ -3080,9 +2919,9 @@ namespace 恒温测试机.UI
                         if (electDataFlag)
                         {
                             ElectDt.Rows.Add(t.ToString("yyyy-MM-dd hh:mm:ss:fff"),
-                                sourceDataQc[i] * 5,
-                                sourceDataQh[i] * 5,
-                                sourceDataQm[i] * 5,
+                                (sourceDataQc[i] - 1) < 0 ? 0 : (sourceDataQc[i] - 1) * 12.5,
+                                (sourceDataQh[i] - 1) < 0 ? 0 : (sourceDataQh[i] - 1) * 12.5,
+                                (sourceDataQm[i] - 1) < 0 ? 0 : (sourceDataQm[i] - 1) * 12.5,
                                 sourceDataTc[i] * 10,
                                 sourceDataTh[i] * 10,
                                 sourceDataTm[i] * 10,
@@ -3094,9 +2933,9 @@ namespace 恒温测试机.UI
                         }
                         t = t.AddMilliseconds(10.0);
                     }
-                    Qc = Math.Round((sourceDataQc[3] + sourceDataQc[102]) * 2.5, 2, MidpointRounding.AwayFromZero);
-                    Qh = Math.Round((sourceDataQh[3] + sourceDataQh[102]) * 2.5, 2, MidpointRounding.AwayFromZero);
-                    Qm = Math.Round((sourceDataQm[3] + sourceDataQm[102]) * 2.5, 2, MidpointRounding.AwayFromZero);
+                    Qc = (sourceDataQc[3] + sourceDataQc[102] - 2) < 0 ? 0 : Math.Round((sourceDataQc[3] + sourceDataQc[102] - 2) * 12.5 * 0.5, 2, MidpointRounding.AwayFromZero);
+                    Qh = (sourceDataQh[3] + sourceDataQh[102] - 2) < 0 ? 0 : Math.Round((sourceDataQh[3] + sourceDataQh[102] - 2) * 12.5 * 0.5, 2, MidpointRounding.AwayFromZero);
+                    Qm = (sourceDataQm[3] + sourceDataQm[102] - 2) < 0 ? 0 : Math.Round((sourceDataQm[3] + sourceDataQm[102] - 2) * 12.5 * 0.5, 2, MidpointRounding.AwayFromZero);
                     Tc = Math.Round((sourceDataTc[3] + sourceDataTc[102]) * 5, 2, MidpointRounding.AwayFromZero);
                     Th = Math.Round((sourceDataTh[3] + sourceDataTh[102]) * 5, 2, MidpointRounding.AwayFromZero);
                     Tm = Math.Round((sourceDataTm[3] + sourceDataTm[102]) * 5, 2, MidpointRounding.AwayFromZero);
