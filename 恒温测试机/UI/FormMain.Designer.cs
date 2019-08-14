@@ -774,6 +774,7 @@
             this.hslButton6.Name = "hslButton6";
             this.hslButton6.Size = new System.Drawing.Size(95, 44);
             this.hslButton6.TabIndex = 18;
+            this.hslButton6.Click += new System.EventHandler(this.HslButton6_Click);
             // 
             // hslButton5
             // 

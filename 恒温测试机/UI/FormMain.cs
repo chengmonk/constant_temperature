@@ -2721,6 +2721,8 @@ namespace 恒温测试机.UI
 
         private double[] sourceDataTemp5 = new double[106];
 
+        private double[] sourceDataWh = new double[64];
+        private float[] resultDataWh = new float[64];
         private void WaveformAiCtrl1_DataReady(object sender, BfdAiEventArgs args)
         {
             ErrorCode err = ErrorCode.Success;
@@ -2784,6 +2786,10 @@ namespace 恒温测试机.UI
                         sourceDataTemp4[index] = isFirstAver ? Temp4 : lastTempData[typeIndex * 6 + index]; typeIndex++;
                         sourceDataTemp5[index] = isFirstAver ? Temp5 : lastTempData[typeIndex * 6 + index]; typeIndex++;
                     }
+                    if (index >= 18 && index <= 81)
+                    {
+                        sourceDataWh[index - 18] = Wh;
+                    }
                     sourceDataQc[index + 5] = Qc;
                     sourceDataQh[index + 5] = Qh;
                     sourceDataQm[index + 5] = Qm;
@@ -2827,7 +2833,7 @@ namespace 恒温测试机.UI
                 sourceDataTm = midFilter(ref sourceDataTm, 5);
                 //sourceDataTm = UFK_filter(sourceDataTm);
                
-                //sourceDataTm = filter(ref sourceDataTm, 10);             
+                sourceDataTm = filter(ref sourceDataTm, 10);             
 
                 sourceDataPc = averge(ref sourceDataPc, 6);
                 //sourceDataPc = filter(ref sourceDataPc, 10);
@@ -2855,6 +2861,8 @@ namespace 恒温测试机.UI
 
                 sourceDataTemp5 = averge(ref sourceDataTemp5, 14);
                 //sourceDataTemp5 = filter(ref sourceDataTemp5, 10);
+
+                resultDataWh = TWFFT.FFT_filter(sourceDataWh);
 
                 if (isFirstAver == false)
                 {
@@ -2929,6 +2937,7 @@ namespace 恒温测试机.UI
                     Temp3 = Math.Round((sourceDataTemp3[3] + sourceDataTemp3[102]) * 5, 2, MidpointRounding.AwayFromZero);
                     Temp4 = Math.Round((sourceDataTemp4[3] + sourceDataTemp4[102]) * 5, 2, MidpointRounding.AwayFromZero);
                     Temp5 = Math.Round((sourceDataTemp5[3] + sourceDataTemp5[102]) * 5, 2, MidpointRounding.AwayFromZero);
+                    Wh = Math.Round(resultDataWh.ToList().Average(), 0, MidpointRounding.AwayFromZero);;
                     DataReadyToUpdateStatus();
                 }
                 isFirstAver = false;
@@ -3529,5 +3538,10 @@ namespace 恒温测试机.UI
         }
         #endregion
 
+        private void HslButton6_Click(object sender, EventArgs e)
+        {
+            FormSaveTemplate formSaveTemplate = new FormSaveTemplate();
+            formSaveTemplate.Show();
+        }
     }
 }
