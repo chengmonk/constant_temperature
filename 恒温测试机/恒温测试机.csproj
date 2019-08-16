@@ -91,6 +91,12 @@
     <Compile Include="UI\FormSaveTemplate.Designer.cs">
       <DependentUpon>FormSaveTemplate.cs</DependentUpon>
     </Compile>
+    <Compile Include="UI\FormStandardChoose.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\FormStandardChoose.Designer.cs">
+      <DependentUpon>FormStandardChoose.cs</DependentUpon>
+    </Compile>
     <Compile Include="Utils\DataTableUtils.cs" />
     <Compile Include="Utils\DemoUtils.cs" />
     <Compile Include="UI\FormCoolingTest.cs">
@@ -149,6 +155,7 @@
     </EmbeddedResource>
     <EmbeddedResource Include="UI\FormMain.resx">
       <DependentUpon>FormMain.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="UI\FormPressureCurve.resx">
       <DependentUpon>FormPressureCurve.cs</DependentUpon>
@@ -158,12 +165,16 @@
     </EmbeddedResource>
     <EmbeddedResource Include="UI\FormSafeTest.resx">
       <DependentUpon>FormSafeTest.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="UI\FormSaveTemplate.resx">
       <DependentUpon>FormSaveTemplate.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UI\FormSelectFunction.resx">
       <DependentUpon>FormSelectFunction.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\FormStandardChoose.resx">
+      <DependentUpon>FormStandardChoose.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UI\FormValueRangeSet.resx">
       <DependentUpon>FormValueRangeSet.cs</DependentUpon>

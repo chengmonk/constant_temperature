@@ -27,6 +27,10 @@ namespace 恒温测试机.Model.Enum
         [EnumDescription("保真度测试")]
         FidelityTest=7,
         [EnumDescription("出水温度稳定性测试")]
-        TmSteadyTest=8
+        TmSteadyTest=8,
+        [EnumDescription("升温测试")]
+        HeatTest=9,
+        [EnumDescription("最高限温测试")]
+        MaxHeatTest=10
     }
 }

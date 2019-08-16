@@ -20,7 +20,7 @@ namespace 恒温测试机.UI
         System.Timers.Timer monitorTimer;            //监控M寄存器定时器
         System.Timers.Timer monitorDTimer;            //监控D寄存器定时器
 
-        private double autoFindAngle_A = 0;         //自动找点角度A
+        public double autoFindAngle_A = 0;         //自动找点角度A
         private double autoFindAngle_L = 0;         //自动找点角度A    
 
         private bool isAutoFindAngle = false;
@@ -32,11 +32,11 @@ namespace 恒温测试机.UI
         #region 伺服电机A  地址变量
 
         private string powerAddress_A = "2056";   //M8-2056   M18-2066
-        private bool powerState_A = false;
+        public bool powerState_A = false;
 
-        private string forwardWriteAddress_A = "2048";
+        public string forwardWriteAddress_A = "2048";
         private string forwardReadAddress_A = "2053";
-        private bool forwardState_A = false;
+        public bool forwardState_A = false;
 
         private string noForwardWriteAddress_A = "2049";
         private string noForwardReadAddress_A = "2054";
@@ -48,19 +48,19 @@ namespace 恒温测试机.UI
 
         private string autoRunAddress_A = "2051";
         private string backOrignAddress_A = "2052";
-        private string shutdownAddress_A = "2057";
+        public string shutdownAddress_A = "2057";
 
         private string radioAddress_A = "4296";
         private uint radioValue_A = 0;
         private string angleAddress_A = "2616";
-        private int angleValue_A = 0;
+        public int angleValue_A = 0;
 
         #endregion
 
         #region 伺服电机L  地址变量
 
         private string powerAddress_L = "2066";   //M8-2056   M18-2066
-        private bool powerState_L = false;
+        public bool powerState_L = false;
 
         private string forwardWriteAddress_L = "2058";
         private string forwardReadAddress_L = "2063";
@@ -76,7 +76,7 @@ namespace 恒温测试机.UI
 
         private string autoRunAddress_L = "2061";
         private string backOrignAddress_L = "2062";
-        private string shutdownAddress_L = "2067";
+        public string shutdownAddress_L = "2067";
 
         private string radioAddress_L = "4298";
         private uint radioValue_L = 0;
