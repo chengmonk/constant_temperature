@@ -75,6 +75,25 @@ namespace 恒温测试机
 
             WhMax.Value = Properties.Settings.Default.WhMax;
             WhMin.Value = Properties.Settings.Default.WhMin;
+            numericUpDown1.Value = Properties.Settings.Default.Test1;
+            numericUpDown2.Value = Properties.Settings.Default.Test2;
+            numericUpDown3.Value = Properties.Settings.Default.Test3;
+            numericUpDown4.Value = Properties.Settings.Default.Test4;
+            numericUpDown5.Value = Properties.Settings.Default.Test5;
+
+            numericUpDown6.Value = Properties.Settings.Default.QmAdjust;
+            numericUpDown7.Value = Properties.Settings.Default.QcAdjust;
+            numericUpDown8.Value = Properties.Settings.Default.QhAdjust;
+
+            numericUpDown11.Value = Properties.Settings.Default.PmAdjust;
+            numericUpDown10.Value = Properties.Settings.Default.PcAdjust;
+            numericUpDown9.Value = Properties.Settings.Default.PhAdjust;
+
+            numericUpDown17.Value = Properties.Settings.Default.TmAdjust;
+            numericUpDown16.Value = Properties.Settings.Default.TcAdjust;
+            numericUpDown5.Value = Properties.Settings.Default.ThAdjust;
+
+            numericUpDown14.Value = Properties.Settings.Default.WhAdjust;
         }
 
         private void Form2_Load(object sender, EventArgs e)
@@ -210,7 +229,7 @@ namespace 恒温测试机
 
         private void Temp3Set_ValueChanged(object sender, EventArgs e)
         {
-            Properties.Settings.Default.Temp2Set = Temp3Set.Value;
+            Properties.Settings.Default.Temp3Set = Temp3Set.Value;
             Properties.Settings.Default.Save();
         }
 
@@ -325,6 +344,96 @@ namespace 恒温测试机
         private void WhMin_ValueChanged(object sender, EventArgs e)
         {
             Properties.Settings.Default.WhMin = WhMin.Value;
+            Properties.Settings.Default.Save();
+        }
+
+        private void NumericUpDown1_ValueChanged(object sender, EventArgs e)
+        {
+            Properties.Settings.Default.Test1 = numericUpDown1.Value;
+            Properties.Settings.Default.Save();
+        }
+
+        private void NumericUpDown2_ValueChanged(object sender, EventArgs e)
+        {
+            Properties.Settings.Default.Test2 = numericUpDown2.Value;
+            Properties.Settings.Default.Save();
+        }
+
+        private void NumericUpDown3_ValueChanged(object sender, EventArgs e)
+        {
+            Properties.Settings.Default.Test3 = numericUpDown3.Value;
+            Properties.Settings.Default.Save();
+        }
+
+        private void NumericUpDown4_ValueChanged(object sender, EventArgs e)
+        {
+            Properties.Settings.Default.Test4 = numericUpDown4.Value;
+            Properties.Settings.Default.Save();
+        }
+
+        private void NumericUpDown5_ValueChanged(object sender, EventArgs e)
+        {
+            Properties.Settings.Default.Test5 = numericUpDown5.Value;
+            Properties.Settings.Default.Save();
+        }
+
+        private void NumericUpDown6_ValueChanged(object sender, EventArgs e)
+        {
+            Properties.Settings.Default.QmAdjust = numericUpDown6.Value;
+            Properties.Settings.Default.Save();
+        }
+
+        private void NumericUpDown7_ValueChanged(object sender, EventArgs e)
+        {
+            Properties.Settings.Default.QcAdjust = numericUpDown7.Value;
+            Properties.Settings.Default.Save();
+        }
+
+        private void NumericUpDown8_ValueChanged(object sender, EventArgs e)
+        {
+            Properties.Settings.Default.QhAdjust = numericUpDown8.Value;
+            Properties.Settings.Default.Save();
+        }
+
+        private void NumericUpDown11_ValueChanged(object sender, EventArgs e)
+        {
+            Properties.Settings.Default.PmAdjust = numericUpDown11.Value;
+            Properties.Settings.Default.Save();
+        }
+
+        private void NumericUpDown10_ValueChanged(object sender, EventArgs e)
+        {
+            Properties.Settings.Default.PcAdjust = numericUpDown10.Value;
+            Properties.Settings.Default.Save();
+        }
+
+        private void NumericUpDown9_ValueChanged(object sender, EventArgs e)
+        {
+            Properties.Settings.Default.PhAdjust = numericUpDown9.Value;
+            Properties.Settings.Default.Save();
+        }
+
+        private void NumericUpDown17_ValueChanged(object sender, EventArgs e)
+        {
+            Properties.Settings.Default.TmAdjust = numericUpDown17.Value;
+            Properties.Settings.Default.Save();
+        }
+
+        private void NumericUpDown16_ValueChanged(object sender, EventArgs e)
+        {
+            Properties.Settings.Default.TcAdjust = numericUpDown16.Value;
+            Properties.Settings.Default.Save();
+        }
+
+        private void NumericUpDown15_ValueChanged(object sender, EventArgs e)
+        {
+            Properties.Settings.Default.ThAdjust = numericUpDown15.Value;
+            Properties.Settings.Default.Save();
+        }
+
+        private void NumericUpDown14_ValueChanged(object sender, EventArgs e)
+        {
+            Properties.Settings.Default.WhAdjust = numericUpDown14.Value;
             Properties.Settings.Default.Save();
         }
     }

@@ -674,7 +674,7 @@
             this.rightPanel.Controls.Add(this.right4);
             this.rightPanel.Controls.Add(this.right1);
             this.rightPanel.Dock = System.Windows.Forms.DockStyle.Right;
-            this.rightPanel.Location = new System.Drawing.Point(1347, 0);
+            this.rightPanel.Location = new System.Drawing.Point(1343, 0);
             this.rightPanel.Margin = new System.Windows.Forms.Padding(0);
             this.rightPanel.Name = "rightPanel";
             this.rightPanel.Size = new System.Drawing.Size(577, 1027);
@@ -965,7 +965,6 @@
             this.maxHeatRbt.TabIndex = 11;
             this.maxHeatRbt.Text = "最高限温测试";
             this.maxHeatRbt.UseVisualStyleBackColor = true;
-            this.maxHeatRbt.Visible = false;
             this.maxHeatRbt.CheckedChanged += new System.EventHandler(this.RadioBtn_CheckedChange);
             // 
             // heatRbt
@@ -978,7 +977,6 @@
             this.heatRbt.TabIndex = 10;
             this.heatRbt.Text = "升温测试";
             this.heatRbt.UseVisualStyleBackColor = true;
-            this.heatRbt.Visible = false;
             this.heatRbt.CheckedChanged += new System.EventHandler(this.RadioBtn_CheckedChange);
             // 
             // FlowTestRbt
@@ -991,6 +989,7 @@
             this.FlowTestRbt.TabIndex = 9;
             this.FlowTestRbt.Text = "流量减少测试";
             this.FlowTestRbt.UseVisualStyleBackColor = true;
+            this.FlowTestRbt.Visible = false;
             this.FlowTestRbt.CheckedChanged += new System.EventHandler(this.RadioBtn_CheckedChange);
             // 
             // tmpTestRbt
@@ -1003,6 +1002,7 @@
             this.tmpTestRbt.TabIndex = 8;
             this.tmpTestRbt.Text = "温度稳定性测试";
             this.tmpTestRbt.UseVisualStyleBackColor = true;
+            this.tmpTestRbt.Visible = false;
             this.tmpTestRbt.CheckedChanged += new System.EventHandler(this.RadioBtn_CheckedChange);
             // 
             // coolTestRbt
@@ -1200,6 +1200,7 @@
             this.hslValves11.Size = new System.Drawing.Size(30, 40);
             this.hslValves11.TabIndex = 125;
             this.hslValves11.Text = "出水阀";
+            this.hslValves11.Click += new System.EventHandler(this.HslValves11_Click);
             // 
             // hslValves12
             // 
@@ -1211,6 +1212,7 @@
             this.hslValves12.Size = new System.Drawing.Size(40, 54);
             this.hslValves12.TabIndex = 127;
             this.hslValves12.Text = "5s出水阀";
+            this.hslValves12.Click += new System.EventHandler(this.HslValves12_Click);
             // 
             // hslValves3
             // 
@@ -1421,6 +1423,7 @@
             this.hslPumpOne2.Size = new System.Drawing.Size(70, 100);
             this.hslPumpOne2.TabIndex = 78;
             this.hslPumpOne2.Text = "热循环泵";
+            this.hslPumpOne2.Click += new System.EventHandler(this.HslPumpOne2_Click);
             // 
             // label6
             // 
@@ -1486,6 +1489,7 @@
             this.hslPumpOne4.Size = new System.Drawing.Size(70, 100);
             this.hslPumpOne4.TabIndex = 80;
             this.hslPumpOne4.Text = "高循环泵";
+            this.hslPumpOne4.Click += new System.EventHandler(this.HslPumpOne4_Click);
             // 
             // label13
             // 
@@ -1518,6 +1522,7 @@
             this.hslPumpOne5.Size = new System.Drawing.Size(70, 100);
             this.hslPumpOne5.TabIndex = 81;
             this.hslPumpOne5.Text = "常循环泵";
+            this.hslPumpOne5.Click += new System.EventHandler(this.HslPumpOne5_Click);
             // 
             // label18
             // 
@@ -1707,6 +1712,7 @@
             this.reshui.Size = new System.Drawing.Size(49, 68);
             this.reshui.TabIndex = 90;
             this.reshui.Text = "热水泵";
+            this.reshui.Click += new System.EventHandler(this.Reshui_Click);
             // 
             // hslLedQc
             // 
@@ -1838,6 +1844,7 @@
             this.hslPumpOne7.Size = new System.Drawing.Size(49, 89);
             this.hslPumpOne7.TabIndex = 95;
             this.hslPumpOne7.Text = "热水变压泵";
+            this.hslPumpOne7.Click += new System.EventHandler(this.HslPumpOne7_Click);
             // 
             // hslPipeLine19
             // 
@@ -2062,6 +2069,7 @@
             this.hslPumpOne6.Size = new System.Drawing.Size(49, 89);
             this.hslPumpOne6.TabIndex = 116;
             this.hslPumpOne6.Text = "冷水变压泵";
+            this.hslPumpOne6.Click += new System.EventHandler(this.HslPumpOne6_Click);
             // 
             // hslPipeLine21
             // 
@@ -2122,6 +2130,7 @@
             this.hslPumpOne8.Size = new System.Drawing.Size(49, 89);
             this.hslPumpOne8.TabIndex = 113;
             this.hslPumpOne8.Text = "冷水泵";
+            this.hslPumpOne8.Click += new System.EventHandler(this.HslPumpOne8_Click);
             // 
             // hslPipeLine23
             // 
@@ -2148,7 +2157,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1924, 1027);
+            this.ClientSize = new System.Drawing.Size(1920, 1027);
             this.Controls.Add(this.centerPanel);
             this.Controls.Add(this.rightPanel);
             this.Controls.Add(this.leftPanel);

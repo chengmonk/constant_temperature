@@ -29,7 +29,7 @@ namespace 恒温测试机.UI
 
         #region 变量
         LogicTypeEnum logicType = LogicTypeEnum.safeTest;
-        public TestStandardEnum testStandard = TestStandardEnum.default1711;
+        public TestStandardEnum testStandard = TestStandardEnum.default2806;
 
         System.Timers.Timer safetyTimer;             //安全性测试 定时器
         System.Timers.Timer pressureTimer;           //压力变化测试 定时器
@@ -141,6 +141,107 @@ namespace 恒温测试机.UI
                     else
                         hslValves7.EdgeColor = Color.Gray;
                     //冷循环泵
+                    val = doData[1].get_bit(2);
+                    if (val == 1)
+                        hslPumpOne3.MoveSpeed = 1;
+                    else
+                        hslPumpOne3.MoveSpeed = 0;
+                    //热循环泵
+                    val = doData[1].get_bit(3);
+                    if (val == 1)
+                        hslPumpOne2.MoveSpeed = 1;
+                    else
+                        hslPumpOne2.MoveSpeed = 0;
+                    //高循环泵
+                    val = doData[1].get_bit(4);
+                    if (val == 1)
+                        hslPumpOne4.MoveSpeed = 1;
+                    else
+                        hslPumpOne4.MoveSpeed = 0;
+                    //中循环泵
+                    val = doData[1].get_bit(5);
+                    if (val == 1)
+                        hslPumpOne1.MoveSpeed = 1;
+                    else
+                        hslPumpOne1.MoveSpeed = 0;
+                    //常循环泵
+                    val = doData[1].get_bit(6);
+                    if (val == 1)
+                        hslPumpOne5.MoveSpeed = 1;
+                    else
+                        hslPumpOne5.MoveSpeed = 0;
+                    //热水阀
+                    val = doData[1].get_bit(7);
+                    if (val == 1)
+                        hslValves4.EdgeColor = Color.Red;
+                    else
+                        hslValves4.EdgeColor = Color.Gray;
+                    //变压热水阀
+                    val = doData[2].get_bit(0);
+                    if (val == 1)
+                        hslValves5.EdgeColor = Color.Red;
+                    else
+                        hslValves5.EdgeColor = Color.Gray;
+                    //冷水阀
+                    val = doData[2].get_bit(1);
+                    if (val == 1)
+                        hslValves10.EdgeColor = Color.DodgerBlue;
+                    else
+                        hslValves10.EdgeColor = Color.Gray;
+                    //变压冷水阀
+                    val = doData[2].get_bit(2);
+                    if (val == 1)
+                        hslValves9.EdgeColor = Color.DodgerBlue;
+                    else
+                        hslValves9.EdgeColor = Color.Gray;
+                    //冷水进水阀
+                    val = doData[2].get_bit(3);
+                    if (val == 1)
+                        hslValves13.EdgeColor = Color.DodgerBlue;
+                    else
+                        hslValves13.EdgeColor = Color.Gray;
+                    //热水进水阀
+                    val = doData[2].get_bit(4);
+                    if (val == 1)
+                        hslValves6.EdgeColor = Color.Red;
+                    else
+                        hslValves6.EdgeColor = Color.Gray;
+                    //出水阀
+                    val = doData[2].get_bit(5);
+                    if (val == 1)
+                        hslValves11.EdgeColor = Color.Goldenrod;
+                    else
+                        hslValves11.EdgeColor = Color.Gray;
+                    //5s出水阀
+                    val = doData[2].get_bit(6);
+                    if (val == 1)
+                        hslValves12.EdgeColor = Color.Goldenrod;
+                    else
+                        hslValves12.EdgeColor = Color.Gray;
+                    //冷水泵
+                    val = doData[2].get_bit(7);
+                    if (val == 1)
+                        hslPumpOne8.MoveSpeed = 1;
+                    else
+                        hslPumpOne8.MoveSpeed = 0;
+                    //冷水变压泵
+                    val = doData[3].get_bit(0);
+                    if (val == 1)
+                        hslPumpOne6.MoveSpeed = 1;
+                    else
+                        hslPumpOne6.MoveSpeed = 0;
+                    //热水泵
+                    val = doData[3].get_bit(1);
+                    if (val == 1)
+                        reshui.MoveSpeed = 1;
+                    else
+                        reshui.MoveSpeed = 0;
+                    //热水变压泵
+                    val = doData[3].get_bit(2);
+                    if (val == 1)
+                        hslPumpOne7.MoveSpeed = 1;
+                    else
+                        hslPumpOne7.MoveSpeed = 0;
                 }
             }
             catch(Exception ex)
@@ -427,6 +528,9 @@ namespace 恒温测试机.UI
                     //{
                     for (int i = 3; i < 103; i++)
                     {
+                        var qcTemp = (sourceDataQc[i] - 1) < 0 ? 0 : (sourceDataQc[i] - 1) * 12.5;
+                        var qhTemp =(sourceDataQh[i] - 1) < 0 ? 0 : (sourceDataQh[i] - 1) * 12.5;
+                        var qmTemp = (sourceDataQm[i] - 1) < 0 ? 0 : (sourceDataQm[i] - 1) * 5;
                         hslCurve1.AddCurveData(
                             new string[] {
                                     //"冷水箱温度","热水箱温度","高温水箱温度","中温水箱温度","常温水箱温度"
@@ -443,7 +547,7 @@ namespace 恒温测试机.UI
                                     //(float)Tc,(float)Th,(float)Tm,
                                     //(float)Pc,(float)Ph,(float)Pm,
                                     //(float)Qm5
-                                    (float)sourceDataQc[i]*5,(float)sourceDataQh[i]*5,(float)sourceDataQm[i]*5,
+                                    (float)qcTemp,(float)qhTemp,(float)qmTemp,
                                     (float)sourceDataTc[i]*10,(float)sourceDataTh[i]*10,(float)sourceDataTm[i]*10,
                                     (float)sourceDataPc[i],(float)sourceDataPh[i],(float)sourceDataPm[i],
                                     //(float)sourceDataQm5[i]
@@ -3069,8 +3173,8 @@ namespace 恒温测试机.UI
                 //Console.WriteLine("液面高度：" + Wh);
 
                 sourceDataQc = averge(ref sourceDataQc, 0);
-                sourceDataQc = filterKalMan(sourceDataQc);
-                sourceDataQc = averge(ref sourceDataQc, 0);
+                //sourceDataQc = filterKalMan(sourceDataQc);
+                //sourceDataQc = averge(ref sourceDataQc, 0);
 
                 sourceDataQh = averge(ref sourceDataQh, 1);
                 //sourceDataQh = filter(ref sourceDataQh, 10);
@@ -3131,69 +3235,68 @@ namespace 恒温测试机.UI
                         {
                             dt.Rows.Add(t.ToString("yyyy-MM-dd hh:mm:ss:fff"),
                                 t,
-                                (sourceDataQc[i] - 1) < 0 ? 0 : (sourceDataQc[i] - 1) * 12.5,
-                                (sourceDataQh[i] - 1) < 0 ? 0 : (sourceDataQh[i] - 1) * 12.5,
-                                (sourceDataQm[i] - 1) < 0 ? 0 : (sourceDataQm[i] - 1) * 12.5,
-                                sourceDataTc[i] * 10,
-                                sourceDataTh[i] * 10,
-                                sourceDataTm[i] * 10,
-                                sourceDataPc[i],
-                                sourceDataPh[i],
-                                sourceDataPm[i],
+                                 (sourceDataQc[i] - 1) < 0 ? 0 : (sourceDataQc[i] - 1) * 12.5 + (double)Properties.Settings.Default.QcAdjust,
+                                (sourceDataQh[i] - 1) < 0 ? 0 : (sourceDataQh[i] - 1) * 12.5 + (double)Properties.Settings.Default.QhAdjust,
+                                (sourceDataQm[i] - 1) < 0 ? 0 : (sourceDataQm[i] - 1) * 5 + (double)Properties.Settings.Default.QmAdjust,
+                                sourceDataTc[i] * 10 + (double)Properties.Settings.Default.TcAdjust,
+                                sourceDataTh[i] * 10 + (double)Properties.Settings.Default.ThAdjust,
+                                sourceDataTm[i] * 10 + (double)Properties.Settings.Default.TmAdjust,
+                                sourceDataPc[i] + (double)Properties.Settings.Default.PcAdjust,
+                                sourceDataPh[i] + (double)Properties.Settings.Default.PhAdjust,
+                                sourceDataPm[i] + (double)Properties.Settings.Default.PmAdjust,
                                 sourceDataQm5[i],
-                                Wh,
-                                index);
+                                Wh + (double)Properties.Settings.Default.WhAdjust,
+                            index);
                             index++;
                         }
                         if (graphFlag)          //记录流程测试中的，曲线变化
                         {
                             GraphDt.Rows.Add(t.ToString("yyyy-MM-dd hh:mm:ss:fff"),
-                                (sourceDataQc[i] - 1) < 0 ? 0 : (sourceDataQc[i] - 1) * 12.5,
-                                (sourceDataQh[i] - 1) < 0 ? 0 : (sourceDataQh[i] - 1) * 12.5,
-                                (sourceDataQm[i] - 1) < 0 ? 0 : (sourceDataQm[i] - 1) * 12.5,
-                                sourceDataTc[i] * 10,
-                                sourceDataTh[i] * 10,
-                                sourceDataTm[i] * 10,
-                                //sourceDataTm2[i] * 10,
-                                sourceDataPc[i],
-                                sourceDataPh[i],
-                                sourceDataPm[i],
+                                 (sourceDataQc[i] - 1) < 0 ? 0 : (sourceDataQc[i] - 1) * 12.5 + (double)Properties.Settings.Default.QcAdjust,
+                                (sourceDataQh[i] - 1) < 0 ? 0 : (sourceDataQh[i] - 1) * 12.5 + (double)Properties.Settings.Default.QhAdjust,
+                                (sourceDataQm[i] - 1) < 0 ? 0 : (sourceDataQm[i] - 1) * 5 + (double)Properties.Settings.Default.QmAdjust,
+                                sourceDataTc[i] * 10 + (double)Properties.Settings.Default.TcAdjust,
+                                sourceDataTh[i] * 10 + (double)Properties.Settings.Default.ThAdjust,
+                                sourceDataTm[i] * 10 + (double)Properties.Settings.Default.TmAdjust,
+                                sourceDataPc[i] + (double)Properties.Settings.Default.PcAdjust,
+                                sourceDataPh[i] + (double)Properties.Settings.Default.PhAdjust,
+                                sourceDataPm[i] + (double)Properties.Settings.Default.PmAdjust,
                                 sourceDataQm5[i],
-                                Wh);
+                                Wh + (double)Properties.Settings.Default.WhAdjust);
                         }
                         if (electDataFlag)
                         {
                             ElectDt.Rows.Add(t.ToString("yyyy-MM-dd hh:mm:ss:fff"),
-                                (sourceDataQc[i] - 1) < 0 ? 0 : (sourceDataQc[i] - 1) * 12.5,
-                                (sourceDataQh[i] - 1) < 0 ? 0 : (sourceDataQh[i] - 1) * 12.5,
-                                (sourceDataQm[i] - 1) < 0 ? 0 : (sourceDataQm[i] - 1) * 12.5,
-                                sourceDataTc[i] * 10,
-                                sourceDataTh[i] * 10,
-                                sourceDataTm[i] * 10,
-                                sourceDataPc[i],
-                                sourceDataPh[i],
-                                sourceDataPm[i],
+                                (sourceDataQc[i] - 1) < 0 ? 0 : (sourceDataQc[i] - 1) * 12.5 + (double)Properties.Settings.Default.QcAdjust,
+                                (sourceDataQh[i] - 1) < 0 ? 0 : (sourceDataQh[i] - 1) * 12.5 + (double)Properties.Settings.Default.QhAdjust,
+                                (sourceDataQm[i] - 1) < 0 ? 0 : (sourceDataQm[i] - 1) * 5 + (double)Properties.Settings.Default.QmAdjust,
+                                sourceDataTc[i] * 10 + (double)Properties.Settings.Default.TcAdjust,
+                                sourceDataTh[i] * 10 + (double)Properties.Settings.Default.ThAdjust,
+                                sourceDataTm[i] * 10 + (double)Properties.Settings.Default.TmAdjust,
+                                sourceDataPc[i] + (double)Properties.Settings.Default.PcAdjust,
+                                sourceDataPh[i] + (double)Properties.Settings.Default.PhAdjust,
+                                sourceDataPm[i] + (double)Properties.Settings.Default.PmAdjust,
                                 sourceDataQm5[i],
-                                Wh);
+                                Wh + (double)Properties.Settings.Default.WhAdjust);
                         }
                         t = t.AddMilliseconds(10.0);
                     }
-                    Qc = (sourceDataQc[3] + sourceDataQc[102] - 2) < 0 ? 0 : Math.Round((sourceDataQc[3] + sourceDataQc[102] - 2) * 12.5 * 0.5, 2, MidpointRounding.AwayFromZero);
-                    Qh = (sourceDataQh[3] + sourceDataQh[102] - 2) < 0 ? 0 : Math.Round((sourceDataQh[3] + sourceDataQh[102] - 2) * 12.5 * 0.5, 2, MidpointRounding.AwayFromZero);
-                    Qm = (sourceDataQm[3] + sourceDataQm[102] - 2) < 0 ? 0 : Math.Round((sourceDataQm[3] + sourceDataQm[102] - 2) * 12.5 * 0.5, 2, MidpointRounding.AwayFromZero);
-                    Tc = Math.Round((sourceDataTc[3] + sourceDataTc[102]) * 5, 2, MidpointRounding.AwayFromZero);
-                    Th = Math.Round((sourceDataTh[3] + sourceDataTh[102]) * 5, 2, MidpointRounding.AwayFromZero);
-                    Tm = Math.Round((sourceDataTm[3] + sourceDataTm[102]) * 5, 2, MidpointRounding.AwayFromZero);
-                    Pc = Math.Round((sourceDataPc[3] + sourceDataPc[102]) * 0.5, 2, MidpointRounding.AwayFromZero);
-                    Ph = Math.Round((sourceDataPh[3] + sourceDataPh[102]) * 0.5, 2, MidpointRounding.AwayFromZero);
-                    Pm = Math.Round((sourceDataPm[3] + sourceDataPm[102]) * 0.5, 2, MidpointRounding.AwayFromZero);
+                    Qc = (sourceDataQc[3] + sourceDataQc[102] - 2) < 0 ? 0 : Math.Round((sourceDataQc[3] + sourceDataQc[102] - 2) * 12.5 * 0.5, 2, MidpointRounding.AwayFromZero) + (double)Properties.Settings.Default.QcAdjust;
+                    Qh = (sourceDataQh[3] + sourceDataQh[102] - 2) < 0 ? 0 : Math.Round((sourceDataQh[3] + sourceDataQh[102] - 2) * 12.5 * 0.5, 2, MidpointRounding.AwayFromZero) + (double)Properties.Settings.Default.QhAdjust;
+                    Qm = (sourceDataQm[3] + sourceDataQm[102] - 2) < 0 ? 0 : Math.Round((sourceDataQm[3] + sourceDataQm[102] - 2) * 5 * 0.5, 2, MidpointRounding.AwayFromZero) + (double)Properties.Settings.Default.QmAdjust;
+                    Tc = Math.Round((sourceDataTc[3] + sourceDataTc[102]) * 5, 2, MidpointRounding.AwayFromZero) + (double)Properties.Settings.Default.TcAdjust;
+                    Th = Math.Round((sourceDataTh[3] + sourceDataTh[102]) * 5, 2, MidpointRounding.AwayFromZero) + (double)Properties.Settings.Default.ThAdjust;
+                    Tm = Math.Round((sourceDataTm[3] + sourceDataTm[102]) * 5, 2, MidpointRounding.AwayFromZero) + (double)Properties.Settings.Default.TmAdjust;
+                    Pc = Math.Round((sourceDataPc[3] + sourceDataPc[102]) * 0.5, 2, MidpointRounding.AwayFromZero) + (double)Properties.Settings.Default.PcAdjust;
+                    Ph = Math.Round((sourceDataPh[3] + sourceDataPh[102]) * 0.5, 2, MidpointRounding.AwayFromZero) + (double)Properties.Settings.Default.PhAdjust;
+                    Pm = Math.Round((sourceDataPm[3] + sourceDataPm[102]) * 0.5, 2, MidpointRounding.AwayFromZero) + (double)Properties.Settings.Default.PmAdjust;
                     Qm5 = Math.Round((sourceDataQm5[3] + sourceDataQm5[102]) * 0.5, 2, MidpointRounding.AwayFromZero);
-                    Temp1 = Math.Round((sourceDataTemp1[3] + sourceDataTemp1[102]) * 5, 2, MidpointRounding.AwayFromZero);
-                    Temp2 = Math.Round((sourceDataTemp2[3] + sourceDataTemp2[102]) * 5, 2, MidpointRounding.AwayFromZero);
-                    Temp3 = Math.Round((sourceDataTemp3[3] + sourceDataTemp3[102]) * 5, 2, MidpointRounding.AwayFromZero);
-                    Temp4 = Math.Round((sourceDataTemp4[3] + sourceDataTemp4[102]) * 5, 2, MidpointRounding.AwayFromZero);
-                    Temp5 = Math.Round((sourceDataTemp5[3] + sourceDataTemp5[102]) * 5, 2, MidpointRounding.AwayFromZero);
-                    Wh = Math.Round(resultDataWh.ToList().Average(), 0, MidpointRounding.AwayFromZero);;
+                    Temp1 = Math.Round((sourceDataTemp1[3] + sourceDataTemp1[102]) * 5, 2, MidpointRounding.AwayFromZero)+(double)Properties.Settings.Default.Test1;
+                    Temp2 = Math.Round((sourceDataTemp2[3] + sourceDataTemp2[102]) * 5, 2, MidpointRounding.AwayFromZero) + (double)Properties.Settings.Default.Test2;
+                    Temp3 = Math.Round((sourceDataTemp3[3] + sourceDataTemp3[102]) * 5, 2, MidpointRounding.AwayFromZero) + (double)Properties.Settings.Default.Test3;
+                    Temp4 = Math.Round((sourceDataTemp4[3] + sourceDataTemp4[102]) * 5, 2, MidpointRounding.AwayFromZero) + (double)Properties.Settings.Default.Test4;
+                    Temp5 = Math.Round((sourceDataTemp5[3] + sourceDataTemp5[102]) * 5, 2, MidpointRounding.AwayFromZero) + (double)Properties.Settings.Default.Test5;
+                    Wh = Math.Round(resultDataWh.ToList().Average(), 0, MidpointRounding.AwayFromZero)+(double)Properties.Settings.Default.WhAdjust;
                     DataReadyToUpdateStatus();
                 }
                 isFirstAver = false;
@@ -3944,34 +4047,143 @@ namespace 恒温测试机.UI
             }
         }
 
+        /// <summary>
+        /// 变压热水阀
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void HslValves5_Click(object sender, EventArgs e)
         {
-
+            var btn = sender as HslControls.HslValves;
+            if (btn.EdgeColor == Color.Gray)     // 关->开
+            {
+                if (CheckClick(btn.Text))
+                    return;
+                btn.EdgeColor = Color.Red;
+                set_bit(ref doData[2], 0, true);
+                control.InstantDo_Write(doData);
+            }
+            else
+            {
+                btn.BackColor = Color.Gray;
+                set_bit(ref doData[2], 0, false);
+                control.InstantDo_Write(doData);
+            }
         }
 
+        /// <summary>
+        /// 热水阀
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void HslValves4_Click(object sender, EventArgs e)
         {
-
+            var btn = sender as HslControls.HslValves;
+            if (btn.EdgeColor == Color.Gray)     // 关->开
+            {
+                if (CheckClick(btn.Text))
+                    return;
+                btn.EdgeColor = Color.Red;
+                set_bit(ref doData[1], 7, true);
+                control.InstantDo_Write(doData);
+            }
+            else
+            {
+                btn.BackColor = Color.Gray;
+                set_bit(ref doData[1], 7, false);
+                control.InstantDo_Write(doData);
+            }
         }
 
+        /// <summary>
+        /// 热水进水阀
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void HslValves6_Click(object sender, EventArgs e)
         {
-
+            var btn = sender as HslControls.HslValves;
+            if (btn.EdgeColor == Color.Gray)     // 关->开
+            {
+                if (CheckClick(btn.Text))
+                    return;
+                btn.EdgeColor = Color.Red;
+                set_bit(ref doData[2], 6, true);
+                control.InstantDo_Write(doData);
+            }
+            else
+            {
+                btn.BackColor = Color.Gray;
+                set_bit(ref doData[2], 6, false);
+                control.InstantDo_Write(doData);
+            }
         }
 
+        /// <summary>
+        /// 冷水进水阀
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void HslValves13_Click(object sender, EventArgs e)
         {
-
+            var btn = sender as HslControls.HslValves;
+            if (btn.EdgeColor == Color.Gray)     // 关->开
+            {
+                if (CheckClick(btn.Text))
+                    return;
+                btn.EdgeColor = Color.DodgerBlue;
+                set_bit(ref doData[2], 3, true);
+                control.InstantDo_Write(doData);
+            }
+            else
+            {
+                btn.BackColor = Color.Gray;
+                set_bit(ref doData[2], 3, false);
+                control.InstantDo_Write(doData);
+            }
         }
 
+        /// <summary>
+        /// 冷水阀
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void HslValves10_Click(object sender, EventArgs e)
         {
-
+            var btn = sender as HslControls.HslValves;
+            if (btn.EdgeColor == Color.Gray)     // 关->开
+            {
+                if (CheckClick(btn.Text))
+                    return;
+                btn.EdgeColor = Color.DodgerBlue;
+                set_bit(ref doData[2], 1, true);
+                control.InstantDo_Write(doData);
+            }
+            else
+            {
+                btn.BackColor = Color.Gray;
+                set_bit(ref doData[2], 1, false);
+                control.InstantDo_Write(doData);
+            }
         }
 
         private void HslValves9_Click(object sender, EventArgs e)
         {
-
+            var btn = sender as HslControls.HslValves;
+            if (btn.EdgeColor == Color.Gray)     // 关->开
+            {
+                if (CheckClick(btn.Text))
+                    return;
+                btn.EdgeColor = Color.DodgerBlue;
+                set_bit(ref doData[2], 2, true);
+                control.InstantDo_Write(doData);
+            }
+            else
+            {
+                btn.BackColor = Color.Gray;
+                set_bit(ref doData[2], 2, false);
+                control.InstantDo_Write(doData);
+            }
         }
 
         /// <summary>
@@ -4024,14 +4236,21 @@ namespace 恒温测试机.UI
 
         private void HslPumpOne1_Click(object sender, EventArgs e)
         {
-            if(hslPumpOne1.MoveSpeed==0)//说明水泵当前处于关闭状态
+            var pump = sender as HslControls.HslPumpOne;
+            if (pump.MoveSpeed == 0)//说明水泵当前处于关闭状态
             {
+                if (CheckClick(pump.Text))
+                    return;
                 //执行打开水泵的代码
-                hslPumpOne1.MoveSpeed = 1;
+                pump.MoveSpeed = 1;
+                set_bit(ref doData[1], 5, true);
+                control.InstantDo_Write(doData);
             }
             else//说明水泵当前处于打开状态
             {
-                hslPumpOne1.MoveSpeed = 0;
+                pump.MoveSpeed = 0;
+                set_bit(ref doData[1], 5, false);
+                control.InstantDo_Write(doData);
             }
         }
 
@@ -4039,7 +4258,230 @@ namespace 恒温测试机.UI
 
         private void HslPumpOne3_Click(object sender, EventArgs e)
         {
+            var pump = sender as HslControls.HslPumpOne;
+            if (pump.MoveSpeed == 0)//说明水泵当前处于关闭状态
+            {
+                if (CheckClick(pump.Text))
+                    return;
+                //执行打开水泵的代码
+                pump.MoveSpeed = 1;
+                set_bit(ref doData[1], 2, true);
+                control.InstantDo_Write(doData);
+            }
+            else//说明水泵当前处于打开状态
+            {
+                pump.MoveSpeed = 0;
+                set_bit(ref doData[1], 2, false);
+                control.InstantDo_Write(doData);
+            }
+        }
 
+        private void HslPumpOne2_Click(object sender, EventArgs e)
+        {
+            var pump = sender as HslControls.HslPumpOne;
+            if (pump.MoveSpeed == 0)//说明水泵当前处于关闭状态
+            {
+                if (CheckClick(pump.Text))
+                    return;
+                //执行打开水泵的代码
+                pump.MoveSpeed = 1;
+                set_bit(ref doData[1], 3, true);
+                control.InstantDo_Write(doData);
+            }
+            else//说明水泵当前处于打开状态
+            {
+                pump.MoveSpeed = 0;
+                set_bit(ref doData[1], 3, false);
+                control.InstantDo_Write(doData);
+            }
+        }
+
+        private void HslPumpOne4_Click(object sender, EventArgs e)
+        {
+            var pump = sender as HslControls.HslPumpOne;
+            if (pump.MoveSpeed == 0)//说明水泵当前处于关闭状态
+            {
+                if (CheckClick(pump.Text))
+                    return;
+                //执行打开水泵的代码
+                pump.MoveSpeed = 1;
+                set_bit(ref doData[1], 4, true);
+                control.InstantDo_Write(doData);
+            }
+            else//说明水泵当前处于打开状态
+            {
+                pump.MoveSpeed = 0;
+                set_bit(ref doData[1], 4, false);
+                control.InstantDo_Write(doData);
+            }
+        }
+
+        private void HslPumpOne5_Click(object sender, EventArgs e)
+        {
+            var pump = sender as HslControls.HslPumpOne;
+            if (pump.MoveSpeed == 0)//说明水泵当前处于关闭状态
+            {
+                if (CheckClick(pump.Text))
+                    return;
+                //执行打开水泵的代码
+                pump.MoveSpeed = 1;
+                set_bit(ref doData[1], 6, true);
+                control.InstantDo_Write(doData);
+            }
+            else//说明水泵当前处于打开状态
+            {
+                pump.MoveSpeed = 0;
+                set_bit(ref doData[1], 6, false);
+                control.InstantDo_Write(doData);
+            }
+        }
+
+        /// <summary>
+        /// 出水阀
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void HslValves11_Click(object sender, EventArgs e)
+        {
+            var btn = sender as HslControls.HslValves;
+            if (btn.EdgeColor == Color.Gray)     // 关->开
+            {
+                if (CheckClick(btn.Text))
+                    return;
+                btn.EdgeColor = Color.Goldenrod;
+                set_bit(ref doData[2], 5, true);
+                control.InstantDo_Write(doData);
+            }
+            else
+            {
+                btn.BackColor = Color.Gray;
+                set_bit(ref doData[2], 5, false);
+                control.InstantDo_Write(doData);
+            }
+        }
+
+        /// <summary>
+        /// 5s出水阀
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void HslValves12_Click(object sender, EventArgs e)
+        {
+            var btn = sender as HslControls.HslValves;
+            if (btn.EdgeColor == Color.Gray)     // 关->开
+            {
+                if (CheckClick(btn.Text))
+                    return;
+                btn.EdgeColor = Color.Goldenrod;
+                set_bit(ref doData[2], 6, true);
+                control.InstantDo_Write(doData);
+            }
+            else
+            {
+                btn.BackColor = Color.Gray;
+                set_bit(ref doData[2], 6, false);
+                control.InstantDo_Write(doData);
+            }
+        }
+
+        /// <summary>
+        /// 冷水泵
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void HslPumpOne8_Click(object sender, EventArgs e)
+        {
+            var pump = sender as HslControls.HslPumpOne;
+            if (pump.MoveSpeed == 0)//说明水泵当前处于关闭状态
+            {
+                if (CheckClick(pump.Text))
+                    return;
+                //执行打开水泵的代码
+                pump.MoveSpeed = 1;
+                set_bit(ref doData[2], 7, true);
+                control.InstantDo_Write(doData);
+            }
+            else//说明水泵当前处于打开状态
+            {
+                pump.MoveSpeed = 0;
+                set_bit(ref doData[2], 7, false);
+                control.InstantDo_Write(doData);
+            }
+        }
+
+        /// <summary>
+        /// 冷水变压泵
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void HslPumpOne6_Click(object sender, EventArgs e)
+        {
+            var pump = sender as HslControls.HslPumpOne;
+            if (pump.MoveSpeed == 0)//说明水泵当前处于关闭状态
+            {
+                if (CheckClick(pump.Text))
+                    return;
+                //执行打开水泵的代码
+                pump.MoveSpeed = 1;
+                set_bit(ref doData[3], 0, true);
+                control.InstantDo_Write(doData);
+            }
+            else//说明水泵当前处于打开状态
+            {
+                pump.MoveSpeed = 0;
+                set_bit(ref doData[3], 0, false);
+                control.InstantDo_Write(doData);
+            }
+        }
+
+        /// <summary>
+        /// 热水泵
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void Reshui_Click(object sender, EventArgs e)
+        {
+            var pump = sender as HslControls.HslPumpOne;
+            if (pump.MoveSpeed == 0)//说明水泵当前处于关闭状态
+            {
+                if (CheckClick(pump.Text))
+                    return;
+                //执行打开水泵的代码
+                pump.MoveSpeed = 1;
+                set_bit(ref doData[3], 1, true);
+                control.InstantDo_Write(doData);
+            }
+            else//说明水泵当前处于打开状态
+            {
+                pump.MoveSpeed = 0;
+                set_bit(ref doData[3], 1, false);
+                control.InstantDo_Write(doData);
+            }
+        }
+
+        /// <summary>
+        /// 热水变压泵
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void HslPumpOne7_Click(object sender, EventArgs e)
+        {
+            var pump = sender as HslControls.HslPumpOne;
+            if (pump.MoveSpeed == 0)//说明水泵当前处于关闭状态
+            {
+                if (CheckClick(pump.Text))
+                    return;
+                //执行打开水泵的代码
+                pump.MoveSpeed = 1;
+                set_bit(ref doData[3], 2, true);
+                control.InstantDo_Write(doData);
+            }
+            else//说明水泵当前处于打开状态
+            {
+                pump.MoveSpeed = 0;
+                set_bit(ref doData[3], 2, false);
+                control.InstantDo_Write(doData);
+            }
         }
     }
 }

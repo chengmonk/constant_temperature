@@ -53,7 +53,7 @@
             this.comboBox1.Name = "comboBox1";
             this.comboBox1.Size = new System.Drawing.Size(206, 24);
             this.comboBox1.TabIndex = 24;
-            this.comboBox1.Text = "EN1111-2017温控报告";
+            this.comboBox1.Text = "2806温控报告";
             // 
             // FormSaveTemplate
             // 

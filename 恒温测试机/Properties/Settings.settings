@@ -128,5 +128,50 @@
     <Setting Name="TmDefault" Type="System.Decimal" Scope="User">
       <Value Profile="(Default)">0</Value>
     </Setting>
+    <Setting Name="Test1" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">0</Value>
+    </Setting>
+    <Setting Name="Test2" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">0</Value>
+    </Setting>
+    <Setting Name="Test3" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">0</Value>
+    </Setting>
+    <Setting Name="Test4" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">0</Value>
+    </Setting>
+    <Setting Name="Test5" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">0</Value>
+    </Setting>
+    <Setting Name="QmAdjust" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">0</Value>
+    </Setting>
+    <Setting Name="QcAdjust" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">0</Value>
+    </Setting>
+    <Setting Name="QhAdjust" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">0</Value>
+    </Setting>
+    <Setting Name="PmAdjust" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">0</Value>
+    </Setting>
+    <Setting Name="PcAdjust" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">0</Value>
+    </Setting>
+    <Setting Name="PhAdjust" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">0</Value>
+    </Setting>
+    <Setting Name="TmAdjust" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">0</Value>
+    </Setting>
+    <Setting Name="TcAdjust" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">0</Value>
+    </Setting>
+    <Setting Name="ThAdjust" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">0</Value>
+    </Setting>
+    <Setting Name="WhAdjust" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">0</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

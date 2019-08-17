@@ -12,7 +12,7 @@ namespace 恒温测试机.Properties {
     
     
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.Editors.SettingsDesigner.SettingsSingleFileGenerator", "16.1.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.Editors.SettingsDesigner.SettingsSingleFileGenerator", "16.2.0.0")]
     internal sealed partial class Settings : global::System.Configuration.ApplicationSettingsBase {
         
         private static Settings defaultInstance = ((Settings)(global::System.Configuration.ApplicationSettingsBase.Synchronized(new Settings())));
@@ -524,6 +524,186 @@ namespace 恒温测试机.Properties {
             }
             set {
                 this["TmDefault"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public decimal Test1 {
+            get {
+                return ((decimal)(this["Test1"]));
+            }
+            set {
+                this["Test1"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public decimal Test2 {
+            get {
+                return ((decimal)(this["Test2"]));
+            }
+            set {
+                this["Test2"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public decimal Test3 {
+            get {
+                return ((decimal)(this["Test3"]));
+            }
+            set {
+                this["Test3"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public decimal Test4 {
+            get {
+                return ((decimal)(this["Test4"]));
+            }
+            set {
+                this["Test4"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public decimal Test5 {
+            get {
+                return ((decimal)(this["Test5"]));
+            }
+            set {
+                this["Test5"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public decimal QmAdjust {
+            get {
+                return ((decimal)(this["QmAdjust"]));
+            }
+            set {
+                this["QmAdjust"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public decimal QcAdjust {
+            get {
+                return ((decimal)(this["QcAdjust"]));
+            }
+            set {
+                this["QcAdjust"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public decimal QhAdjust {
+            get {
+                return ((decimal)(this["QhAdjust"]));
+            }
+            set {
+                this["QhAdjust"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public decimal PmAdjust {
+            get {
+                return ((decimal)(this["PmAdjust"]));
+            }
+            set {
+                this["PmAdjust"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public decimal PcAdjust {
+            get {
+                return ((decimal)(this["PcAdjust"]));
+            }
+            set {
+                this["PcAdjust"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public decimal PhAdjust {
+            get {
+                return ((decimal)(this["PhAdjust"]));
+            }
+            set {
+                this["PhAdjust"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public decimal TmAdjust {
+            get {
+                return ((decimal)(this["TmAdjust"]));
+            }
+            set {
+                this["TmAdjust"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public decimal TcAdjust {
+            get {
+                return ((decimal)(this["TcAdjust"]));
+            }
+            set {
+                this["TcAdjust"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public decimal ThAdjust {
+            get {
+                return ((decimal)(this["ThAdjust"]));
+            }
+            set {
+                this["ThAdjust"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public decimal WhAdjust {
+            get {
+                return ((decimal)(this["WhAdjust"]));
+            }
+            set {
+                this["WhAdjust"] = value;
             }
         }
     }
