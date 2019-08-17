@@ -330,7 +330,7 @@ namespace 恒温测试机.UI
                     //监控数字量
                     if (diData[0].get_bit(3) == 0)
                     {
-                        set_bit(ref doData[2], 7, false);
+                        //set_bit(ref doData[2], 7, false);
                         control.InstantDo_Write(doData);
                         isAlarm011 = true;
                     }
@@ -402,7 +402,7 @@ namespace 恒温测试机.UI
                     //    Console.WriteLine("伺服电机M报警");
 
                     //}
-                    if (isAlarm011)
+                    if (!isAlarm011)
                         Console.WriteLine("冷水泵报警");
                     if (isAlarm012)
                         Console.WriteLine("冷水变压泵报警");
@@ -3933,8 +3933,9 @@ namespace 恒温测试机.UI
             #region 数字量输入报警，冷水泵、冷水变压泵、热水泵、热水变压泵 无法开启
             if ((name == "冷水泵") && isAlarm011)
             {
-                MessageBox.Show("冷水泵报警，无法开启");
-                return true;
+                //MessageBox.Show("冷水泵报警，无法开启");
+                //return true;
+                return false;
             }
             if ((name == "冷水变压泵") && isAlarm012)
             {

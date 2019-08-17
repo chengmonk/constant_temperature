@@ -1168,7 +1168,7 @@
             this.label11.AutoSize = true;
             this.label11.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.label11.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label11.Location = new System.Drawing.Point(423, 390);
+            this.label11.Location = new System.Drawing.Point(275, 305);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(76, 23);
             this.label11.TabIndex = 148;
@@ -1184,7 +1184,7 @@
             this.hslLedQm5.ForeColor = System.Drawing.Color.SkyBlue;
             this.hslLedQm5.LedNumberSize = 1;
             this.hslLedQm5.LeftRightOffect = 15;
-            this.hslLedQm5.Location = new System.Drawing.Point(500, 390);
+            this.hslLedQm5.Location = new System.Drawing.Point(352, 305);
             this.hslLedQm5.Margin = new System.Windows.Forms.Padding(3, 8, 3, 8);
             this.hslLedQm5.Name = "hslLedQm5";
             this.hslLedQm5.Size = new System.Drawing.Size(110, 23);
@@ -1195,8 +1195,9 @@
             // 
             this.hslValves11.EdgeColor = System.Drawing.Color.Goldenrod;
             this.hslValves11.Font = new System.Drawing.Font("微软雅黑", 6F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.hslValves11.Location = new System.Drawing.Point(456, 291);
+            this.hslValves11.Location = new System.Drawing.Point(536, 349);
             this.hslValves11.Name = "hslValves11";
+            this.hslValves11.PipeLineStyle = HslControls.HslDirectionStyle.Vertical;
             this.hslValves11.Size = new System.Drawing.Size(30, 40);
             this.hslValves11.TabIndex = 125;
             this.hslValves11.Text = "出水阀";
@@ -1206,10 +1207,9 @@
             // 
             this.hslValves12.EdgeColor = System.Drawing.Color.Gray;
             this.hslValves12.Font = new System.Drawing.Font("微软雅黑", 6F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.hslValves12.Location = new System.Drawing.Point(532, 329);
+            this.hslValves12.Location = new System.Drawing.Point(484, 297);
             this.hslValves12.Name = "hslValves12";
-            this.hslValves12.PipeLineStyle = HslControls.HslDirectionStyle.Vertical;
-            this.hslValves12.Size = new System.Drawing.Size(40, 54);
+            this.hslValves12.Size = new System.Drawing.Size(49, 32);
             this.hslValves12.TabIndex = 127;
             this.hslValves12.Text = "5s出水阀";
             this.hslValves12.Click += new System.EventHandler(this.HslValves12_Click);
@@ -1851,10 +1851,10 @@
             this.hslPipeLine19.ActiveLineCenterColor = System.Drawing.Color.Yellow;
             this.hslPipeLine19.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("hslPipeLine19.BackgroundImage")));
             this.hslPipeLine19.Font = new System.Drawing.Font("微软雅黑", 6F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.hslPipeLine19.Location = new System.Drawing.Point(423, 313);
+            this.hslPipeLine19.Location = new System.Drawing.Point(236, 313);
             this.hslPipeLine19.Name = "hslPipeLine19";
             this.hslPipeLine19.PipeLineActive = true;
-            this.hslPipeLine19.Size = new System.Drawing.Size(125, 10);
+            this.hslPipeLine19.Size = new System.Drawing.Size(312, 10);
             this.hslPipeLine19.TabIndex = 126;
             // 
             // hslPipeLine13
@@ -2012,7 +2012,6 @@
             this.hslPipeLine18.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("hslPipeLine18.BackgroundImage")));
             this.hslPipeLine18.Font = new System.Drawing.Font("微软雅黑", 6F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.hslPipeLine18.Location = new System.Drawing.Point(541, 92);
-            this.hslPipeLine18.MoveSpeed = 1F;
             this.hslPipeLine18.Name = "hslPipeLine18";
             this.hslPipeLine18.PipeLineActive = true;
             this.hslPipeLine18.PipeLineStyle = HslControls.HslDirectionStyle.Vertical;

@@ -198,7 +198,7 @@ namespace 恒温测试机.UI
             #endregion
 
             #region 数字量输入报警，冷水泵、冷水变压泵、热水泵、热水变压泵 无法开启
-            if ((name == "冷水泵") && formMain.isAlarm011)
+            if ((name == "冷水泵") && !formMain.isAlarm011)
             {
                 MessageBox.Show("冷水泵报警，无法开启");
                 return true;
