@@ -44,7 +44,7 @@ namespace 恒温测试机.UI
         System.Timers.Timer monitorDiTimer;          //监控数字量定时器
         System.Timers.Timer monitorTimer;            //监控管道泵 阀  状态
         COMconfig bpq_conf;
-        public M_485Rtu bpq;
+        public  M_485Rtu bpq;
         public DAQ_profile collectData;
         public DAQ_profile control;
         public byte[] doData = new byte[4];    //数字量输出数据
@@ -798,6 +798,7 @@ namespace 恒温测试机.UI
 
             bpq = new M_485Rtu(bpq_conf);
             bpq.connect();
+            
 
             collectConfig = new config();
             collectConfig.channelCount = 16;
@@ -1147,7 +1148,7 @@ namespace 恒温测试机.UI
         {
             Hide();
             System.Threading.Thread.Sleep(10);
-            using (FormValueRangeSet form = new FormValueRangeSet())
+            using (FormValueRangeSet form = new FormValueRangeSet(this))
             {
                 form.ShowDialog();
             }

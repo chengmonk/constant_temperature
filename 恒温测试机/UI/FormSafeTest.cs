@@ -734,13 +734,13 @@ namespace 恒温测试机
         {
             Hide();
             System.Threading.Thread.Sleep(10);
-            using (FormValueRangeSet form = new FormValueRangeSet())
-            {
-                form.ShowDialog();
-            }
-            System.Threading.Thread.Sleep(10);
-            Show();
-            loadData();
+            //using (FormValueRangeSet form = new FormValueRangeSet())
+            //{
+            //    form.ShowDialog();
+            //}
+            //System.Threading.Thread.Sleep(10);
+            //Show();
+            //loadData();
         }
 
         private void Label1_Click(object sender, EventArgs e)

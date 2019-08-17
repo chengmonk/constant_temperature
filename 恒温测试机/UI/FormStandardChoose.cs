@@ -50,7 +50,7 @@ namespace 恒温测试机.UI
                 case "EN1111-2017":
                     testStandardTemp = TestStandardEnum.default1711;
                     break;
-                case "2806流程":
+                case "QB/T 2806-2017标准":
                     testStandardTemp = TestStandardEnum.default2806;
                     break;
                 case "自定义":

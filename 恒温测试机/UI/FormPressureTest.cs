@@ -1176,14 +1176,14 @@ namespace 恒温测试机
         private void HslButton2_Click(object sender, EventArgs e)
         {
             Hide();
-            System.Threading.Thread.Sleep(10);
-            using (FormValueRangeSet form = new FormValueRangeSet())
-            {
-                form.ShowDialog();
-            }
-            System.Threading.Thread.Sleep(10);
-            Show();
-            loadData();
+            //System.Threading.Thread.Sleep(10);
+            //using (FormValueRangeSet form = new FormValueRangeSet(this))
+            //{
+            //    form.ShowDialog();
+            //}
+            //System.Threading.Thread.Sleep(10);
+            //Show();
+            //loadData();
         }
 
         private void HslButton3_Click(object sender, EventArgs e)

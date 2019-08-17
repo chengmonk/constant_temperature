@@ -8,13 +8,15 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using 恒温测试机.Utils;
-
+using 恒温测试机.UI;
 namespace 恒温测试机
 {
     public partial class FormValueRangeSet : Form
     {
-        public FormValueRangeSet()
+        private FormMain formMain;
+        public FormValueRangeSet(FormMain formMain)
         {
+            this.formMain = formMain;
             InitializeComponent();
             InitControl();
 
@@ -297,6 +299,7 @@ namespace 恒温测试机
         {
             Properties.Settings.Default.PumpHotLow022 = PumpHotLowPressureSet022.Value;
             Properties.Settings.Default.Save();
+            formMain.Write("125", Convert.ToInt16(PumpHotLowPressureSet022.Value*500), 3);
         }
 
         private void PumpHotHighPressureSet_ValueChanged(object sender, EventArgs e)
@@ -309,6 +312,7 @@ namespace 恒温测试机
         {
             Properties.Settings.Default.PumpCoolLow012 = PumpCoolLowPressureSet.Value;
             Properties.Settings.Default.Save();
+            formMain.Write("125", Convert.ToInt16(PumpCoolLowPressureSet.Value*500), 1);
         }
 
         private void PumpCoolHighPressureSet_ValueChanged(object sender, EventArgs e)
@@ -321,12 +325,14 @@ namespace 恒温测试机
         {
             Properties.Settings.Default.CoolPump011 = CoolPump.Value;
             Properties.Settings.Default.Save();
+            formMain.Write("125", Convert.ToInt16(CoolPump.Value*500), 4);
         }
 
         private void HotPump_ValueChanged(object sender, EventArgs e)
         {
             Properties.Settings.Default.HotPump021 = HotPump.Value;
             Properties.Settings.Default.Save();
+            formMain.Write("125", Convert.ToInt16(HotPump.Value*500), 2);
         }
 
         private void PressureThreshold_ValueChanged(object sender, EventArgs e)
