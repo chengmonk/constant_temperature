@@ -94,7 +94,7 @@ namespace 恒温测试机
             numericUpDown17.Value = Properties.Settings.Default.TmAdjust;
             numericUpDown16.Value = Properties.Settings.Default.TcAdjust;
             numericUpDown5.Value = Properties.Settings.Default.ThAdjust;
-
+            numericUpDown12.Value = Properties.Settings.Default.Qm5Adjust;
             numericUpDown14.Value = Properties.Settings.Default.WhAdjust;
         }
 
