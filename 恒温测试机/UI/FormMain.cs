@@ -1268,7 +1268,8 @@ namespace 恒温测试机.UI
                
                 set_bit(ref doData[2], 3, false);//vc
                 set_bit(ref doData[2], 5, false);//vm
-                set_bit(ref doData[2], 6, true);//v5
+                //set_bit(ref doData[2], 6, true);//v5
+                set_bit(ref doData[2], 6, false);//v5
                 control.InstantDo_Write(doData);
                 SystemInfoPrint("[t1 = " + Properties.Settings.Default.t1.ToString() + " s 计时结束，关闭Vc、Vm打开V5，开始冷水失效测试]\n");
                 var orgPc = Pc;//记录初始压力，压力恢复阶段作为判断条件
@@ -1327,7 +1328,8 @@ namespace 恒温测试机.UI
 
                 set_bit(ref doData[2], 3, true);//vc
                 set_bit(ref doData[2], 5, true);//vm
-                set_bit(ref doData[2], 6, false);//v5
+               // set_bit(ref doData[2], 6, false);//v5
+                set_bit(ref doData[2], 6, true);//出水重量传感器开始排水
                 control.InstantDo_Write(doData);
 
                 if (stopFlag)   //手动停止
@@ -1401,7 +1403,8 @@ namespace 恒温测试机.UI
                 System.Threading.Thread.Sleep((int)(1000 * Properties.Settings.Default.t1));
                 doData[2].set_bit(4, false);//vh
                 doData[2].set_bit(5, false);//vm
-                doData[2].set_bit(6, true);//v5
+                //doData[2].set_bit(6, true);//v5
+                doData[2].set_bit(6, false);//v5
                 control.InstantDo_Write(doData);
                 SystemInfoPrint("[t1 = " + Properties.Settings.Default.t1.ToString() + " s 计时结束，关闭Vh、Vm打开V5，开始热水失效测试]\n");
                 if (stopFlag)   //手动停止
@@ -1457,7 +1460,8 @@ namespace 恒温测试机.UI
                 SystemInfoPrint("[t3 = " + Properties.Settings.Default.t3.ToString() + " s 热水测试阶段结束，停止记录数据。关闭V5，打开Vh、Vm，压力开始恢复]\n");
                 doData[2].set_bit(4, true);//vh
                 doData[2].set_bit(5, true);//vm
-                doData[2].set_bit(6, false);//v5
+                //doData[2].set_bit(6, false);//v5
+                doData[2].set_bit(6, true);//v5
                 control.InstantDo_Write(doData);
                 if (stopFlag)   //手动停止
                 {
@@ -1474,10 +1478,11 @@ namespace 恒温测试机.UI
                     //{
                     //    break;
                     //}
-                    if (Math.Abs(Ph - orgPh) <= (double)Properties.Settings.Default.pressureThreshold)
+                    if ((Math.Abs(Ph - orgPh) <= (double)Properties.Settings.Default.pressureThreshold)&&())
                     {
                         break;
                     }
+
                 }
                 SystemInfoPrint("[压力恢复到初始压力，开始记录 5s 的数据]\n");
                 dt.Rows.Add("开始采集热水恢复数据",
