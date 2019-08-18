@@ -133,6 +133,8 @@
             this.label28 = new System.Windows.Forms.Label();
             this.label19 = new System.Windows.Forms.Label();
             this.label35 = new System.Windows.Forms.Label();
+            this.label36 = new System.Windows.Forms.Label();
+            this.label37 = new System.Windows.Forms.Label();
             this.groupBox4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown14)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown15)).BeginInit();
@@ -1645,6 +1647,7 @@
             this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
             this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
             this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
+            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.tableLayoutPanel3.Size = new System.Drawing.Size(514, 151);
             this.tableLayoutPanel3.TabIndex = 0;
             // 
@@ -1888,11 +1891,31 @@
             this.label35.TabIndex = 55;
             this.label35.Text = "微调";
             // 
+            // label36
+            // 
+            this.label36.AutoSize = true;
+            this.label36.Location = new System.Drawing.Point(1264, 322);
+            this.label36.Name = "label36";
+            this.label36.Size = new System.Drawing.Size(221, 12);
+            this.label36.TabIndex = 56;
+            this.label36.Text = "设定此参数可实时改变热水变压泵的压力";
+            // 
+            // label37
+            // 
+            this.label37.AutoSize = true;
+            this.label37.Location = new System.Drawing.Point(1262, 393);
+            this.label37.Name = "label37";
+            this.label37.Size = new System.Drawing.Size(221, 12);
+            this.label37.TabIndex = 57;
+            this.label37.Text = "设定此参数可实时改变冷水变压泵的压力";
+            // 
             // FormValueRangeSet
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1528, 749);
+            this.Controls.Add(this.label37);
+            this.Controls.Add(this.label36);
             this.Controls.Add(this.label35);
             this.Controls.Add(this.groupBox5);
             this.Controls.Add(this.groupBox3);
@@ -2086,5 +2109,7 @@
         private System.Windows.Forms.NumericUpDown numericUpDown8;
         private System.Windows.Forms.NumericUpDown numericUpDown7;
         private System.Windows.Forms.NumericUpDown numericUpDown6;
+        private System.Windows.Forms.Label label36;
+        private System.Windows.Forms.Label label37;
     }
 }

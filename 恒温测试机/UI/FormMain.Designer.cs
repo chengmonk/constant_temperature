@@ -1187,7 +1187,7 @@
             this.hslLedQm5.Location = new System.Drawing.Point(352, 305);
             this.hslLedQm5.Margin = new System.Windows.Forms.Padding(3, 8, 3, 8);
             this.hslLedQm5.Name = "hslLedQm5";
-            this.hslLedQm5.Size = new System.Drawing.Size(110, 23);
+            this.hslLedQm5.Size = new System.Drawing.Size(105, 23);
             this.hslLedQm5.TabIndex = 138;
             this.hslLedQm5.UnitText = "ml";
             // 

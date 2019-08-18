@@ -328,9 +328,9 @@ namespace 恒温测试机.UI
                 {
                     diData[0] = control.InstantDi_Read();//读取数字量函数
                     //监控数字量
-                    if (diData[0].get_bit(3) == 0)
+                    if (diData[0].get_bit(7) == 0)
                     {
-                        //set_bit(ref doData[2], 7, false);
+                        set_bit(ref doData[2], 7, false);
                         control.InstantDo_Write(doData);
                         isAlarm011 = true;
                     }
@@ -402,7 +402,7 @@ namespace 恒温测试机.UI
                     //    Console.WriteLine("伺服电机M报警");
 
                     //}
-                    if (!isAlarm011)
+                    if (isAlarm011)
                         Console.WriteLine("冷水泵报警");
                     if (isAlarm012)
                         Console.WriteLine("冷水变压泵报警");
@@ -3934,9 +3934,9 @@ namespace 恒温测试机.UI
             #region 数字量输入报警，冷水泵、冷水变压泵、热水泵、热水变压泵 无法开启
             if ((name == "冷水泵") && isAlarm011)
             {
-                //MessageBox.Show("冷水泵报警，无法开启");
-                //return true;
-                return false;
+                MessageBox.Show("冷水泵报警，无法开启");
+                return true;
+                
             }
             if ((name == "冷水变压泵") && isAlarm012)
             {
@@ -3995,7 +3995,7 @@ namespace 恒温测试机.UI
             }
             else
             {
-                btn.BackColor = Color.Gray;
+                btn.EdgeColor = Color.Gray;
                 set_bit(ref doData[0], 7, false);
                 control.InstantDo_Write(doData);
             }
@@ -4019,7 +4019,7 @@ namespace 恒温测试机.UI
             }
             else
             {
-                btn.BackColor = Color.Gray;
+                btn.EdgeColor = Color.Gray;
                 set_bit(ref doData[1], 0, false);
                 control.InstantDo_Write(doData);
             }
@@ -4043,7 +4043,7 @@ namespace 恒温测试机.UI
             }
             else
             {
-                btn.BackColor = Color.Gray;
+                btn.EdgeColor = Color.Gray;
                 set_bit(ref doData[0], 6, false);
                 control.InstantDo_Write(doData);
             }
@@ -4067,7 +4067,7 @@ namespace 恒温测试机.UI
             }
             else
             {
-                btn.BackColor = Color.Gray;
+                btn.EdgeColor = Color.Gray;
                 set_bit(ref doData[2], 0, false);
                 control.InstantDo_Write(doData);
             }
@@ -4091,7 +4091,7 @@ namespace 恒温测试机.UI
             }
             else
             {
-                btn.BackColor = Color.Gray;
+                btn.EdgeColor = Color.Gray;
                 set_bit(ref doData[1], 7, false);
                 control.InstantDo_Write(doData);
             }
@@ -4110,13 +4110,14 @@ namespace 恒温测试机.UI
                 if (CheckClick(btn.Text))
                     return;
                 btn.EdgeColor = Color.Red;
-                set_bit(ref doData[2], 6, true);
+                set_bit(ref doData[2], 4, true);
+                Console.WriteLine("true");
                 control.InstantDo_Write(doData);
             }
             else
             {
-                btn.BackColor = Color.Gray;
-                set_bit(ref doData[2], 6, false);
+                btn.EdgeColor = Color.Gray;
+                set_bit(ref doData[2], 4, false);
                 control.InstantDo_Write(doData);
             }
         }
@@ -4139,7 +4140,7 @@ namespace 恒温测试机.UI
             }
             else
             {
-                btn.BackColor = Color.Gray;
+                btn.EdgeColor = Color.Gray;
                 set_bit(ref doData[2], 3, false);
                 control.InstantDo_Write(doData);
             }
@@ -4163,7 +4164,7 @@ namespace 恒温测试机.UI
             }
             else
             {
-                btn.BackColor = Color.Gray;
+                btn.EdgeColor = Color.Gray;
                 set_bit(ref doData[2], 1, false);
                 control.InstantDo_Write(doData);
             }
@@ -4182,7 +4183,7 @@ namespace 恒温测试机.UI
             }
             else
             {
-                btn.BackColor = Color.Gray;
+                btn.EdgeColor = Color.Gray;
                 set_bit(ref doData[2], 2, false);
                 control.InstantDo_Write(doData);
             }
@@ -4206,7 +4207,7 @@ namespace 恒温测试机.UI
             }
             else
             {
-                btn.BackColor = Color.Gray;
+                btn.EdgeColor = Color.Gray;
                 set_bit(ref doData[0], 5, false);
                 control.InstantDo_Write(doData);
             }
@@ -4230,7 +4231,7 @@ namespace 恒温测试机.UI
             }
             else
             {
-                btn.BackColor = Color.Gray;
+                btn.EdgeColor = Color.Gray;
                 set_bit(ref doData[1], 1, false);
                 control.InstantDo_Write(doData);
             }
@@ -4356,7 +4357,7 @@ namespace 恒温测试机.UI
             }
             else
             {
-                btn.BackColor = Color.Gray;
+                btn.EdgeColor = Color.Gray;
                 set_bit(ref doData[2], 5, false);
                 control.InstantDo_Write(doData);
             }
@@ -4380,7 +4381,7 @@ namespace 恒温测试机.UI
             }
             else
             {
-                btn.BackColor = Color.Gray;
+                btn.EdgeColor = Color.Gray;
                 set_bit(ref doData[2], 6, false);
                 control.InstantDo_Write(doData);
             }
