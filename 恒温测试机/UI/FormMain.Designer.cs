@@ -1187,7 +1187,7 @@
             this.hslLedQm5.Location = new System.Drawing.Point(352, 305);
             this.hslLedQm5.Margin = new System.Windows.Forms.Padding(3, 8, 3, 8);
             this.hslLedQm5.Name = "hslLedQm5";
-            this.hslLedQm5.Size = new System.Drawing.Size(105, 23);
+            this.hslLedQm5.Size = new System.Drawing.Size(110, 25);
             this.hslLedQm5.TabIndex = 138;
             this.hslLedQm5.UnitText = "ml";
             // 
@@ -1585,7 +1585,7 @@
             this.hslLedQm.Location = new System.Drawing.Point(500, 263);
             this.hslLedQm.Margin = new System.Windows.Forms.Padding(3, 8, 3, 8);
             this.hslLedQm.Name = "hslLedQm";
-            this.hslLedQm.Size = new System.Drawing.Size(110, 23);
+            this.hslLedQm.Size = new System.Drawing.Size(110, 25);
             this.hslLedQm.TabIndex = 137;
             this.hslLedQm.UnitText = "L/Min";
             // 
@@ -1614,7 +1614,7 @@
             this.hslLedTm.Location = new System.Drawing.Point(500, 229);
             this.hslLedTm.Margin = new System.Windows.Forms.Padding(3, 8, 3, 8);
             this.hslLedTm.Name = "hslLedTm";
-            this.hslLedTm.Size = new System.Drawing.Size(110, 23);
+            this.hslLedTm.Size = new System.Drawing.Size(110, 25);
             this.hslLedTm.TabIndex = 136;
             this.hslLedTm.UnitText = "℃";
             // 
@@ -1690,7 +1690,7 @@
             this.hslLedPm.Location = new System.Drawing.Point(500, 193);
             this.hslLedPm.Margin = new System.Windows.Forms.Padding(3, 8, 3, 8);
             this.hslLedPm.Name = "hslLedPm";
-            this.hslLedPm.Size = new System.Drawing.Size(110, 23);
+            this.hslLedPm.Size = new System.Drawing.Size(110, 25);
             this.hslLedPm.TabIndex = 133;
             this.hslLedPm.UnitText = "bar";
             // 
@@ -1727,7 +1727,7 @@
             this.hslLedQc.Location = new System.Drawing.Point(686, 262);
             this.hslLedQc.Margin = new System.Windows.Forms.Padding(3, 8, 3, 8);
             this.hslLedQc.Name = "hslLedQc";
-            this.hslLedQc.Size = new System.Drawing.Size(113, 25);
+            this.hslLedQc.Size = new System.Drawing.Size(110, 25);
             this.hslLedQc.TabIndex = 131;
             this.hslLedQc.UnitText = "L/Min";
             // 
@@ -1755,10 +1755,10 @@
             this.hslLedTc.ForeColor = System.Drawing.Color.Lime;
             this.hslLedTc.LedNumberSize = 1;
             this.hslLedTc.LeftRightOffect = 15;
-            this.hslLedTc.Location = new System.Drawing.Point(686, 226);
+            this.hslLedTc.Location = new System.Drawing.Point(686, 227);
             this.hslLedTc.Margin = new System.Windows.Forms.Padding(3, 8, 3, 8);
             this.hslLedTc.Name = "hslLedTc";
-            this.hslLedTc.Size = new System.Drawing.Size(113, 25);
+            this.hslLedTc.Size = new System.Drawing.Size(110, 25);
             this.hslLedTc.TabIndex = 130;
             this.hslLedTc.UnitText = "℃";
             // 
@@ -1789,7 +1789,7 @@
             this.hslLedPc.Location = new System.Drawing.Point(686, 192);
             this.hslLedPc.Margin = new System.Windows.Forms.Padding(3, 8, 3, 8);
             this.hslLedPc.Name = "hslLedPc";
-            this.hslLedPc.Size = new System.Drawing.Size(113, 25);
+            this.hslLedPc.Size = new System.Drawing.Size(110, 25);
             this.hslLedPc.TabIndex = 129;
             this.hslLedPc.UnitText = "bar";
             // 

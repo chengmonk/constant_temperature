@@ -10,6 +10,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using 恒温测试机.Utils;
+using 恒温测试机.App;
 
 namespace 恒温测试机
 {
@@ -82,11 +83,19 @@ namespace 恒温测试机
                     return;
                 }
             }
+            //快速傅里叶变化滤波
+            //Console.WriteLine("1:" + Qm.Length);
+            //Qm = TWFFT.FFT_filter(Qm);
+            //Tm = TWFFT.FFT_filter(Tm);
+            //Console.WriteLine("2:" + Qm.Length);
+            for (int i = 0; i < graphDt.Rows.Count; i++)
+            {
+
+            }
 
 
 
-
-            DateTime start = dateTime[0];
+                DateTime start = dateTime[0];
             DateTime PointA = dateTime[0].AddSeconds(2);
             TimeSpan ts = new TimeSpan(1);
 
@@ -101,6 +110,7 @@ namespace 恒温测试机
                 }
                 else
                 {
+                   
                     hslCurveHistory1.Text = "正在加载数据...";
                     hslCurveHistory1.RemoveAllCurve();
                     hslCurveHistory1.SetLeftCurve("出水流量Qm", Qm, Color.DodgerBlue, true, "{0:F2} L/min");//布尔变量：是否开启曲线平滑

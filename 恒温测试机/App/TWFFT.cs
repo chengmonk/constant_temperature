@@ -55,6 +55,38 @@ namespace 恒温测试机.App
 
             return ans.ToArray();
         }
+        public static float[] FFT_filter(float[] res)
+        {
+            //a是实部、b是虚部
+
+            float[] a = new float[res.Length];
+            float[] b = new float[res.Length];
+            List<float> ans = new List<float>();
+            for (int j = 0; j < res.Length; j++)
+            {
+                //  Console.WriteLine("I:" + j);
+                a[j] = (float)res[j];
+                b[j] = 0.0f;
+            }
+            length = TWFFT.FFT(a, b);
+            //length是傅里叶变换处理过后的数组大小
+            for (int i = 100; i < length; i++)
+            {
+                if (i < length - 100 && i > 10)
+                {
+                    a[i] = 0f;
+                    b[i] = 0f;
+                }
+            }
+            length = TWFFT.IFFT(a, b);
+            for (int i = 0; i < length; i++)
+            {
+                //Console.WriteLine("{0}\t{1}\t{2}", i, a[i], b[i]);
+                ans.Add((float)Math.Sqrt(a[i] * a[i] + b[i] * b[i]));
+            }
+
+            return ans.ToArray();
+        }
         #endregion
 
         #region//快速傅里叶变化的相关代码
