@@ -1178,7 +1178,7 @@
             // 
             this.hslLedQm5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(46)))), ((int)(((byte)(46)))));
             this.hslLedQm5.DisplayBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(62)))), ((int)(((byte)(62)))), ((int)(((byte)(62)))));
-            this.hslLedQm5.DisplayNumber = 4;
+            this.hslLedQm5.DisplayNumber = 5;
             this.hslLedQm5.DisplayText = "0";
             this.hslLedQm5.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.hslLedQm5.ForeColor = System.Drawing.Color.SkyBlue;
@@ -1323,7 +1323,7 @@
             // 
             this.hslLedPh.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(46)))), ((int)(((byte)(46)))));
             this.hslLedPh.DisplayBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(62)))), ((int)(((byte)(62)))), ((int)(((byte)(62)))));
-            this.hslLedPh.DisplayNumber = 4;
+            this.hslLedPh.DisplayNumber = 5;
             this.hslLedPh.DisplayText = "0";
             this.hslLedPh.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.hslLedPh.ForeColor = System.Drawing.Color.Snow;
@@ -1605,7 +1605,7 @@
             // 
             this.hslLedTm.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(46)))), ((int)(((byte)(46)))));
             this.hslLedTm.DisplayBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(62)))), ((int)(((byte)(62)))), ((int)(((byte)(62)))));
-            this.hslLedTm.DisplayNumber = 4;
+            this.hslLedTm.DisplayNumber = 5;
             this.hslLedTm.DisplayText = "0";
             this.hslLedTm.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.hslLedTm.ForeColor = System.Drawing.Color.Lime;
@@ -1651,7 +1651,7 @@
             // 
             this.hslLedTh.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(46)))), ((int)(((byte)(46)))));
             this.hslLedTh.DisplayBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(62)))), ((int)(((byte)(62)))), ((int)(((byte)(62)))));
-            this.hslLedTh.DisplayNumber = 4;
+            this.hslLedTh.DisplayNumber = 5;
             this.hslLedTh.DisplayText = "0";
             this.hslLedTh.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.hslLedTh.ForeColor = System.Drawing.Color.Lime;
@@ -1681,7 +1681,7 @@
             // 
             this.hslLedPm.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(46)))), ((int)(((byte)(46)))));
             this.hslLedPm.DisplayBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(62)))), ((int)(((byte)(62)))), ((int)(((byte)(62)))));
-            this.hslLedPm.DisplayNumber = 4;
+            this.hslLedPm.DisplayNumber = 5;
             this.hslLedPm.DisplayText = "0";
             this.hslLedPm.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.hslLedPm.ForeColor = System.Drawing.Color.Snow;
@@ -1749,7 +1749,7 @@
             // 
             this.hslLedTc.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(46)))), ((int)(((byte)(46)))));
             this.hslLedTc.DisplayBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(62)))), ((int)(((byte)(62)))), ((int)(((byte)(62)))));
-            this.hslLedTc.DisplayNumber = 4;
+            this.hslLedTc.DisplayNumber = 5;
             this.hslLedTc.DisplayText = "0";
             this.hslLedTc.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.hslLedTc.ForeColor = System.Drawing.Color.Lime;
@@ -1780,7 +1780,7 @@
             // 
             this.hslLedPc.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(46)))), ((int)(((byte)(46)))));
             this.hslLedPc.DisplayBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(62)))), ((int)(((byte)(62)))), ((int)(((byte)(62)))));
-            this.hslLedPc.DisplayNumber = 4;
+            this.hslLedPc.DisplayNumber = 5;
             this.hslLedPc.DisplayText = "0";
             this.hslLedPc.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.hslLedPc.ForeColor = System.Drawing.Color.Snow;
