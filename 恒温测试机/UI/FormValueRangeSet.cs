@@ -442,5 +442,11 @@ namespace 恒温测试机
             Properties.Settings.Default.WhAdjust = numericUpDown14.Value;
             Properties.Settings.Default.Save();
         }
+
+        private void NumericUpDown12_ValueChanged(object sender, EventArgs e)
+        {
+            Properties.Settings.Default.Qm5Adjust = numericUpDown12.Value;
+            Properties.Settings.Default.Save();
+        }
     }
 }

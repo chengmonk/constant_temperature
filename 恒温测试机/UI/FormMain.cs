@@ -213,8 +213,8 @@ namespace 恒温测试机.UI
                     else
                         hslValves11.EdgeColor = Color.Gray;
                     //5s出水阀
-                    val = doData[2].get_bit(6);
-                    if (val == 1)
+                    val = doData[2].get_bit(5);//通道改变，详情见readme
+                    if (val != 1)
                         hslValves12.EdgeColor = Color.Goldenrod;
                     else
                         hslValves12.EdgeColor = Color.Gray;
@@ -1343,15 +1343,15 @@ namespace 恒温测试机.UI
                 //测试标准：混合水出水温度与所设定的温度偏差应 ≤ ±2 ℃  
                 for (; true;)
                 {//压力恢复到初始压力
-
                     //if (Math.Abs(Pc - (double)Properties.Settings.Default.CoolPump011) <= (double)Properties.Settings.Default.pressureThreshold)
                     //{
                     //    break;
                     //}
-                    if (Math.Abs(Pc - orgPc) <= (double)Properties.Settings.Default.pressureThreshold)
+                    if ((Math.Abs(Pc - orgPc) <= (double)Properties.Settings.Default.pressureThreshold)&&(Math.Abs(Qm5) <= 0.1))//出水重量传感器里面的水排干净，压力恢复到之前的压力
                     {
-                        break;
+                        break;                        
                     }
+                    Thread.Sleep(600);
                 }
                 SystemInfoPrint("[压力恢复到初始压力，开始记录 5s 的数据]\n");
                 dt.Rows.Add("开始采集冷水恢复数据",
@@ -1478,7 +1478,7 @@ namespace 恒温测试机.UI
                     //{
                     //    break;
                     //}
-                    if ((Math.Abs(Ph - orgPh) <= (double)Properties.Settings.Default.pressureThreshold)&&())
+                    if ((Math.Abs(Ph - orgPh) <= (double)Properties.Settings.Default.pressureThreshold)&&(Math.Abs(Qm5)<=0.1))//出水重量传感器里面的水排干净，压力恢复到之前的压力
                     {
                         break;
                     }
@@ -3364,7 +3364,7 @@ namespace 恒温测试机.UI
                     Pc = Math.Round((sourceDataPc[3] + sourceDataPc[102]) * 0.5, 2, MidpointRounding.AwayFromZero) + (double)Properties.Settings.Default.PcAdjust;
                     Ph = Math.Round((sourceDataPh[3] + sourceDataPh[102]) * 0.5, 2, MidpointRounding.AwayFromZero) + (double)Properties.Settings.Default.PhAdjust;
                     Pm = Math.Round((sourceDataPm[3] + sourceDataPm[102]) * 0.5, 2, MidpointRounding.AwayFromZero) + (double)Properties.Settings.Default.PmAdjust;
-                    Qm5 = Math.Round((sourceDataQm5[3] + sourceDataQm5[102]) * 0.5, 2, MidpointRounding.AwayFromZero);
+                    Qm5 = Math.Round((sourceDataQm5[3] + sourceDataQm5[102]) * 0.5, 2, MidpointRounding.AwayFromZero) + (double)Properties.Settings.Default.Qm5Adjust ;
                     Temp1 = Math.Round((sourceDataTemp1[3] + sourceDataTemp1[102]) * 5, 2, MidpointRounding.AwayFromZero)+(double)Properties.Settings.Default.Test1;
                     Temp2 = Math.Round((sourceDataTemp2[3] + sourceDataTemp2[102]) * 5, 2, MidpointRounding.AwayFromZero) + (double)Properties.Settings.Default.Test2;
                     Temp3 = Math.Round((sourceDataTemp3[3] + sourceDataTemp3[102]) * 5, 2, MidpointRounding.AwayFromZero) + (double)Properties.Settings.Default.Test3;

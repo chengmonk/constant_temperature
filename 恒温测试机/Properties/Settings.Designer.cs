@@ -706,5 +706,17 @@ namespace 恒温测试机.Properties {
                 this["WhAdjust"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public decimal Qm5Adjust {
+            get {
+                return ((decimal)(this["Qm5Adjust"]));
+            }
+            set {
+                this["Qm5Adjust"] = value;
+            }
+        }
     }
 }
