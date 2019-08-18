@@ -370,6 +370,7 @@
             this.trackBar1.Size = new System.Drawing.Size(237, 45);
             this.trackBar1.TabIndex = 30;
             this.trackBar1.TickFrequency = 10;
+            this.trackBar1.Scroll += new System.EventHandler(this.TrackBar1_Scroll);
             this.trackBar1.ValueChanged += new System.EventHandler(this.TrackBar1_ValueChanged);
             this.trackBar1.MouseUp += new System.Windows.Forms.MouseEventHandler(this.TrackBar1_MouseUp);
             // 

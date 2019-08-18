@@ -181,6 +181,9 @@
             this.hslPumpOne8 = new HslControls.HslPumpOne();
             this.hslPipeLine23 = new HslControls.HslPipeLine();
             this.centerPanel = new System.Windows.Forms.Panel();
+            this.label21 = new System.Windows.Forms.Label();
+            this.trackBar1 = new System.Windows.Forms.TrackBar();
+            this.label22 = new System.Windows.Forms.Label();
             this.leftPanel.SuspendLayout();
             this.left3.SuspendLayout();
             this.waterBoxGbx.SuspendLayout();
@@ -197,6 +200,7 @@
             this.groupBox2.SuspendLayout();
             this.center1.SuspendLayout();
             this.centerPanel.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.trackBar1)).BeginInit();
             this.SuspendLayout();
             // 
             // leftPanel
@@ -1085,6 +1089,9 @@
             // center1
             // 
             this.center1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.center1.Controls.Add(this.label21);
+            this.center1.Controls.Add(this.trackBar1);
+            this.center1.Controls.Add(this.label22);
             this.center1.Controls.Add(this.label11);
             this.center1.Controls.Add(this.hslLedQm5);
             this.center1.Controls.Add(this.hslValves11);
@@ -1708,6 +1715,7 @@
             this.reshui.Font = new System.Drawing.Font("微软雅黑", 6F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.reshui.Location = new System.Drawing.Point(223, 29);
             this.reshui.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
+            this.reshui.MoveSpeed = 0F;
             this.reshui.Name = "reshui";
             this.reshui.Size = new System.Drawing.Size(49, 68);
             this.reshui.TabIndex = 90;
@@ -1840,6 +1848,7 @@
             this.hslPumpOne7.Font = new System.Drawing.Font("微软雅黑", 6F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.hslPumpOne7.Location = new System.Drawing.Point(224, 92);
             this.hslPumpOne7.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
+            this.hslPumpOne7.MoveSpeed = 0F;
             this.hslPumpOne7.Name = "hslPumpOne7";
             this.hslPumpOne7.Size = new System.Drawing.Size(49, 89);
             this.hslPumpOne7.TabIndex = 95;
@@ -2064,6 +2073,7 @@
             this.hslPumpOne6.Font = new System.Drawing.Font("微软雅黑", 6F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.hslPumpOne6.Location = new System.Drawing.Point(771, 91);
             this.hslPumpOne6.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
+            this.hslPumpOne6.MoveSpeed = 0F;
             this.hslPumpOne6.Name = "hslPumpOne6";
             this.hslPumpOne6.Size = new System.Drawing.Size(49, 89);
             this.hslPumpOne6.TabIndex = 116;
@@ -2125,6 +2135,7 @@
             this.hslPumpOne8.Font = new System.Drawing.Font("微软雅黑", 6F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.hslPumpOne8.Location = new System.Drawing.Point(769, 30);
             this.hslPumpOne8.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
+            this.hslPumpOne8.MoveSpeed = 0F;
             this.hslPumpOne8.Name = "hslPumpOne8";
             this.hslPumpOne8.Size = new System.Drawing.Size(49, 89);
             this.hslPumpOne8.TabIndex = 113;
@@ -2151,6 +2162,34 @@
             this.centerPanel.Name = "centerPanel";
             this.centerPanel.Size = new System.Drawing.Size(1028, 1029);
             this.centerPanel.TabIndex = 2;
+            // 
+            // label21
+            // 
+            this.label21.AutoSize = true;
+            this.label21.Location = new System.Drawing.Point(938, 375);
+            this.label21.Name = "label21";
+            this.label21.Size = new System.Drawing.Size(17, 12);
+            this.label21.TabIndex = 151;
+            this.label21.Text = "0%";
+            // 
+            // trackBar1
+            // 
+            this.trackBar1.Location = new System.Drawing.Point(686, 375);
+            this.trackBar1.Maximum = 100;
+            this.trackBar1.Name = "trackBar1";
+            this.trackBar1.Size = new System.Drawing.Size(237, 45);
+            this.trackBar1.TabIndex = 150;
+            this.trackBar1.TickFrequency = 10;
+            this.trackBar1.ValueChanged += new System.EventHandler(this.TrackBar1_ValueChanged);
+            // 
+            // label22
+            // 
+            this.label22.AutoSize = true;
+            this.label22.Location = new System.Drawing.Point(684, 355);
+            this.label22.Name = "label22";
+            this.label22.Size = new System.Drawing.Size(77, 12);
+            this.label22.TabIndex = 149;
+            this.label22.Text = "流量百分比：";
             // 
             // FormMain
             // 
@@ -2187,6 +2226,7 @@
             this.center1.ResumeLayout(false);
             this.center1.PerformLayout();
             this.centerPanel.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.trackBar1)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -2344,5 +2384,8 @@
         private System.Windows.Forms.Panel centerPanel;
         private System.Windows.Forms.RadioButton heatRbt;
         private System.Windows.Forms.RadioButton maxHeatRbt;
+        private System.Windows.Forms.Label label21;
+        private System.Windows.Forms.TrackBar trackBar1;
+        private System.Windows.Forms.Label label22;
     }
 }

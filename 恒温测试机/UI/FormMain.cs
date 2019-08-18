@@ -59,7 +59,7 @@ namespace 恒温测试机.UI
         bool collectDataFlag = false;           //是否采集数据
         bool runFlag = false;                   //是否执行流程
 
-        bool graphFlag = true;          //先记录为true
+        bool graphFlag = false;          //先记录为true
         bool whFlag = true;// ture表示 当前为热水箱液面 flase表示 当前为冷水箱液面 
         bool autoRunFlag = false;               //是否自动运行
         bool stopFlag = false;                  //是否手动停止
@@ -1093,6 +1093,7 @@ namespace 恒温测试机.UI
             stopFlag = true;
             runFlag = false;
             autoRunFlag = false;
+           
             doData[0] = 0;
             doData[1] = 0;
             doData[2] = 0;
@@ -1262,15 +1263,16 @@ namespace 恒温测试机.UI
                 SystemInfoPrint("[初始化系统]\n");
 
                 System.Threading.Thread.Sleep((int)(1000 * Properties.Settings.Default.t1));
-                double orgPm = Pm;//在界面上显示初始压力，一次判断过后压力恢复到初始压力以后对温度进行判断
+                //double orgPm = Pm;//在界面上显示初始压力，一次判断过后压力恢复到初始压力以后对温度进行判断
                                   //Log.Info("初始压力:" + Math.Round(orgPm, 2).ToString());
-
+               
                 set_bit(ref doData[2], 3, false);//vc
                 set_bit(ref doData[2], 5, false);//vm
                 set_bit(ref doData[2], 6, true);//v5
                 control.InstantDo_Write(doData);
                 SystemInfoPrint("[t1 = " + Properties.Settings.Default.t1.ToString() + " s 计时结束，关闭Vc、Vm打开V5，开始冷水失效测试]\n");
-
+                var orgPc = Pc;//记录初始压力，压力恢复阶段作为判断条件
+                var orgPh = Ph;
                 if (stopFlag)   //手动停止
                 {
                     StopPro();
@@ -1338,8 +1340,13 @@ namespace 恒温测试机.UI
                 #region 压力回复初始压力后，开始收集数据 T5  
                 //测试标准：混合水出水温度与所设定的温度偏差应 ≤ ±2 ℃  
                 for (; true;)
-                {
-                    if (Math.Abs(Pc - (double)Properties.Settings.Default.CoolPump011) <= (double)Properties.Settings.Default.pressureThreshold)
+                {//压力恢复到初始压力
+
+                    //if (Math.Abs(Pc - (double)Properties.Settings.Default.CoolPump011) <= (double)Properties.Settings.Default.pressureThreshold)
+                    //{
+                    //    break;
+                    //}
+                    if (Math.Abs(Pc - orgPc) <= (double)Properties.Settings.Default.pressureThreshold)
                     {
                         break;
                     }
@@ -1448,8 +1455,7 @@ namespace 恒温测试机.UI
                 endIndex = index;
                 analyseDataDic.Add("热水失效数据", DataTableUtils.SubDataTable(dt, startIndex, endIndex));
                 SystemInfoPrint("[t3 = " + Properties.Settings.Default.t3.ToString() + " s 热水测试阶段结束，停止记录数据。关闭V5，打开Vh、Vm，压力开始恢复]\n");
-
-                doData[2].set_bit(3, true);//vc
+                doData[2].set_bit(4, true);//vh
                 doData[2].set_bit(5, true);//vm
                 doData[2].set_bit(6, false);//v5
                 control.InstantDo_Write(doData);
@@ -1464,7 +1470,11 @@ namespace 恒温测试机.UI
                 //测试标准：混合水出水温度与所设定的温度偏差应 ≤ ±2 ℃  
                 for (; true;)
                 {
-                    if (Math.Abs(Ph - (double)Properties.Settings.Default.HotPump021) <= (double)Properties.Settings.Default.pressureThreshold)
+                    //if (Math.Abs(Ph - (double)Properties.Settings.Default.HotPump021) <= (double)Properties.Settings.Default.pressureThreshold)
+                    //{
+                    //    break;
+                    //}
+                    if (Math.Abs(Ph - orgPh) <= (double)Properties.Settings.Default.pressureThreshold)
                     {
                         break;
                     }
@@ -1525,6 +1535,15 @@ namespace 恒温测试机.UI
                     analyseReportDic.Add(logicType, dataReportAnalyseApp.AnalyseResult());
                 }
                 SystemInfoPrint(analyseReportDic[logicType] + "\n");
+                set_bit(ref doData[0], 5, false);//11、进冷水阀5-5    
+                set_bit(ref doData[0], 6, false);//12、进热水阀6 - 6
+                set_bit(ref doData[0], 7, false);//13、进高温阀7 - 7
+                doData[1] = 0;
+                doData[2] = 0;
+                set_bit(ref doData[3], 0, false);//012、冷水变压泵24-0    
+                set_bit(ref doData[3], 1, false);// 021、热水泵25 - 1
+                set_bit(ref doData[3], 2, false);//022、热水变压泵26 - 2
+                control.InstantDo_Write(doData);
                 runFlag = false;
                 graphFlag = false;
                 if (autoRunFlag)
@@ -2189,7 +2208,15 @@ namespace 恒温测试机.UI
                     analyseReportDic.Add(logicType, dataReportAnalyseApp.AnalyseResult());
                 }
                 SystemInfoPrint(analyseReportDic[logicType] + "\n");
-
+                set_bit(ref doData[0], 5, false);//11、进冷水阀5-5    
+                set_bit(ref doData[0], 6, false);//12、进热水阀6 - 6
+                set_bit(ref doData[0], 7, false);//13、进高温阀7 - 7
+                doData[1] = 0;
+                doData[2] = 0;
+                set_bit(ref doData[3], 0, false);//012、冷水变压泵24-0    
+                set_bit(ref doData[3], 1, false);// 021、热水泵25 - 1
+                set_bit(ref doData[3], 2, false);//022、热水变压泵26 - 2
+                control.InstantDo_Write(doData);
                 runFlag = false;
                 graphFlag = false;
                 if (autoRunFlag)
@@ -2398,7 +2425,15 @@ namespace 恒温测试机.UI
                     analyseReportDic.Add(logicType, dataReportAnalyseApp.AnalyseResult());
                 }
                 SystemInfoPrint(analyseReportDic[logicType] + "\n");
-
+                set_bit(ref doData[0], 5, false);//11、进冷水阀5-5    
+                set_bit(ref doData[0], 6, false);//12、进热水阀6 - 6
+                set_bit(ref doData[0], 7, false);//13、进高温阀7 - 7
+                doData[1] = 0;
+                doData[2] = 0;
+                set_bit(ref doData[3], 0, false);//012、冷水变压泵24-0    
+                set_bit(ref doData[3], 1, false);// 021、热水泵25 - 1
+                set_bit(ref doData[3], 2, false);//022、热水变压泵26 - 2
+                control.InstantDo_Write(doData);
                 runFlag = false;
                 graphFlag = false;
                 if (autoRunFlag)
@@ -2487,7 +2522,15 @@ namespace 恒温测试机.UI
                     analyseReportDic.Add(logicType, dataReportAnalyseApp.AnalyseResult());
                 }
                 SystemInfoPrint(analyseReportDic[logicType] + "\n");
-
+                set_bit(ref doData[0], 5, false);//11、进冷水阀5-5    
+                set_bit(ref doData[0], 6, false);//12、进热水阀6 - 6
+                set_bit(ref doData[0], 7, false);//13、进高温阀7 - 7
+                doData[1] = 0;
+                doData[2] = 0;
+                set_bit(ref doData[3], 0, false);//012、冷水变压泵24-0    
+                set_bit(ref doData[3], 1, false);// 021、热水泵25 - 1
+                set_bit(ref doData[3], 2, false);//022、热水变压泵26 - 2
+                control.InstantDo_Write(doData);
                 runFlag = false;
                 graphFlag = false;
                 if (autoRunFlag)
@@ -2656,7 +2699,15 @@ namespace 恒温测试机.UI
                     analyseReportDic.Add(logicType, dataReportAnalyseApp.AnalyseResult());
                 }
                 SystemInfoPrint(analyseReportDic[logicType] + "\n");
-
+                set_bit(ref doData[0], 5, false);//11、进冷水阀5-5    
+                set_bit(ref doData[0], 6, false);//12、进热水阀6 - 6
+                set_bit(ref doData[0], 7, false);//13、进高温阀7 - 7
+                doData[1] = 0;
+                doData[2] = 0;
+                set_bit(ref doData[3], 0, false);//012、冷水变压泵24-0    
+                set_bit(ref doData[3], 1, false);// 021、热水泵25 - 1
+                set_bit(ref doData[3], 2, false);//022、热水变压泵26 - 2
+                control.InstantDo_Write(doData);
                 runFlag = false;
                 graphFlag = false;
                 //HideOrShowCurve();
@@ -2685,13 +2736,13 @@ namespace 恒温测试机.UI
                 graphFlag = true;
                 analyseDataDic = new Dictionary<string, DataTable>();
 
-                #region 启动 a、c、11、011、12、012、vc、vh、vm
+                #region 启动 a、c、11、011、12、021、vc、vh、vm
                 set_bit(ref doData[1], 7, true);//a
                 set_bit(ref doData[2], 1, true);//c
                 set_bit(ref doData[0], 5, true);//11
                 set_bit(ref doData[2], 7, true);//011
                 set_bit(ref doData[0], 6, true);//12
-                set_bit(ref doData[3], 0, true);//012
+                set_bit(ref doData[3], 1, true);//021
                 set_bit(ref doData[2], 3, true);//vc
                 set_bit(ref doData[2], 4, true);//vh
                 set_bit(ref doData[2], 5, true);//vm
@@ -2765,8 +2816,17 @@ namespace 恒温测试机.UI
                 {
                     analyseReportDic.Add(logicType, dataReportAnalyseApp.AnalyseResult());
                 }
-                SystemInfoPrint(analyseReportDic[logicType] + "\n");
+                SystemInfoPrint(analyseReportDic[logicType] + "555555\n");
 
+                set_bit(ref doData[0], 5, false);//11、进冷水阀5-5    
+                set_bit(ref doData[0], 6, false);//12、进热水阀6 - 6
+                set_bit(ref doData[0], 7, false);//13、进高温阀7 - 7
+                doData[1] = 0;
+                doData[2] = 0;
+                set_bit(ref doData[3], 0, false);//012、冷水变压泵24-0    
+                set_bit(ref doData[3], 1, false);// 021、热水泵25 - 1
+                set_bit(ref doData[3], 2, false);//022、热水变压泵26 - 2
+                control.InstantDo_Write(doData);
                 runFlag = false;
                 graphFlag = false;
             }
@@ -2889,7 +2949,15 @@ namespace 恒温测试机.UI
                     analyseReportDic.Add(logicType, dataReportAnalyseApp.AnalyseResult());
                 }
                 SystemInfoPrint(analyseReportDic[logicType] + "\n");
-
+                set_bit(ref doData[0], 5, false);//11、进冷水阀5-5    
+                set_bit(ref doData[0], 6, false);//12、进热水阀6 - 6
+                set_bit(ref doData[0], 7, false);//13、进高温阀7 - 7
+                doData[1] = 0;
+                doData[2] = 0;
+                set_bit(ref doData[3], 0, false);//012、冷水变压泵24-0    
+                set_bit(ref doData[3], 1, false);// 021、热水泵25 - 1
+                set_bit(ref doData[3], 2, false);//022、热水变压泵26 - 2
+                control.InstantDo_Write(doData);
                 runFlag = false;
                 graphFlag = false;
             }
@@ -4485,6 +4553,13 @@ namespace 恒温测试机.UI
                 set_bit(ref doData[3], 2, false);
                 control.InstantDo_Write(doData);
             }
+        }
+
+        private void TrackBar1_ValueChanged(object sender, EventArgs e)
+        {
+            label21.Text = trackBar1.Value.ToString() + "%";
+            var value = Convert.ToDouble(trackBar1.Value.ToString()) * 0.1;
+            AO_Func(0, value);            //输出模拟量
         }
     }
 }

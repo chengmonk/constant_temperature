@@ -84,10 +84,10 @@ namespace 恒温测试机
                 }
             }
             //快速傅里叶变化滤波
-            //Console.WriteLine("1:" + Qm.Length);
-            //Qm = TWFFT.FFT_filter(Qm);
-            //Tm = TWFFT.FFT_filter(Tm);
-            //Console.WriteLine("2:" + Qm.Length);
+            Console.WriteLine("1:" + Qm.Length);
+            Qm = TWFFT.FFT_filter(Qm);
+            Tm = TWFFT.FFT_filter(Tm);
+            Console.WriteLine("2:" + Qm.Length);
             for (int i = 0; i < graphDt.Rows.Count; i++)
             {
 
@@ -151,7 +151,7 @@ namespace 恒温测试机
                     SetTempLight(29);
                     SetTempLight(30);
                     SetRemark(29f,28f,Tm);
-                    hslCurveHistory1.SetScaleByXAxis(xAxis);
+                    hslCurveHistory1.SetScaleByXAxis((float)0.1);
                     hslCurveHistory1.RenderCurveUI();
 
                 }
@@ -249,16 +249,18 @@ namespace 恒温测试机
             }
             fileDialog.Dispose();
         }
-        float xAxis = 7;
+        float xAxis = 1;
         private void HslButton4_Click(object sender, EventArgs e)
         {
-            hslCurveHistory1.SetScaleByXAxis(--xAxis > 0 ? xAxis : (xAxis = 1));
+
+            hslCurveHistory1.SetScaleByXAxis((float)(xAxis /2));
             hslCurveHistory1.RenderCurveUI();
         }
 
         private void HslButton3_Click(object sender, EventArgs e)
         {
-            hslCurveHistory1.SetScaleByXAxis(++xAxis > 0 ? xAxis : (xAxis = 1));
+            //hslCurveHistory1.SetScaleByXAxis(++xAxis > 0 ? xAxis : (xAxis = 1));
+            hslCurveHistory1.SetScaleByXAxis((float)(xAxis*2));
             hslCurveHistory1.RenderCurveUI();
         }
     }

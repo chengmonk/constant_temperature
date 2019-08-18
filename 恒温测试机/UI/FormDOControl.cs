@@ -391,5 +391,10 @@ namespace 恒温测试机.UI
                 Log.Error(ex.ToString());
             }
         }
+
+        private void TrackBar1_Scroll(object sender, EventArgs e)
+        {
+
+        }
     }
 }
