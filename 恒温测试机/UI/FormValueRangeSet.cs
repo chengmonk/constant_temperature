@@ -32,7 +32,7 @@ namespace 恒温测试机
             PumpCoolHighPressureSet.Value = Properties.Settings.Default.PumpCoolHigh012;
             PumpCoolLowPressureSet.Value = Properties.Settings.Default.PumpCoolLow012;
             PumpHotHighPressureSet.Value = Properties.Settings.Default.PumpHotHigh022;
-            PumpHotLowPressureSet022.Value = Properties.Settings.Default.PumpHotLow022;
+            PumpHotLowPressureSet.Value = Properties.Settings.Default.PumpHotLow022;
             pressureThreshold.Value = Properties.Settings.Default.pressureThreshold;
 
             t1Set.Value = Properties.Settings.Default.t1;
@@ -295,19 +295,34 @@ namespace 恒温测试机
             Properties.Settings.Default.Save();
         }
 
+        /// <summary>
+        /// 热水变压泵低压
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void PumpHotLowPressureSet_ValueChanged(object sender, EventArgs e)
         {
-            Properties.Settings.Default.PumpHotLow022 = PumpHotLowPressureSet022.Value;
+            Properties.Settings.Default.PumpHotLow022 = PumpHotLowPressureSet.Value;
             Properties.Settings.Default.Save();
-            formMain.Write("125", Convert.ToInt16(PumpHotLowPressureSet022.Value*500), 3);
+            formMain.Write("125", Convert.ToInt16(PumpHotLowPressureSet.Value*500), 3);
         }
 
+        /// <summary>
+        /// 热水变压泵高压
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void PumpHotHighPressureSet_ValueChanged(object sender, EventArgs e)
         {
             Properties.Settings.Default.PumpHotHigh022 = PumpHotHighPressureSet.Value;
             Properties.Settings.Default.Save();
         }
 
+        /// <summary>
+        /// 冷水变压泵低压
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void PumpCoolLowPressureSet_ValueChanged(object sender, EventArgs e)
         {
             Properties.Settings.Default.PumpCoolLow012 = PumpCoolLowPressureSet.Value;
@@ -315,12 +330,22 @@ namespace 恒温测试机
             formMain.Write("125", Convert.ToInt16(PumpCoolLowPressureSet.Value*500), 1);
         }
 
+        /// <summary>
+        /// 冷水变压泵高压
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void PumpCoolHighPressureSet_ValueChanged(object sender, EventArgs e)
         {
             Properties.Settings.Default.PumpCoolHigh012 = PumpCoolHighPressureSet.Value;
             Properties.Settings.Default.Save();
         }
 
+        /// <summary>
+        /// 冷水泵
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void CoolPump_ValueChanged(object sender, EventArgs e)
         {
             Properties.Settings.Default.CoolPump011 = CoolPump.Value;
@@ -328,6 +353,11 @@ namespace 恒温测试机
             formMain.Write("125", Convert.ToInt16(CoolPump.Value*500), 4);
         }
 
+        /// <summary>
+        /// 热水泵
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void HotPump_ValueChanged(object sender, EventArgs e)
         {
             Properties.Settings.Default.HotPump021 = HotPump.Value;

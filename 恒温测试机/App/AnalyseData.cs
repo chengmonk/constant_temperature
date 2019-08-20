@@ -221,17 +221,16 @@ namespace 恒温测试机.App
         }
 
         /// <summary>
-        /// 出水温度规定时间内，超过阈值的时间，不大于指定范围
+        /// 出水温度规定时间内，超过阈值的时间
         /// </summary>
         /// <param name="second"></param>
         /// <param name="tempFlag"></param>
-        /// <param name="regionSec"></param>
         /// <returns></returns>
-        public bool TmOverFlagRegion(double second,double tempFlag,double regionSec, DataTable data)
+        public double TmOverFlagRegion(double second,double tempFlag, DataTable data)
         {
             if (data == null)
             {
-                return false;
+                return 0;
             }
             data.Rows.RemoveAt(data.Rows.Count - 1);//移除末尾
             var isFirstRow = true;
@@ -278,21 +277,20 @@ namespace 恒温测试机.App
                 overSec += second - (lastOverTime - startTime).TotalSeconds;
             }
 
-            return overSec <= regionSec ? true : false;
+            return overSec;
         }
 
         /// <summary>
-        /// 出水温度规定时间内，小于阈值的时间，不大于指定范围
+        /// 出水温度规定时间内，小于阈值的时间
         /// </summary>
         /// <param name="second"></param>
         /// <param name="tempFlag"></param>
-        /// <param name="regionSec"></param>
         /// <returns></returns>
-        public bool TmBelowFlagRegion(double second, double tempFlag, double regionSec,DataTable data)
+        public double TmBelowFlagRegion(double second, double tempFlag,DataTable data)
         {
             if (data == null)
             {
-                return false;
+                return 0;
             }
             data.Rows.RemoveAt(data.Rows.Count - 1);//移除末尾
             var isFirstRow = true;
@@ -339,7 +337,7 @@ namespace 恒温测试机.App
                 belowSec += second - (lastBelowTime - startTime).TotalSeconds;
             }
 
-            return belowSec <= regionSec ? true : false;
+            return belowSec;
         }
 
         /// <summary>

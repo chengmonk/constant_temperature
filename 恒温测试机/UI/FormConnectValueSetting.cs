@@ -52,7 +52,7 @@ namespace 恒温测试机.UI
 
         private string radioAddress_A = "4296";
         private uint radioValue_A = 0;
-        private string angleAddress_A = "2616";
+        private string angleAddress_A = "5432";
         public int angleValue_A = 0;
 
         #endregion
@@ -80,7 +80,7 @@ namespace 恒温测试机.UI
 
         private string radioAddress_L = "4298";
         private uint radioValue_L = 0;
-        private string angleAddress_L = "2618";
+        private string angleAddress_L = "5434";
         private int angleValue_L = 0;
 
         #endregion
@@ -88,7 +88,7 @@ namespace 恒温测试机.UI
         public FormConnectValueSetting(FormMain formMain)
         {
             InitializeComponent();
-            //InitTimer();
+            InitTimer();
             this.formMain = formMain;
             timeAngleDt = new DataTable();
             timeAngleDt.Columns.Add("时间", typeof(string));
@@ -106,7 +106,7 @@ namespace 恒温测试机.UI
             monitorTimer.AutoReset = true;//设置是执行一次（false）还是一直执行(true)；
             monitorTimer.Enabled = true;//是否执行System.Timers.Timer.Elapsed事件；
 
-            monitorDTimer = new System.Timers.Timer(200);
+            monitorDTimer = new System.Timers.Timer(1000);
             monitorDTimer.Elapsed += (o, a) =>
             {
                 MonitorDActive();
@@ -438,12 +438,12 @@ namespace 恒温测试机.UI
 
         private void RadioBtn_A_Click(object sender, EventArgs e)
         {
-            int val2 = Convert.ToInt32(angleTb_A.Text) * 10000;
+            int val2 = Convert.ToInt32(radioTb_A.Text) * 10000;
 
             if (val2 < 0 || val2 > 200000)
             {
                 MessageBox.Show("请输入0-20 范围内的值");
-                angleTb_A.Text = "";
+                radioTb_A.Text = "";
             }
             else if (isAutoFindAngle)
             {
@@ -452,8 +452,8 @@ namespace 恒温测试机.UI
             else
             {
                 short val3 = Convert.ToInt16("" + val2);
-                formMain.Write(angleAddress_A, val3, 5);
-                SystemInfoPrint("写入：【" + angleAddress_A + "】【" + val3 + "】\n");
+                formMain.Write(radioAddress_A, val3, 5);
+                SystemInfoPrint("写入：【" + radioAddress_A + "】【" + val3 + "】\n");
             }
         }
 
@@ -600,18 +600,18 @@ namespace 恒温测试机.UI
 
         private void RadioBtn_L_Click(object sender, EventArgs e)
         {
-            int val2 = Convert.ToInt32(angleTb_L.Text) * 10000;
+            int val2 = Convert.ToInt32(radioTb_L.Text) * 10000;
 
             if (val2 < 0 || val2 > 200000)
             {
                 MessageBox.Show("请输入0-20 范围内的值");
-                angleTb_L.Text = "";
+                radioTb_L.Text = "";
             }
             else
             {
                 short val3 = Convert.ToInt16("" + val2);
-                formMain.Write(angleAddress_L, val3, 5);
-                SystemInfoPrint("写入：【" + angleAddress_L + "】【" + val3 + "】\n");
+                formMain.Write(radioAddress_L, val3, 5);
+                SystemInfoPrint("写入：【" + radioAddress_L + "】【" + val3 + "】\n");
             }
         }
 

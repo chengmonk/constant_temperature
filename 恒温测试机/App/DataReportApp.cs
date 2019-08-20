@@ -4,6 +4,7 @@ using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using 恒温测试机.Model;
 using 恒温测试机.Model.Enum;
 
 namespace 恒温测试机.App
@@ -18,11 +19,13 @@ namespace 恒温测试机.App
         private Dictionary<string, DataTable> analyseDataDic;
         private double DefaultTemp=(double)Properties.Settings.Default.TmDefault;     //默认的出水温度
         private decimal t1 = Properties.Settings.Default.t1;
+        private Model_2806 model_2806;
 
-        public DataReportAnalyseApp(LogicTypeEnum logicType,Dictionary<string,DataTable> analyseDataDic)
+        public DataReportAnalyseApp(LogicTypeEnum logicType,Dictionary<string,DataTable> analyseDataDic,Model_2806 model_2806)
         {
             this.logicType = logicType;
             this.analyseDataDic = analyseDataDic;
+            this.model_2806 = model_2806;
         }
 
         public string AnalyseResult()
@@ -77,65 +80,46 @@ namespace 恒温测试机.App
         public string AnalysePressureTest()
         {
             var result = "压力变化测试报告：\n";
+
             result += "1、压力达到设定压力后，开始收集数据【热水降压】\n";
-            var isLower = analyseData.TmOverFlagRegion(5, 3, 1.5, analyseDataDic["热水降压测试数据"]);
-            result += isLower ? "T5秒内超过3℃的时间不大于T1.5秒：合格\n" : "T5秒内超过3℃的时间不大于T1.5秒：不合格\n";
-
-            isLower = analyseData.TmBelowFlagRegion(5, 5, 1, analyseDataDic["热水降压测试数据"]);
-            result += isLower ? "T5秒内低于5℃的时间不大于T1秒：合格\n" : "T5秒内低于5℃的时间不大于T1：不合格\n";
-
-            isLower = analyseData.TmDeviationIsBetweenFlagRegion(5, DefaultTemp, 2, analyseDataDic["热水降压测试数据"]);
-            result += isLower ? "T5秒后出水温度与所设定的温度偏差≤2℃：合格\n" : "T5秒后出水温度与所设定的温度偏差≤2℃：不合格\n";
+            model_2806.H_1_3 = analyseData.TmOverFlagRegion(5, model_2806.Tm + 3, analyseDataDic["热水降压测试数据"]);
+            model_2806.H_1_5 = analyseData.TmBelowFlagRegion(5, model_2806.Tm - 5, analyseDataDic["热水降压测试数据"]);
+            result += model_2806.H_1_3 <= 1.5 ? "T5秒内超过3℃的时间不大于T1.5秒：合格\n" : "T5秒内超过3℃的时间不大于T1.5秒：不合格\n";
+            result += model_2806.H_1_5 <= 1 ? "T5秒内低于5℃的时间不大于T1秒：合格\n" : "T5秒内低于5℃的时间不大于T1：不合格\n";
+            result += model_2806.H_1_Tmdiff<=2 ? "T5秒后出水温度与所设定的温度偏差≤2℃：合格\n" : "T5秒后出水温度与所设定的温度偏差≤2℃：不合格\n";
 
             result += "2、压力回复到初始压力后，开始收集数据【热水降压恢复】\n";
-            var isBetween = analyseData.TmIsBetween(DefaultTemp, 2, analyseDataDic["热水降压恢复数据"]);
-            result += isBetween ? "T5秒内混合水出水温度与所设定的温度偏差应≤±2℃：合格\n" :
-                "T5秒内混合水出水温度与所设定的温度偏差应≤±2℃：不合格\n";
+            result += model_2806.H_2_Tmdiff <= 2 ? "T5秒内混合水出水温度与所设定的温度偏差应≤±2℃：合格\n" : "T5秒内混合水出水温度与所设定的温度偏差应≤±2℃：不合格\n";
 
             result += "3、压力达到设定压力后，开始收集数据【热水升压】\n";
-            isLower = analyseData.TmOverFlagRegion(5, 3, 1.5, analyseDataDic["热水升压测试数据"]);
-            result += isLower ? "T5秒内超过3℃的时间不大于T1.5秒：合格\n" : "T5秒内超过3℃的时间不大于T1.5秒：不合格\n";
-
-            isLower = analyseData.TmBelowFlagRegion(5, 5, 1, analyseDataDic["热水升压测试数据"]);
-            result += isLower ? "T5秒内低于5℃的时间不大于T1秒：合格\n" : "T5秒内低于5℃的时间不大于T1：不合格\n";
-
-            isLower = analyseData.TmDeviationIsBetweenFlagRegion(5, DefaultTemp, 2, analyseDataDic["热水升压测试数据"]);
-            result += isLower ? "T5秒后出水温度与所设定的温度偏差≤2℃：合格\n" : "T5秒后出水温度与所设定的温度偏差≤2℃：不合格\n";
+            model_2806.H_3_3 = analyseData.TmOverFlagRegion(5, model_2806.Tm + 3, analyseDataDic["热水升压测试数据"]);
+            model_2806.H_3_5 = analyseData.TmBelowFlagRegion(5, model_2806.Tm - 5, analyseDataDic["热水升压测试数据"]);
+            result += model_2806.H_3_3 <= 1.5 ? "T5秒内超过3℃的时间不大于T1.5秒：合格\n" : "T5秒内超过3℃的时间不大于T1.5秒：不合格\n";
+            result += model_2806.H_3_5 <= 1 ? "T5秒内低于5℃的时间不大于T1秒：合格\n" : "T5秒内低于5℃的时间不大于T1：不合格\n";
+            result += model_2806.H_3_Tmdiff <= 2 ? "T5秒后出水温度与所设定的温度偏差≤2℃：合格\n" : "T5秒后出水温度与所设定的温度偏差≤2℃：不合格\n";
 
             result += "4、压力回复到初始压力后，开始收集数据【热水升压恢复】\n";
-            isBetween = analyseData.TmIsBetween(DefaultTemp, 2, analyseDataDic["热水升压恢复数据"]);
-            result += isBetween ? "T5秒内混合水出水温度与所设定的温度偏差应≤±2℃：合格\n" :
-                "T5秒内混合水出水温度与所设定的温度偏差应≤±2℃：不合格\n";
+            result += model_2806.H_4_Tmdiff <= 2 ? "T5秒内混合水出水温度与所设定的温度偏差应≤±2℃：合格\n" : "T5秒内混合水出水温度与所设定的温度偏差应≤±2℃：不合格\n";
 
             result += "5、压力达到设定压力后，开始收集数据【冷水降压】\n";
-            isLower = analyseData.TmOverFlagRegion(5, 3, 1.5, analyseDataDic["冷水降压测试数据"]);
-            result += isLower ? "T5秒内超过3℃的时间不大于T1.5秒：合格\n" : "T5秒内超过3℃的时间不大于T1.5秒：不合格\n";
-
-            isLower = analyseData.TmBelowFlagRegion(5, 5, 1, analyseDataDic["冷水降压测试数据"]);
-            result += isLower ? "T5秒内低于5℃的时间不大于T1秒：合格\n" : "T5秒内低于5℃的时间不大于T1：不合格\n";
-
-            isLower = analyseData.TmDeviationIsBetweenFlagRegion(5, DefaultTemp, 2, analyseDataDic["冷水降压测试数据"]);
-            result += isLower ? "T5秒后出水温度与所设定的温度偏差≤2℃：合格\n" : "T5秒后出水温度与所设定的温度偏差≤2℃：不合格\n";
+            model_2806.C_1_3 = analyseData.TmOverFlagRegion(5, model_2806.Tm + 3, analyseDataDic["冷水降压测试数据"]);
+            model_2806.C_1_5 = analyseData.TmBelowFlagRegion(5, model_2806.Tm - 5, analyseDataDic["冷水降压测试数据"]);
+            result += model_2806.C_1_3 <= 1.5 ? "T5秒内超过3℃的时间不大于T1.5秒：合格\n" : "T5秒内超过3℃的时间不大于T1.5秒：不合格\n";
+            result += model_2806.C_1_5 <= 1 ? "T5秒内低于5℃的时间不大于T1秒：合格\n" : "T5秒内低于5℃的时间不大于T1：不合格\n";
+            result += model_2806.C_1_Tmdiff <= 2 ? "T5秒后出水温度与所设定的温度偏差≤2℃：合格\n" : "T5秒后出水温度与所设定的温度偏差≤2℃：不合格\n";
 
             result += "6、压力回复到初始压力后，开始收集数据【冷水降压恢复】\n";
-            isBetween = analyseData.TmIsBetween(DefaultTemp, 2, analyseDataDic["冷水降压恢复数据"]);
-            result += isBetween ? "T5秒内混合水出水温度与所设定的温度偏差应≤±2℃：合格\n" :
-                "T5秒内混合水出水温度与所设定的温度偏差应≤±2℃：不合格\n";
+            result += model_2806.C_2_Tmdiff <= 2 ? "T5秒内混合水出水温度与所设定的温度偏差应≤±2℃：合格\n" : "T5秒内混合水出水温度与所设定的温度偏差应≤±2℃：不合格\n";
 
             result += "7、压力达到设定压力后，开始收集数据【冷水升压】\n";
-            isLower = analyseData.TmOverFlagRegion(5, 3, 1.5, analyseDataDic["冷水升压测试数据"]);
-            result += isLower ? "T5秒内超过3℃的时间不大于T1.5秒：合格\n" : "T5秒内超过3℃的时间不大于T1.5秒：不合格\n";
-
-            isLower = analyseData.TmBelowFlagRegion(5, 5, 1, analyseDataDic["冷水升压测试数据"]);
-            result += isLower ? "T5秒内低于5℃的时间不大于T1秒：合格\n" : "T5秒内低于5℃的时间不大于T1：不合格\n";
-
-            isLower = analyseData.TmDeviationIsBetweenFlagRegion(5, DefaultTemp, 2, analyseDataDic["冷水升压测试数据"]);
-            result += isLower ? "T5秒后出水温度与所设定的温度偏差≤2℃：合格\n" : "T5秒后出水温度与所设定的温度偏差≤2℃：不合格\n";
+            model_2806.C_3_3 = analyseData.TmOverFlagRegion(5, model_2806.Tm + 3, analyseDataDic["冷水升压测试数据"]);
+            model_2806.C_3_5 = analyseData.TmBelowFlagRegion(5, model_2806.Tm - 5, analyseDataDic["冷水升压测试数据"]);
+            result += model_2806.C_3_3 <= 1.5 ? "T5秒内超过3℃的时间不大于T1.5秒：合格\n" : "T5秒内超过3℃的时间不大于T1.5秒：不合格\n";
+            result += model_2806.C_3_5 <= 1 ? "T5秒内低于5℃的时间不大于T1秒：合格\n" : "T5秒内低于5℃的时间不大于T1：不合格\n";
+            result += model_2806.H_3_Tmdiff <= 2 ? "T5秒后出水温度与所设定的温度偏差≤2℃：合格\n" : "T5秒后出水温度与所设定的温度偏差≤2℃：不合格\n";
 
             result += "8、压力回复到初始压力后，开始收集数据【冷水升压恢复】\n";
-            isBetween = analyseData.TmIsBetween(DefaultTemp, 2, analyseDataDic["冷水升压恢复数据"]);
-            result += isBetween ? "T5秒内混合水出水温度与所设定的温度偏差应≤±2℃：合格\n" :
-                "T5秒内混合水出水温度与所设定的温度偏差应≤±2℃：不合格\n";
+            result += model_2806.C_4_Tmdiff <= 2 ? "T5秒内混合水出水温度与所设定的温度偏差应≤±2℃：合格\n" :"T5秒内混合水出水温度与所设定的温度偏差应≤±2℃：不合格\n";
 
             return result;
         }
@@ -144,8 +128,8 @@ namespace 恒温测试机.App
         {
             var result = "降温测试报告：\n";
             result += "1、温度达到设定温度后，开始收集数据\n";
-            var isOver=analyseData.TmOverFlagRegion(5, 3, 1, analyseDataDic["降温测试数据"]);
-            result += isOver ? "T5秒内超过3℃的时间不大于T1秒：合格\n" : "T5秒内超过3℃的时间不大于T1秒：不合格\n";
+            var isOver=analyseData.TmOverFlagRegion(5, 3, analyseDataDic["降温测试数据"]);
+            result += isOver>1 ? "T5秒内超过3℃的时间不大于T1秒：合格\n" : "T5秒内超过3℃的时间不大于T1秒：不合格\n";
 
             var isBetween = analyseData.TmDeviationIsBetween(5, 1, analyseDataDic["降温测试数据"]);
             result += isBetween ? "T5秒后出水温度波动≤1℃：合格\n" : "T5秒后出水温度波动≤1℃：不合格\n";
