@@ -108,6 +108,9 @@
             this.Title = new System.Windows.Forms.Label();
             this.hslCurve1 = new HslControls.HslCurve();
             this.center1 = new System.Windows.Forms.Panel();
+            this.label21 = new System.Windows.Forms.Label();
+            this.trackBar1 = new System.Windows.Forms.TrackBar();
+            this.label22 = new System.Windows.Forms.Label();
             this.label11 = new System.Windows.Forms.Label();
             this.hslLedQm5 = new HslControls.HslLedDisplay();
             this.hslValves11 = new HslControls.HslValves();
@@ -181,9 +184,6 @@
             this.hslPumpOne8 = new HslControls.HslPumpOne();
             this.hslPipeLine23 = new HslControls.HslPipeLine();
             this.centerPanel = new System.Windows.Forms.Panel();
-            this.label21 = new System.Windows.Forms.Label();
-            this.trackBar1 = new System.Windows.Forms.TrackBar();
-            this.label22 = new System.Windows.Forms.Label();
             this.leftPanel.SuspendLayout();
             this.left3.SuspendLayout();
             this.waterBoxGbx.SuspendLayout();
@@ -199,8 +199,8 @@
             this.right1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.center1.SuspendLayout();
-            this.centerPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.trackBar1)).BeginInit();
+            this.centerPanel.SuspendLayout();
             this.SuspendLayout();
             // 
             // leftPanel
@@ -1170,6 +1170,34 @@
             this.center1.Size = new System.Drawing.Size(1026, 430);
             this.center1.TabIndex = 2;
             // 
+            // label21
+            // 
+            this.label21.AutoSize = true;
+            this.label21.Location = new System.Drawing.Point(938, 375);
+            this.label21.Name = "label21";
+            this.label21.Size = new System.Drawing.Size(17, 12);
+            this.label21.TabIndex = 151;
+            this.label21.Text = "0%";
+            // 
+            // trackBar1
+            // 
+            this.trackBar1.Location = new System.Drawing.Point(686, 375);
+            this.trackBar1.Maximum = 100;
+            this.trackBar1.Name = "trackBar1";
+            this.trackBar1.Size = new System.Drawing.Size(237, 45);
+            this.trackBar1.TabIndex = 150;
+            this.trackBar1.TickFrequency = 10;
+            this.trackBar1.ValueChanged += new System.EventHandler(this.TrackBar1_ValueChanged);
+            // 
+            // label22
+            // 
+            this.label22.AutoSize = true;
+            this.label22.Location = new System.Drawing.Point(684, 355);
+            this.label22.Name = "label22";
+            this.label22.Size = new System.Drawing.Size(77, 12);
+            this.label22.TabIndex = 149;
+            this.label22.Text = "流量百分比：";
+            // 
             // label11
             // 
             this.label11.AutoSize = true;
@@ -1196,7 +1224,7 @@
             this.hslLedQm5.Name = "hslLedQm5";
             this.hslLedQm5.Size = new System.Drawing.Size(110, 25);
             this.hslLedQm5.TabIndex = 138;
-            this.hslLedQm5.UnitText = "ml";
+            this.hslLedQm5.UnitText = "L";
             // 
             // hslValves11
             // 
@@ -2163,34 +2191,6 @@
             this.centerPanel.Size = new System.Drawing.Size(1028, 1029);
             this.centerPanel.TabIndex = 2;
             // 
-            // label21
-            // 
-            this.label21.AutoSize = true;
-            this.label21.Location = new System.Drawing.Point(938, 375);
-            this.label21.Name = "label21";
-            this.label21.Size = new System.Drawing.Size(17, 12);
-            this.label21.TabIndex = 151;
-            this.label21.Text = "0%";
-            // 
-            // trackBar1
-            // 
-            this.trackBar1.Location = new System.Drawing.Point(686, 375);
-            this.trackBar1.Maximum = 100;
-            this.trackBar1.Name = "trackBar1";
-            this.trackBar1.Size = new System.Drawing.Size(237, 45);
-            this.trackBar1.TabIndex = 150;
-            this.trackBar1.TickFrequency = 10;
-            this.trackBar1.ValueChanged += new System.EventHandler(this.TrackBar1_ValueChanged);
-            // 
-            // label22
-            // 
-            this.label22.AutoSize = true;
-            this.label22.Location = new System.Drawing.Point(684, 355);
-            this.label22.Name = "label22";
-            this.label22.Size = new System.Drawing.Size(77, 12);
-            this.label22.TabIndex = 149;
-            this.label22.Text = "流量百分比：";
-            // 
             // FormMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -2225,8 +2225,8 @@
             this.groupBox2.PerformLayout();
             this.center1.ResumeLayout(false);
             this.center1.PerformLayout();
-            this.centerPanel.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.trackBar1)).EndInit();
+            this.centerPanel.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }

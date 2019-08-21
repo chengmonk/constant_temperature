@@ -317,7 +317,7 @@
             this.label38.Name = "label38";
             this.label38.Size = new System.Drawing.Size(128, 30);
             this.label38.TabIndex = 70;
-            this.label38.Text = "出水流量(L/min)：";
+            this.label38.Text = "出水重量(L/min)：";
             // 
             // numericUpDown15
             // 

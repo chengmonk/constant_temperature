@@ -1321,7 +1321,7 @@ namespace 恒温测试机.UI
                     {
                         break;                        
                     }
-                    Thread.Sleep(600);
+                 
                 }
                 SystemInfoPrint("[压力恢复到初始压力，开始记录 5s 的数据]\n");
                 dt.Rows.Add("开始采集冷水恢复数据",
@@ -1459,7 +1459,7 @@ namespace 恒温测试机.UI
                     {
                         break;
                     }
-
+                   
                 }
                 SystemInfoPrint("[压力恢复到初始压力，开始记录 5s 的数据]\n");
                 dt.Rows.Add("开始采集热水恢复数据",
@@ -4453,13 +4453,15 @@ namespace 恒温测试机.UI
                 if (CheckClick(btn.Text))
                     return;
                 btn.EdgeColor = Color.Goldenrod;
-                set_bit(ref doData[2], 5, true);
+                set_bit(ref doData[2], 5, true);//vm
+                set_bit(ref doData[2], 6, true);//v5
                 control.InstantDo_Write(doData);
             }
             else
             {
                 btn.EdgeColor = Color.Gray;
                 set_bit(ref doData[2], 5, false);
+                set_bit(ref doData[2], 6, false);//v5
                 control.InstantDo_Write(doData);
             }
         }
