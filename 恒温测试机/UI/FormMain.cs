@@ -1275,7 +1275,7 @@ namespace 恒温测试机.UI
                 //记录2806模板相关数据
                 model_2806.A_1_Qc = Qm5;
                 model_2806.A_1_Tc = Tm;
-                model_2806.A_1_Tcdiff = Tm - model_2806.Tm;
+                model_2806.A_1_Tcdiff = Math.Round(Tm - model_2806.Tm, 2, MidpointRounding.AwayFromZero);
                 System.Threading.Thread.Sleep((int)(1000 * (Properties.Settings.Default.t3-5)));
                 collectDataFlag = false;  //停止收集数据
                 dt.Rows.Add("冷水失效数据采集完毕",
@@ -1345,7 +1345,7 @@ namespace 恒温测试机.UI
                 //记录2806模板相关数据
                 model_2806.A_2_Qc = Qm5;
                 model_2806.A_2_Tc = Tm;
-                model_2806.A_2_Tcdiff = Tm - model_2806.Tm;
+                model_2806.A_2_Tcdiff = Math.Round(Tm - model_2806.Tm, 2, MidpointRounding.AwayFromZero); 
                 collectDataFlag = false;
                 dt.Rows.Add("冷水恢复数据采集完毕",
                     DateTime.Now,
@@ -1483,7 +1483,7 @@ namespace 恒温测试机.UI
                 //记录2806模板相关数据
                 model_2806.B_2_Qh = Qm5;
                 model_2806.B_2_Th = Tm;
-                model_2806.B_2_Thdiff = Tm - model_2806.Tm;
+                model_2806.B_2_Thdiff = Math.Round(Tm - model_2806.Tm, 2, MidpointRounding.AwayFromZero); 
                 collectDataFlag = false;
                 dt.Rows.Add("热水恢复数据采集完毕",
                     DateTime.Now,
@@ -1643,7 +1643,7 @@ namespace 恒温测试机.UI
                 System.Threading.Thread.Sleep(1000 * 5);
                 //记录2806模板相关数据
                 model_2806.H_1_Tm = Tm;
-                model_2806.H_1_Tmdiff = Tm - model_2806.Tm;
+                model_2806.H_1_Tmdiff = Math.Round(Tm - model_2806.Tm, 2, MidpointRounding.AwayFromZero); 
                 System.Threading.Thread.Sleep((int)(1000 * (Properties.Settings.Default.t3 - 5)));
                 SystemInfoPrint("[t3 = " + Properties.Settings.Default.t3.ToString() + " s 热水降压测试阶段结束，停止记录数据。关闭b，打开a，压力开始恢复，022压力由低压切换为高压]\n");
                 collectDataFlag = false;
@@ -1715,7 +1715,7 @@ namespace 恒温测试机.UI
                 System.Threading.Thread.Sleep((int)(1000 * 5));//延时5s
                 //记录2806模板相关数据
                 model_2806.H_2_Tm = Tm;
-                model_2806.H_2_Tmdiff = Tm - model_2806.Tm;
+                model_2806.H_2_Tmdiff = Math.Round(Tm - model_2806.Tm, 2, MidpointRounding.AwayFromZero); 
 
                 collectDataFlag = false;
                 dt.Rows.Add("热水降压测试压力恢复数据采集完毕",
@@ -1800,7 +1800,7 @@ namespace 恒温测试机.UI
                 System.Threading.Thread.Sleep(1000 * 5);
                 //记录2806模板相关数据
                 model_2806.H_3_Tm = Tm;
-                model_2806.H_3_Tmdiff = Tm - model_2806.Tm;
+                model_2806.H_3_Tmdiff = Math.Round(Tm - model_2806.Tm, 2, MidpointRounding.AwayFromZero); 
                 System.Threading.Thread.Sleep((int)(1000 * (Properties.Settings.Default.t3 - 5)));
                 SystemInfoPrint("[t3 = " + Properties.Settings.Default.t3.ToString() + " s 热水升压测试阶段结束，停止记录数据。关闭b，打开a，压力开始恢复，022压力由低压切换为高压]\n");
                 collectDataFlag = false;
@@ -1867,7 +1867,7 @@ namespace 恒温测试机.UI
                 System.Threading.Thread.Sleep((int)(1000 * 5));//延时5s
                 //记录2806模板相关数据
                 model_2806.H_4_Tm = Tm;
-                model_2806.H_4_Tmdiff = Tm - model_2806.Tm;
+                model_2806.H_4_Tmdiff = Math.Round(Tm - model_2806.Tm, 2, MidpointRounding.AwayFromZero); 
                 collectDataFlag = false;
                 dt.Rows.Add("热水升压测试压力恢复数据采集完毕",
                     DateTime.Now,
@@ -1960,7 +1960,7 @@ namespace 恒温测试机.UI
                 System.Threading.Thread.Sleep(1000 * 5);
                 //记录2806模板相关数据
                 model_2806.C_1_Tm = Tm;
-                model_2806.C_1_Tmdiff = Tm - model_2806.Tm;
+                model_2806.C_1_Tmdiff = Math.Round(Tm - model_2806.Tm, 2, MidpointRounding.AwayFromZero); 
                 System.Threading.Thread.Sleep((int)(1000 * (Properties.Settings.Default.t3 - 5)));
                 SystemInfoPrint("[t3 = " + Properties.Settings.Default.t3.ToString() + " s 冷水降压测试阶段结束，停止记录数据。关闭b，打开a，压力开始恢复，022压力由低压切换为高压]\n");
                 collectDataFlag = false;
@@ -2026,7 +2026,7 @@ namespace 恒温测试机.UI
                 System.Threading.Thread.Sleep((int)(1000 * 5));//延时5s
                 //记录2806模板相关数据
                 model_2806.C_2_Tm = Tm;
-                model_2806.C_2_Tmdiff = Tm - model_2806.Tm;
+                model_2806.C_2_Tmdiff = Math.Round(Tm - model_2806.Tm, 2, MidpointRounding.AwayFromZero); 
                 collectDataFlag = false;
                 dt.Rows.Add("冷水降压测试压力恢复数据采集完毕",
                     DateTime.Now,
@@ -2116,7 +2116,7 @@ namespace 恒温测试机.UI
                 System.Threading.Thread.Sleep(1000 * 5);
                 //记录2806模板相关数据
                 model_2806.C_3_Tm = Tm;
-                model_2806.C_3_Tmdiff = Tm - model_2806.Tm;
+                model_2806.C_3_Tmdiff = Math.Round(Tm - model_2806.Tm, 2, MidpointRounding.AwayFromZero); 
                 System.Threading.Thread.Sleep((int)(1000 * (Properties.Settings.Default.t3 - 5)));
                 SystemInfoPrint("[t3 = " + Properties.Settings.Default.t3.ToString() + " s 冷水升压测试阶段结束，停止记录数据。关闭d，打开c，压力开始恢复，022压力由低压切换为高压]\n");
                 //停止收集数据,持续t3后
@@ -2183,7 +2183,7 @@ namespace 恒温测试机.UI
                 System.Threading.Thread.Sleep((int)(1000 * 5));//延时5s
                 //记录2806模板相关数据
                 model_2806.C_4_Tm = Tm;
-                model_2806.C_4_Tmdiff = Tm - model_2806.Tm;
+                model_2806.C_4_Tmdiff = Math.Round(Tm - model_2806.Tm, 2, MidpointRounding.AwayFromZero); 
                 collectDataFlag = false;
                 dt.Rows.Add("冷水降压测试压力恢复数据采集完毕",
                     DateTime.Now,
@@ -2802,7 +2802,7 @@ namespace 恒温测试机.UI
                 System.Threading.Thread.Sleep((int)(1000 * Properties.Settings.Default.t3));
                 //记录2806模板相关数据
                 model_2806.Up_Tm = Tm;
-                model_2806.Up_Tmdiff = Tm - model_2806.Tm;
+                model_2806.Up_Tmdiff = Math.Round(Tm - model_2806.Tm, 2, MidpointRounding.AwayFromZero); 
 
                 collectDataFlag = false;
                 dt.Rows.Add("t3秒内出水温度数据采集完毕",
