@@ -3224,7 +3224,9 @@ namespace 恒温测试机.UI
                     Temp4 = Math.Round(m_dataScaled[i + 13], 2, MidpointRounding.AwayFromZero);// * 10;
                     Temp5 = Math.Round(m_dataScaled[i + 14], 2, MidpointRounding.AwayFromZero);// * 10;
                     Wh = Math.Round(m_dataScaled[i + 15], 2, MidpointRounding.AwayFromZero) * 200;
-
+                    //Console.WriteLine("Qh:" + Qh);
+                    //Console.WriteLine("Qc:" + Qc);
+                    //Console.WriteLine("Qm:" + Qm);
                     if (dataIndex < 6)
                     {
                         int typeIndex = 0;

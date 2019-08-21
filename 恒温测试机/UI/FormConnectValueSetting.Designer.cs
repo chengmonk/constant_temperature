@@ -569,6 +569,7 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Name = "FormConnectValueSetting";
             this.ShowIcon = false;
+            this.Load += new System.EventHandler(this.FormConnectValueSetting_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.groupBox2.ResumeLayout(false);

@@ -31,56 +31,56 @@ namespace 恒温测试机.UI
 
         #region 伺服电机A  地址变量
 
-        private string powerAddress_A = "2056";   //M8-2056   M18-2066
+        private string powerAddress_A = "2057";   //M8-2056   M18-2066
         public bool powerState_A = false;
 
-        public string forwardWriteAddress_A = "2048";
-        private string forwardReadAddress_A = "2053";
+        public string forwardWriteAddress_A = "2049";
+        private string forwardReadAddress_A = "2054";
         public bool forwardState_A = false;
 
-        private string noForwardWriteAddress_A = "2049";
-        private string noForwardReadAddress_A = "2054";
+        private string noForwardWriteAddress_A = "2050";
+        private string noForwardReadAddress_A = "2055";
         private bool noForwadState_A = false;
 
-        private string orignWriteAddress_A = "2050";
-        private string orignReadAddress_A = "2055";
+        private string orignWriteAddress_A = "2051";
+        private string orignReadAddress_A = "2056";
         private bool orignState_A = false;
 
-        private string autoRunAddress_A = "2051";
-        private string backOrignAddress_A = "2052";
-        public string shutdownAddress_A = "2057";
+        private string autoRunAddress_A = "2052";
+        private string backOrignAddress_A = "2053";
+        public string shutdownAddress_A = "2058";
 
-        private string radioAddress_A = "4296";
+        private string radioAddress_A = "4297";
         private uint radioValue_A = 0;
-        private string angleAddress_A = "5432";
+        private string angleAddress_A = "5433";
         public int angleValue_A = 0;
 
         #endregion
 
         #region 伺服电机L  地址变量
 
-        private string powerAddress_L = "2066";   //M8-2056   M18-2066
+        private string powerAddress_L = "2067";   //M8-2056   M18-2066
         public bool powerState_L = false;
 
-        private string forwardWriteAddress_L = "2058";
-        private string forwardReadAddress_L = "2063";
+        private string forwardWriteAddress_L = "2059";
+        private string forwardReadAddress_L = "2064";
         private bool forwardState_L = false;
 
-        private string noForwardWriteAddress_L = "2059";
-        private string noForwardReadAddress_L = "2064";
+        private string noForwardWriteAddress_L = "2060";
+        private string noForwardReadAddress_L = "2065";
         private bool noForwadState_L = false;
 
-        private string orignWriteAddress_L = "2060";
-        private string orignReadAddress_L = "2065";
+        private string orignWriteAddress_L = "2061";
+        private string orignReadAddress_L = "2066";
         private bool orignState_L = false;
 
-        private string autoRunAddress_L = "2061";
-        private string backOrignAddress_L = "2062";
-        public string shutdownAddress_L = "2067";
+        private string autoRunAddress_L = "2062";
+        private string backOrignAddress_L = "2063";
+        public string shutdownAddress_L = "2068";
 
-        private string radioAddress_L = "4298";
+        private string radioAddress_L = "4299";
         private uint radioValue_L = 0;
-        private string angleAddress_L = "5434";
+        private string angleAddress_L = "5435";
         private int angleValue_L = 0;
 
         #endregion
@@ -799,5 +799,9 @@ namespace 恒温测试机.UI
 
         #endregion
 
+        private void FormConnectValueSetting_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }
