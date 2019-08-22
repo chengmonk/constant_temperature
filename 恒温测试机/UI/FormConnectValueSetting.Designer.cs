@@ -210,7 +210,7 @@
             // 
             // angleBtn_A
             // 
-            this.angleBtn_A.Location = new System.Drawing.Point(200, 52);
+            this.angleBtn_A.Location = new System.Drawing.Point(247, 50);
             this.angleBtn_A.Name = "angleBtn_A";
             this.angleBtn_A.Size = new System.Drawing.Size(74, 29);
             this.angleBtn_A.TabIndex = 45;
@@ -220,14 +220,14 @@
             // 
             // angleTb_A
             // 
-            this.angleTb_A.Location = new System.Drawing.Point(121, 55);
+            this.angleTb_A.Location = new System.Drawing.Point(168, 53);
             this.angleTb_A.Name = "angleTb_A";
             this.angleTb_A.Size = new System.Drawing.Size(73, 21);
             this.angleTb_A.TabIndex = 44;
             // 
             // radioBtn_A
             // 
-            this.radioBtn_A.Location = new System.Drawing.Point(200, 20);
+            this.radioBtn_A.Location = new System.Drawing.Point(247, 18);
             this.radioBtn_A.Name = "radioBtn_A";
             this.radioBtn_A.Size = new System.Drawing.Size(74, 29);
             this.radioBtn_A.TabIndex = 43;
@@ -237,7 +237,7 @@
             // 
             // radioTb_A
             // 
-            this.radioTb_A.Location = new System.Drawing.Point(121, 24);
+            this.radioTb_A.Location = new System.Drawing.Point(168, 22);
             this.radioTb_A.Name = "radioTb_A";
             this.radioTb_A.Size = new System.Drawing.Size(73, 21);
             this.radioTb_A.TabIndex = 42;
@@ -380,7 +380,7 @@
             // 
             // angleBtn_L
             // 
-            this.angleBtn_L.Location = new System.Drawing.Point(200, 51);
+            this.angleBtn_L.Location = new System.Drawing.Point(246, 52);
             this.angleBtn_L.Name = "angleBtn_L";
             this.angleBtn_L.Size = new System.Drawing.Size(74, 29);
             this.angleBtn_L.TabIndex = 49;
@@ -390,14 +390,14 @@
             // 
             // angleTb_L
             // 
-            this.angleTb_L.Location = new System.Drawing.Point(121, 54);
+            this.angleTb_L.Location = new System.Drawing.Point(167, 55);
             this.angleTb_L.Name = "angleTb_L";
             this.angleTb_L.Size = new System.Drawing.Size(73, 21);
             this.angleTb_L.TabIndex = 48;
             // 
             // radioBtn_L
             // 
-            this.radioBtn_L.Location = new System.Drawing.Point(200, 19);
+            this.radioBtn_L.Location = new System.Drawing.Point(246, 20);
             this.radioBtn_L.Name = "radioBtn_L";
             this.radioBtn_L.Size = new System.Drawing.Size(74, 29);
             this.radioBtn_L.TabIndex = 47;
@@ -407,7 +407,7 @@
             // 
             // radioTb_L
             // 
-            this.radioTb_L.Location = new System.Drawing.Point(121, 23);
+            this.radioTb_L.Location = new System.Drawing.Point(167, 24);
             this.radioTb_L.Name = "radioTb_L";
             this.radioTb_L.Size = new System.Drawing.Size(73, 21);
             this.radioTb_L.TabIndex = 46;
@@ -511,6 +511,7 @@
             this.forwardBtn_L.TabIndex = 32;
             this.forwardBtn_L.Text = "正传";
             this.forwardBtn_L.UseVisualStyleBackColor = true;
+            this.forwardBtn_L.Click += new System.EventHandler(this.ForwardBtn_L_Click);
             this.forwardBtn_L.MouseClick += new System.Windows.Forms.MouseEventHandler(this.ForwardBtn_L_MouseClick);
             // 
             // powerBtn_L

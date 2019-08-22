@@ -31,28 +31,28 @@ namespace 恒温测试机.UI
 
         #region 伺服电机A  地址变量
 
-        private string powerAddress_A = "2057";   //M8-2056   M18-2066
+        private string powerAddress_A = "2056";   //M8-2056   M18-2066
         public bool powerState_A = false;
 
-        public string forwardWriteAddress_A = "2049";
-        private string forwardReadAddress_A = "2054";
+        public string forwardWriteAddress_A = "2048";
+        private string forwardReadAddress_A = "2053";
         public bool forwardState_A = false;
 
-        private string noForwardWriteAddress_A = "2050";
-        private string noForwardReadAddress_A = "2055";
+        private string noForwardWriteAddress_A = "2049";
+        private string noForwardReadAddress_A = "2054";
         private bool noForwadState_A = false;
 
-        private string orignWriteAddress_A = "2051";
-        private string orignReadAddress_A = "2056";
+        private string orignWriteAddress_A = "2050";
+        private string orignReadAddress_A = "2055";
         private bool orignState_A = false;
 
-        private string autoRunAddress_A = "2052";
-        private string backOrignAddress_A = "2053";
-        public string shutdownAddress_A = "2058";
+        private string autoRunAddress_A = "2051";
+        private string backOrignAddress_A = "2052";
+        public string shutdownAddress_A = "2057";
 
-        private string radioAddress_A = "4297";
+        private string radioAddress_A = "6096";
         private uint radioValue_A = 0;
-        private string angleAddress_A = "5433";
+        private string angleAddress_A = "4100";
         public int angleValue_A = 0;
 
         #endregion
@@ -78,9 +78,9 @@ namespace 恒温测试机.UI
         private string backOrignAddress_L = "2063";
         public string shutdownAddress_L = "2068";
 
-        private string radioAddress_L = "4299";
+        private string radioAddress_L = "6098";
         private uint radioValue_L = 0;
-        private string angleAddress_L = "5435";
+        private string angleAddress_L = "4102";
         private int angleValue_L = 0;
 
         #endregion
@@ -181,8 +181,8 @@ namespace 恒温测试机.UI
 
                     var temp1 = (radioValue_A * 0.0001);
                     var temp2 = (angleValue_A * 0.0001);
-                    radioLb_A.Text = "" + temp1;
-                    angelLb_A.Text = "" + temp2;
+                    radioLb_A.Text = "" + Math.Round(radioValue_A / 10000.0, 1); ;
+                    angelLb_A.Text = "" + Math.Round(angleValue_A / 10000.0,1);
 
                     if (isAutoFindAngle)
                     {
@@ -297,7 +297,7 @@ namespace 恒温测试机.UI
             else
             {
                 short val3 = Convert.ToInt16("" + val2);
-                formMain.Write(textBox2.Text, val3, station);
+                formMain.Write_short(textBox2.Text, val3, station);
                 SystemInfoPrint("写入：【" + textBox2.Text + "】【" + val3 + "】\n");
             }
         }
@@ -438,7 +438,7 @@ namespace 恒温测试机.UI
 
         private void RadioBtn_A_Click(object sender, EventArgs e)
         {
-            int val2 = Convert.ToInt32(radioTb_A.Text) * 10000;
+            uint val2 = (uint)(double.Parse(radioTb_A.Text) * 10000);
 
             if (val2 < 0 || val2 > 200000)
             {
@@ -450,10 +450,9 @@ namespace 恒温测试机.UI
                 return;
             }
             else
-            {
-                short val3 = Convert.ToInt16("" + val2);
-                formMain.Write(radioAddress_A, val3, 5);
-                SystemInfoPrint("写入：【" + radioAddress_A + "】【" + val3 + "】\n");
+            {                
+                formMain.Write_uint(radioAddress_A, val2, 5);
+                SystemInfoPrint("写入：【" + radioAddress_A + "】【" + val2 + "】\n");
             }
         }
 
@@ -599,9 +598,8 @@ namespace 恒温测试机.UI
         }
 
         private void RadioBtn_L_Click(object sender, EventArgs e)
-        {
-            int val2 = Convert.ToInt32(radioTb_L.Text) * 10000;
-
+        {           
+            uint val2 = (uint)(double.Parse(radioTb_L.Text) * 10000);
             if (val2 < 0 || val2 > 200000)
             {
                 MessageBox.Show("请输入0-20 范围内的值");
@@ -609,9 +607,9 @@ namespace 恒温测试机.UI
             }
             else
             {
-                short val3 = Convert.ToInt16("" + val2);
-                formMain.Write(radioAddress_L, val3, 5);
-                SystemInfoPrint("写入：【" + radioAddress_L + "】【" + val3 + "】\n");
+                
+                formMain.Write_uint(radioAddress_L, val2, 5);
+                SystemInfoPrint("写入：【" + radioAddress_L + "】【" + val2 + "】\n");
             }
         }
 
@@ -800,6 +798,11 @@ namespace 恒温测试机.UI
         #endregion
 
         private void FormConnectValueSetting_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void ForwardBtn_L_Click(object sender, EventArgs e)
         {
 
         }

@@ -1602,7 +1602,7 @@ namespace 恒温测试机.UI
                 set_bit(ref doData[2], 0, true);//b            
                 control.InstantDo_Write(doData);
                 //022压力切换为低压 用485切换    
-                Write("125", Convert.ToInt16(Properties.Settings.Default.PumpHotLow022 * 500), 3);
+                Write_short("125", Convert.ToInt16(Properties.Settings.Default.PumpHotLow022 * 500), 3);
                 SystemInfoPrint("[t1 = " + Properties.Settings.Default.t1.ToString() + " s 计时结束，关闭a打开b，开始压力变化测试-热水降压测试]\n");
                 if (stopFlag)   //手动停止
                 {
@@ -1752,7 +1752,7 @@ namespace 恒温测试机.UI
                 set_bit(ref doData[2], 0, true);//b  
                 control.InstantDo_Write(doData);
                 //022高压切换          
-                Write("125", Convert.ToInt16(Properties.Settings.Default.PumpHotHigh022 * 500), 3);
+                Write_short("125", Convert.ToInt16(Properties.Settings.Default.PumpHotHigh022 * 500), 3);
                 SystemInfoPrint("[t1 = " + Properties.Settings.Default.t1.ToString() + " s 计时结束，关闭a打开b，开始压力变化测试-热水升压测试]\n");
                 if (stopFlag)   //手动停止
                 {
@@ -1911,7 +1911,7 @@ namespace 恒温测试机.UI
                 set_bit(ref doData[2], 2, true);//d 
                 control.InstantDo_Write(doData);
                 //012输出低压 485输出 
-                Write("125", Convert.ToInt16(Properties.Settings.Default.PumpCoolLow012 * 500), 1);
+                Write_short("125", Convert.ToInt16(Properties.Settings.Default.PumpCoolLow012 * 500), 1);
                 SystemInfoPrint("[t1 = " + Properties.Settings.Default.t1.ToString() + " s 计时结束，关闭c打开d，开始压力变化测试-冷水降压测试]\n");
                 if (stopFlag)   //手动停止
                 {
@@ -2067,7 +2067,7 @@ namespace 恒温测试机.UI
                 set_bit(ref doData[2], 1, false);//c
                 set_bit(ref doData[2], 2, true);//d 
                 control.InstantDo_Write(doData);
-                Write("125", Convert.ToInt16(Properties.Settings.Default.PumpCoolHigh012 * 500), 1);
+                Write_short("125", Convert.ToInt16(Properties.Settings.Default.PumpCoolHigh012 * 500), 1);
                 SystemInfoPrint("[t1 = " + Properties.Settings.Default.t1.ToString() + " s 计时结束，关闭c打开d，开始压力变化测试-冷水升压测试]\n");
                 if (stopFlag)   //手动停止
                 {
@@ -3010,12 +3010,16 @@ namespace 恒温测试机.UI
             return val;
         }
 
-        public void Write(string address, short val, byte station)
+        public void Write_uint(string address, uint val, byte station)
+        {
+         
+            bpq.write_uint(address, val, station);
+        }
+        public void Write_short(string address, short val, byte station)
         {
             bpq.write_short(address, val, station);
-            
-        }
 
+        }
         public FormConnectValueSetting settingForm;
         private void ElectControlBtn_Click(object sender, EventArgs e)
         {
