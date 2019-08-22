@@ -479,9 +479,9 @@
             this.label8.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.label8.Location = new System.Drawing.Point(6, 56);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(64, 17);
+            this.label8.Size = new System.Drawing.Size(74, 17);
             this.label8.TabIndex = 35;
-            this.label8.Text = "角度(度)：";
+            this.label8.Text = "位移(mm)：";
             // 
             // label9
             // 
@@ -489,9 +489,9 @@
             this.label9.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.label9.Location = new System.Drawing.Point(6, 27);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(81, 17);
+            this.label9.Size = new System.Drawing.Size(85, 17);
             this.label9.TabIndex = 34;
-            this.label9.Text = "转速(度/秒)：";
+            this.label9.Text = "转速(mm/s)：";
             // 
             // noForwardBtn_L
             // 
@@ -499,7 +499,7 @@
             this.noForwardBtn_L.Name = "noForwardBtn_L";
             this.noForwardBtn_L.Size = new System.Drawing.Size(74, 29);
             this.noForwardBtn_L.TabIndex = 33;
-            this.noForwardBtn_L.Text = "反传";
+            this.noForwardBtn_L.Text = "后退";
             this.noForwardBtn_L.UseVisualStyleBackColor = true;
             this.noForwardBtn_L.Click += new System.EventHandler(this.NoForwardBtn_L_Click);
             // 
@@ -509,7 +509,7 @@
             this.forwardBtn_L.Name = "forwardBtn_L";
             this.forwardBtn_L.Size = new System.Drawing.Size(74, 29);
             this.forwardBtn_L.TabIndex = 32;
-            this.forwardBtn_L.Text = "正传";
+            this.forwardBtn_L.Text = "前进";
             this.forwardBtn_L.UseVisualStyleBackColor = true;
             this.forwardBtn_L.Click += new System.EventHandler(this.ForwardBtn_L_Click);
             this.forwardBtn_L.MouseClick += new System.Windows.Forms.MouseEventHandler(this.ForwardBtn_L_MouseClick);

@@ -936,6 +936,7 @@ namespace 恒温测试机.UI
         private void FormMain_Load(object sender, EventArgs e)
         {
             //asc.Initialize(this);
+            bpq.write_coil("2078", true, 5);//松开产品
         }
 
         private void FormMain_SizeChanged(object sender, EventArgs e)
@@ -4599,6 +4600,20 @@ namespace 恒温测试机.UI
             label21.Text = trackBar1.Value.ToString() + "%";
             var value = Convert.ToDouble(trackBar1.Value.ToString()) * 0.1;
             AO_Func(0, value);            //输出模拟量
+        }
+
+        private void HslSwitch1_OnSwitchChanged(object arg1, bool arg2)
+        {
+            if (arg2)
+            {
+                bpq.write_coil("2078", true, 5);
+                hslSwitch1.Text = "夹紧产品";
+            }
+            else
+            {
+                bpq.write_coil("2078", false, 5);
+                hslSwitch1.Text = "松开产品";
+            }
         }
     }
 }

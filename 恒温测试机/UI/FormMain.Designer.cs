@@ -108,6 +108,7 @@
             this.Title = new System.Windows.Forms.Label();
             this.hslCurve1 = new HslControls.HslCurve();
             this.center1 = new System.Windows.Forms.Panel();
+            this.hslSwitch1 = new HslControls.HslSwitch();
             this.label21 = new System.Windows.Forms.Label();
             this.trackBar1 = new System.Windows.Forms.TrackBar();
             this.label22 = new System.Windows.Forms.Label();
@@ -1089,6 +1090,7 @@
             // center1
             // 
             this.center1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.center1.Controls.Add(this.hslSwitch1);
             this.center1.Controls.Add(this.label21);
             this.center1.Controls.Add(this.trackBar1);
             this.center1.Controls.Add(this.label22);
@@ -1170,10 +1172,21 @@
             this.center1.Size = new System.Drawing.Size(1026, 430);
             this.center1.TabIndex = 2;
             // 
+            // hslSwitch1
+            // 
+            this.hslSwitch1.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.hslSwitch1.Location = new System.Drawing.Point(896, 305);
+            this.hslSwitch1.Name = "hslSwitch1";
+            this.hslSwitch1.Size = new System.Drawing.Size(105, 110);
+            this.hslSwitch1.SwitchForeground = System.Drawing.Color.FromArgb(((int)(((byte)(36)))), ((int)(((byte)(36)))), ((int)(((byte)(36)))));
+            this.hslSwitch1.TabIndex = 152;
+            this.hslSwitch1.Text = "松开产品";
+            this.hslSwitch1.OnSwitchChanged += new System.Action<object, bool>(this.HslSwitch1_OnSwitchChanged);
+            // 
             // label21
             // 
             this.label21.AutoSize = true;
-            this.label21.Location = new System.Drawing.Point(938, 375);
+            this.label21.Location = new System.Drawing.Point(860, 375);
             this.label21.Name = "label21";
             this.label21.Size = new System.Drawing.Size(17, 12);
             this.label21.TabIndex = 151;
@@ -1181,7 +1194,7 @@
             // 
             // trackBar1
             // 
-            this.trackBar1.Location = new System.Drawing.Point(686, 375);
+            this.trackBar1.Location = new System.Drawing.Point(608, 375);
             this.trackBar1.Maximum = 100;
             this.trackBar1.Name = "trackBar1";
             this.trackBar1.Size = new System.Drawing.Size(237, 45);
@@ -1192,7 +1205,7 @@
             // label22
             // 
             this.label22.AutoSize = true;
-            this.label22.Location = new System.Drawing.Point(684, 355);
+            this.label22.Location = new System.Drawing.Point(606, 355);
             this.label22.Name = "label22";
             this.label22.Size = new System.Drawing.Size(77, 12);
             this.label22.TabIndex = 149;
@@ -2387,5 +2400,6 @@
         private System.Windows.Forms.Label label21;
         private System.Windows.Forms.TrackBar trackBar1;
         private System.Windows.Forms.Label label22;
+        private HslControls.HslSwitch hslSwitch1;
     }
 }

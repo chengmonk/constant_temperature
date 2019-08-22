@@ -59,24 +59,24 @@ namespace 恒温测试机.UI
 
         #region 伺服电机L  地址变量
 
-        private string powerAddress_L = "2067";   //M8-2056   M18-2066
+        private string powerAddress_L = "2066";   //M8-2056   M18-2066
         public bool powerState_L = false;
 
-        private string forwardWriteAddress_L = "2059";
-        private string forwardReadAddress_L = "2064";
+        private string forwardWriteAddress_L = "2058";
+        private string forwardReadAddress_L = "2063";
         private bool forwardState_L = false;
 
-        private string noForwardWriteAddress_L = "2060";
-        private string noForwardReadAddress_L = "2065";
+        private string noForwardWriteAddress_L = "2059";
+        private string noForwardReadAddress_L = "2064";
         private bool noForwadState_L = false;
 
-        private string orignWriteAddress_L = "2061";
-        private string orignReadAddress_L = "2066";
+        private string orignWriteAddress_L = "2060";
+        private string orignReadAddress_L = "2065";
         private bool orignState_L = false;
 
-        private string autoRunAddress_L = "2062";
-        private string backOrignAddress_L = "2063";
-        public string shutdownAddress_L = "2068";
+        private string autoRunAddress_L = "2061";
+        private string backOrignAddress_L = "2062";
+        public string shutdownAddress_L = "2067";
 
         private string radioAddress_L = "6098";
         private uint radioValue_L = 0;
@@ -196,8 +196,8 @@ namespace 恒温测试机.UI
                     radioValue_L = formMain.bpq.read_uint(radioAddress_L, 5);   //转速  读取 uint
                     angleValue_L = formMain.bpq.read_int(angleAddress_L, 5);    //角度  读取 int
 
-                    var temp3 = (radioValue_L * 0.0001);
-                    var temp4 = (angleValue_L * 0.0001);
+                    var temp3 = Math.Round((radioValue_L / 8000.0), 1);
+                    var temp4 = Math.Round((angleValue_L / 8000.0), 1);
                     radioLb_L.Text = "" + temp3;
                     angelLb_L.Text = "" + temp4;
                     #endregion
@@ -513,11 +513,10 @@ namespace 恒温测试机.UI
                 MessageBox.Show("请开启伺服电机L");
             }
             else
-            {
-                if (noForwadState_L)
-                    formMain.bpq.write_coil(noForwardWriteAddress_L, false, 5);
-                else
-                    formMain.bpq.write_coil(noForwardWriteAddress_L, true, 5);
+            {//反转
+
+                formMain.bpq.write_coil(forwardWriteAddress_L, false, 5);
+                formMain.bpq.write_coil(noForwardWriteAddress_L, true, 5);
             }
         }
 
@@ -599,10 +598,10 @@ namespace 恒温测试机.UI
 
         private void RadioBtn_L_Click(object sender, EventArgs e)
         {           
-            uint val2 = (uint)(double.Parse(radioTb_L.Text) * 10000);
+            uint val2 = (uint)(double.Parse(radioTb_L.Text) * 8000);
             if (val2 < 0 || val2 > 200000)
             {
-                MessageBox.Show("请输入0-20 范围内的值");
+                MessageBox.Show("请输入0-25 范围内的值");
                 radioTb_L.Text = "";
             }
             else
@@ -804,7 +803,15 @@ namespace 恒温测试机.UI
 
         private void ForwardBtn_L_Click(object sender, EventArgs e)
         {
-
+            if (!powerState_L)
+            {
+                MessageBox.Show("请开启伺服电机L");
+            }
+            else
+            {//正转
+                formMain.bpq.write_coil(forwardWriteAddress_L, true, 5);
+                formMain.bpq.write_coil(noForwardWriteAddress_L, false, 5);
+            }
         }
     }
 }
