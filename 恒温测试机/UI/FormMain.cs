@@ -3288,11 +3288,13 @@ namespace 恒温测试机.UI
                 //Console.WriteLine("液面高度：" + Wh);
 
                 //用485 读取冷水、热水的流量共十个数据
-
+                
+                short[] temp1 = bpq.read_short_batch("4110", 10, 5);
+                short[] temp2 = bpq.read_short_batch("4120", 10, 5);
                 for (int i = 0; i < 10; i++)
                 {//读取
-                    tempCoolFlow[i] = bpq.read_short("411" + i, 5) / 100.0;
-                    tempHotFlow[i] = bpq.read_short("412" + i, 5) / 100.0;
+                    tempCoolFlow[i] = temp1[i] / 100.0;
+                    tempHotFlow[i] = temp2[i] / 100.0;
                 }
                 tempCoolFlow[10] = tempCoolFlow[9];
                 tempHotFlow[10] = tempHotFlow[9];
@@ -3307,8 +3309,6 @@ namespace 恒温测试机.UI
                         HotFlow[i * 10 + j] = HotFill[j];
                     }
                 }
-
-
 
                 sourceDataQc = averge(ref sourceDataQc, 0);
                 //sourceDataQc = filterKalMan(sourceDataQc);
