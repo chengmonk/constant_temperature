@@ -45,7 +45,7 @@ namespace 恒温测试机.UI
         System.Timers.Timer monitorDiTimer;          //监控数字量定时器
         System.Timers.Timer monitorTimer;            //监控管道泵 阀  状态
         COMconfig bpq_conf;
-        public  M_485Rtu bpq;
+        public M_485Rtu bpq;
         public DAQ_profile collectData;
         public DAQ_profile control;
         public byte[] doData = new byte[4];    //数字量输出数据
@@ -247,7 +247,7 @@ namespace 恒温测试机.UI
                         hslPumpOne7.MoveSpeed = 0;
                 }
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 Log.Error("管道监控异常：" + ex.ToString());
                 return;
@@ -530,9 +530,9 @@ namespace 恒温测试机.UI
                     //if (graphFlag)
                     //{
                     for (int i = 3; i < 103; i++)
-                    {
-                        var qcTemp = (sourceDataQc[i] - 1) < 0 ? 0 : (sourceDataQc[i] - 1) * 12.5;
-                        var qhTemp = (sourceDataQh[i] - 1) < 0 ? 0 : (sourceDataQh[i] - 1) * 12.5;
+                    {                      
+                        var qcTemp = CoolFlow[i - 3] + (double)Properties.Settings.Default.QcAdjust;
+                        var qhTemp = HotFlow[i - 3] + (double)Properties.Settings.Default.QhAdjust;
                         var qmTemp = (sourceDataQm[i] - 1) < 0 ? 0 : (sourceDataQm[i] - 1) * 5;
                         hslCurve1.AddCurveData(
                             new string[] {
@@ -550,7 +550,10 @@ namespace 恒温测试机.UI
                                     //(float)Tc,(float)Th,(float)Tm,
                                     //(float)Pc,(float)Ph,(float)Pm,
                                     //(float)Qm5
-                                    (float)qcTemp,(float)qhTemp,(float)qmTemp,
+                                    //(float)Qm5
+                                    (float)qcTemp,
+                                (float)qhTemp,
+                                (float)qmTemp,
                                     (float)sourceDataTc[i]*10,(float)sourceDataTh[i]*10,(float)sourceDataTm[i]*10,
                                     (float)sourceDataPc[i],(float)sourceDataPh[i],(float)sourceDataPm[i],
                                     //(float)sourceDataQm5[i]
@@ -801,7 +804,7 @@ namespace 恒温测试机.UI
 
             bpq = new M_485Rtu(bpq_conf);
             bpq.connect();
-            
+
 
             collectConfig = new config();
             collectConfig.channelCount = 16;
@@ -1097,7 +1100,7 @@ namespace 恒温测试机.UI
             stopFlag = true;
             runFlag = false;
             autoRunFlag = false;
-           
+
             doData[0] = 0;
             doData[1] = 0;
             doData[2] = 0;
@@ -1176,7 +1179,7 @@ namespace 恒温测试机.UI
                 return;
             }
             FormStandardChoose formStandardChoose = new FormStandardChoose(this);
-            if(formStandardChoose.ShowDialog() == DialogResult.OK)
+            if (formStandardChoose.ShowDialog() == DialogResult.OK)
             {
                 switch (testStandard)
                 {
@@ -1197,7 +1200,7 @@ namespace 恒温测试机.UI
                         maxHeatRbt.Visible = true;
                         break;
                 }
-                MessageBox.Show("当前标准已切换为："+ testStandard.ToDescription());
+                MessageBox.Show("当前标准已切换为：" + testStandard.ToDescription());
             }
         }
 
@@ -1221,7 +1224,7 @@ namespace 恒温测试机.UI
                 set_bit(ref doData[2], 5, true);//vm
                 control.InstantDo_Write(doData);
                 SystemInfoPrint("[初始化系统]\n");
-                
+
                 System.Threading.Thread.Sleep((int)(1000 * Properties.Settings.Default.t1));
                 //记录2806模板相关数据
                 model_2806.Pc = Pc;
@@ -1240,7 +1243,7 @@ namespace 恒温测试机.UI
                 set_bit(ref doData[2], 6, false);//v5
                 control.InstantDo_Write(doData);
                 SystemInfoPrint("[t1 = " + Properties.Settings.Default.t1.ToString() + " s 计时结束，关闭Vc、Vm打开V5，开始冷水失效测试]\n");
-                
+
                 if (stopFlag)   //手动停止
                 {
                     StopPro();
@@ -1277,7 +1280,7 @@ namespace 恒温测试机.UI
                 model_2806.A_1_Qc = Qm5;
                 model_2806.A_1_Tc = Tm;
                 model_2806.A_1_Tcdiff = Math.Round(Tm - model_2806.Tm, 2, MidpointRounding.AwayFromZero);
-                System.Threading.Thread.Sleep((int)(1000 * (Properties.Settings.Default.t3-5)));
+                System.Threading.Thread.Sleep((int)(1000 * (Properties.Settings.Default.t3 - 5)));
                 collectDataFlag = false;  //停止收集数据
                 dt.Rows.Add("冷水失效数据采集完毕",
                                 DateTime.Now,
@@ -1318,11 +1321,11 @@ namespace 恒温测试机.UI
                     //{
                     //    break;
                     //}
-                    if ((Math.Abs(Pc - orgPc) <= (double)Properties.Settings.Default.pressureThreshold)&&(Math.Abs(Qm5) <= 0.1))//出水重量传感器里面的水排干净，压力恢复到之前的压力
+                    if ((Math.Abs(Pc - orgPc) <= (double)Properties.Settings.Default.pressureThreshold) && (Math.Abs(Qm5) <= 0.1))//出水重量传感器里面的水排干净，压力恢复到之前的压力
                     {
-                        break;                        
+                        break;
                     }
-                 
+
                 }
                 SystemInfoPrint("[压力恢复到初始压力，开始记录 5s 的数据]\n");
                 dt.Rows.Add("开始采集冷水恢复数据",
@@ -1346,7 +1349,7 @@ namespace 恒温测试机.UI
                 //记录2806模板相关数据
                 model_2806.A_2_Qc = Qm5;
                 model_2806.A_2_Tc = Tm;
-                model_2806.A_2_Tcdiff = Math.Round(Tm - model_2806.Tm, 2, MidpointRounding.AwayFromZero); 
+                model_2806.A_2_Tcdiff = Math.Round(Tm - model_2806.Tm, 2, MidpointRounding.AwayFromZero);
                 collectDataFlag = false;
                 dt.Rows.Add("冷水恢复数据采集完毕",
                     DateTime.Now,
@@ -1456,11 +1459,11 @@ namespace 恒温测试机.UI
                     //{
                     //    break;
                     //}
-                    if ((Math.Abs(Ph - orgPh) <= (double)Properties.Settings.Default.pressureThreshold)&&(Math.Abs(Qm5)<=0.1))//出水重量传感器里面的水排干净，压力恢复到之前的压力
+                    if ((Math.Abs(Ph - orgPh) <= (double)Properties.Settings.Default.pressureThreshold) && (Math.Abs(Qm5) <= 0.1))//出水重量传感器里面的水排干净，压力恢复到之前的压力
                     {
                         break;
                     }
-                   
+
                 }
                 SystemInfoPrint("[压力恢复到初始压力，开始记录 5s 的数据]\n");
                 dt.Rows.Add("开始采集热水恢复数据",
@@ -1484,7 +1487,7 @@ namespace 恒温测试机.UI
                 //记录2806模板相关数据
                 model_2806.B_2_Qh = Qm5;
                 model_2806.B_2_Th = Tm;
-                model_2806.B_2_Thdiff = Math.Round(Tm - model_2806.Tm, 2, MidpointRounding.AwayFromZero); 
+                model_2806.B_2_Thdiff = Math.Round(Tm - model_2806.Tm, 2, MidpointRounding.AwayFromZero);
                 collectDataFlag = false;
                 dt.Rows.Add("热水恢复数据采集完毕",
                     DateTime.Now,
@@ -1522,7 +1525,7 @@ namespace 恒温测试机.UI
                 set_bit(ref doData[2], 4, false);//vh
                 set_bit(ref doData[2], 5, false);//vm
                 control.InstantDo_Write(doData);
-                dataReportAnalyseApp = new DataReportAnalyseApp(logicType, analyseDataDic,model_2806);
+                dataReportAnalyseApp = new DataReportAnalyseApp(logicType, analyseDataDic, model_2806);
                 if (analyseReportDic.ContainsKey(logicType))
                 {
                     analyseReportDic[logicType] = dataReportAnalyseApp.AnalyseResult();
@@ -1532,7 +1535,7 @@ namespace 恒温测试机.UI
                     analyseReportDic.Add(logicType, dataReportAnalyseApp.AnalyseResult());
                 }
                 SystemInfoPrint(analyseReportDic[logicType] + "\n");
-                
+
                 runFlag = false;
                 graphFlag = false;
                 if (autoRunFlag)
@@ -1598,7 +1601,7 @@ namespace 恒温测试机.UI
                 }
 
                 System.Threading.Thread.Sleep((int)(1000 * Properties.Settings.Default.t1));
-                
+
                 set_bit(ref doData[1], 7, false);//a
                 set_bit(ref doData[2], 0, true);//b            
                 control.InstantDo_Write(doData);
@@ -1644,7 +1647,7 @@ namespace 恒温测试机.UI
                 System.Threading.Thread.Sleep(1000 * 5);
                 //记录2806模板相关数据
                 model_2806.H_1_Tm = Tm;
-                model_2806.H_1_Tmdiff = Math.Round(Tm - model_2806.Tm, 2, MidpointRounding.AwayFromZero); 
+                model_2806.H_1_Tmdiff = Math.Round(Tm - model_2806.Tm, 2, MidpointRounding.AwayFromZero);
                 System.Threading.Thread.Sleep((int)(1000 * (Properties.Settings.Default.t3 - 5)));
                 SystemInfoPrint("[t3 = " + Properties.Settings.Default.t3.ToString() + " s 热水降压测试阶段结束，停止记录数据。关闭b，打开a，压力开始恢复，022压力由低压切换为高压]\n");
                 collectDataFlag = false;
@@ -1716,7 +1719,7 @@ namespace 恒温测试机.UI
                 System.Threading.Thread.Sleep((int)(1000 * 5));//延时5s
                 //记录2806模板相关数据
                 model_2806.H_2_Tm = Tm;
-                model_2806.H_2_Tmdiff = Math.Round(Tm - model_2806.Tm, 2, MidpointRounding.AwayFromZero); 
+                model_2806.H_2_Tmdiff = Math.Round(Tm - model_2806.Tm, 2, MidpointRounding.AwayFromZero);
 
                 collectDataFlag = false;
                 dt.Rows.Add("热水降压测试压力恢复数据采集完毕",
@@ -1801,7 +1804,7 @@ namespace 恒温测试机.UI
                 System.Threading.Thread.Sleep(1000 * 5);
                 //记录2806模板相关数据
                 model_2806.H_3_Tm = Tm;
-                model_2806.H_3_Tmdiff = Math.Round(Tm - model_2806.Tm, 2, MidpointRounding.AwayFromZero); 
+                model_2806.H_3_Tmdiff = Math.Round(Tm - model_2806.Tm, 2, MidpointRounding.AwayFromZero);
                 System.Threading.Thread.Sleep((int)(1000 * (Properties.Settings.Default.t3 - 5)));
                 SystemInfoPrint("[t3 = " + Properties.Settings.Default.t3.ToString() + " s 热水升压测试阶段结束，停止记录数据。关闭b，打开a，压力开始恢复，022压力由低压切换为高压]\n");
                 collectDataFlag = false;
@@ -1829,7 +1832,7 @@ namespace 恒温测试机.UI
                 }
                 set_bit(ref doData[1], 7, true);//a
                 set_bit(ref doData[2], 0, false);//b 
-                control.InstantDo_Write(doData);   
+                control.InstantDo_Write(doData);
                 #endregion
 
                 #region 热水压力恢复到初始压力，开始记录 5s 的数据
@@ -1868,7 +1871,7 @@ namespace 恒温测试机.UI
                 System.Threading.Thread.Sleep((int)(1000 * 5));//延时5s
                 //记录2806模板相关数据
                 model_2806.H_4_Tm = Tm;
-                model_2806.H_4_Tmdiff = Math.Round(Tm - model_2806.Tm, 2, MidpointRounding.AwayFromZero); 
+                model_2806.H_4_Tmdiff = Math.Round(Tm - model_2806.Tm, 2, MidpointRounding.AwayFromZero);
                 collectDataFlag = false;
                 dt.Rows.Add("热水升压测试压力恢复数据采集完毕",
                     DateTime.Now,
@@ -1897,7 +1900,7 @@ namespace 恒温测试机.UI
                 #endregion
 
                 #region t1 同时 关闭 c 打开d
-                
+
                 set_bit(ref doData[2], 1, true);//c
                 set_bit(ref doData[2], 2, false);//d 
                 control.InstantDo_Write(doData);
@@ -1961,7 +1964,7 @@ namespace 恒温测试机.UI
                 System.Threading.Thread.Sleep(1000 * 5);
                 //记录2806模板相关数据
                 model_2806.C_1_Tm = Tm;
-                model_2806.C_1_Tmdiff = Math.Round(Tm - model_2806.Tm, 2, MidpointRounding.AwayFromZero); 
+                model_2806.C_1_Tmdiff = Math.Round(Tm - model_2806.Tm, 2, MidpointRounding.AwayFromZero);
                 System.Threading.Thread.Sleep((int)(1000 * (Properties.Settings.Default.t3 - 5)));
                 SystemInfoPrint("[t3 = " + Properties.Settings.Default.t3.ToString() + " s 冷水降压测试阶段结束，停止记录数据。关闭b，打开a，压力开始恢复，022压力由低压切换为高压]\n");
                 collectDataFlag = false;
@@ -2027,7 +2030,7 @@ namespace 恒温测试机.UI
                 System.Threading.Thread.Sleep((int)(1000 * 5));//延时5s
                 //记录2806模板相关数据
                 model_2806.C_2_Tm = Tm;
-                model_2806.C_2_Tmdiff = Math.Round(Tm - model_2806.Tm, 2, MidpointRounding.AwayFromZero); 
+                model_2806.C_2_Tmdiff = Math.Round(Tm - model_2806.Tm, 2, MidpointRounding.AwayFromZero);
                 collectDataFlag = false;
                 dt.Rows.Add("冷水降压测试压力恢复数据采集完毕",
                     DateTime.Now,
@@ -2117,7 +2120,7 @@ namespace 恒温测试机.UI
                 System.Threading.Thread.Sleep(1000 * 5);
                 //记录2806模板相关数据
                 model_2806.C_3_Tm = Tm;
-                model_2806.C_3_Tmdiff = Math.Round(Tm - model_2806.Tm, 2, MidpointRounding.AwayFromZero); 
+                model_2806.C_3_Tmdiff = Math.Round(Tm - model_2806.Tm, 2, MidpointRounding.AwayFromZero);
                 System.Threading.Thread.Sleep((int)(1000 * (Properties.Settings.Default.t3 - 5)));
                 SystemInfoPrint("[t3 = " + Properties.Settings.Default.t3.ToString() + " s 冷水升压测试阶段结束，停止记录数据。关闭d，打开c，压力开始恢复，022压力由低压切换为高压]\n");
                 //停止收集数据,持续t3后
@@ -2184,7 +2187,7 @@ namespace 恒温测试机.UI
                 System.Threading.Thread.Sleep((int)(1000 * 5));//延时5s
                 //记录2806模板相关数据
                 model_2806.C_4_Tm = Tm;
-                model_2806.C_4_Tmdiff = Math.Round(Tm - model_2806.Tm, 2, MidpointRounding.AwayFromZero); 
+                model_2806.C_4_Tmdiff = Math.Round(Tm - model_2806.Tm, 2, MidpointRounding.AwayFromZero);
                 collectDataFlag = false;
                 dt.Rows.Add("冷水降压测试压力恢复数据采集完毕",
                     DateTime.Now,
@@ -2227,7 +2230,7 @@ namespace 恒温测试机.UI
                 set_bit(ref doData[2], 4, false);//vh
                 set_bit(ref doData[2], 5, false);//vm
                 control.InstantDo_Write(doData);
-                dataReportAnalyseApp = new DataReportAnalyseApp(logicType, analyseDataDic,model_2806);
+                dataReportAnalyseApp = new DataReportAnalyseApp(logicType, analyseDataDic, model_2806);
                 if (analyseReportDic.ContainsKey(logicType))
                 {
                     analyseReportDic[logicType] = dataReportAnalyseApp.AnalyseResult();
@@ -2435,7 +2438,7 @@ namespace 恒温测试机.UI
                 SystemInfoPrint("[ 45s 的数据记录完毕]\n");
                 #endregion
 
-                dataReportAnalyseApp = new DataReportAnalyseApp(logicType, analyseDataDic,model_2806);
+                dataReportAnalyseApp = new DataReportAnalyseApp(logicType, analyseDataDic, model_2806);
                 if (analyseReportDic.ContainsKey(logicType))
                 {
                     analyseReportDic[logicType] = dataReportAnalyseApp.AnalyseResult();
@@ -2532,7 +2535,7 @@ namespace 恒温测试机.UI
                 #endregion
 
 
-                dataReportAnalyseApp = new DataReportAnalyseApp(logicType, analyseDataDic,model_2806);
+                dataReportAnalyseApp = new DataReportAnalyseApp(logicType, analyseDataDic, model_2806);
                 if (analyseReportDic.ContainsKey(logicType))
                 {
                     analyseReportDic[logicType] = dataReportAnalyseApp.AnalyseResult();
@@ -2709,7 +2712,7 @@ namespace 恒温测试机.UI
                 }
                 #endregion
 
-                dataReportAnalyseApp = new DataReportAnalyseApp(logicType, analyseDataDic,model_2806);
+                dataReportAnalyseApp = new DataReportAnalyseApp(logicType, analyseDataDic, model_2806);
                 if (analyseReportDic.ContainsKey(logicType))
                 {
                     analyseReportDic[logicType] = dataReportAnalyseApp.AnalyseResult();
@@ -2748,7 +2751,7 @@ namespace 恒温测试机.UI
             }
         }
 
-        private void HeatTimer_Action(object source,System.Timers.ElapsedEventArgs e)
+        private void HeatTimer_Action(object source, System.Timers.ElapsedEventArgs e)
         {
             try
             {
@@ -2803,7 +2806,7 @@ namespace 恒温测试机.UI
                 System.Threading.Thread.Sleep((int)(1000 * Properties.Settings.Default.t3));
                 //记录2806模板相关数据
                 model_2806.Up_Tm = Tm;
-                model_2806.Up_Tmdiff = Math.Round(Tm - model_2806.Tm, 2, MidpointRounding.AwayFromZero); 
+                model_2806.Up_Tmdiff = Math.Round(Tm - model_2806.Tm, 2, MidpointRounding.AwayFromZero);
 
                 collectDataFlag = false;
                 dt.Rows.Add("t3秒内出水温度数据采集完毕",
@@ -2831,7 +2834,7 @@ namespace 恒温测试机.UI
                 SystemInfoPrint("[t3 = " + Properties.Settings.Default.t3.ToString() + " s 计时结束，结束升温测试]\n");
                 #endregion
 
-                dataReportAnalyseApp = new DataReportAnalyseApp(logicType, analyseDataDic,model_2806);
+                dataReportAnalyseApp = new DataReportAnalyseApp(logicType, analyseDataDic, model_2806);
                 if (analyseReportDic.ContainsKey(logicType))
                 {
                     analyseReportDic[logicType] = dataReportAnalyseApp.AnalyseResult();
@@ -2870,7 +2873,7 @@ namespace 恒温测试机.UI
             }
         }
 
-        private void MaxHeatTimer_Action(object source,System.Timers.ElapsedEventArgs e)
+        private void MaxHeatTimer_Action(object source, System.Timers.ElapsedEventArgs e)
         {
             try
             {
@@ -2939,7 +2942,7 @@ namespace 恒温测试机.UI
                 System.Threading.Thread.Sleep(1000 * 25);
                 //记录2806模板相关数据
                 model_2806.TmMax = Tm;
-                
+
                 collectDataFlag = false;
                 dt.Rows.Add("T25秒内出水温度数据采集完毕",
                     DateTime.Now,
@@ -2976,7 +2979,7 @@ namespace 恒温测试机.UI
                 set_bit(ref doData[2], 4, false);//vh
                 set_bit(ref doData[2], 5, false);//vm
                 control.InstantDo_Write(doData);
-                dataReportAnalyseApp = new DataReportAnalyseApp(logicType, analyseDataDic,model_2806);
+                dataReportAnalyseApp = new DataReportAnalyseApp(logicType, analyseDataDic, model_2806);
                 if (analyseReportDic.ContainsKey(logicType))
                 {
                     analyseReportDic[logicType] = dataReportAnalyseApp.AnalyseResult();
@@ -3013,7 +3016,7 @@ namespace 恒温测试机.UI
 
         public void Write_uint(string address, uint val, byte station)
         {
-         
+
             bpq.write_uint(address, val, station);
         }
         public void Write_short(string address, short val, byte station)
@@ -3186,7 +3189,276 @@ namespace 恒温测试机.UI
         private double[] sourceDataWh = new double[64];
         private float[] resultDataWh = new float[64];
 
+        double[] tempCoolFlow = new double[11];//读取plc的原始数据
+        double[] tempHotFlow = new double[11];
+        double[] CoolFlow = new double[100];//扩充后的数据
+        double[] HotFlow = new double[100];
+
         private void WaveformAiCtrl1_DataReady(object sender, BfdAiEventArgs args)
+        {
+            ErrorCode err = ErrorCode.Success;
+            try
+            {
+                //The WaveformAiCtrl has been disposed.
+                if (waveformAiCtrl1.State == ControlState.Idle)
+                {
+                    return;
+                }
+                if (m_dataScaled.Length < args.Count)
+                {
+                    m_dataScaled = new double[args.Count];
+                }
+
+                int chanCount = waveformAiCtrl1.Conversion.ChannelCount;
+                int sectionLength = waveformAiCtrl1.Record.SectionLength;
+                err = waveformAiCtrl1.GetData(args.Count, m_dataScaled);//读取数据     
+
+                DateTime t = DateTime.Now;
+                t = t.AddSeconds(-1.03);//采集到的是一秒钟之前的数据，因此需要对当前的时间减去1s，再减去30ms是因为该30ms的数据，并在当前缓冲区做平滑
+                t.ToString("yyyy-MM-dd hh:mm:ss:fff");
+                //Log.Info(t.ToString("yyyy-MM-dd hh:mm:ss:fff"));
+
+                int dataIndex = 0;
+                for (int i = 0; i < m_dataScaled.Length; i += 16)
+                {
+                    Qc = Math.Round(m_dataScaled[i + 0], 2, MidpointRounding.AwayFromZero);// * 5;          流量的量程 1-5V 对应  0-50L/min
+                    Qh = Math.Round(m_dataScaled[i + 1], 2, MidpointRounding.AwayFromZero);// * 5;
+                    Qm = Math.Round(m_dataScaled[i + 2], 2, MidpointRounding.AwayFromZero);// * 5;
+                    Tc = Math.Round(m_dataScaled[i + 3], 2, MidpointRounding.AwayFromZero);// * 10;
+                    Th = Math.Round(m_dataScaled[i + 4], 2, MidpointRounding.AwayFromZero);// * 10;
+                    Tm = Math.Round(m_dataScaled[i + 5], 2, MidpointRounding.AwayFromZero);// * 10;
+                    Pc = Math.Round(m_dataScaled[i + 6], 2, MidpointRounding.AwayFromZero);
+                    Ph = Math.Round(m_dataScaled[i + 7], 2, MidpointRounding.AwayFromZero);
+                    Pm = Math.Round(m_dataScaled[i + 8], 2, MidpointRounding.AwayFromZero);
+                    Qm5 = Math.Round(m_dataScaled[i + 9], 2, MidpointRounding.AwayFromZero);
+                    Temp1 = Math.Round(m_dataScaled[i + 10], 2, MidpointRounding.AwayFromZero);// * 10;
+                    Temp2 = Math.Round(m_dataScaled[i + 11], 2, MidpointRounding.AwayFromZero);// * 10;
+                    Temp3 = Math.Round(m_dataScaled[i + 12], 2, MidpointRounding.AwayFromZero);// * 10;
+                    Temp4 = Math.Round(m_dataScaled[i + 13], 2, MidpointRounding.AwayFromZero);// * 10;
+                    Temp5 = Math.Round(m_dataScaled[i + 14], 2, MidpointRounding.AwayFromZero);// * 10;
+                    Wh = Math.Round(m_dataScaled[i + 15], 2, MidpointRounding.AwayFromZero) * 200;
+                    //Console.WriteLine("Qh:" + Qh);
+                    //Console.WriteLine("Qc:" + Qc);
+                    //Console.WriteLine("Qm:" + Qm);
+                    if (dataIndex < 6)
+                    {
+                        int typeIndex = 0;
+                        sourceDataQc[dataIndex] = isFirstAver ? Qc : lastTempData[typeIndex * 6 + dataIndex]; typeIndex++;
+                        sourceDataQh[dataIndex] = isFirstAver ? Qh : lastTempData[typeIndex * 6 + dataIndex]; typeIndex++;
+                        sourceDataQm[dataIndex] = isFirstAver ? Qm : lastTempData[typeIndex * 6 + dataIndex]; typeIndex++;
+                        sourceDataTc[dataIndex] = isFirstAver ? Tc : lastTempData[typeIndex * 6 + dataIndex]; typeIndex++;
+                        sourceDataTh[dataIndex] = isFirstAver ? Th : lastTempData[typeIndex * 6 + dataIndex]; typeIndex++;
+                        sourceDataTm[dataIndex] = isFirstAver ? Tm : lastTempData[typeIndex * 6 + dataIndex]; typeIndex++;
+                        sourceDataPc[dataIndex] = isFirstAver ? Pc : lastTempData[typeIndex * 6 + dataIndex]; typeIndex++;
+                        sourceDataPh[dataIndex] = isFirstAver ? Ph : lastTempData[typeIndex * 6 + dataIndex]; typeIndex++;
+                        sourceDataPm[dataIndex] = isFirstAver ? Pm : lastTempData[typeIndex * 6 + dataIndex]; typeIndex++;
+                        sourceDataQm5[dataIndex] = isFirstAver ? Qm5 : lastTempData[typeIndex * 6 + dataIndex]; typeIndex++;
+                        sourceDataTemp1[dataIndex] = isFirstAver ? Temp1 : lastTempData[typeIndex * 6 + dataIndex]; typeIndex++;
+                        sourceDataTemp2[dataIndex] = isFirstAver ? Temp2 : lastTempData[typeIndex * 6 + dataIndex]; typeIndex++;
+                        sourceDataTemp3[dataIndex] = isFirstAver ? Temp3 : lastTempData[typeIndex * 6 + dataIndex]; typeIndex++;
+                        sourceDataTemp4[dataIndex] = isFirstAver ? Temp4 : lastTempData[typeIndex * 6 + dataIndex]; typeIndex++;
+                        sourceDataTemp5[dataIndex] = isFirstAver ? Temp5 : lastTempData[typeIndex * 6 + dataIndex]; typeIndex++;
+                    }
+                    if (dataIndex >= 18 && dataIndex <= 81)
+                    {
+                        sourceDataWh[dataIndex - 18] = Wh;
+                    }
+                    sourceDataQc[dataIndex + 5] = Qc;
+                    sourceDataQh[dataIndex + 5] = Qh;
+                    sourceDataQm[dataIndex + 5] = Qm;
+                    sourceDataTc[dataIndex + 5] = Tc;
+                    sourceDataTh[dataIndex + 5] = Th;
+                    sourceDataTm[dataIndex + 5] = Tm;
+                    //sourceDataTm2[index + 5] = Tm;
+
+                    sourceDataPc[dataIndex + 5] = Pc;
+                    sourceDataPh[dataIndex + 5] = Ph;
+                    sourceDataPm[dataIndex + 5] = Pm;
+                    sourceDataQm5[dataIndex + 5] = Qm5;
+                    sourceDataTemp1[dataIndex + 5] = Temp1;
+                    sourceDataTemp2[dataIndex + 5] = Temp2;
+                    sourceDataTemp3[dataIndex + 5] = Temp3;
+                    sourceDataTemp4[dataIndex + 5] = Temp4;
+                    sourceDataTemp5[dataIndex + 5] = Temp5;
+                    dataIndex++;
+                    if (dataIndex >= 101)
+                        dataIndex = 0;
+                }
+                //Console.WriteLine("液面高度：" + Wh);
+
+                //用485 读取冷水、热水的流量共十个数据
+                
+                for (int i = 0; i < 10; i++)
+                {//读取
+                    tempCoolFlow[i] = bpq.read_short("411" + i, 5);
+                    tempHotFlow[i] = bpq.read_short("412" + i, 5);
+                }
+                tempCoolFlow[10] = tempCoolFlow[9];
+                tempHotFlow[10] = tempHotFlow[9];               
+                for (int i = 0; i < 10; i++)
+                {
+
+                    double[] CoolFill = dataFill(tempCoolFlow[i], tempCoolFlow[i + 1], 11);//扩充数据
+                    double[] HotFill = dataFill(tempHotFlow[i], tempHotFlow[i + 1], 11); ;//
+                    for (int j = 0; j < 10; j++)
+                    {
+                        CoolFlow[i * 10 + j] = CoolFill[j];
+                        HotFlow[i * 10 + j] = HotFill[j];
+                    }
+                }
+
+
+
+                sourceDataQc = averge(ref sourceDataQc, 0);
+                //sourceDataQc = filterKalMan(sourceDataQc);
+                //sourceDataQc = averge(ref sourceDataQc, 0);
+
+                sourceDataQh = averge(ref sourceDataQh, 1);
+                //sourceDataQh = filter(ref sourceDataQh, 10);
+
+                sourceDataQm = averge(ref sourceDataQm, 2);
+                //sourceDataQm = filter(ref sourceDataQm, 10);
+
+                sourceDataTc = averge(ref sourceDataTc, 3);
+                //sourceDataTc = filter(ref sourceDataTc, 10);
+
+                sourceDataTh = averge(ref sourceDataTh, 4);
+                // sourceDataTh = filter(ref sourceDataTh, 10);
+
+                //unsen卡尔曼滤波算法，比纯卡尔曼滤波效果要好
+
+                sourceDataTm = averge(ref sourceDataTm, 5);
+                //sourceDataTm = midFilter(ref sourceDataTm, 5);
+                //sourceDataTm = UFK_filter(sourceDataTm);
+
+
+                sourceDataPc = averge(ref sourceDataPc, 6);
+                //sourceDataPc = filter(ref sourceDataPc, 10);
+
+                sourceDataPh = averge(ref sourceDataPh, 7);
+                // sourceDataPh = filter(ref sourceDataPh, 10);
+
+                sourceDataPm = averge(ref sourceDataPm, 8);
+                // sourceDataPm = filter(ref sourceDataPm, 10);
+
+                sourceDataQm5 = averge(ref sourceDataQm5, 9);
+                //sourceDataQm5 = filter(ref sourceDataQm5, 10);
+
+                sourceDataTemp1 = averge(ref sourceDataTemp1, 10);
+                //sourceDataTemp1 = filter(ref sourceDataTemp1, 10);
+
+                sourceDataTemp2 = averge(ref sourceDataTemp2, 11);
+                //sourceDataTemp2 = filter(ref sourceDataTemp2, 10);
+
+                sourceDataTemp3 = averge(ref sourceDataTemp3, 12);
+                //sourceDataTemp3 = filter(ref sourceDataTemp3, 10);
+
+                sourceDataTemp4 = averge(ref sourceDataTemp4, 13);
+                //sourceDataTemp4 = filter(ref sourceDataTemp4, 10);
+
+                sourceDataTemp5 = averge(ref sourceDataTemp5, 14);
+                //sourceDataTemp5 = filter(ref sourceDataTemp5, 10);
+
+                resultDataWh = TWFFT.FFT_filter(sourceDataWh);
+
+                if (isFirstAver == false)
+                {
+                    for (int i = 3; i < sourceDataQc.Length - 3; i++)
+                    {
+                        //Log.Info(t.ToString("yyyy-MM-dd hh:mm:ss:fff"));
+                        //Log.Info("index:" + i + " Value:" + (float)sourceDataTemp1[i]);
+                        //Console.WriteLine("index:"+i);
+                        if (collectDataFlag)
+                        {
+                            dt.Rows.Add(t.ToString("yyyy-MM-dd hh:mm:ss:fff"),
+                                t,
+                                // (sourceDataQc[i] - 1) < 0 ? 0 : (sourceDataQc[i] - 1) * 12.5 + (double)Properties.Settings.Default.QcAdjust,
+                                //(sourceDataQh[i] - 1) < 0 ? 0 : (sourceDataQh[i] - 1) * 12.5 + (double)Properties.Settings.Default.QhAdjust,
+                                CoolFlow[i - 3] + (double)Properties.Settings.Default.QcAdjust,
+                                HotFlow[i-3] + (double)Properties.Settings.Default.QhAdjust,
+                                (sourceDataQm[i] - 1) < 0 ? 0 : (sourceDataQm[i] - 1) * 5 + (double)Properties.Settings.Default.QmAdjust,
+                                sourceDataTc[i] * 10 + (double)Properties.Settings.Default.TcAdjust,
+                                sourceDataTh[i] * 10 + (double)Properties.Settings.Default.ThAdjust,
+                                sourceDataTm[i] * 10 + (double)Properties.Settings.Default.TmAdjust,
+                                sourceDataPc[i] + (double)Properties.Settings.Default.PcAdjust,
+                                sourceDataPh[i] + (double)Properties.Settings.Default.PhAdjust,
+                                sourceDataPm[i] + (double)Properties.Settings.Default.PmAdjust,
+                                sourceDataQm5[i],
+                                Wh + (double)Properties.Settings.Default.WhAdjust,
+                            index) ;
+                            index++;
+                        }
+                        if (graphFlag)          //记录流程测试中的，曲线变化
+                        {
+                            GraphDt.Rows.Add(t.ToString("yyyy-MM-dd hh:mm:ss:fff"),
+                                // (sourceDataQc[i] - 1) < 0 ? 0 : (sourceDataQc[i] - 1) * 12.5 + (double)Properties.Settings.Default.QcAdjust,
+                                //(sourceDataQh[i] - 1) < 0 ? 0 : (sourceDataQh[i] - 1) * 12.5 + (double)Properties.Settings.Default.QhAdjust,
+                                CoolFlow[i - 3] + (double)Properties.Settings.Default.QcAdjust,
+                                HotFlow[i - 3] + (double)Properties.Settings.Default.QhAdjust,
+                                (sourceDataQm[i] - 1) < 0 ? 0 : (sourceDataQm[i] - 1) * 5 + (double)Properties.Settings.Default.QmAdjust,
+                                sourceDataTc[i] * 10 + (double)Properties.Settings.Default.TcAdjust,
+                                sourceDataTh[i] * 10 + (double)Properties.Settings.Default.ThAdjust,
+                                sourceDataTm[i] * 10 + (double)Properties.Settings.Default.TmAdjust,
+                                sourceDataPc[i] + (double)Properties.Settings.Default.PcAdjust,
+                                sourceDataPh[i] + (double)Properties.Settings.Default.PhAdjust,
+                                sourceDataPm[i] + (double)Properties.Settings.Default.PmAdjust,
+                                sourceDataQm5[i],
+                                Wh + (double)Properties.Settings.Default.WhAdjust);
+                        }
+                        if (electDataFlag)
+                        {
+                            ElectDt.Rows.Add(t.ToString("yyyy-MM-dd hh:mm:ss:fff"),
+                                //(sourceDataQc[i] - 1) < 0 ? 0 : (sourceDataQc[i] - 1) * 12.5 + (double)Properties.Settings.Default.QcAdjust,
+                                //(sourceDataQh[i] - 1) < 0 ? 0 : (sourceDataQh[i] - 1) * 12.5 + (double)Properties.Settings.Default.QhAdjust,
+                                CoolFlow[i - 3] + (double)Properties.Settings.Default.QcAdjust,
+                                HotFlow[i - 3] + (double)Properties.Settings.Default.QhAdjust,
+                                (sourceDataQm[i] - 1) < 0 ? 0 : (sourceDataQm[i] - 1) * 5 + (double)Properties.Settings.Default.QmAdjust,
+                                sourceDataTc[i] * 10 + (double)Properties.Settings.Default.TcAdjust,
+                                sourceDataTh[i] * 10 + (double)Properties.Settings.Default.ThAdjust,
+                                sourceDataTm[i] * 10 + (double)Properties.Settings.Default.TmAdjust,
+                                sourceDataPc[i] + (double)Properties.Settings.Default.PcAdjust,
+                                sourceDataPh[i] + (double)Properties.Settings.Default.PhAdjust,
+                                sourceDataPm[i] + (double)Properties.Settings.Default.PmAdjust,
+                                sourceDataQm5[i],
+                                Wh + (double)Properties.Settings.Default.WhAdjust);
+                        }
+                        t = t.AddMilliseconds(10.0);
+                    }
+                    //Qc = (sourceDataQc[3] + sourceDataQc[102] - 2) < 0 ? 0 : Math.Round((sourceDataQc[3] + sourceDataQc[102] - 2) * 12.5 * 0.5, 2, MidpointRounding.AwayFromZero) + (double)Properties.Settings.Default.QcAdjust;
+                    //Qh = (sourceDataQh[3] + sourceDataQh[102] - 2) < 0 ? 0 : Math.Round((sourceDataQh[3] + sourceDataQh[102] - 2) * 12.5 * 0.5, 2, MidpointRounding.AwayFromZero) + (double)Properties.Settings.Default.QhAdjust;
+                    Qc = CoolFlow[CoolFlow.Length - 1] + (double)Properties.Settings.Default.QcAdjust;
+                    Qh = HotFlow[CoolFlow.Length - 1] + (double)Properties.Settings.Default.QhAdjust;
+                    Qm = (sourceDataQm[3] + sourceDataQm[102] - 2) < 0 ? 0 : Math.Round((sourceDataQm[3] + sourceDataQm[102] - 2) * 5 * 0.5, 2, MidpointRounding.AwayFromZero) + (double)Properties.Settings.Default.QmAdjust;
+                    Tc = Math.Round((sourceDataTc[3] + sourceDataTc[102]) * 5, 2, MidpointRounding.AwayFromZero) + (double)Properties.Settings.Default.TcAdjust;
+                    Th = Math.Round((sourceDataTh[3] + sourceDataTh[102]) * 5, 2, MidpointRounding.AwayFromZero) + (double)Properties.Settings.Default.ThAdjust;
+                    Tm = Math.Round((sourceDataTm[3] + sourceDataTm[102]) * 5, 2, MidpointRounding.AwayFromZero) + (double)Properties.Settings.Default.TmAdjust;
+                    Pc = Math.Round((sourceDataPc[3] + sourceDataPc[102]) * 0.5, 2, MidpointRounding.AwayFromZero) + (double)Properties.Settings.Default.PcAdjust;
+                    Ph = Math.Round((sourceDataPh[3] + sourceDataPh[102]) * 0.5, 2, MidpointRounding.AwayFromZero) + (double)Properties.Settings.Default.PhAdjust;
+                    Pm = Math.Round((sourceDataPm[3] + sourceDataPm[102]) * 0.5, 2, MidpointRounding.AwayFromZero) + (double)Properties.Settings.Default.PmAdjust;
+                    Qm5 = Math.Round((sourceDataQm5[3] + sourceDataQm5[102]) * 0.5, 2, MidpointRounding.AwayFromZero) + (double)Properties.Settings.Default.Qm5Adjust;
+                    Temp1 = Math.Round((sourceDataTemp1[3] + sourceDataTemp1[102]) * 5, 2, MidpointRounding.AwayFromZero) + (double)Properties.Settings.Default.Test1;
+                    Temp2 = Math.Round((sourceDataTemp2[3] + sourceDataTemp2[102]) * 5, 2, MidpointRounding.AwayFromZero) + (double)Properties.Settings.Default.Test2;
+                    Temp3 = Math.Round((sourceDataTemp3[3] + sourceDataTemp3[102]) * 5, 2, MidpointRounding.AwayFromZero) + (double)Properties.Settings.Default.Test3;
+                    Temp4 = Math.Round((sourceDataTemp4[3] + sourceDataTemp4[102]) * 5, 2, MidpointRounding.AwayFromZero) + (double)Properties.Settings.Default.Test4;
+                    Temp5 = Math.Round((sourceDataTemp5[3] + sourceDataTemp5[102]) * 5, 2, MidpointRounding.AwayFromZero) + (double)Properties.Settings.Default.Test5;
+                    Wh = Math.Round(resultDataWh.ToList().Average(), 0, MidpointRounding.AwayFromZero) + (double)Properties.Settings.Default.WhAdjust;
+                    DataReadyToUpdateStatus();
+                }
+                isFirstAver = false;
+                if (err != ErrorCode.Success && err != ErrorCode.WarningRecordEnd)
+                {
+                    HandleError(err);
+                    return;
+                }
+            }
+            catch (Exception ex)
+            {
+                Log.Error("数据采集报错：" + ex.ToString());
+                HandleError(err);
+            }
+        }
+
+        private void WaveformAiCtrl1_DataReady_backup(object sender, BfdAiEventArgs args)
         {
             ErrorCode err = ErrorCode.Success;
             try
@@ -3295,11 +3567,11 @@ namespace 恒温测试机.UI
                 // sourceDataTh = filter(ref sourceDataTh, 10);
 
                 //unsen卡尔曼滤波算法，比纯卡尔曼滤波效果要好
-         
+
                 sourceDataTm = averge(ref sourceDataTm, 5);
                 //sourceDataTm = midFilter(ref sourceDataTm, 5);
                 //sourceDataTm = UFK_filter(sourceDataTm);
-                        
+
 
                 sourceDataPc = averge(ref sourceDataPc, 6);
                 //sourceDataPc = filter(ref sourceDataPc, 10);
@@ -3396,13 +3668,13 @@ namespace 恒温测试机.UI
                     Pc = Math.Round((sourceDataPc[3] + sourceDataPc[102]) * 0.5, 2, MidpointRounding.AwayFromZero) + (double)Properties.Settings.Default.PcAdjust;
                     Ph = Math.Round((sourceDataPh[3] + sourceDataPh[102]) * 0.5, 2, MidpointRounding.AwayFromZero) + (double)Properties.Settings.Default.PhAdjust;
                     Pm = Math.Round((sourceDataPm[3] + sourceDataPm[102]) * 0.5, 2, MidpointRounding.AwayFromZero) + (double)Properties.Settings.Default.PmAdjust;
-                    Qm5 = Math.Round((sourceDataQm5[3] + sourceDataQm5[102]) * 0.5, 2, MidpointRounding.AwayFromZero) + (double)Properties.Settings.Default.Qm5Adjust ;
-                    Temp1 = Math.Round((sourceDataTemp1[3] + sourceDataTemp1[102]) * 5, 2, MidpointRounding.AwayFromZero)+(double)Properties.Settings.Default.Test1;
+                    Qm5 = Math.Round((sourceDataQm5[3] + sourceDataQm5[102]) * 0.5, 2, MidpointRounding.AwayFromZero) + (double)Properties.Settings.Default.Qm5Adjust;
+                    Temp1 = Math.Round((sourceDataTemp1[3] + sourceDataTemp1[102]) * 5, 2, MidpointRounding.AwayFromZero) + (double)Properties.Settings.Default.Test1;
                     Temp2 = Math.Round((sourceDataTemp2[3] + sourceDataTemp2[102]) * 5, 2, MidpointRounding.AwayFromZero) + (double)Properties.Settings.Default.Test2;
                     Temp3 = Math.Round((sourceDataTemp3[3] + sourceDataTemp3[102]) * 5, 2, MidpointRounding.AwayFromZero) + (double)Properties.Settings.Default.Test3;
                     Temp4 = Math.Round((sourceDataTemp4[3] + sourceDataTemp4[102]) * 5, 2, MidpointRounding.AwayFromZero) + (double)Properties.Settings.Default.Test4;
                     Temp5 = Math.Round((sourceDataTemp5[3] + sourceDataTemp5[102]) * 5, 2, MidpointRounding.AwayFromZero) + (double)Properties.Settings.Default.Test5;
-                    Wh = Math.Round(resultDataWh.ToList().Average(), 0, MidpointRounding.AwayFromZero)+(double)Properties.Settings.Default.WhAdjust;
+                    Wh = Math.Round(resultDataWh.ToList().Average(), 0, MidpointRounding.AwayFromZero) + (double)Properties.Settings.Default.WhAdjust;
                     DataReadyToUpdateStatus();
                 }
                 isFirstAver = false;
@@ -3414,7 +3686,7 @@ namespace 恒温测试机.UI
             }
             catch (Exception ex)
             {
-                Log.Error("数据采集报错："+ex.ToString());
+                Log.Error("数据采集报错：" + ex.ToString());
                 HandleError(err);
             }
         }
@@ -3481,7 +3753,7 @@ namespace 恒温测试机.UI
         //public Dictionary<double, DateTime> tmTimeDict = new Dictionary<double, DateTime>();
         //public Dictionary<DateTime, double> timeAngleDict = new Dictionary<DateTime, double>();
         //public DataTable timeAngleDt;
-        
+
 
         //private ElectricalMachineryType type;
         //private string powerAddress = "";   //M8-2056   M18-2066
@@ -4042,7 +4314,7 @@ namespace 恒温测试机.UI
             {
                 MessageBox.Show("冷水泵报警，无法开启");
                 return true;
-                
+
             }
             if ((name == "冷水变压泵") && isAlarm012)
             {
@@ -4363,7 +4635,7 @@ namespace 恒温测试机.UI
             }
         }
 
-        
+
 
         private void HslPumpOne3_Click(object sender, EventArgs e)
         {
