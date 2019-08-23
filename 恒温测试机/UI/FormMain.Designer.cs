@@ -1173,8 +1173,14 @@
             // 
             // WaterOut
             // 
+            this.WaterOut.DecimalPlaces = 1;
             this.WaterOut.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.WaterOut.Location = new System.Drawing.Point(756, 349);
+            this.WaterOut.Increment = new decimal(new int[] {
+            1,
+            0,
+            0,
+            65536});
+            this.WaterOut.Location = new System.Drawing.Point(756, 353);
             this.WaterOut.Name = "WaterOut";
             this.WaterOut.Size = new System.Drawing.Size(64, 29);
             this.WaterOut.TabIndex = 153;
