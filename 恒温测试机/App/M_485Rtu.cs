@@ -66,7 +66,7 @@ namespace 恒温测试机
             }
             return ans;
         }
-        public short bytes2Dec(byte h, byte l)
+        public short bytes2short(byte h, byte l)
         {
             short s = 0;   //一个16位整形变量，初值为 0000 0000 0000 0000            
             s = (short)(s ^ h);  //将b1赋给s的低8位
@@ -103,6 +103,27 @@ namespace 恒温测试机
             if (result.IsSuccess) return result.Content;
             else return (short)-999;
         }
+
+        public short[] read_short_batch(string adreess, int len, byte station)
+        {
+            busRtuClient.Station = station;
+            short[] data = new short[len];
+            OperateResult<byte[]> read = busRtuClient.Read(adreess, (ushort)len);
+            // short批量读取
+            if (!read.IsSuccess)
+            {
+                return null;
+            }
+            else
+            {
+                Console.WriteLine("length:" + read.Content.Length);
+                for (int i = 0; i < read.Content.Length; i += 2)
+                    data[i / 2] = bytes2short(read.Content[i], read.Content[i + 1]);
+                return data;
+            }
+
+        }
+
         public void write_short(string adreess, short val, byte station)
         {
             busRtuClient.Station = station;
