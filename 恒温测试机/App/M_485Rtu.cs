@@ -74,6 +74,14 @@ namespace 恒温测试机
             s = (short)(s ^ l); //在b2赋给s的低8位
             return s;
         }
+        public ushort bytes2ushort(byte h, byte l)
+        {
+            ushort s = 0;   //一个16位整形变量，初值为 0000 0000 0000 0000            
+            s = (ushort)(s ^ h);  //将b1赋给s的低8位
+            s = (ushort)(s << 8);  //s的低8位移动到高8位
+            s = (ushort)(s ^ l); //在b2赋给s的低8位
+            return s;
+        }
         //报文读取
         public string ReadFrame(string cmd)
         {
@@ -116,7 +124,7 @@ namespace 恒温测试机
             }
             else
             {
-                Console.WriteLine("length:" + read.Content.Length);
+
                 for (int i = 0; i < read.Content.Length; i += 2)
                     data[i / 2] = bytes2short(read.Content[i], read.Content[i + 1]);
                 return data;
