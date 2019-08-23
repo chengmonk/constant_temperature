@@ -530,7 +530,7 @@ namespace 恒温测试机.UI
                     //if (graphFlag)
                     //{
                     for (int i = 3; i < 103; i++)
-                    {                      
+                    {
                         var qcTemp = CoolFlow[i - 3] + (double)Properties.Settings.Default.QcAdjust;
                         var qhTemp = HotFlow[i - 3] + (double)Properties.Settings.Default.QhAdjust;
                         var qmTemp = (sourceDataQm[i] - 1) < 0 ? 0 : (sourceDataQm[i] - 1) * 5;
@@ -940,7 +940,7 @@ namespace 恒温测试机.UI
         {
             //asc.Initialize(this);
             bpq.write_coil("2078", true, 5);//松开产品
-            WaterOut.Value=Properties.Settings.Default.WaterOut;
+            WaterOut.Value = Properties.Settings.Default.WaterOut;
         }
 
         private void FormMain_SizeChanged(object sender, EventArgs e)
@@ -3288,14 +3288,14 @@ namespace 恒温测试机.UI
                 //Console.WriteLine("液面高度：" + Wh);
 
                 //用485 读取冷水、热水的流量共十个数据
-                
+
                 for (int i = 0; i < 10; i++)
                 {//读取
-                    tempCoolFlow[i] = bpq.read_short("411" + i, 5);
-                    tempHotFlow[i] = bpq.read_short("412" + i, 5);
+                    tempCoolFlow[i] = bpq.read_short("411" + i, 5) / 100.0;
+                    tempHotFlow[i] = bpq.read_short("412" + i, 5) / 100.0;
                 }
                 tempCoolFlow[10] = tempCoolFlow[9];
-                tempHotFlow[10] = tempHotFlow[9];               
+                tempHotFlow[10] = tempHotFlow[9];
                 for (int i = 0; i < 10; i++)
                 {
 
@@ -3376,7 +3376,7 @@ namespace 恒温测试机.UI
                                 // (sourceDataQc[i] - 1) < 0 ? 0 : (sourceDataQc[i] - 1) * 12.5 + (double)Properties.Settings.Default.QcAdjust,
                                 //(sourceDataQh[i] - 1) < 0 ? 0 : (sourceDataQh[i] - 1) * 12.5 + (double)Properties.Settings.Default.QhAdjust,
                                 CoolFlow[i - 3] + (double)Properties.Settings.Default.QcAdjust,
-                                HotFlow[i-3] + (double)Properties.Settings.Default.QhAdjust,
+                                HotFlow[i - 3] + (double)Properties.Settings.Default.QhAdjust,
                                 (sourceDataQm[i] - 1) < 0 ? 0 : (sourceDataQm[i] - 1) * 5 + (double)Properties.Settings.Default.QmAdjust,
                                 sourceDataTc[i] * 10 + (double)Properties.Settings.Default.TcAdjust,
                                 sourceDataTh[i] * 10 + (double)Properties.Settings.Default.ThAdjust,
@@ -3386,7 +3386,7 @@ namespace 恒温测试机.UI
                                 sourceDataPm[i] + (double)Properties.Settings.Default.PmAdjust,
                                 sourceDataQm5[i],
                                 Wh + (double)Properties.Settings.Default.WhAdjust,
-                            index) ;
+                            index);
                             index++;
                         }
                         if (graphFlag)          //记录流程测试中的，曲线变化
@@ -4906,7 +4906,7 @@ namespace 恒温测试机.UI
         }
 
         private void NumericUpDown1_ValueChanged(object sender, EventArgs e)
-        {            
+        {
             var value = Convert.ToDouble(WaterOut.Value.ToString()) * 0.1;
             AO_Func(0, value);            //输出模拟量
             Properties.Settings.Default.WaterOut = WaterOut.Value;
