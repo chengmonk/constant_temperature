@@ -4615,5 +4615,19 @@ namespace 恒温测试机.UI
                 hslSwitch1.Text = "松开产品";
             }
         }
+
+        //
+        public double[] dataFill(double begin, double end, int len)
+        {
+            double[] data = new double[len];
+            data[0] = begin;
+            data[len - 1] = end;
+            double d = (end - begin) / (len - 1);
+            for (int i = 1; i < len - 1; i++)
+            {
+                data[i] = begin + i * d;
+            }
+            return data;
+        }
     }
 }
