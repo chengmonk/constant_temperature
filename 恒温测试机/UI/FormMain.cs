@@ -940,6 +940,7 @@ namespace 恒温测试机.UI
         {
             //asc.Initialize(this);
             bpq.write_coil("2078", true, 5);//松开产品
+            WaterOut.Value=Properties.Settings.Default.WaterOut;
         }
 
         private void FormMain_SizeChanged(object sender, EventArgs e)
@@ -4868,10 +4869,7 @@ namespace 恒温测试机.UI
         }
 
         private void TrackBar1_ValueChanged(object sender, EventArgs e)
-        {
-            label21.Text = trackBar1.Value.ToString() + "%";
-            var value = Convert.ToDouble(trackBar1.Value.ToString()) * 0.1;
-            AO_Func(0, value);            //输出模拟量
+        {     //输出模拟量
         }
 
         private void HslSwitch1_OnSwitchChanged(object arg1, bool arg2)
@@ -4900,6 +4898,19 @@ namespace 恒温测试机.UI
                 data[i] = begin + i * d;
             }
             return data;
+        }
+
+        private void TrackBar1_Scroll(object sender, EventArgs e)
+        {
+
+        }
+
+        private void NumericUpDown1_ValueChanged(object sender, EventArgs e)
+        {            
+            var value = Convert.ToDouble(WaterOut.Value.ToString()) * 0.1;
+            AO_Func(0, value);            //输出模拟量
+            Properties.Settings.Default.WaterOut = WaterOut.Value;
+            Properties.Settings.Default.Save();
         }
     }
 }

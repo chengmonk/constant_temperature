@@ -108,9 +108,8 @@
             this.Title = new System.Windows.Forms.Label();
             this.hslCurve1 = new HslControls.HslCurve();
             this.center1 = new System.Windows.Forms.Panel();
+            this.WaterOut = new System.Windows.Forms.NumericUpDown();
             this.hslSwitch1 = new HslControls.HslSwitch();
-            this.label21 = new System.Windows.Forms.Label();
-            this.trackBar1 = new System.Windows.Forms.TrackBar();
             this.label22 = new System.Windows.Forms.Label();
             this.label11 = new System.Windows.Forms.Label();
             this.hslLedQm5 = new HslControls.HslLedDisplay();
@@ -200,7 +199,7 @@
             this.right1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.center1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.trackBar1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.WaterOut)).BeginInit();
             this.centerPanel.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -1090,9 +1089,8 @@
             // center1
             // 
             this.center1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.center1.Controls.Add(this.WaterOut);
             this.center1.Controls.Add(this.hslSwitch1);
-            this.center1.Controls.Add(this.label21);
-            this.center1.Controls.Add(this.trackBar1);
             this.center1.Controls.Add(this.label22);
             this.center1.Controls.Add(this.label11);
             this.center1.Controls.Add(this.hslLedQm5);
@@ -1166,11 +1164,21 @@
             this.center1.Controls.Add(this.hslPipeLine22);
             this.center1.Controls.Add(this.hslPumpOne8);
             this.center1.Controls.Add(this.hslPipeLine23);
+            this.center1.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.center1.Location = new System.Drawing.Point(0, 116);
             this.center1.Margin = new System.Windows.Forms.Padding(0);
             this.center1.Name = "center1";
             this.center1.Size = new System.Drawing.Size(1026, 430);
             this.center1.TabIndex = 2;
+            // 
+            // WaterOut
+            // 
+            this.WaterOut.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.WaterOut.Location = new System.Drawing.Point(756, 349);
+            this.WaterOut.Name = "WaterOut";
+            this.WaterOut.Size = new System.Drawing.Size(64, 29);
+            this.WaterOut.TabIndex = 153;
+            this.WaterOut.ValueChanged += new System.EventHandler(this.NumericUpDown1_ValueChanged);
             // 
             // hslSwitch1
             // 
@@ -1183,33 +1191,15 @@
             this.hslSwitch1.Text = "松开产品";
             this.hslSwitch1.OnSwitchChanged += new System.Action<object, bool>(this.HslSwitch1_OnSwitchChanged);
             // 
-            // label21
-            // 
-            this.label21.AutoSize = true;
-            this.label21.Location = new System.Drawing.Point(860, 375);
-            this.label21.Name = "label21";
-            this.label21.Size = new System.Drawing.Size(17, 12);
-            this.label21.TabIndex = 151;
-            this.label21.Text = "0%";
-            // 
-            // trackBar1
-            // 
-            this.trackBar1.Location = new System.Drawing.Point(608, 375);
-            this.trackBar1.Maximum = 100;
-            this.trackBar1.Name = "trackBar1";
-            this.trackBar1.Size = new System.Drawing.Size(237, 45);
-            this.trackBar1.TabIndex = 150;
-            this.trackBar1.TickFrequency = 10;
-            this.trackBar1.ValueChanged += new System.EventHandler(this.TrackBar1_ValueChanged);
-            // 
             // label22
             // 
             this.label22.AutoSize = true;
-            this.label22.Location = new System.Drawing.Point(606, 355);
+            this.label22.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.label22.Location = new System.Drawing.Point(638, 355);
             this.label22.Name = "label22";
-            this.label22.Size = new System.Drawing.Size(77, 12);
+            this.label22.Size = new System.Drawing.Size(130, 21);
             this.label22.TabIndex = 149;
-            this.label22.Text = "流量百分比：";
+            this.label22.Text = "流量百分比(%)：";
             // 
             // label11
             // 
@@ -2238,7 +2228,7 @@
             this.groupBox2.PerformLayout();
             this.center1.ResumeLayout(false);
             this.center1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.trackBar1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.WaterOut)).EndInit();
             this.centerPanel.ResumeLayout(false);
             this.ResumeLayout(false);
 
@@ -2397,9 +2387,8 @@
         private System.Windows.Forms.Panel centerPanel;
         private System.Windows.Forms.RadioButton heatRbt;
         private System.Windows.Forms.RadioButton maxHeatRbt;
-        private System.Windows.Forms.Label label21;
-        private System.Windows.Forms.TrackBar trackBar1;
         private System.Windows.Forms.Label label22;
         private HslControls.HslSwitch hslSwitch1;
+        private System.Windows.Forms.NumericUpDown WaterOut;
     }
 }
