@@ -214,7 +214,7 @@
             this.angleBtn_A.Name = "angleBtn_A";
             this.angleBtn_A.Size = new System.Drawing.Size(74, 29);
             this.angleBtn_A.TabIndex = 45;
-            this.angleBtn_A.Text = "写入";
+            this.angleBtn_A.Text = "写入范围";
             this.angleBtn_A.UseVisualStyleBackColor = true;
             this.angleBtn_A.Click += new System.EventHandler(this.AngleBtn_A_Click);
             // 
@@ -384,7 +384,7 @@
             this.angleBtn_L.Name = "angleBtn_L";
             this.angleBtn_L.Size = new System.Drawing.Size(74, 29);
             this.angleBtn_L.TabIndex = 49;
-            this.angleBtn_L.Text = "写入";
+            this.angleBtn_L.Text = "写入范围";
             this.angleBtn_L.UseVisualStyleBackColor = true;
             this.angleBtn_L.Click += new System.EventHandler(this.AngleBtn_L_Click);
             // 
