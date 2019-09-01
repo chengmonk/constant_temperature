@@ -17,7 +17,7 @@ namespace 恒温测试机.UI
         private FormMain formMain;
         private byte station = 1;
 
-        System.Timers.Timer monitorTimer;            //监控M寄存器定时器
+        System.Timers.Timer monitorMTimer;            //监控M寄存器定时器
         System.Timers.Timer monitorDTimer;            //监控D寄存器定时器
 
         public double autoFindAngle_A = 0;         //自动找点角度A
@@ -88,7 +88,7 @@ namespace 恒温测试机.UI
         public FormConnectValueSetting(FormMain formMain)
         {
             InitializeComponent();
-            InitTimer();
+            //InitTimer();
             this.formMain = formMain;
             timeAngleDt = new DataTable();
             timeAngleDt.Columns.Add("时间", typeof(string));
@@ -98,13 +98,13 @@ namespace 恒温测试机.UI
 
         private void InitTimer()
         {
-            monitorTimer = new System.Timers.Timer(1000);
-            monitorTimer.Elapsed += (o, a) =>
+            monitorMTimer = new System.Timers.Timer(1000);
+            monitorMTimer.Elapsed += (o, a) =>
             {
-                MonitorActive();
+                MonitorMActive();
             };//到达时间的时候执行事件；
-            monitorTimer.AutoReset = true;//设置是执行一次（false）还是一直执行(true)；
-            monitorTimer.Enabled = true;//是否执行System.Timers.Timer.Elapsed事件；
+            monitorMTimer.AutoReset = true;//设置是执行一次（false）还是一直执行(true)；
+            monitorMTimer.Enabled = true;//是否执行System.Timers.Timer.Elapsed事件；
 
             monitorDTimer = new System.Timers.Timer(1000);
             monitorDTimer.Elapsed += (o, a) =>
@@ -117,15 +117,15 @@ namespace 恒温测试机.UI
 
         #region 委托
 
-        private delegate void MonitorActiveDelegate();
-        private void MonitorActive()
+        private delegate void MonitorMActiveDelegate();
+        private void MonitorMActive()
         {
             try
             {
                 if (this.InvokeRequired)
                 {
-                    MonitorActiveDelegate monitorActiveDelegate = MonitorActive;
-                    this.Invoke(monitorActiveDelegate);
+                    MonitorMActiveDelegate monitorMActiveDelegate = MonitorMActive;
+                    this.Invoke(monitorMActiveDelegate);
                 }
                 else
                 {
@@ -695,7 +695,6 @@ namespace 恒温测试机.UI
             {
                 isAutoFindAngle = false;
                 formMain.electDataFlag = false;
-                
             }
         }
 
@@ -811,6 +810,20 @@ namespace 恒温测试机.UI
             {//正转
                 formMain.bpq.write_coil(forwardWriteAddress_L, true, 5);
                 formMain.bpq.write_coil(noForwardWriteAddress_L, false, 5);
+            }
+        }
+
+        private void FormConnectValueSetting_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            if (monitorMTimer != null)
+            {
+                monitorMTimer.Enabled = false;
+                monitorMTimer.Dispose();
+            }
+            if (monitorDTimer != null)
+            {
+                monitorDTimer.Enabled = false;
+                monitorDTimer.Dispose();
             }
         }
     }

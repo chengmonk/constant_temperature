@@ -31,6 +31,8 @@ namespace 恒温测试机.Model.Enum
         [EnumDescription("升温测试")]
         HeatTest=9,
         [EnumDescription("最高限温测试")]
-        MaxHeatTest=10
+        MaxHeatTest=10,
+        [EnumDescription("温度变化测试")]
+        ChangeTmTest=11
     }
 }

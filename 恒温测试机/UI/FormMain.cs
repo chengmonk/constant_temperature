@@ -31,15 +31,17 @@ namespace 恒温测试机.UI
         #region 变量
         LogicTypeEnum logicType = LogicTypeEnum.safeTest;
         public TestStandardEnum testStandard = TestStandardEnum.default2806;
+            
+        System.Timers.Timer safetyTimer;             //安全性测试 定时器               1111     2806    1016
+        System.Timers.Timer pressureTimer;           //压力变化测试 定时器             1111     2806     1016
+        System.Timers.Timer coolTimer;               //降温测试 定时器                 1111
+        System.Timers.Timer steadyTimer;             //温度稳定性测试 定时器           1111
+        System.Timers.Timer flowTimer;               //流量减少测试 定时器             1111
 
-        System.Timers.Timer safetyTimer;             //安全性测试 定时器
-        System.Timers.Timer pressureTimer;           //压力变化测试 定时器
-        System.Timers.Timer coolTimer;               //降温测试 定时器
-        System.Timers.Timer steadyTimer;             //温度稳定性测试 定时器
-        System.Timers.Timer flowTimer;               //流量减少测试 定时器
+        System.Timers.Timer heatTimer;                  //升温测试 定时器              2806     1016
+        System.Timers.Timer maxHeatTimer;               //最高限温测试 定时器           2806     1016
 
-        System.Timers.Timer heatTimer;                  //升温测试 定时器
-        System.Timers.Timer maxHeatTimer;               //最高限温测试 定时器
+        System.Timers.Timer changeTmTimer;               //温度变化测试                 1016
 
         System.Timers.Timer monitorWhTimer;          //监控液面高度定时器
         System.Timers.Timer monitorDiTimer;          //监控数字量定时器
@@ -60,7 +62,7 @@ namespace 恒温测试机.UI
         bool collectDataFlag = false;           //是否采集数据
         bool runFlag = false;                   //是否执行流程
 
-        bool graphFlag = false;          //先记录为true
+        bool graphFlag = false;          //
         bool whFlag = true;// ture表示 当前为热水箱液面 flase表示 当前为冷水箱液面 
         bool autoRunFlag = false;               //是否自动运行
         bool stopFlag = false;                  //是否手动停止
@@ -95,11 +97,103 @@ namespace 恒温测试机.UI
         public Dictionary<LogicTypeEnum, string> analyseReportDic = new Dictionary<LogicTypeEnum, string>();
         public DataReportAnalyseApp dataReportAnalyseApp;
 
-        public static Model_2806 model_2806 = new Model_2806();
+        public static Model_2806 model_2806 = new Model_2806();         //2806导出报告模板
 
         #endregion
 
         #region 委托
+        private delegate void MonitorMActiveDelegate();
+        private void MonitorMActive()
+        {
+            try
+            {
+                if (this.InvokeRequired)
+                {
+                    MonitorMActiveDelegate monitorMActiveDelegate = MonitorMActive;
+                    this.Invoke(monitorMActiveDelegate);
+                }
+                else
+                {
+                    #region 伺服电机A
+                    powerState_A = bpq.read_coil(powerAddress_A, 5);
+                    forwardState_A = bpq.read_coil(forwardReadAddress_A, 5);
+                    noForwadState_A = bpq.read_coil(noForwardReadAddress_A, 5);
+                    orignState_A = bpq.read_coil(orignReadAddress_A, 5);
+
+                    powerBtn_A.BackColor = powerState_A ? Color.Green : DefaultBackColor;
+                    powerBtn_A.Text = powerState_A ? "伺服开" : "伺服关";
+                    forwardBtn_A.BackColor = forwardState_A ? Color.Green : DefaultBackColor;
+                    noForwardBtn_A.BackColor = noForwadState_A ? Color.Green : DefaultBackColor;
+                    orignBtn_A.BackColor = orignState_A ? Color.Green : DefaultBackColor;
+                    #endregion
+
+                    #region 伺服电机L
+                    powerState_L = bpq.read_coil(powerAddress_L, 5);
+                    forwardState_L = bpq.read_coil(forwardReadAddress_L, 5);
+                    noForwadState_L = bpq.read_coil(noForwardReadAddress_L, 5);
+                    orignState_L = bpq.read_coil(orignReadAddress_L, 5);
+
+                    powerBtn_L.BackColor = powerState_L ? Color.Green : DefaultBackColor;
+                    powerBtn_L.Text = powerState_L ? "伺服开" : "伺服关";
+                    forwardBtn_L.BackColor = forwardState_L ? Color.Green : DefaultBackColor;
+                    noForwardBtn_L.BackColor = noForwadState_L ? Color.Green : DefaultBackColor;
+                    orignBtn_L.BackColor = orignState_L ? Color.Green : DefaultBackColor;
+                    #endregion
+                }
+            }
+            catch (Exception ex)
+            {
+                Log.Error("监控M寄存器异常：" + ex.ToString());
+                return;
+            }
+        }
+
+        private delegate void MonitorDActiveDelegate();
+        private void MonitorDActive()
+        {
+            try
+            {
+                if (this.InvokeRequired)
+                {
+                    MonitorDActiveDelegate monitorActiveDelegate = MonitorDActive;
+                    this.Invoke(monitorActiveDelegate);
+                }
+                else
+                {
+                    #region 伺服电机A
+                    radioValue_A = bpq.read_uint(radioAddress_A, 5);   //转速  读取 uint
+                    angleValue_A = bpq.read_int(angleAddress_A, 5);    //角度  读取 int
+
+                    var temp1 = (radioValue_A * 0.0001);
+                    var temp2 = (angleValue_A * 0.0001);
+                    radioLb_A.Text = "" + Math.Round(radioValue_A / 10000.0, 1); ;
+                    angelLb_A.Text = "" + Math.Round(angleValue_A / 10000.0, 1);
+
+                    if (isAutoFindAngle)
+                    {
+                        timeAngleDt.Rows.Add(
+                            DateTime.Now.ToString("yyyy-MM-dd hh:mm:ss:fff"),
+                            temp2);
+                    }
+                    #endregion
+
+                    #region 伺服电机L
+                    radioValue_L = bpq.read_uint(radioAddress_L, 5);   //转速  读取 uint
+                    angleValue_L = bpq.read_int(angleAddress_L, 5);    //角度  读取 int
+
+                    var temp3 = Math.Round((radioValue_L / 8000.0), 1);
+                    var temp4 = Math.Round((angleValue_L / 8000.0), 1);
+                    radioLb_L.Text = "" + temp3;
+                    angelLb_L.Text = "" + temp4;
+                    #endregion
+                }
+            }
+            catch (Exception ex)
+            {
+                Log.Error("监控D寄存器异常：" + ex.ToString());
+                return;
+            }
+        }
 
         private delegate void MonitorActiveDelegate();//doData的状态监控
         private void MonitorActive()
@@ -253,6 +347,7 @@ namespace 恒温测试机.UI
                 return;
             }
         }
+
         private delegate void MonitorWhActiveDelegate();//液面高度状态的监控，进行对应行为逻辑
         private void MonitorWhActive()
         {
@@ -316,7 +411,7 @@ namespace 恒温测试机.UI
         public bool isAlarm021 = false;//热水泵
         public bool isAlarm022 = false;//热水变压泵
         public bool isAlarmA = false;//伺服电机A
-        //public bool isAlarmM = false;//伺服电机M
+        //public bool isAlarmL = false;//伺服电机L
         private delegate void MonitorDiActiveDelegate();//数字量输入，进行对应行为逻辑
         private void MonitorDiActive()
         {
@@ -439,7 +534,7 @@ namespace 恒温测试机.UI
                 else
                 {
                     systemInfoTb.AppendText("[时间:" + DateTime.Now.ToString("yyyy-MM-dd hh:mm:ss") + "] " + msg);
-                    systemInfoTb.AppendText("\n");
+                    systemInfoTb.AppendText("\r\n");
                 }
             }
             catch (Exception ex)
@@ -792,6 +887,10 @@ namespace 恒温测试机.UI
             ElectDt.Columns.Add("出水重量Qm5", typeof(double));   //9
             ElectDt.Columns.Add("液面高度Wh", typeof(double));   //10
 
+            timeAngleDt = new DataTable();
+            timeAngleDt.Columns.Add("时间", typeof(string));
+            timeAngleDt.Columns.Add("角度", typeof(double));
+
             bpq_conf.botelv = "19200";
             bpq_conf.zhanhao = "1";//站号
             bpq_conf.shujuwei = "8";
@@ -908,6 +1007,27 @@ namespace 恒温测试机.UI
             maxHeatTimer.AutoReset = false;//设置是执行一次（false）还是一直执行(true)；
             maxHeatTimer.Enabled = false;//是否执行System.Timers.Timer.Elapsed事件；
 
+            changeTmTimer = new System.Timers.Timer(2);
+            changeTmTimer.Elapsed += new System.Timers.ElapsedEventHandler(ChangeTmTimer_Action);//到达时间的时候执行事件； 
+            changeTmTimer.AutoReset = false;//设置是执行一次（false）还是一直执行(true)；
+            changeTmTimer.Enabled = false;//是否执行System.Timers.Timer.Elapsed事件；
+
+            monitorMTimer = new System.Timers.Timer(1000);
+            monitorMTimer.Elapsed += (o, a) =>
+            {
+                MonitorMActive();
+            };//到达时间的时候执行事件；
+            monitorMTimer.AutoReset = true;//设置是执行一次（false）还是一直执行(true)；
+            monitorMTimer.Enabled = true;//是否执行System.Timers.Timer.Elapsed事件；
+
+            monitorDTimer = new System.Timers.Timer(1000);
+            monitorDTimer.Elapsed += (o, a) =>
+            {
+                MonitorDActive();
+            };//到达时间的时候执行事件；
+            monitorDTimer.AutoReset = true;//设置是执行一次（false）还是一直执行(true)；
+            monitorDTimer.Enabled = true;//是否执行System.Timers.Timer.Elapsed事件；
+
         }
 
         /// <summary>
@@ -935,132 +1055,7 @@ namespace 恒温测试机.UI
 
         #endregion
 
-        #region 窗体控件事件
-        private void FormMain_Load(object sender, EventArgs e)
-        {
-            //asc.Initialize(this);
-            bpq.write_coil("2078", true, 5);//松开产品
-            WaterOut.Value = Properties.Settings.Default.WaterOut;
-        }
-
-        private void FormMain_SizeChanged(object sender, EventArgs e)
-        {
-            //asc.ReSize(this);
-        }
-
-        private void FormMain_FormClosing(object sender, FormClosingEventArgs e)
-        {
-            doData[0] = 0;
-            doData[1] = 0;
-            doData[2] = 0;
-            doData[3] = 0;
-            control.InstantDo_Write(doData);
-
-            if (monitorTimer != null)
-            {
-                monitorTimer.Enabled = false;
-                monitorTimer.Dispose();
-            }
-            if (monitorWhTimer != null)
-            {
-                monitorWhTimer.Enabled = false;
-                monitorWhTimer.Dispose();
-            }
-            if (monitorDiTimer != null)
-            {
-                monitorDiTimer.Enabled = false;
-                monitorDiTimer.Dispose();
-            }
-
-        }
-
-
-
-
-        private void RadioBtn_CheckedChange(object sender, EventArgs e)
-        {
-            if (!((RadioButton)sender).Checked)
-            {
-                return;
-            }
-            if (runFlag)
-            {
-                MessageBox.Show("当前已有测试流程正在执行，请等待！");
-                return;
-            }
-            //TODO:
-            if (autoRunFlag || (MessageBox.Show("确认切换子操作界面？注意保存数据", "", MessageBoxButtons.YesNo) == DialogResult.Yes))
-            {
-                //monitorTimer.Enabled = false;
-                safetyTimer.Enabled = false;
-                pressureTimer.Enabled = false;
-                coolTimer.Enabled = false;
-                steadyTimer.Enabled = false;
-                flowTimer.Enabled = false;
-                switch (((RadioButton)sender).Text.ToString())
-                {
-                    case "安全性测试":
-                        logicType = LogicTypeEnum.safeTest;
-                        break;
-                    case "压力变化测试":
-                        logicType = LogicTypeEnum.PressureTest;
-                        break;
-                    case "降温测试":
-                        logicType = LogicTypeEnum.CoolTest;
-                        break;
-                    case "温度稳定性测试":
-                        logicType = LogicTypeEnum.TemTest;
-                        break;
-                    case "流量减少测试":
-                        logicType = LogicTypeEnum.FlowTest;
-                        break;
-                    case "灵敏度测试":
-                        logicType = LogicTypeEnum.SensitivityTest;
-                        break;
-                    case "保真度测试":
-                        logicType = LogicTypeEnum.FidelityTest;
-                        break;
-                    case "出水温度稳定性测试":
-                        logicType = LogicTypeEnum.TmSteadyTest;
-                        break;
-                    case "升温测试":
-                        logicType = LogicTypeEnum.HeatTest;
-                        break;
-                    case "最高限温测试":
-                        logicType = LogicTypeEnum.MaxHeatTest;
-                        break;
-                }
-                Console.WriteLine(logicType.ToDescription());
-                //InitData();
-                //ChangeTimer();
-            }
-        }
-
-        private void StandardCbx_TextChanged(object sender, EventArgs e)
-        {
-            switch (((ComboBox)sender).Text.ToString())
-            {
-                case "EN1111-2017":
-                    testStandard = TestStandardEnum.default1711;
-                    safeTestRbt.Visible = true;
-                    pressureTestRbt.Visible = true;
-                    coolTestRbt.Visible = true;
-                    tmpTestRbt.Visible = true;
-                    FlowTestRbt.Visible = true;
-                    break;
-                case "灵敏度流程":
-                    testStandard = TestStandardEnum.sensitivityProcess;
-                    safeTestRbt.Visible = false;
-                    pressureTestRbt.Visible = false;
-                    coolTestRbt.Visible = false;
-                    tmpTestRbt.Visible = false;
-                    FlowTestRbt.Visible = false;
-                    break;
-                case "自定义":
-                    testStandard = TestStandardEnum.blank;
-                    break;
-            }
-        }
+        #region 系统控制区按钮
 
         private void StartBtn_Click(object sender, EventArgs e)
         {
@@ -1091,6 +1086,9 @@ namespace 恒温测试机.UI
                     break;
                 case LogicTypeEnum.MaxHeatTest:
                     maxHeatTimer.Enabled = true;
+                    break;
+                case LogicTypeEnum.ChangeTmTest:
+                    changeTmTimer.Enabled = true;
                     break;
             }
         }
@@ -1124,8 +1122,12 @@ namespace 恒温测试机.UI
 
         private void ExportReportBtn_Click(object sender, EventArgs e)
         {
-            FormSaveTemplate formSaveTemplate = new FormSaveTemplate(model_2806);
-            formSaveTemplate.Show();
+            if (testStandard == TestStandardEnum.default2806)
+            {
+                FormSaveTemplate formSaveTemplate = new FormSaveTemplate(model_2806);
+                formSaveTemplate.Show();
+            }
+            
 
             //TODO：导出测试报告
             //DataReportExportApp exportApp = new DataReportExportApp(analyseReportDic);
@@ -1145,6 +1147,8 @@ namespace 恒温测试机.UI
             //}
             //fileDialog.Dispose();
         }
+
+
 
         private void SaveDataBtn_Click(object sender, EventArgs e)
         {
@@ -1185,25 +1189,119 @@ namespace 恒温测试机.UI
                 switch (testStandard)
                 {
                     case TestStandardEnum.default1711:
+                        safeTestRbt.Visible = true;
+                        pressureTestRbt.Visible = true;
                         coolTestRbt.Visible = true;
                         tmpTestRbt.Visible = true;
                         FlowTestRbt.Visible = true;
 
                         heatRbt.Visible = false;
                         maxHeatRbt.Visible = false;
+                        changeTmRbt.Visible = false;
+
                         break;
                     case TestStandardEnum.default2806:
                         coolTestRbt.Visible = false;
                         tmpTestRbt.Visible = false;
                         FlowTestRbt.Visible = false;
+                        changeTmRbt.Visible = false;
 
+                        safeTestRbt.Visible = true;
+                        pressureTestRbt.Visible = true;
                         heatRbt.Visible = true;
                         maxHeatRbt.Visible = true;
                         break;
+                    case TestStandardEnum.default1016:
+                        coolTestRbt.Visible = false;
+                        tmpTestRbt.Visible = false;
+                        FlowTestRbt.Visible = false;
+
+                        changeTmRbt.Visible = true;
+                        safeTestRbt.Visible = true;
+                        pressureTestRbt.Visible = true;
+                        heatRbt.Visible = true;
+                        maxHeatRbt.Visible = true;
+                        break;
+                    
                 }
                 MessageBox.Show("当前标准已切换为：" + testStandard.ToDescription());
             }
         }
+
+        public FormConnectValueSetting settingForm;
+        private void ElectControlBtn_Click(object sender, EventArgs e)
+        {
+            settingForm = new FormConnectValueSetting(this);
+            settingForm.Show();
+        }
+
+        private void GraphDataBtn_Click(object sender, EventArgs e)
+        {
+            if (GraphDt.Rows != null && GraphDt.Rows.Count > 1)
+            {
+                Log.Info("启动图像界面");
+                FormPressureCurve form = new FormPressureCurve(GraphDt);
+                form.Show();
+            }
+            else
+            {
+                MessageBox.Show("未采集到数据");
+            }
+        }
+
+        private void AutoRunBtn_Click(object sender, EventArgs e)
+        {
+            if (autoRunFlag)    //停止自动运行
+            {
+                autoRunBtn.OriginalColor = Color.Lavender;
+                autoRunFlag = false;
+            }
+            else        //启动自动运行
+            {
+                autoRunFlag = true;
+                if (runFlag)
+                {
+                    MessageBox.Show("当前已有测试流程正在执行，请等待！");
+                    return;
+                }
+                else
+                {
+                    autoRunBtn.OriginalColor = Color.Green;
+                    //switch (testStandard)
+                    //{
+                    //    case TestStandardEnum.default1711:
+                    //        safetyTimer.Enabled = true;
+                    //        break;
+                    //}
+                }
+            }
+
+        }
+
+        public bool electDataFlag = false;
+        private void ShutDownBtn_Click(object sender, EventArgs e)
+        {
+            electDataFlag = false;
+            powerState_A = false;
+            bpq.write_coil(shutdownAddress_A, true, 5);
+            System.Threading.Thread.Sleep((int)(200));
+            bpq.write_coil(shutdownAddress_A, false, 5);
+
+            powerState_L = false;
+            bpq.write_coil(shutdownAddress_L, true, 5);
+            System.Threading.Thread.Sleep((int)(200));
+            bpq.write_coil(shutdownAddress_L, false, 5);
+        }
+
+        private void DOControlBtn_Click(object sender, EventArgs e)
+        {
+            IsOpenDC = true;
+            FormDOControl doControlForm = new FormDOControl(this);
+            doControlForm.Show();
+        }
+        #endregion
+
+        #region 流程委托
 
         private void SafetyTimer_Action(object source, System.Timers.ElapsedEventArgs e)
         {
@@ -2502,6 +2600,8 @@ namespace 恒温测试机.UI
 
                 analyseDataDic = new Dictionary<string, DataTable>();
 
+                MessageBox.Show("请确认电机已设置好相关参数！");
+
                 #region 启动 a、c、11、12、vc、vh
                 set_bit(ref doData[1], 7, true);//a
                 set_bit(ref doData[2], 1, true);//c
@@ -2521,7 +2621,64 @@ namespace 恒温测试机.UI
                 #region 开启电机，原点，旋转记录 Tm36 38 40 位置
                 try
                 {
-                    //TODO
+                    timeAngleDt.Clear();
+                    ElectDt.Clear();
+                    SystemInfoPrint("【" + DateTime.Now.ToString() + "】" + "开始找点");
+                    isAutoFindAngle = true;
+                    electDataFlag = true;
+                    System.Threading.Thread.Sleep(100);
+                    //正传
+                    bpq.write_coil(forwardWriteAddress_A, true, 5);
+                    SystemInfoPrint("【" + DateTime.Now.ToString() + "】" + "开始正传...");
+                    while (isAutoFindAngle && (angleValue_A <= autoFindAngle_A))
+                    {
+                        //等待角度达到 预设角度
+                    }
+                    bpq.write_coil(forwardWriteAddress_A, false, 5);
+                    SystemInfoPrint("【" + DateTime.Now.ToString() + "】" + "结束正传...");
+                    if (isAutoFindAngle == false)
+                    {
+                        SystemInfoPrint("【" + DateTime.Now.ToString() + "】" + "当前已手动停止找点...");
+                        timeAngleDt.Clear();
+                        ElectDt.Clear();
+                        return;
+                    }
+                    if (stopFlag)   //手动停止
+                    {
+                        StopPro();
+                        return;
+                    }
+                    //反传
+                    bpq.write_coil(noForwardWriteAddress_A, true, 5);
+                    SystemInfoPrint("【" + DateTime.Now.ToString() + "】" + "开始反传...");
+                    while (isAutoFindAngle && (angleValue_A >= 0))
+                    {
+                        //等待角度达到 原点
+                    }
+                    bpq.write_coil(noForwardWriteAddress_A, false, 5);
+                    SystemInfoPrint("【" + DateTime.Now.ToString() + "】" + "结束反传...");
+                    if (isAutoFindAngle == false)
+                    {
+                        SystemInfoPrint("【" + DateTime.Now.ToString() + "】" + "当前已手动停止找点...");
+                        timeAngleDt.Clear();
+                        ElectDt.Clear();
+                        return;
+                    }
+                    if (stopFlag)   //手动停止
+                    {
+                        StopPro();
+                        return;
+                    }
+                    SystemInfoPrint("【" + DateTime.Now.ToString() + "】" + "数据采集完毕，开始分析...");
+                    AnalyseElect();
+                    if (tempAngleDict.Count > 0)
+                    {
+                        SystemInfoPrint("【" + DateTime.Now.ToString() + "】" + "采集的点位如下...");
+                        foreach (var dic in tempAngleDict)
+                        {
+                            SystemInfoPrint("【" + DateTime.Now.ToString() + "】" + "温度：" + dic.Key + "-----> 角度：" + dic.Value);
+                        }
+                    }
                 }
                 catch (Exception ex)
                 {
@@ -2535,6 +2692,164 @@ namespace 恒温测试机.UI
                 }
                 #endregion
 
+                #region 从原点转到 38℃位置
+                System.Threading.Thread.Sleep(100);
+                //正传
+                bpq.write_coil(forwardWriteAddress_A, true, 5);
+                SystemInfoPrint("【" + DateTime.Now.ToString() + "】" + "开始正传...");
+                while (isAutoFindAngle && (angleValue_A <= tempAngleDict[38]))
+                {
+                    //等待角度达到 预设角度
+                }
+                bpq.write_coil(forwardWriteAddress_A, false, 5);
+                SystemInfoPrint("【" + DateTime.Now.ToString() + "】" + "结束正传...");
+                System.Threading.Thread.Sleep((int)(1000 * Properties.Settings.Default.t1));
+                #endregion
+
+                #region 38℃到36℃位置
+                //反传
+                bpq.write_coil(noForwardWriteAddress_A, true, 5);
+                SystemInfoPrint("【" + DateTime.Now.ToString() + "】" + "开始反传...");
+                while (isAutoFindAngle && (angleValue_A >= 0)&& (angleValue_A >= tempAngleDict[36]))
+                {
+                    //等待角度达到 原点
+                }
+                bpq.write_coil(noForwardWriteAddress_A, false, 5);
+                SystemInfoPrint("【" + DateTime.Now.ToString() + "】" + "结束反传...");
+                System.Threading.Thread.Sleep((int)(1000 * Properties.Settings.Default.t2));
+
+                #endregion
+
+                #region t2秒后开始记录数据
+                SystemInfoPrint("[温度达到设定值，开始记录出水温度数据]\n");
+                dt.Rows.Add("开始采集36℃出水温度数据",
+                    DateTime.Now,
+                                0,
+                                0,
+                                0,
+                                0,
+                                0,
+                                0,
+                                0,
+                                0,
+                                0,
+                                0,
+                                0,
+                                index);
+                startIndex = index;
+                index++;
+                collectDataFlag = true;
+                System.Threading.Thread.Sleep((int)(1000 * Properties.Settings.Default.t3));
+                SystemInfoPrint("[t3 = " + Properties.Settings.Default.t3.ToString() + " s ，停止记录数据。]\n");
+                collectDataFlag = false;
+                dt.Rows.Add("36℃出水温度数据采集完毕",
+                    DateTime.Now,
+                                0,
+                                0,
+                                0,
+                                0,
+                                0,
+                                0,
+                                0,
+                                0,
+                                0,
+                                0,
+                                0,
+                                index);
+                index++;
+                endIndex = index;
+                analyseDataDic.Add("36℃出水温度数据", DataTableUtils.SubDataTable(dt, startIndex, endIndex));
+                if (stopFlag)   //手动停止
+                {
+                    StopPro();
+                    return;
+                }
+                #endregion
+
+                #region 36℃到 38℃位置
+                //正传
+                bpq.write_coil(forwardWriteAddress_A, true, 5);
+                SystemInfoPrint("【" + DateTime.Now.ToString() + "】" + "开始正传...");
+                while (isAutoFindAngle && (angleValue_A <= tempAngleDict[38]))
+                {
+                    //等待角度达到 预设角度
+                }
+                bpq.write_coil(forwardWriteAddress_A, false, 5);
+                SystemInfoPrint("【" + DateTime.Now.ToString() + "】" + "结束正传...");
+                System.Threading.Thread.Sleep((int)(1000 * Properties.Settings.Default.t1));
+                #endregion
+
+                #region 38℃ 到 40 ℃
+                //正传
+                bpq.write_coil(forwardWriteAddress_A, true, 5);
+                SystemInfoPrint("【" + DateTime.Now.ToString() + "】" + "开始正传...");
+                while (isAutoFindAngle && (angleValue_A <= tempAngleDict[40]))
+                {
+                    //等待角度达到 预设角度
+                }
+                bpq.write_coil(forwardWriteAddress_A, false, 5);
+                SystemInfoPrint("【" + DateTime.Now.ToString() + "】" + "结束正传...");
+                System.Threading.Thread.Sleep((int)(1000 * Properties.Settings.Default.t2));
+                #endregion
+
+                #region t2秒后开始记录数据
+                SystemInfoPrint("[温度达到设定值，开始记录出水温度数据]\n");
+                dt.Rows.Add("开始采集40℃出水温度数据",
+                    DateTime.Now,
+                                0,
+                                0,
+                                0,
+                                0,
+                                0,
+                                0,
+                                0,
+                                0,
+                                0,
+                                0,
+                                0,
+                                index);
+                startIndex = index;
+                index++;
+                collectDataFlag = true;
+                System.Threading.Thread.Sleep((int)(1000 * Properties.Settings.Default.t3));
+                SystemInfoPrint("[t3 = " + Properties.Settings.Default.t3.ToString() + " s ，停止记录数据。]\n");
+                collectDataFlag = false;
+                dt.Rows.Add("40℃出水温度数据采集完毕",
+                    DateTime.Now,
+                                0,
+                                0,
+                                0,
+                                0,
+                                0,
+                                0,
+                                0,
+                                0,
+                                0,
+                                0,
+                                0,
+                                index);
+                index++;
+                endIndex = index;
+                analyseDataDic.Add("40℃出水温度数据", DataTableUtils.SubDataTable(dt, startIndex, endIndex));
+                if (stopFlag)   //手动停止
+                {
+                    StopPro();
+                    return;
+                }
+                #endregion
+
+                #region 40℃到38℃位置
+                //反传
+                bpq.write_coil(noForwardWriteAddress_A, true, 5);
+                SystemInfoPrint("【" + DateTime.Now.ToString() + "】" + "开始反传...");
+                while (isAutoFindAngle && (angleValue_A >= 0) && (angleValue_A >= tempAngleDict[38]))
+                {
+                    //等待角度达到 原点
+                }
+                bpq.write_coil(noForwardWriteAddress_A, false, 5);
+                SystemInfoPrint("【" + DateTime.Now.ToString() + "】" + "结束反传...");
+
+                #endregion
 
                 dataReportAnalyseApp = new DataReportAnalyseApp(logicType, analyseDataDic, model_2806);
                 if (analyseReportDic.ContainsKey(logicType))
@@ -2907,16 +3222,13 @@ namespace 恒温测试机.UI
                 #endregion
 
                 #region 电机从0->90度
-                if (settingForm != null)
+                //正传
+                bpq.write_coil(forwardWriteAddress_A, true, 5);
+                while (angleValue_A <= autoFindAngle_A)
                 {
-                    //正传
-                    bpq.write_coil(settingForm.forwardWriteAddress_A, true, 5);
-                    while (settingForm.angleValue_A <= settingForm.autoFindAngle_A)
-                    {
-                        //等待角度达到 预设角度
-                    }
-                    bpq.write_coil(settingForm.forwardWriteAddress_A, false, 5);
+                    //等待角度达到 预设角度
                 }
+                bpq.write_coil(forwardWriteAddress_A, false, 5);
                 #endregion
 
                 #region 旋转到位置后，t2s后开始收集数据，
@@ -3009,6 +3321,308 @@ namespace 恒温测试机.UI
             }
         }
 
+        private void ChangeTmTimer_Action(object source,System.Timers.ElapsedEventArgs e)
+        {
+            try
+            {
+                runFlag = true;
+                graphFlag = true;
+                analyseDataDic = new Dictionary<string, DataTable>();
+
+                MessageBox.Show("请确认电机已设置好相关参数！");
+
+                #region 启动 a c  11 011 14 021 vc vh vm  t1时间到
+                set_bit(ref doData[1], 7, true);//a
+                set_bit(ref doData[2], 1, true);//c
+                set_bit(ref doData[0], 5, true);//11
+                set_bit(ref doData[2], 7, true);//011
+                set_bit(ref doData[1], 0, true);//14
+                set_bit(ref doData[3], 1, true);//021
+                set_bit(ref doData[2], 3, true);//vc
+                set_bit(ref doData[2], 4, true);//vh
+                set_bit(ref doData[2], 5, true);//vm
+                control.InstantDo_Write(doData);
+                SystemInfoPrint("[初始化系统...]\n");
+                if (stopFlag)   //手动停止
+                {
+                    StopPro();
+                    return;
+                }
+                System.Threading.Thread.Sleep((int)(1000 * Properties.Settings.Default.t1));
+                SystemInfoPrint("[t1 = " + Properties.Settings.Default.t1.ToString() + " s 计时结束,开始温度变化测试]\n");
+                #endregion
+
+                #region 开启电机，原点，旋转记录 Tm36 38 40 位置
+                timeAngleDt.Clear();
+                ElectDt.Clear();
+                SystemInfoPrint("【" + DateTime.Now.ToString() + "】" + "开始找点");
+                isAutoFindAngle = true;
+                electDataFlag = true;
+                System.Threading.Thread.Sleep(100);
+                //正传
+                bpq.write_coil(forwardWriteAddress_A, true, 5);
+                SystemInfoPrint("【" + DateTime.Now.ToString() + "】" + "开始正传...");
+                while (isAutoFindAngle && (angleValue_A <= autoFindAngle_A))
+                {
+                    //等待角度达到 预设角度
+                }
+                bpq.write_coil(forwardWriteAddress_A, false, 5);
+                SystemInfoPrint("【" + DateTime.Now.ToString() + "】" + "结束正传...");
+                if (isAutoFindAngle == false)
+                {
+                    SystemInfoPrint("【" + DateTime.Now.ToString() + "】" + "当前已手动停止找点...");
+                    timeAngleDt.Clear();
+                    ElectDt.Clear();
+                    return;
+                }
+                if (stopFlag)   //手动停止
+                {
+                    StopPro();
+                    return;
+                }
+                //反传
+                bpq.write_coil(noForwardWriteAddress_A, true, 5);
+                SystemInfoPrint("【" + DateTime.Now.ToString() + "】" + "开始反传...");
+                while (isAutoFindAngle && (angleValue_A >= 0))
+                {
+                    //等待角度达到 原点
+                }
+                bpq.write_coil(noForwardWriteAddress_A, false, 5);
+                SystemInfoPrint("【" + DateTime.Now.ToString() + "】" + "结束反传...");
+                if (isAutoFindAngle == false)
+                {
+                    SystemInfoPrint("【" + DateTime.Now.ToString() + "】" + "当前已手动停止找点...");
+                    timeAngleDt.Clear();
+                    ElectDt.Clear();
+                    return;
+                }
+                if (stopFlag)   //手动停止
+                {
+                    StopPro();
+                    return;
+                }
+                SystemInfoPrint("【" + DateTime.Now.ToString() + "】" + "数据采集完毕，开始分析...");
+                AnalyseElect();
+                if (tempAngleDict.Count > 0)
+                {
+                    SystemInfoPrint("【" + DateTime.Now.ToString() + "】" + "采集的点位如下...");
+                    foreach (var dic in tempAngleDict)
+                    {
+                        SystemInfoPrint("【" + DateTime.Now.ToString() + "】" + "温度：" + dic.Key + "-----> 角度：" + dic.Value);
+                    }
+                }
+                if (stopFlag)   //手动停止
+                {
+                    StopPro();
+                    return;
+                }
+                #endregion
+
+                #region 从原点转到 38℃位置
+                System.Threading.Thread.Sleep(100);
+                //正传
+                bpq.write_coil(forwardWriteAddress_A, true, 5);
+                SystemInfoPrint("【" + DateTime.Now.ToString() + "】" + "开始正传...");
+                while (isAutoFindAngle && (angleValue_A <= tempAngleDict[38]))
+                {
+                    //等待角度达到 预设角度
+                }
+                bpq.write_coil(forwardWriteAddress_A, false, 5);
+                SystemInfoPrint("【" + DateTime.Now.ToString() + "】" + "结束正传...");
+                System.Threading.Thread.Sleep(1000*60);
+                #endregion
+
+                #region 60秒后开始记录数据
+                SystemInfoPrint("[温度达到设定值，开始记录数据]\n");
+                dt.Rows.Add("开始采集38℃数据",
+                    DateTime.Now,
+                                0,
+                                0,
+                                0,
+                                0,
+                                0,
+                                0,
+                                0,
+                                0,
+                                0,
+                                0,
+                                0,
+                                index);
+                startIndex = index;
+                index++;
+                collectDataFlag = true;
+                System.Threading.Thread.Sleep((int)(1000 * Properties.Settings.Default.t3));
+                SystemInfoPrint("[t3 = " + Properties.Settings.Default.t3.ToString() + " s ，停止记录数据。]\n");
+                collectDataFlag = false;
+                dt.Rows.Add("38℃数据采集完毕",
+                    DateTime.Now,
+                                0,
+                                0,
+                                0,
+                                0,
+                                0,
+                                0,
+                                0,
+                                0,
+                                0,
+                                0,
+                                0,
+                                index);
+                index++;
+                endIndex = index;
+                analyseDataDic.Add("38℃数据", DataTableUtils.SubDataTable(dt, startIndex, endIndex));
+                if (stopFlag)   //手动停止
+                {
+                    StopPro();
+                    return;
+                }
+                #endregion
+
+
+                dataReportAnalyseApp = new DataReportAnalyseApp(logicType, analyseDataDic, model_2806);
+                if (analyseReportDic.ContainsKey(logicType))
+                {
+                    analyseReportDic[logicType] = dataReportAnalyseApp.AnalyseResult();
+                }
+                else
+                {
+                    analyseReportDic.Add(logicType, dataReportAnalyseApp.AnalyseResult());
+                }
+                SystemInfoPrint(analyseReportDic[logicType] + "\n");
+                runFlag = false;
+                graphFlag = false;
+            }
+            catch(Exception ex)
+            {
+                Log.Error(ex.ToString());
+            }
+            finally
+            {
+                runFlag = false;
+                graphFlag = false;
+                if (stopFlag)   //手动停止
+                {
+                    StopPro();
+                    //return;
+                }
+            }
+        }
+
+        #endregion
+
+        #region 窗体控件事件
+        private void FormMain_Load(object sender, EventArgs e)
+        {
+            //asc.Initialize(this);
+            bpq.write_coil("2078", true, 5);//松开产品
+            WaterOut.Value = Properties.Settings.Default.WaterOut;
+        }
+
+        private void FormMain_SizeChanged(object sender, EventArgs e)
+        {
+            //asc.ReSize(this);
+        }
+
+        private void FormMain_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            doData[0] = 0;
+            doData[1] = 0;
+            doData[2] = 0;
+            doData[3] = 0;
+            control.InstantDo_Write(doData);
+
+            if (monitorTimer != null)
+            {
+                monitorTimer.Enabled = false;
+                monitorTimer.Dispose();
+            }
+            if (monitorWhTimer != null)
+            {
+                monitorWhTimer.Enabled = false;
+                monitorWhTimer.Dispose();
+            }
+            if (monitorDiTimer != null)
+            {
+                monitorDiTimer.Enabled = false;
+                monitorDiTimer.Dispose();
+            }
+            if (monitorMTimer != null)
+            {
+                monitorMTimer.Enabled = false;
+                monitorMTimer.Dispose();
+            }
+            if (monitorDTimer != null)
+            {
+                monitorDTimer.Enabled = false;
+                monitorDTimer.Dispose();
+            }
+        }
+
+        private void RadioBtn_CheckedChange(object sender, EventArgs e)
+        {
+            if (!((RadioButton)sender).Checked)
+            {
+                return;
+            }
+            if (runFlag)
+            {
+                MessageBox.Show("当前已有测试流程正在执行，请等待！");
+                return;
+            }
+            //TODO:
+            if (autoRunFlag || (MessageBox.Show("确认切换子操作界面？注意保存数据", "", MessageBoxButtons.YesNo) == DialogResult.Yes))
+            {
+                //monitorTimer.Enabled = false;
+                safetyTimer.Enabled = false;
+                pressureTimer.Enabled = false;
+                coolTimer.Enabled = false;
+                steadyTimer.Enabled = false;
+                flowTimer.Enabled = false;
+                heatTimer.Enabled = false;
+                maxHeatTimer.Enabled = false;
+                changeTmTimer.Enabled = false;
+                switch (((RadioButton)sender).Text.ToString())
+                {
+                    case "安全性测试":
+                        logicType = LogicTypeEnum.safeTest;
+                        break;
+                    case "压力变化测试":
+                        logicType = LogicTypeEnum.PressureTest;
+                        break;
+                    case "降温测试":
+                        logicType = LogicTypeEnum.CoolTest;
+                        break;
+                    case "温度稳定性测试":
+                        logicType = LogicTypeEnum.TemTest;
+                        break;
+                    case "流量减少测试":
+                        logicType = LogicTypeEnum.FlowTest;
+                        break;
+                    case "灵敏度测试":
+                        logicType = LogicTypeEnum.SensitivityTest;
+                        break;
+                    case "保真度测试":
+                        logicType = LogicTypeEnum.FidelityTest;
+                        break;
+                    case "出水温度稳定性测试":
+                        logicType = LogicTypeEnum.TmSteadyTest;
+                        break;
+                    case "升温测试":
+                        logicType = LogicTypeEnum.HeatTest;
+                        break;
+                    case "最高限温测试":
+                        logicType = LogicTypeEnum.MaxHeatTest;
+                        break;
+                }
+                Console.WriteLine(logicType.ToDescription());
+                //InitData();
+                //ChangeTimer();
+            }
+        }
+
+        
+        
+
         public short Read(string address, byte station)
         {
             var val = bpq.read_short(address, station);
@@ -3023,83 +3637,8 @@ namespace 恒温测试机.UI
         public void Write_short(string address, short val, byte station)
         {
             bpq.write_short(address, val, station);
-
         }
-        public FormConnectValueSetting settingForm;
-        private void ElectControlBtn_Click(object sender, EventArgs e)
-        {
-            settingForm = new FormConnectValueSetting(this);
-            settingForm.Show();
-        }
-
-        private void GraphDataBtn_Click(object sender, EventArgs e)
-        {
-            if (GraphDt.Rows != null && GraphDt.Rows.Count > 1)
-            {
-                Log.Info("启动图像界面");
-                FormPressureCurve form = new FormPressureCurve(GraphDt);
-                form.Show();
-            }
-            else
-            {
-                MessageBox.Show("未采集到数据");
-            }
-        }
-
-        private void AutoRunBtn_Click(object sender, EventArgs e)
-        {
-            if (autoRunFlag)    //停止自动运行
-            {
-                autoRunBtn.OriginalColor = Color.Lavender;
-                autoRunFlag = false;
-            }
-            else        //启动自动运行
-            {
-                autoRunFlag = true;
-                if (runFlag)
-                {
-                    MessageBox.Show("当前已有测试流程正在执行，请等待！");
-                    return;
-                }
-                else
-                {
-                    autoRunBtn.OriginalColor = Color.Green;
-                    switch (testStandard)
-                    {
-                        case TestStandardEnum.default1711:
-                            safetyTimer.Enabled = true;
-                            break;
-                    }
-                }
-            }
-
-        }
-
-        public bool electDataFlag = false;
-        private void ShutDownBtn_Click(object sender, EventArgs e)
-        {
-            if (settingForm != null)
-            {
-                electDataFlag = false;
-
-                settingForm.powerState_A = false;
-                bpq.write_coil(settingForm.shutdownAddress_A, true, 5);
-                System.Threading.Thread.Sleep((int)(200));
-                bpq.write_coil(settingForm.shutdownAddress_A, false, 5);
-
-                settingForm.powerState_L = false;
-                bpq.write_coil(settingForm.shutdownAddress_L, true, 5);
-                System.Threading.Thread.Sleep((int)(200));
-                bpq.write_coil(settingForm.shutdownAddress_L, false, 5);
-            }
-        }
-
-        private void DOControlBtn_Click(object sender, EventArgs e)
-        {
-            IsOpenDC = true;
-            FormDOControl doControlForm = new FormDOControl(this);
-            doControlForm.Show();
-        }
+        
         #endregion
 
         #region WaveformAiCtrl
@@ -3288,7 +3827,7 @@ namespace 恒温测试机.UI
                 //Console.WriteLine("液面高度：" + Wh);
 
                 //用485 读取冷水、热水的流量共十个数据
-                
+
                 short[] temp1 = bpq.read_short_batch("4110", 10, 5);
                 short[] temp2 = bpq.read_short_batch("4120", 10, 5);
                 for (int i = 0; i < 10; i++)
@@ -3407,7 +3946,7 @@ namespace 恒温测试机.UI
                                 sourceDataQm5[i],
                                 Wh + (double)Properties.Settings.Default.WhAdjust);
                         }
-                        if (electDataFlag)
+                        if (electDataFlag)  //电机自动找点时候采集的相关数据
                         {
                             ElectDt.Rows.Add(t.ToString("yyyy-MM-dd hh:mm:ss:fff"),
                                 //(sourceDataQc[i] - 1) < 0 ? 0 : (sourceDataQc[i] - 1) * 12.5 + (double)Properties.Settings.Default.QcAdjust,
@@ -3428,8 +3967,8 @@ namespace 恒温测试机.UI
                     }
                     //Qc = (sourceDataQc[3] + sourceDataQc[102] - 2) < 0 ? 0 : Math.Round((sourceDataQc[3] + sourceDataQc[102] - 2) * 12.5 * 0.5, 2, MidpointRounding.AwayFromZero) + (double)Properties.Settings.Default.QcAdjust;
                     //Qh = (sourceDataQh[3] + sourceDataQh[102] - 2) < 0 ? 0 : Math.Round((sourceDataQh[3] + sourceDataQh[102] - 2) * 12.5 * 0.5, 2, MidpointRounding.AwayFromZero) + (double)Properties.Settings.Default.QhAdjust;
-                    Qc = CoolFlow[CoolFlow.Length - 1] + (double)Properties.Settings.Default.QcAdjust;
-                    Qh = HotFlow[CoolFlow.Length - 1] + (double)Properties.Settings.Default.QhAdjust;
+                    Qc = CoolFlow[CoolFlow.Length - 1] < 0 ? 0 : Math.Round(CoolFlow[CoolFlow.Length - 1], 2, MidpointRounding.AwayFromZero) + (double)Properties.Settings.Default.QcAdjust;
+                    Qh = HotFlow[CoolFlow.Length - 1] < 0 ? 0 : Math.Round(HotFlow[CoolFlow.Length - 1], 2, MidpointRounding.AwayFromZero) + (double)Properties.Settings.Default.QhAdjust;
                     Qm = (sourceDataQm[3] + sourceDataQm[102] - 2) < 0 ? 0 : Math.Round((sourceDataQm[3] + sourceDataQm[102] - 2) * 5 * 0.5, 2, MidpointRounding.AwayFromZero) + (double)Properties.Settings.Default.QmAdjust;
                     Tc = Math.Round((sourceDataTc[3] + sourceDataTc[102]) * 5, 2, MidpointRounding.AwayFromZero) + (double)Properties.Settings.Default.TcAdjust;
                     Th = Math.Round((sourceDataTh[3] + sourceDataTh[102]) * 5, 2, MidpointRounding.AwayFromZero) + (double)Properties.Settings.Default.ThAdjust;
@@ -3747,178 +4286,6 @@ namespace 恒温测试机.UI
 
         #endregion
 
-        //#region 电机控制
-        ///// <summary>
-        ///// 电机角度与对应温度
-        ///// </summary>
-        //public Dictionary<double, double> tempAngleDict = new Dictionary<double, double>();
-        //public Dictionary<double, DateTime> tmTimeDict = new Dictionary<double, DateTime>();
-        //public Dictionary<DateTime, double> timeAngleDict = new Dictionary<DateTime, double>();
-        //public DataTable timeAngleDt;
-
-
-        //private ElectricalMachineryType type;
-        //private string powerAddress = "";   //M8-2056   M18-2066
-        //private bool powerState = false;
-
-        //private string forwardWriteAddress = "";
-        //private string forwardReadAddress = "";
-        //private bool forwardState = false;
-
-        //private string noForwardWriteAddress = "";
-        //private string noForwardReadAddress = "";
-        //private bool noForwadState = false;
-
-        //private string orignWriteAddress = "";
-        //private string orignReadAddress = "";
-        //private bool orignState = false;
-
-        //private string autoRunAddress = "";
-        //private string backOrignAddress = "";
-        //private string shutdownAddress = "";
-
-        //private string radioAddress = "";
-        //private uint radioValue = 0;
-        //private string angleAddress = "";
-        //private int angleValue = 0;
-
-        ///// <summary>
-        ///// 初始化电机通信
-        ///// </summary>
-        //private void InitElect()
-        //{
-        //    type = ElectricalMachineryType.tempType;
-        //    powerAddress = "2056";
-        //    forwardWriteAddress = "2048";
-        //    forwardReadAddress = "2053";
-        //    noForwardWriteAddress = "2049";
-        //    noForwardReadAddress = "2054";
-        //    orignWriteAddress = "2050";
-        //    orignReadAddress = "2055";
-        //    autoRunAddress = "2051";
-        //    backOrignAddress = "2052";
-        //    shutdownAddress = "2057";
-        //    radioAddress = "4296";
-        //    angleAddress = "5432";
-
-        //    timeAngleDt = new DataTable();
-        //    timeAngleDt.Columns.Add("时间", typeof(string));
-        //    timeAngleDt.Columns.Add("角度", typeof(double));
-
-        //    monitorDTimer = new System.Timers.Timer(200);
-        //    monitorDTimer.Elapsed += (o, a) =>
-        //    {
-        //        MonitorDActive();
-        //    };//到达时间的时候执行事件；
-        //    monitorDTimer.AutoReset = true;//设置是执行一次（false）还是一直执行(true)；
-        //    monitorDTimer.Enabled = true;//是否执行System.Timers.Timer.Elapsed事件；
-        //    electDataFlag = true;       //开始记录温度
-        //}
-
-        ///// <summary>
-        ///// 分析温度与角度对应关系
-        ///// </summary>
-        //private void AnalyseElect()
-        //{
-        //    foreach (DataRow tmRow in ElectDt.Rows)
-        //    {
-        //        if (tmTimeDict.Keys.Count == 3)
-        //        {
-        //            break;
-        //        }
-        //        var tm = tmRow["出水温度Tm"].AsDouble();
-        //        var tmTime = tmRow["时间"].AsDateTime();
-        //        if (tm == 36)
-        //        {
-        //            if (tmTimeDict.ContainsKey(36))
-        //                continue;
-        //            else
-        //                tmTimeDict.Add(36, tmTime);
-        //        }
-        //        if (tm == 38)
-        //        {
-        //            if (tmTimeDict.ContainsKey(38))
-        //                continue;
-        //            else
-        //                tmTimeDict.Add(38, tmTime);
-        //        }
-        //        if (tm == 40)
-        //        {
-        //            if (tempAngleDict.ContainsKey(40))
-        //                continue;
-        //            else
-        //                tmTimeDict.Add(40, tmTime);
-        //        }
-        //    }
-        //    foreach (DataRow eleRow in timeAngleDt.Rows)
-        //    {
-        //        if (timeAngleDict.Keys.Count == 3)
-        //        {
-        //            break;
-        //        }
-        //        var angle = eleRow["角度"].AsDouble();
-        //        var angleTime = eleRow["时间"].AsDateTime();
-
-        //        if (timeAngleDict.ContainsKey(tmTimeDict[36]) == false && (angleTime - tmTimeDict[36]).TotalMilliseconds < 0.5)
-        //        {
-        //            timeAngleDict.Add(tmTimeDict[36], angle);
-        //        }
-
-        //        if (timeAngleDict.ContainsKey(tmTimeDict[38]) == false && (angleTime - tmTimeDict[38]).TotalMilliseconds < 0.5)
-        //        {
-        //            timeAngleDict.Add(tmTimeDict[38], angle);
-        //        }
-
-        //        if (timeAngleDict.ContainsKey(tmTimeDict[40]) == false && (angleTime - tmTimeDict[40]).TotalMilliseconds < 0.5)
-        //        {
-        //            timeAngleDict.Add(tmTimeDict[40], angle);
-        //        }
-        //    }
-
-        //    tempAngleDict.Add(36, timeAngleDict[tmTimeDict[36]]);
-        //    tempAngleDict.Add(36, timeAngleDict[tmTimeDict[38]]);
-        //    tempAngleDict.Add(36, timeAngleDict[tmTimeDict[40]]);
-        //}
-
-        //System.Timers.Timer monitorDTimer;            //监控D寄存器定时器
-        //private delegate void MonitorDActiveDelegate();
-        //private void MonitorDActive()
-        //{
-        //    try
-        //    {
-        //        if (this.InvokeRequired)
-        //        {
-        //            MonitorDActiveDelegate monitorActiveDelegate = MonitorDActive;
-        //            this.Invoke(monitorActiveDelegate);
-        //        }
-        //        else
-        //        {
-        //            radioValue = bpq.read_uint(radioAddress, 5);
-        //            angleValue = bpq.read_int(angleAddress, 5);
-
-        //            var temp1 = (radioValue * 0.0001);
-        //            var temp2 = (angleValue * 0.0001);
-        //            if (electDataFlag)
-        //            {
-        //                timeAngleDt.Rows.Add(
-        //                    DateTime.Now.ToString("yyyy-MM-dd hh:mm:ss:fff"),
-        //                    temp2);
-        //            }
-        //        }
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        return;
-        //    }
-
-        //}
-
-
-
-
-
-
-        //#endregion
 
         #region 预留模拟量输出
 
@@ -4054,6 +4421,20 @@ namespace 恒温测试机.UI
             lastTempData[type * 6 + 3] = data[103];
             lastTempData[type * 6 + 4] = data[104];
             lastTempData[type * 6 + 5] = data[105];
+            return data;
+        }
+
+        //
+        public double[] dataFill(double begin, double end, int len)
+        {
+            double[] data = new double[len];
+            data[0] = begin;
+            data[len - 1] = end;
+            double d = (end - begin) / (len - 1);
+            for (int i = 1; i < len - 1; i++)
+            {
+                data[i] = begin + i * d;
+            }
             return data;
         }
 
@@ -4278,10 +4659,8 @@ namespace 恒温测试机.UI
         }
         #endregion
 
-
         #region 管道图按钮
 
-        #endregion
 
         /// <summary>
         /// 管道按钮检查约束
@@ -4887,19 +5266,6 @@ namespace 恒温测试机.UI
             }
         }
 
-        //
-        public double[] dataFill(double begin, double end, int len)
-        {
-            double[] data = new double[len];
-            data[0] = begin;
-            data[len - 1] = end;
-            double d = (end - begin) / (len - 1);
-            for (int i = 1; i < len - 1; i++)
-            {
-                data[i] = begin + i * d;
-            }
-            return data;
-        }
 
         private void TrackBar1_Scroll(object sender, EventArgs e)
         {
@@ -4913,5 +5279,636 @@ namespace 恒温测试机.UI
             Properties.Settings.Default.WaterOut = WaterOut.Value;
             Properties.Settings.Default.Save();
         }
+
+        #endregion
+
+        #region 电机控制
+
+        System.Timers.Timer monitorMTimer;            //监控M寄存器定时器
+        System.Timers.Timer monitorDTimer;            //监控D寄存器定时器
+
+        public double autoFindAngle_A = 0;         //自动找点角度A
+        private double autoFindAngle_L = 0;         //自动找点角度A    
+
+        private bool isAutoFindAngle = false;
+        public DataTable timeAngleDt;
+        public Dictionary<double, double> tempAngleDict = new Dictionary<double, double>();
+        public Dictionary<double, DateTime> tmTimeDict = new Dictionary<double, DateTime>();
+        public Dictionary<DateTime, double> timeAngleDict = new Dictionary<DateTime, double>();
+
+        #region 伺服电机A  地址变量
+
+        private string powerAddress_A = "2056";   //M8-2056   M18-2066
+        public bool powerState_A = false;
+
+        public string forwardWriteAddress_A = "2048";
+        private string forwardReadAddress_A = "2053";
+        public bool forwardState_A = false;
+
+        private string noForwardWriteAddress_A = "2049";
+        private string noForwardReadAddress_A = "2054";
+        private bool noForwadState_A = false;
+
+        private string orignWriteAddress_A = "2050";
+        private string orignReadAddress_A = "2055";
+        private bool orignState_A = false;
+
+        private string autoRunAddress_A = "2051";
+        private string backOrignAddress_A = "2052";
+        public string shutdownAddress_A = "2057";
+
+        private string radioAddress_A = "6096";
+        private uint radioValue_A = 0;
+        private string angleAddress_A = "4100";
+        public int angleValue_A = 0;
+
+        #endregion
+
+        #region 伺服电机L  地址变量
+
+        private string powerAddress_L = "2066";   //M8-2056   M18-2066
+        public bool powerState_L = false;
+
+        private string forwardWriteAddress_L = "2058";
+        private string forwardReadAddress_L = "2063";
+        private bool forwardState_L = false;
+
+        private string noForwardWriteAddress_L = "2059";
+        private string noForwardReadAddress_L = "2064";
+        private bool noForwadState_L = false;
+
+        private string orignWriteAddress_L = "2060";
+        private string orignReadAddress_L = "2065";
+        private bool orignState_L = false;
+
+        private string autoRunAddress_L = "2061";
+        private string backOrignAddress_L = "2062";
+        public string shutdownAddress_L = "2067";
+
+        private string radioAddress_L = "6098";
+        private uint radioValue_L = 0;
+        private string angleAddress_L = "4102";
+        private int angleValue_L = 0;
+
+        #endregion
+
+        #region 伺服电机A事件
+        /// <summary>
+        /// 伺服开关
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void PowerSwitchBtn_A_Click(object sender, EventArgs e)
+        {
+            if (powerState_A)
+            {
+                bpq.write_coil(powerAddress_A, false, 5);
+                isAutoFindAngle = false;
+            }
+            else
+                bpq.write_coil(powerAddress_A, true, 5);
+        }
+
+        private void ForwardBtn_A_MouseDown(object sender, MouseEventArgs e)
+        {
+            if (!powerState_A)
+            {
+                MessageBox.Show("请开启伺服电机A");
+            }
+            else if (isAutoFindAngle)
+            {
+                return;
+            }
+            else
+            {
+                forwardBtn_A.BackColor = Color.Green;
+                bpq.write_coil(forwardWriteAddress_A, true, 5);
+            }
+        }
+
+        private void ForwardBtn_A_MouseUp(object sender, MouseEventArgs e)
+        {
+            if (!powerState_A)
+            {
+                MessageBox.Show("请开启伺服电机A");
+            }
+            else if (isAutoFindAngle)
+            {
+                return;
+            }
+            else
+            {
+                forwardBtn_A.BackColor = DefaultBackColor;
+                bpq.write_coil(forwardWriteAddress_A, false, 5);
+            }
+        }
+
+        private void NoForwardBtn_A_MouseDown(object sender, MouseEventArgs e)
+        {
+            if (!powerState_A)
+            {
+                MessageBox.Show("请开启伺服电机A");
+            }
+            else if (isAutoFindAngle)
+            {
+                return;
+            }
+            else
+            {
+                noForwardBtn_A.BackColor = Color.Green;
+                bpq.write_coil(noForwardWriteAddress_A, true, 5);
+            }
+        }
+
+        private void NoForwardBtn_A_MouseUp(object sender, MouseEventArgs e)
+        {
+            if (!powerState_A)
+            {
+                MessageBox.Show("请开启伺服电机A");
+            }
+            else if (isAutoFindAngle)
+            {
+                return;
+            }
+            else
+            {
+                noForwardBtn_A.BackColor = DefaultBackColor;
+                bpq.write_coil(noForwardWriteAddress_A, false, 5);
+            }
+        }
+
+        private void ShutdownBtn_A_MouseDown(object sender, MouseEventArgs e)
+        {
+            if (!powerState_A)
+            {
+                MessageBox.Show("请开启伺服电机A");
+            }
+            else if (isAutoFindAngle)
+            {
+                return;
+            }
+            else
+            {
+                shutdownBtn_A.BackColor = Color.Green;
+                bpq.write_coil(shutdownAddress_A, true, 5);
+                isAutoFindAngle = false;
+            }
+        }
+
+        private void ShutdownBtn_A_MouseUp(object sender, MouseEventArgs e)
+        {
+            if (!powerState_A)
+            {
+                MessageBox.Show("请开启伺服电机A");
+            }
+            else if (isAutoFindAngle)
+            {
+                return;
+            }
+            else
+            {
+                shutdownBtn_A.BackColor = DefaultBackColor;
+                bpq.write_coil(shutdownAddress_A, false, 5);
+                isAutoFindAngle = false;
+            }
+        }
+        private void OrignBtn_A_MouseDown(object sender, MouseEventArgs e)
+        {
+            if (!powerState_A)
+            {
+                MessageBox.Show("请开启伺服电机A");
+            }
+            else if (isAutoFindAngle)
+            {
+                return;
+            }
+            else
+            {
+                orignBtn_A.BackColor = Color.Green;
+                bpq.write_coil(orignWriteAddress_A, true, 5);
+            }
+        }
+
+        private void OrignBtn_A_MouseUp(object sender, MouseEventArgs e)
+        {
+            if (!powerState_A)
+            {
+                MessageBox.Show("请开启伺服电机A");
+            }
+            else if (isAutoFindAngle)
+            {
+                return;
+            }
+            else
+            {
+                orignBtn_A.BackColor = DefaultBackColor;
+                bpq.write_coil(orignWriteAddress_A, false, 5);
+            }
+        }
+        private void BackOrignBtn_A_Click(object sender, EventArgs e)
+        {
+            if (!powerState_A)
+            {
+                MessageBox.Show("请开启伺服电机A");
+            }
+            else if (isAutoFindAngle)
+            {
+                return;
+            }
+            else
+            {
+                bpq.write_coil(backOrignAddress_A, true, 5);
+            }
+        }
+        private void AutoRunBtn_A_Click(object sender, EventArgs e)
+        {
+            if (!powerState_A)
+            {
+                MessageBox.Show("请开启伺服电机A");
+            }
+            else if (isAutoFindAngle)
+            {
+                return;
+            }
+            else
+            {
+                bpq.write_coil(autoRunAddress_A, true, 5);
+            }
+        }
+        private void AutoFind_A_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (!powerState_A)
+                {
+                    MessageBox.Show("请开启伺服电机A");
+                }
+                if (autoFindAngle_A == 0)
+                {
+                    MessageBox.Show("请先设置自动找点，电机预转动的角度");
+                    return;
+                }
+                if (MessageBox.Show("请确认是否设置好原点、转速等相关参数", "", MessageBoxButtons.OKCancel, MessageBoxIcon.Question) == DialogResult.OK)
+                {
+                    timeAngleDt.Clear();
+                    ElectDt.Clear();
+                    SystemInfoPrint("【" + DateTime.Now.ToString() + "】" + "开始找点");
+                    isAutoFindAngle = true;
+                    electDataFlag = true;
+                    System.Threading.Thread.Sleep(100);
+                    //正传
+                    bpq.write_coil(forwardWriteAddress_A, true, 5);
+                    SystemInfoPrint("【" + DateTime.Now.ToString() + "】" + "开始正传...");
+                    while (isAutoFindAngle && (angleValue_A <= autoFindAngle_A))
+                    {
+                        //等待角度达到 预设角度
+                    }
+                    bpq.write_coil(forwardWriteAddress_A, false, 5);
+                    SystemInfoPrint("【" + DateTime.Now.ToString() + "】" + "结束正传...");
+                    if (isAutoFindAngle == false)
+                    {
+                        SystemInfoPrint("【" + DateTime.Now.ToString() + "】" + "当前已手动停止找点...");
+                        timeAngleDt.Clear();
+                        ElectDt.Clear();
+                        return;
+                    }
+                    //反传
+                    bpq.write_coil(noForwardWriteAddress_A, true, 5);
+                    SystemInfoPrint("【" + DateTime.Now.ToString() + "】" + "开始反传...");
+                    while (isAutoFindAngle && (angleValue_A >= 0))
+                    {
+                        //等待角度达到 原点
+                    }
+                    bpq.write_coil(noForwardWriteAddress_A, false, 5);
+                    SystemInfoPrint("【" + DateTime.Now.ToString() + "】" + "结束反传...");
+                    if (isAutoFindAngle == false)
+                    {
+                        SystemInfoPrint("【" + DateTime.Now.ToString() + "】" + "当前已手动停止找点...");
+                        timeAngleDt.Clear();
+                        ElectDt.Clear();
+                        return;
+                    }
+
+                    SystemInfoPrint("【" + DateTime.Now.ToString() + "】" + "数据采集完毕，开始分析...");
+                    AnalyseElect();
+                    if (tempAngleDict.Count > 0)
+                    {
+                        SystemInfoPrint("【" + DateTime.Now.ToString() + "】" + "采集的点位如下...");
+                        foreach (var dic in tempAngleDict)
+                        {
+                            SystemInfoPrint("【" + DateTime.Now.ToString() + "】" + "温度：" + dic.Key + "-----> 角度：" + dic.Value);
+                        }
+                    }
+                }
+                else
+                {
+                    return;
+                }
+            }
+            catch (Exception ex)
+            {
+                Log.Error("自动找点异常：" + ex.ToString());
+                return;
+            }
+            finally
+            {
+                isAutoFindAngle = false;
+                electDataFlag = false;
+            }
+        }
+        /// <summary>
+        /// 分析温度与角度对应关系
+        /// </summary>
+        private void AnalyseElect()
+        {
+            tmTimeDict = new Dictionary<double, DateTime>();
+            timeAngleDict = new Dictionary<DateTime, double>();
+            tempAngleDict = new Dictionary<double, double>();
+            foreach (DataRow tmRow in ElectDt.Rows)
+            {
+                if (tmTimeDict.Keys.Count == 3)
+                {
+                    break;
+                }
+                var tm = tmRow["出水温度Tm"].AsDouble();
+                var tmTime = tmRow["时间"].AsDateTime();
+                if (tm == 36)
+                {
+                    if (tmTimeDict.ContainsKey(36))
+                        continue;
+                    else
+                        tmTimeDict.Add(36, tmTime);
+                }
+                if (tm == 38)
+                {
+                    if (tmTimeDict.ContainsKey(38))
+                        continue;
+                    else
+                        tmTimeDict.Add(38, tmTime);
+                }
+                if (tm == 40)
+                {
+                    if (tempAngleDict.ContainsKey(40))
+                        continue;
+                    else
+                        tmTimeDict.Add(40, tmTime);
+                }
+            }
+            foreach (DataRow eleRow in timeAngleDt.Rows)
+            {
+                if (timeAngleDict.Keys.Count == 3)
+                {
+                    break;
+                }
+                var angle = eleRow["角度"].AsDouble();
+                var angleTime = eleRow["时间"].AsDateTime();
+
+                if (timeAngleDict.ContainsKey(tmTimeDict[36]) == false && (angleTime - tmTimeDict[36]).TotalMilliseconds < 0.2)
+                {
+                    timeAngleDict.Add(tmTimeDict[36], angle);
+                }
+
+                if (timeAngleDict.ContainsKey(tmTimeDict[38]) == false && (angleTime - tmTimeDict[38]).TotalMilliseconds < 0.2)
+                {
+                    timeAngleDict.Add(tmTimeDict[38], angle);
+                }
+
+                if (timeAngleDict.ContainsKey(tmTimeDict[40]) == false && (angleTime - tmTimeDict[40]).TotalMilliseconds < 0.2)
+                {
+                    timeAngleDict.Add(tmTimeDict[40], angle);
+                }
+            }
+
+            tempAngleDict.Add(36, timeAngleDict[tmTimeDict[36]]);
+            tempAngleDict.Add(38, timeAngleDict[tmTimeDict[38]]);
+            tempAngleDict.Add(40, timeAngleDict[tmTimeDict[40]]);
+        }
+
+        private void RadioBtn_A_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                uint val2 = (uint)(double.Parse(radioTb_A.Text) * 10000);
+
+                if (val2 < 0 || val2 > 200000)
+                {
+                    MessageBox.Show("请输入0-20 范围内的值");
+                    radioTb_A.Text = "";
+                }
+                else if (isAutoFindAngle)
+                {
+                    return;
+                }
+                else
+                {
+                    Write_uint(radioAddress_A, val2, 5);
+                    SystemInfoPrint("写入：【" + radioAddress_A + "】【" + val2 + "】\n");
+                }
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show("请输入正确的格式");
+                return;
+            }
+            
+        }
+        private void AngleBtn_A_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (isAutoFindAngle)
+                {
+                    return;
+                }
+                autoFindAngle_A = angleTb_A.Text.ToDouble();
+                SystemInfoPrint("写入自动找点预转动角度值：【" + autoFindAngle_A + "】【" + DateTime.Now.ToString() + "】\n");
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("请输入正确的格式");
+                return;
+            }
+        }
+
+        #endregion
+
+        #region 伺服电机L事件
+        private void PowerBtn_L_Click(object sender, EventArgs e)
+        {
+            if (powerState_L)
+                bpq.write_coil(powerAddress_L, false, 5);
+            else
+                bpq.write_coil(powerAddress_L, true, 5);
+        }
+
+        private void ShutdownBtn_L_MouseDown(object sender, MouseEventArgs e)
+        {
+            if (!powerState_L)
+            {
+                MessageBox.Show("请开启伺服电机L");
+            }
+            else
+            {
+                shutdownBtn_L.BackColor = Color.Green;
+                bpq.write_coil(shutdownAddress_L, true, 5);
+            }
+        }
+
+        private void ShutdownBtn_L_MouseUp(object sender, MouseEventArgs e)
+        {
+            if (!powerState_L)
+            {
+                MessageBox.Show("请开启伺服电机L");
+            }
+            else
+            {
+                shutdownBtn_L.BackColor = DefaultBackColor;
+                bpq.write_coil(shutdownAddress_L, false, 5);
+            }
+        }
+
+        private void OrignBtn_L_MouseDown(object sender, MouseEventArgs e)
+        {
+            if (!powerState_L)
+            {
+                MessageBox.Show("请开启伺服电机L");
+            }
+            else
+            {
+                orignBtn_L.BackColor = Color.Green;
+                bpq.write_coil(orignWriteAddress_L, true, 5);
+            }
+        }
+
+        private void OrignBtn_L_MouseUp(object sender, MouseEventArgs e)
+        {
+            if (!powerState_L)
+            {
+                MessageBox.Show("请开启伺服电机L");
+            }
+            else
+            {
+                orignBtn_L.BackColor = DefaultBackColor;
+                bpq.write_coil(orignWriteAddress_L, false, 5);
+            }
+        }
+
+        private void ForwardBtn_L_MouseDown(object sender, MouseEventArgs e)
+        {
+            if (!powerState_L)
+            {
+                MessageBox.Show("请开启伺服电机L");
+            }
+            else
+            {
+                forwardBtn_L.BackColor = Color.Green;
+                bpq.write_coil(forwardWriteAddress_L, true, 5);
+            }
+        }
+
+        private void ForwardBtn_L_MouseUp(object sender, MouseEventArgs e)
+        {
+            if (!powerState_L)
+            {
+                MessageBox.Show("请开启伺服电机L");
+            }
+            else
+            {
+                forwardBtn_L.BackColor = DefaultBackColor;
+                bpq.write_coil(forwardWriteAddress_L, false, 5);
+            }
+        }
+
+        private void NoForwardBtn_L_MouseDown(object sender, MouseEventArgs e)
+        {
+            if (!powerState_L)
+            {
+                MessageBox.Show("请开启伺服电机L");
+            }
+            else
+            {
+                noForwardBtn_L.BackColor = Color.Green;
+                bpq.write_coil(noForwardWriteAddress_L, true, 5);
+            }
+        }
+
+        private void NoForwardBtn_L_MouseUp(object sender, MouseEventArgs e)
+        {
+            if (!powerState_L)
+            {
+                MessageBox.Show("请开启伺服电机L");
+            }
+            else
+            {
+                noForwardBtn_L.BackColor = DefaultBackColor;
+                bpq.write_coil(noForwardWriteAddress_L, false, 5);
+            }
+        }
+
+        private void BackOrignBtn_L_Click(object sender, EventArgs e)
+        {
+            if (!powerState_L)
+            {
+                MessageBox.Show("请开启伺服电机L");
+            }
+            else
+            {
+                bpq.write_coil(backOrignAddress_L, true, 5);
+            }
+        }
+
+        private void AutoRunBtn_L_Click(object sender, EventArgs e)
+        {
+            if (!powerState_L)
+            {
+                MessageBox.Show("请开启伺服电机L");
+            }
+            else
+            {
+                bpq.write_coil(autoRunAddress_L, true, 5);
+            }
+        }
+
+        private void RadioBtn_L_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                uint val2 = (uint)(double.Parse(radioTb_L.Text) * 8000);
+                if (val2 < 0 || val2 > 200000)
+                {
+                    MessageBox.Show("请输入0-25 范围内的值");
+                    radioTb_L.Text = "";
+                }
+                else
+                {
+
+                    Write_uint(radioAddress_L, val2, 5);
+                    SystemInfoPrint("写入：【" + radioAddress_L + "】【" + val2 + "】\n");
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("请输入正确的格式");
+                return;
+            }
+        }
+
+        private void AngleBtn_L_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                autoFindAngle_L = angleTb_L.Text.ToDouble();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("请输入正确的格式");
+                return;
+            }
+        }
+        #endregion
+
+        #endregion
+
     }
 }

@@ -33,6 +33,9 @@ namespace 恒温测试机.UI
                 case Model.Enum.TestStandardEnum.default2806:
                     radioButton2.Checked = true;
                     break;
+                case Model.Enum.TestStandardEnum.default1016:
+                    radioButton4.Checked = true;
+                    break;
                 case Model.Enum.TestStandardEnum.blank:
                     radioButton3.Checked = true;
                     break;
@@ -52,6 +55,9 @@ namespace 恒温测试机.UI
                     break;
                 case "QB/T 2806-2017标准":
                     testStandardTemp = TestStandardEnum.default2806;
+                    break;
+                case "ASEE1016-2017":
+                    testStandardTemp = TestStandardEnum.default1016;
                     break;
                 case "自定义":
                     testStandardTemp = TestStandardEnum.blank;
