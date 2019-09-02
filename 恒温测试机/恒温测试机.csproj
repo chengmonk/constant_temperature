@@ -83,6 +83,12 @@
     <Compile Include="UI\FormDOControl.Designer.cs">
       <DependentUpon>FormDOControl.cs</DependentUpon>
     </Compile>
+    <Compile Include="UI\FormFrequencyconverter.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\FormFrequencyconverter.Designer.cs">
+      <DependentUpon>FormFrequencyconverter.cs</DependentUpon>
+    </Compile>
     <Compile Include="UI\FormMain.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -156,6 +162,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="UI\FormDOControl.resx">
       <DependentUpon>FormDOControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\FormFrequencyconverter.resx">
+      <DependentUpon>FormFrequencyconverter.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UI\FormMain.resx">
       <DependentUpon>FormMain.cs</DependentUpon>

@@ -88,11 +88,14 @@ namespace 恒温测试机.UI
         public FormConnectValueSetting(FormMain formMain)
         {
             InitializeComponent();
-            //InitTimer();
+            InitTimer();
             this.formMain = formMain;
             timeAngleDt = new DataTable();
             timeAngleDt.Columns.Add("时间", typeof(string));
             timeAngleDt.Columns.Add("角度", typeof(double));
+            this.Owner = formMain;
+            this.StartPosition = FormStartPosition.Manual;
+            this.Location = new Point(this.Owner.Location.X + 1360, this.Owner.Location.Y + 500);
         }
 
 
@@ -222,8 +225,8 @@ namespace 恒温测试机.UI
                 }
                 else
                 {
-                    outInfoTb.AppendText(msg);
-                    outInfoTb.AppendText("\n");
+                    //outInfoTb.AppendText(msg);
+                    //outInfoTb.AppendText("\n");
                 }
             }
             catch (Exception ex)
@@ -234,75 +237,75 @@ namespace 恒温测试机.UI
         }
         #endregion
 
-        #region 变频器读写相关
+        //#region 变频器读写相关
 
 
-        /// <summary>
-        /// 读取
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void ReadBtn_Click(object sender, EventArgs e)
-        {
-            switch (comboBox1.Text)
-            {
-                case "1":
-                    station = 1;
-                    break;
-                case "2":
-                    station = 2;
-                    break;
-                case "3":
-                    station = 3;
-                    break;
-                case "4":
-                    station = 4;
-                    break;
-            }
-            //Read
-            var val=formMain.Read(textBox2.Text, station);
-            SystemInfoPrint("读取：【" + textBox2.Text + "】【" + val + "】\n");
-        }
+        ///// <summary>
+        ///// 读取
+        ///// </summary>
+        ///// <param name="sender"></param>
+        ///// <param name="e"></param>
+        //private void ReadBtn_Click(object sender, EventArgs e)
+        //{
+        //    switch (comboBox1.Text)
+        //    {
+        //        case "1":
+        //            station = 1;
+        //            break;
+        //        case "2":
+        //            station = 2;
+        //            break;
+        //        case "3":
+        //            station = 3;
+        //            break;
+        //        case "4":
+        //            station = 4;
+        //            break;
+        //    }
+        //    //Read
+        //    var val=formMain.Read(textBox2.Text, station);
+        //    SystemInfoPrint("读取：【" + textBox2.Text + "】【" + val + "】\n");
+        //}
 
 
-        /// <summary>
-        /// 写入
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void WriteBtn_Click(object sender, EventArgs e)
-        {
-            switch (comboBox1.Text)
-            {
-                case "1":
-                    station = 1;
-                    break;
-                case "2":
-                    station = 2;
-                    break;
-                case "3":
-                    station = 3;
-                    break;
-                case "4":
-                    station = 4;
-                    break;
-            }
-            int val2 = Convert.ToInt32(textBox3.Text) * 500;
+        ///// <summary>
+        ///// 写入
+        ///// </summary>
+        ///// <param name="sender"></param>
+        ///// <param name="e"></param>
+        //private void WriteBtn_Click(object sender, EventArgs e)
+        //{
+        //    switch (comboBox1.Text)
+        //    {
+        //        case "1":
+        //            station = 1;
+        //            break;
+        //        case "2":
+        //            station = 2;
+        //            break;
+        //        case "3":
+        //            station = 3;
+        //            break;
+        //        case "4":
+        //            station = 4;
+        //            break;
+        //    }
+        //    int val2 = Convert.ToInt32(textBox3.Text) * 500;
 
-            if (val2 < 0 || val2 > 5000)
-            {
-                MessageBox.Show("请输入0-10 范围内的值");
-                textBox3.Text = "";
-            }
-            else
-            {
-                short val3 = Convert.ToInt16("" + val2);
-                formMain.Write_short(textBox2.Text, val3, station);
-                SystemInfoPrint("写入：【" + textBox2.Text + "】【" + val3 + "】\n");
-            }
-        }
+        //    if (val2 < 0 || val2 > 5000)
+        //    {
+        //        MessageBox.Show("请输入0-10 范围内的值");
+        //        textBox3.Text = "";
+        //    }
+        //    else
+        //    {
+        //        short val3 = Convert.ToInt16("" + val2);
+        //        formMain.Write_short(textBox2.Text, val3, station);
+        //        SystemInfoPrint("写入：【" + textBox2.Text + "】【" + val3 + "】\n");
+        //    }
+        //}
 
-        #endregion
+        //#endregion
 
         #region 伺服电机A 按钮事件
         /// <summary>
@@ -474,10 +477,110 @@ namespace 恒温测试机.UI
                 return;
             }
         }
+        private void ForwardBtn_A_MouseDown(object sender, MouseEventArgs e)
+        {
+            if (!powerState_A)
+            {
+                MessageBox.Show("请开启伺服电机A");
+            }
+            else if (isAutoFindAngle)
+            {
+                return;
+            }
+            else
+            {
+                forwardBtn_A.BackColor = Color.Green;
+                formMain.bpq.write_coil(forwardWriteAddress_A, true, 5);
+            }
+        }
 
+        private void ForwardBtn_A_MouseUp(object sender, MouseEventArgs e)
+        {
+            if (!powerState_A)
+            {
+                MessageBox.Show("请开启伺服电机A");
+            }
+            else if (isAutoFindAngle)
+            {
+                return;
+            }
+            else
+            {
+                forwardBtn_A.BackColor = DefaultBackColor;
+                formMain.bpq.write_coil(forwardWriteAddress_A, false, 5);
+            }
+        }
+
+        private void NoForwardBtn_A_MouseDown(object sender, MouseEventArgs e)
+        {
+            if (!powerState_A)
+            {
+                MessageBox.Show("请开启伺服电机A");
+            }
+            else if (isAutoFindAngle)
+            {
+                return;
+            }
+            else
+            {
+                noForwardBtn_A.BackColor = Color.Green;
+                formMain.bpq.write_coil(noForwardWriteAddress_A, true, 5);
+            }
+        }
+
+        private void NoForwardBtn_A_MouseUp(object sender, MouseEventArgs e)
+        {
+            if (!powerState_A)
+            {
+                MessageBox.Show("请开启伺服电机A");
+            }
+            else if (isAutoFindAngle)
+            {
+                return;
+            }
+            else
+            {
+                noForwardBtn_A.BackColor = DefaultBackColor;
+                formMain.bpq.write_coil(noForwardWriteAddress_A, false, 5);
+            }
+        }
+        private void OrignBtn_A_MouseDown(object sender, MouseEventArgs e)
+        {
+            if (!powerState_A)
+            {
+                MessageBox.Show("请开启伺服电机A");
+            }
+            else if (isAutoFindAngle)
+            {
+                return;
+            }
+            else
+            {
+                orignBtn_A.BackColor = Color.Green;
+                formMain.bpq.write_coil(orignWriteAddress_A, true, 5);
+            }
+        }
+
+        private void OrignBtn_A_MouseUp(object sender, MouseEventArgs e)
+        {
+            if (!powerState_A)
+            {
+                MessageBox.Show("请开启伺服电机A");
+            }
+            else if (isAutoFindAngle)
+            {
+                return;
+            }
+            else
+            {
+                orignBtn_A.BackColor = DefaultBackColor;
+                formMain.bpq.write_coil(orignWriteAddress_A, false, 5);
+            }
+        }
         #endregion
 
         #region 伺服电机L 按钮事件
+
         /// <summary>
         /// 伺服开关
         /// </summary>
@@ -609,6 +712,84 @@ namespace 恒温测试机.UI
                 
                 formMain.Write_uint(radioAddress_L, val2, 5);
                 SystemInfoPrint("写入：【" + radioAddress_L + "】【" + val2 + "】\n");
+            }
+        }
+
+        private void OrignBtn_L_MouseDown(object sender, MouseEventArgs e)
+        {
+            if (!powerState_L)
+            {
+                MessageBox.Show("请开启伺服电机L");
+            }
+            else
+            {
+                orignBtn_L.BackColor = Color.Green;
+                formMain.bpq.write_coil(orignWriteAddress_L, true, 5);
+            }
+        }
+
+        private void OrignBtn_L_MouseUp(object sender, MouseEventArgs e)
+        {
+            if (!powerState_L)
+            {
+                MessageBox.Show("请开启伺服电机L");
+            }
+            else
+            {
+                orignBtn_L.BackColor = DefaultBackColor;
+                formMain.bpq.write_coil(orignWriteAddress_L, false, 5);
+            }
+        }
+
+        private void ForwardBtn_L_MouseDown(object sender, MouseEventArgs e)
+        {
+            if (!powerState_L)
+            {
+                MessageBox.Show("请开启伺服电机L");
+            }
+            else
+            {
+                forwardBtn_L.BackColor = Color.Green;
+                formMain.bpq.write_coil(forwardWriteAddress_L, true, 5);
+            }
+        }
+
+        private void ForwardBtn_L_MouseUp(object sender, MouseEventArgs e)
+        {
+            if (!powerState_L)
+            {
+                MessageBox.Show("请开启伺服电机L");
+            }
+            else
+            {
+                forwardBtn_L.BackColor = DefaultBackColor;
+                formMain.bpq.write_coil(forwardWriteAddress_L, false, 5);
+            }
+        }
+
+        private void NoForwardBtn_L_MouseDown(object sender, MouseEventArgs e)
+        {
+            if (!powerState_L)
+            {
+                MessageBox.Show("请开启伺服电机L");
+            }
+            else
+            {
+                noForwardBtn_L.BackColor = Color.Green;
+                formMain.bpq.write_coil(noForwardWriteAddress_L, true, 5);
+            }
+        }
+
+        private void NoForwardBtn_L_MouseUp(object sender, MouseEventArgs e)
+        {
+            if (!powerState_L)
+            {
+                MessageBox.Show("请开启伺服电机L");
+            }
+            else
+            {
+                noForwardBtn_L.BackColor = DefaultBackColor;
+                formMain.bpq.write_coil(noForwardWriteAddress_L, false, 5);
             }
         }
 
@@ -766,32 +947,7 @@ namespace 恒温测试机.UI
             tempAngleDict.Add(40, timeAngleDict[tmTimeDict[40]]);
         }
 
-        private void Button3_Click(object sender, EventArgs e)
-        {
-            SaveFileDialog fileDialog = new SaveFileDialog();
-            fileDialog.Filter = "文档|*.csv";
-            fileDialog.InitialDirectory = Application.StartupPath;
-            if (fileDialog.ShowDialog() == DialogResult.OK)
-            {
-                DataTableUtils.DataTableToCsvT(timeAngleDt, fileDialog.FileName);
-                MessageBox.Show("保存成功!");
-                
-            }
-            fileDialog.Dispose();
-        }
 
-        private void Button4_Click(object sender, EventArgs e)
-        {
-            SaveFileDialog fileDialog = new SaveFileDialog();
-            fileDialog.Filter = "文档|*.csv";
-            fileDialog.InitialDirectory = Application.StartupPath;
-            if (fileDialog.ShowDialog() == DialogResult.OK)
-            {
-                DataTableUtils.DataTableToCsvT(formMain.ElectDt, fileDialog.FileName);
-                MessageBox.Show("保存成功!");
-            }
-            fileDialog.Dispose();
-        }
 
         #endregion
 
@@ -800,21 +956,9 @@ namespace 恒温测试机.UI
 
         }
 
-        private void ForwardBtn_L_Click(object sender, EventArgs e)
-        {
-            if (!powerState_L)
-            {
-                MessageBox.Show("请开启伺服电机L");
-            }
-            else
-            {//正转
-                formMain.bpq.write_coil(forwardWriteAddress_L, true, 5);
-                formMain.bpq.write_coil(noForwardWriteAddress_L, false, 5);
-            }
-        }
-
         private void FormConnectValueSetting_FormClosing(object sender, FormClosingEventArgs e)
         {
+            formMain.settingForm = null;
             if (monitorMTimer != null)
             {
                 monitorMTimer.Enabled = false;
