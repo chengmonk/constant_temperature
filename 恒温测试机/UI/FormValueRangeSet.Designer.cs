@@ -1025,6 +1025,9 @@
             // 
             // numericUpDown12
             // 
+            this.numericUpDown12.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.numericUpDown12.DecimalPlaces = 2;
             this.numericUpDown12.Increment = new decimal(new int[] {
             1,
@@ -1038,7 +1041,7 @@
             0,
             -2147483648});
             this.numericUpDown12.Name = "numericUpDown12";
-            this.numericUpDown12.Size = new System.Drawing.Size(123, 30);
+            this.numericUpDown12.Size = new System.Drawing.Size(128, 30);
             this.numericUpDown12.TabIndex = 71;
             this.numericUpDown12.ValueChanged += new System.EventHandler(this.NumericUpDown12_ValueChanged);
             // 
