@@ -860,6 +860,8 @@ namespace 恒温测试机.UI
             Console.WriteLine("D4" + diData[0].get_bit(4));
             Console.WriteLine("D5" + diData[0].get_bit(5));
             Console.WriteLine("D6" + diData[0].get_bit(6));
+            set_bit(ref doData[2], 5, true);//打开出水阀
+            control.InstantDo_Write(doData);
             WaveformAi();//
             WaveformAiCtrl1_Start();//开始高速读取模拟量数据
 
