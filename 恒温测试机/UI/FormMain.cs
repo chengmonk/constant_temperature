@@ -3757,6 +3757,8 @@ namespace 恒温测试机.UI
                 }
                 tempCoolFlow[10] = tempCoolFlow[9];
                 tempHotFlow[10] = tempHotFlow[9];
+                //将每秒采集到的10个流量数据扩充到100个
+                //
                 for (int i = 0; i < 10; i++)
                 {
 
