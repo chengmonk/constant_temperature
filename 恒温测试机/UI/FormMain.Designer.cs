@@ -2192,6 +2192,7 @@
             this.hslPumpOne8.Size = new System.Drawing.Size(49, 89);
             this.hslPumpOne8.TabIndex = 113;
             this.hslPumpOne8.Text = "冷水泵";
+            this.hslPumpOne8.Load += new System.EventHandler(this.HslPumpOne8_Load);
             this.hslPumpOne8.Click += new System.EventHandler(this.HslPumpOne8_Click);
             // 
             // hslPipeLine23

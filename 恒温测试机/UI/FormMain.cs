@@ -588,7 +588,9 @@ namespace 恒温测试机.UI
                                 (float)qhTemp,
                                 (float)qmTemp,
                                     (float)sourceDataTc[i]*10,(float)sourceDataTh[i]*10,(float)sourceDataTm[i]*10,
-                                    (float)sourceDataPc[i],(float)sourceDataPh[i],(float)sourceDataPm[i],
+                                    //(float)sourceDataPc[i],(float)sourceDataPh[i],
+                                    (float)Pc,(float)Ph,
+                                (float)sourceDataPm[i],
                                     //(float)sourceDataQm5[i]
                             }
                         );
@@ -3896,6 +3898,48 @@ namespace 恒温测试机.UI
                     Tm = Math.Round((sourceDataTm[3] + sourceDataTm[102]) * 5, 2, MidpointRounding.AwayFromZero) + (double)Properties.Settings.Default.TmAdjust;
                     Pc = Math.Round((sourceDataPc[3] + sourceDataPc[102]) * 0.5, 2, MidpointRounding.AwayFromZero) + (double)Properties.Settings.Default.PcAdjust;
                     Ph = Math.Round((sourceDataPh[3] + sourceDataPh[102]) * 0.5, 2, MidpointRounding.AwayFromZero) + (double)Properties.Settings.Default.PhAdjust;
+
+                    //热水压力
+                    if (doData[2].get_bit(4) == 0)//热水进水阀关闭的时候，默认是0
+                    {
+                        Ph = 0;
+                    }
+                    else
+                    {
+                        if((doData[1].get_bit(7) == 0) && (doData[2].get_bit(0) == 0))//热水阀 热水变压阀都是关闭的时候，默认是0
+                        {
+                            Ph = 0;
+                        }
+                        if((doData[1].get_bit(7) == 1) && (doData[2].get_bit(0) == 0))//从热水泵的变频器读取
+                        {
+                            Ph = 0;
+                        }
+                        if ((doData[1].get_bit(7) == 0) && (doData[2].get_bit(0) == 1))//从热水变压泵的变频器读取
+                        {
+                            Ph = 0;
+                        }
+                    }
+
+                    //冷水压力
+                    if (doData[2].get_bit(3) == 0)//冷水进水阀关闭的时候，默认是0
+                    {
+                        Pc = 0;
+                    }
+                    else
+                    {
+                        if ((doData[2].get_bit(1) == 0) && (doData[2].get_bit(2) == 0))//冷水阀 冷水变压阀都是关闭的时候，默认是0
+                        {
+                            Pc = 0;
+                        }
+                        if ((doData[2].get_bit(1) == 1) && (doData[2].get_bit(2) == 0))//从冷水泵的变频器读取
+                        {
+                            Pc = 0;
+                        }
+                        if ((doData[2].get_bit(1) == 0) && (doData[2].get_bit(2) == 1))//从冷水变压泵的变频器读取
+                        {
+                            Pc = 0;
+                        }
+                    }
                     Pm = Math.Round((sourceDataPm[3] + sourceDataPm[102]) * 0.5, 2, MidpointRounding.AwayFromZero) + (double)Properties.Settings.Default.PmAdjust;
                     Qm5 = Math.Round((sourceDataQm5[3] + sourceDataQm5[102]) * 0.5, 2, MidpointRounding.AwayFromZero) + (double)Properties.Settings.Default.Qm5Adjust;
                     Temp1 = Math.Round((sourceDataTemp1[3] + sourceDataTemp1[102]) * 5, 2, MidpointRounding.AwayFromZero) + (double)Properties.Settings.Default.Test1;
@@ -4669,6 +4713,35 @@ namespace 恒温测试机.UI
             }
             #endregion
 
+            #region 变压热水阀与热水阀不能同时打开
+            if ((name == "热水阀") &&
+                (doData[2].get_bit(0)==1))
+            {
+                MessageBox.Show("热水阀与变压热水阀无法同时打开");
+                return true;
+            }
+            if ((name == "变压热水阀") &&
+                (doData[1].get_bit(7) == 1))
+            {
+                MessageBox.Show("热水阀与变压热水阀无法同时打开");
+                return true;
+            }
+            #endregion
+
+            #region 变压冷水阀与冷水阀不能同时打开
+            if ((name == "冷水阀") &&
+                (doData[2].get_bit(2) == 1))
+            {
+                MessageBox.Show("冷水阀与变压冷水阀无法同时打开");
+                return true;
+            }
+            if ((name == "变压冷水阀") &&
+                (doData[2].get_bit(1) == 1))
+            {
+                MessageBox.Show("冷水阀与变压冷水阀无法同时打开");
+                return true;
+            }
+            #endregion
             return false;
         }
 
@@ -5844,5 +5917,9 @@ namespace 恒温测试机.UI
 
         #endregion
 
+        private void HslPumpOne8_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }
