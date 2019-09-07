@@ -3751,9 +3751,9 @@ namespace 恒温测试机.UI
                 short[] temp2 = bpq.read_short_batch("4120", 10, 5);
                 for (int i = 0; i < 10; i++)
                 {//读取
-                    //数值转换 short：0~32767 对应0~50  故需要除以655.34
-                    tempCoolFlow[i] = temp1[i] / 655.34;
-                    tempHotFlow[i] = temp2[i] / 655.34;
+                    //数值转换 short：0~32000 对应0~50  故需要除以640
+                    tempCoolFlow[i] = temp1[i] / 640;
+                    tempHotFlow[i] = temp2[i] / 640;
                 }
                 tempCoolFlow[10] = tempCoolFlow[9];
                 tempHotFlow[10] = tempHotFlow[9];
