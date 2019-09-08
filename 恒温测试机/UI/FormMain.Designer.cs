@@ -72,6 +72,10 @@
             this.ICON = new System.Windows.Forms.Label();
             this.rightPanel = new System.Windows.Forms.Panel();
             this.right3 = new System.Windows.Forms.Panel();
+            this.tm40Btn = new System.Windows.Forms.Button();
+            this.tm40Tb = new System.Windows.Forms.TextBox();
+            this.tm36Btn = new System.Windows.Forms.Button();
+            this.tm36Tb = new System.Windows.Forms.TextBox();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
             this.systemInfoTb = new System.Windows.Forms.TextBox();
             this.right4 = new System.Windows.Forms.Panel();
@@ -185,6 +189,8 @@
             this.hslPumpOne8 = new HslControls.HslPumpOne();
             this.hslPipeLine23 = new HslControls.HslPipeLine();
             this.centerPanel = new System.Windows.Forms.Panel();
+            this.flowHalfBtn = new System.Windows.Forms.Button();
+            this.flowHalfTb = new System.Windows.Forms.TextBox();
             this.leftPanel.SuspendLayout();
             this.left3.SuspendLayout();
             this.waterBoxGbx.SuspendLayout();
@@ -688,12 +694,56 @@
             // right3
             // 
             this.right3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.right3.Controls.Add(this.flowHalfBtn);
+            this.right3.Controls.Add(this.flowHalfTb);
+            this.right3.Controls.Add(this.tm40Btn);
+            this.right3.Controls.Add(this.tm40Tb);
+            this.right3.Controls.Add(this.tm36Btn);
+            this.right3.Controls.Add(this.tm36Tb);
             this.right3.Controls.Add(this.groupBox4);
             this.right3.Location = new System.Drawing.Point(0, 117);
             this.right3.Margin = new System.Windows.Forms.Padding(0);
             this.right3.Name = "right3";
             this.right3.Size = new System.Drawing.Size(585, 702);
             this.right3.TabIndex = 7;
+            // 
+            // tm40Btn
+            // 
+            this.tm40Btn.Location = new System.Drawing.Point(277, 353);
+            this.tm40Btn.Name = "tm40Btn";
+            this.tm40Btn.Size = new System.Drawing.Size(90, 29);
+            this.tm40Btn.TabIndex = 51;
+            this.tm40Btn.Text = "预设角度40℃";
+            this.tm40Btn.UseVisualStyleBackColor = true;
+            this.tm40Btn.Visible = false;
+            this.tm40Btn.Click += new System.EventHandler(this.Tm40Btn_Click);
+            // 
+            // tm40Tb
+            // 
+            this.tm40Tb.Location = new System.Drawing.Point(381, 357);
+            this.tm40Tb.Name = "tm40Tb";
+            this.tm40Tb.Size = new System.Drawing.Size(88, 21);
+            this.tm40Tb.TabIndex = 50;
+            this.tm40Tb.Visible = false;
+            // 
+            // tm36Btn
+            // 
+            this.tm36Btn.Location = new System.Drawing.Point(35, 354);
+            this.tm36Btn.Name = "tm36Btn";
+            this.tm36Btn.Size = new System.Drawing.Size(90, 29);
+            this.tm36Btn.TabIndex = 49;
+            this.tm36Btn.Text = "预设角度36℃";
+            this.tm36Btn.UseVisualStyleBackColor = true;
+            this.tm36Btn.Visible = false;
+            this.tm36Btn.Click += new System.EventHandler(this.Tm36Btn_Click);
+            // 
+            // tm36Tb
+            // 
+            this.tm36Tb.Location = new System.Drawing.Point(139, 359);
+            this.tm36Tb.Name = "tm36Tb";
+            this.tm36Tb.Size = new System.Drawing.Size(88, 21);
+            this.tm36Tb.TabIndex = 48;
+            this.tm36Tb.Visible = false;
             // 
             // groupBox4
             // 
@@ -2192,7 +2242,6 @@
             this.hslPumpOne8.Size = new System.Drawing.Size(49, 89);
             this.hslPumpOne8.TabIndex = 113;
             this.hslPumpOne8.Text = "冷水泵";
-            this.hslPumpOne8.Load += new System.EventHandler(this.HslPumpOne8_Load);
             this.hslPumpOne8.Click += new System.EventHandler(this.HslPumpOne8_Click);
             // 
             // hslPipeLine23
@@ -2215,6 +2264,25 @@
             this.centerPanel.Name = "centerPanel";
             this.centerPanel.Size = new System.Drawing.Size(1028, 1029);
             this.centerPanel.TabIndex = 2;
+            // 
+            // flowHalfBtn
+            // 
+            this.flowHalfBtn.Location = new System.Drawing.Point(35, 353);
+            this.flowHalfBtn.Name = "flowHalfBtn";
+            this.flowHalfBtn.Size = new System.Drawing.Size(90, 29);
+            this.flowHalfBtn.TabIndex = 53;
+            this.flowHalfBtn.Text = "预设流量50%";
+            this.flowHalfBtn.UseVisualStyleBackColor = true;
+            this.flowHalfBtn.Visible = false;
+            this.flowHalfBtn.Click += new System.EventHandler(this.FlowHalfBtn_Click);
+            // 
+            // flowHalfTb
+            // 
+            this.flowHalfTb.Location = new System.Drawing.Point(139, 358);
+            this.flowHalfTb.Name = "flowHalfTb";
+            this.flowHalfTb.Size = new System.Drawing.Size(88, 21);
+            this.flowHalfTb.TabIndex = 52;
+            this.flowHalfTb.Visible = false;
             // 
             // FormMain
             // 
@@ -2240,6 +2308,7 @@
             this.left1.ResumeLayout(false);
             this.rightPanel.ResumeLayout(false);
             this.right3.ResumeLayout(false);
+            this.right3.PerformLayout();
             this.groupBox4.ResumeLayout(false);
             this.groupBox4.PerformLayout();
             this.right4.ResumeLayout(false);
@@ -2413,5 +2482,11 @@
         private HslControls.HslSwitch hslSwitch1;
         private System.Windows.Forms.NumericUpDown WaterOut;
         private System.Windows.Forms.RadioButton changeTmRbt;
+        private System.Windows.Forms.Button tm36Btn;
+        private System.Windows.Forms.TextBox tm36Tb;
+        private System.Windows.Forms.Button tm40Btn;
+        private System.Windows.Forms.TextBox tm40Tb;
+        private System.Windows.Forms.Button flowHalfBtn;
+        private System.Windows.Forms.TextBox flowHalfTb;
     }
 }
