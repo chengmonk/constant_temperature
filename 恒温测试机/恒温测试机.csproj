@@ -70,6 +70,7 @@
     <Compile Include="Model\Enum\ElectricalMachineryType.cs" />
     <Compile Include="Model\Enum\LogicTypeEnum.cs" />
     <Compile Include="Model\Enum\TestStandardEnum.cs" />
+    <Compile Include="Model\Model_1111.cs" />
     <Compile Include="Model\Model_2806.cs" />
     <Compile Include="UI\FormConnectValueSetting.cs">
       <SubType>Form</SubType>

@@ -59,7 +59,7 @@ namespace 恒温测试机.UI
 
         #region 变量
         LogicTypeEnum logicType = LogicTypeEnum.safeTest;
-        public TestStandardEnum testStandard = TestStandardEnum.default1711;// TestStandardEnum.default2806;
+        public TestStandardEnum testStandard = TestStandardEnum.default2806;
             
         System.Timers.Timer safetyTimer;             //安全性测试 定时器               1111     2806    1016
         System.Timers.Timer pressureTimer;           //压力变化测试 定时器             1111     2806     1016
@@ -127,6 +127,7 @@ namespace 恒温测试机.UI
         public DataReportAnalyseApp dataReportAnalyseApp;
 
         public static Model_2806 model_2806 = new Model_2806();         //2806导出报告模板
+        public static Model_1111 model_1111 = new Model_1111();         //1111导出报告模板
 
         #endregion
 
@@ -1049,12 +1050,9 @@ namespace 恒温测试机.UI
 
         private void ExportReportBtn_Click(object sender, EventArgs e)
         {
-            if (testStandard == TestStandardEnum.default2806)
-            {
-                FormSaveTemplate formSaveTemplate = new FormSaveTemplate(model_2806);
-                formSaveTemplate.Show();
-            }
-            
+            FormSaveTemplate formSaveTemplate = new FormSaveTemplate(model_2806, model_1111, testStandard);
+            formSaveTemplate.Show();
+
 
             //TODO：导出测试报告
             //DataReportExportApp exportApp = new DataReportExportApp(analyseReportDic);
@@ -1230,6 +1228,53 @@ namespace 恒温测试机.UI
             FormDOControl doControlForm = new FormDOControl(this);
             doControlForm.Show();
         }
+
+        private void Tm36Btn_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                tm36Angle_A = tm36Tb.Text.ToDouble();
+                SystemInfoPrint("写入36℃的角度：【" + tm36Angle_A + "】");
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("请输入正确的格式");
+                return;
+            }
+        }
+
+        private void Tm40Btn_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                tm40Angle_A = tm40Tb.Text.ToDouble();
+                SystemInfoPrint("写入40℃的角度：【" + tm40Angle_A + "】");
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("请输入正确的格式");
+                return;
+            }
+        }
+
+        public double flowHalfPoint = 0;
+
+        private void FlowHalfBtn_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                flowHalfPoint = flowHalfTb.Text.ToDouble();
+                SystemInfoPrint("写入流量50%的值：【" + flowHalfPoint + "】");
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("请输入正确的格式");
+                return;
+            }
+        }
         #endregion
 
         #region 流程委托
@@ -1242,6 +1287,7 @@ namespace 恒温测试机.UI
                 graphFlag = true;
 
                 analyseDataDic = new Dictionary<string, DataTable>();
+
                 #region 启动a、c、11、011、12、021、vc、vh、vm 保持t1时间 然后关闭vc vm 打开v5
                 set_bit(ref doData[1], 7, true);//a
                 set_bit(ref doData[2], 1, true);//c
@@ -1256,13 +1302,30 @@ namespace 恒温测试机.UI
                 SystemInfoPrint("[初始化系统]\n");
 
                 System.Threading.Thread.Sleep((int)(1000 * Properties.Settings.Default.t1));
-                //记录2806模板相关数据
-                model_2806.Pc = Pc;
-                model_2806.Tc = Tc;
-                model_2806.Ph = Ph;
-                model_2806.Th = Th;
-                model_2806.Qm = Qm;
-                model_2806.Tm = Tm;
+                if (testStandard == TestStandardEnum.default2806)
+                {
+                    //记录2806模板相关数据
+                    model_2806.Pc = Pc;
+                    model_2806.Tc = Tc;
+                    model_2806.Ph = Ph;
+                    model_2806.Th = Th;
+                    model_2806.Qm = Qm;
+                    model_2806.Tm = Tm;
+                }
+                else if(testStandard==TestStandardEnum.default1711)
+                {
+                    //记录1111模板相关数据
+                    model_1111.Pc = Pc;
+                    model_1111.Tc = Tc;
+                    model_1111.Ph = Ph;
+                    model_1111.Th = Th;
+                    model_1111.Qm = Qm;
+                    model_1111.Tm = Tm;
+                }
+                else
+                {
+
+                }
 
                 var orgPc = Pc;//记录初始压力，压力恢复阶段作为判断条件
                 SystemInfoPrint("冷水初始压力：---->"+ orgPc);
@@ -1286,12 +1349,9 @@ namespace 恒温测试机.UI
                 #endregion
 
                 #region 冷水失效  持续t3后，打开VC Vm，同时关闭V5
-                //测试标准：T5s内出水流量降至 1.9L/min 以下记录 Qm5
-                //测试标准：T5s内出水温度应 ≤ 49℃
 
                 System.Threading.Thread.Sleep((int)(1000 * Properties.Settings.Default.t2));//可调节时间 t2
                 SystemInfoPrint("[t2 = " + Properties.Settings.Default.t2.ToString() + "s 延时结束，开始记录冷水失效数据]\n");
-
                 dt.Rows.Add("开始采集冷水失效数据",
                                 DateTime.Now,
                                 0,
@@ -1310,11 +1370,30 @@ namespace 恒温测试机.UI
                 index++;
                 collectDataFlag = true;   //开始收集数据
                 System.Threading.Thread.Sleep(1000 * 5);
-                //记录2806模板相关数据
-                model_2806.A_1_Qc = Qm5;
-                model_2806.A_1_Tc = Tm;
-                model_2806.A_1_Tcdiff = Math.Round(Tm - model_2806.Tm, 2, MidpointRounding.AwayFromZero);
+                if (testStandard == TestStandardEnum.default2806)
+                {
+                    //记录2806模板相关数据
+                    model_2806.A_1_Qc = Qm5;
+                    model_2806.A_1_Tc = Tm;
+                    model_2806.A_1_Tcdiff = Math.Round(Tm - model_2806.Tm, 2, MidpointRounding.AwayFromZero);
+                }
+                else if (testStandard == TestStandardEnum.default1711)
+                {
+                    //记录1111模板相关数据
+                    model_1111.A_1_Qc = Qm5;
+                    model_1111.A_1_Tc = Tm;
+                    model_1111.A_1_Tcdiff = Math.Round(Tm - model_1111.Tm, 2, MidpointRounding.AwayFromZero);
+                }
+                else
+                {
+
+                }
                 System.Threading.Thread.Sleep((int)(1000 * (Properties.Settings.Default.t3 - 5)));
+                if (testStandard == TestStandardEnum.default1711)
+                {
+                    //记录1111模板相关数据
+                    model_1111.A_2_Qc = Qm5;
+                }
                 collectDataFlag = false;  //停止收集数据
                 dt.Rows.Add("冷水失效数据采集完毕",
                                 DateTime.Now,
@@ -1389,10 +1468,23 @@ namespace 恒温测试机.UI
                 index++;
                 collectDataFlag = true;
                 System.Threading.Thread.Sleep((int)(1000 * 5));//延时5s
-                //记录2806模板相关数据
-                model_2806.A_2_Qc = Qm5;
-                model_2806.A_2_Tc = Tm;
-                model_2806.A_2_Tcdiff = Math.Round(Tm - model_2806.Tm, 2, MidpointRounding.AwayFromZero);
+                if (testStandard == TestStandardEnum.default2806)
+                {
+                    //记录2806模板相关数据
+                    model_2806.A_2_Qc = Qm5;
+                    model_2806.A_2_Tc = Tm;
+                    model_2806.A_2_Tcdiff = Math.Round(Tm - model_2806.Tm, 2, MidpointRounding.AwayFromZero);
+                }
+                else if (testStandard == TestStandardEnum.default1711)
+                {
+                    model_1111.A_3_Tm = Tm;
+                    model_1111.A_3_Tmdiff = Math.Round(Tm - model_1111.Tm, 2, MidpointRounding.AwayFromZero);
+                }
+                else
+                {
+
+                }
+                
                 collectDataFlag = false;
                 dt.Rows.Add("冷水恢复数据采集完毕",
                     DateTime.Now,
@@ -1460,9 +1552,21 @@ namespace 恒温测试机.UI
                 index++;
                 collectDataFlag = true;   //开始收集数据
                 System.Threading.Thread.Sleep(1000 * 5);
-                //记录2806模板相关数据
-                model_2806.B_1_Qh = Qm5;
-                model_2806.B_1_Th = Tm;
+                if (testStandard == TestStandardEnum.default2806)
+                {
+                    //记录2806模板相关数据
+                    model_2806.B_1_Qh = Qm5;
+                    model_2806.B_1_Th = Tm;
+                }
+                else if (testStandard == TestStandardEnum.default1711)
+                {
+
+                }
+                else
+                {
+
+                }
+                
                 System.Threading.Thread.Sleep((int)(1000 * (Properties.Settings.Default.t3 - 5)));
                 collectDataFlag = false;  //停止收集数据
                 dt.Rows.Add("热水失效数据采集完毕",
@@ -1527,10 +1631,22 @@ namespace 恒温测试机.UI
                 index++;
                 collectDataFlag = true;
                 System.Threading.Thread.Sleep((int)(1000 * 5));//延时5s
-                //记录2806模板相关数据
-                model_2806.B_2_Qh = Qm5;
-                model_2806.B_2_Th = Tm;
-                model_2806.B_2_Thdiff = Math.Round(Tm - model_2806.Tm, 2, MidpointRounding.AwayFromZero);
+                if (testStandard == TestStandardEnum.default2806)
+                {
+                    //记录2806模板相关数据
+                    model_2806.B_2_Qh = Qm5;
+                    model_2806.B_2_Th = Tm;
+                    model_2806.B_2_Thdiff = Math.Round(Tm - model_2806.Tm, 2, MidpointRounding.AwayFromZero);
+                }
+                else if (testStandard == TestStandardEnum.default1711)
+                {
+
+                }
+                else
+                {
+
+                }
+                
                 collectDataFlag = false;
                 dt.Rows.Add("热水恢复数据采集完毕",
                     DateTime.Now,
@@ -1568,7 +1684,7 @@ namespace 恒温测试机.UI
                 set_bit(ref doData[2], 4, false);//vh
                 set_bit(ref doData[2], 5, false);//vm
                 control.InstantDo_Write(doData);
-                dataReportAnalyseApp = new DataReportAnalyseApp(logicType, analyseDataDic, model_2806);
+                dataReportAnalyseApp = new DataReportAnalyseApp(logicType, analyseDataDic, model_2806, model_1111, testStandard);
                 if (analyseReportDic.ContainsKey(logicType))
                 {
                     analyseReportDic[logicType] = dataReportAnalyseApp.AnalyseResult();
@@ -1577,7 +1693,7 @@ namespace 恒温测试机.UI
                 {
                     analyseReportDic.Add(logicType, dataReportAnalyseApp.AnalyseResult());
                 }
-                SystemInfoPrint(analyseReportDic[logicType] + "\n");
+                //SystemInfoPrint(analyseReportDic[logicType] + "\n");
 
                 runFlag = false;
                 graphFlag = false;
@@ -1624,6 +1740,7 @@ namespace 恒温测试机.UI
                 Console.WriteLine("冷水降压：--->" + (double)Properties.Settings.Default.PumpCoolLow012);
                 Console.WriteLine("热水升压：--->" + (double)Properties.Settings.Default.PumpHotHigh022);
                 Console.WriteLine("热水降压：--->" + (double)Properties.Settings.Default.PumpHotLow022);
+
                 #region 启动a、c、11、011、12、012、022、021、vc、vh、vm 保持t1时间 然后关闭a 打开b
                 set_bit(ref doData[1], 7, true);//a
                 set_bit(ref doData[2], 0, false);//b  
@@ -1690,9 +1807,22 @@ namespace 恒温测试机.UI
                 index++;
                 collectDataFlag = true;
                 System.Threading.Thread.Sleep(1000 * 5);
-                //记录2806模板相关数据
-                model_2806.H_1_Tm = Tm;
-                model_2806.H_1_Tmdiff = Math.Round(Tm - model_2806.Tm, 2, MidpointRounding.AwayFromZero);
+                if (testStandard == TestStandardEnum.default2806)
+                {
+                    //记录2806模板相关数据
+                    model_2806.H_1_Tm = Tm;
+                    model_2806.H_1_Tmdiff = Math.Round(Tm - model_2806.Tm, 2, MidpointRounding.AwayFromZero);
+                }
+                else if (testStandard == TestStandardEnum.default1711)
+                {
+                    model_1111.H_1_Tm = Tm;
+                    model_1111.H_1_Tmdiff = Math.Round(Tm - model_1111.Tm, 2, MidpointRounding.AwayFromZero);
+                }
+                else
+                {
+
+                }
+                
                 System.Threading.Thread.Sleep((int)(1000 * (Properties.Settings.Default.t3 - 5)));
                 SystemInfoPrint("[t3 = " + Properties.Settings.Default.t3.ToString() + " s 热水降压测试阶段结束，停止记录数据。关闭b，打开a，压力开始恢复，022压力由低压切换为高压]\n");
                 collectDataFlag = false;
@@ -1729,7 +1859,6 @@ namespace 恒温测试机.UI
                 }
                 //022压力由低压切换为高压   
                 #endregion
-
                 
                 #region 热水压力恢复到初始压力，开始记录 5s 的数据
                 //测试标准：
@@ -1766,10 +1895,21 @@ namespace 恒温测试机.UI
                 collectDataFlag = true;
 
                 System.Threading.Thread.Sleep((int)(1000 * 5));//延时5s
-                //记录2806模板相关数据
-                model_2806.H_2_Tm = Tm;
-                model_2806.H_2_Tmdiff = Math.Round(Tm - model_2806.Tm, 2, MidpointRounding.AwayFromZero);
+                if (testStandard == TestStandardEnum.default2806)
+                {
+                    //记录2806模板相关数据
+                    model_2806.H_2_Tm = Tm;
+                    model_2806.H_2_Tmdiff = Math.Round(Tm - model_2806.Tm, 2, MidpointRounding.AwayFromZero);
+                }
+                else if (testStandard == TestStandardEnum.default1711)
+                {
+                    model_1111.H_2_Tm = Tm;
+                    model_1111.H_2_Tmdiff = Math.Round(Tm - model_1111.Tm, 2, MidpointRounding.AwayFromZero);
+                }
+                else
+                {
 
+                }
                 collectDataFlag = false;
                 dt.Rows.Add("热水降压测试压力恢复数据采集完毕",
                     DateTime.Now,
@@ -1849,9 +1989,21 @@ namespace 恒温测试机.UI
                 index++;
                 collectDataFlag = true;
                 System.Threading.Thread.Sleep(1000 * 5);
-                //记录2806模板相关数据
-                model_2806.H_3_Tm = Tm;
-                model_2806.H_3_Tmdiff = Math.Round(Tm - model_2806.Tm, 2, MidpointRounding.AwayFromZero);
+                if (testStandard == TestStandardEnum.default2806)
+                {
+                    //记录2806模板相关数据
+                    model_2806.H_3_Tm = Tm;
+                    model_2806.H_3_Tmdiff = Math.Round(Tm - model_2806.Tm, 2, MidpointRounding.AwayFromZero);
+                }
+                else if (testStandard == TestStandardEnum.default1711)
+                {
+
+                }
+                else
+                {
+
+                }
+                
                 System.Threading.Thread.Sleep((int)(1000 * (Properties.Settings.Default.t3 - 5)));
                 SystemInfoPrint("[t3 = " + Properties.Settings.Default.t3.ToString() + " s 热水升压测试阶段结束，停止记录数据。关闭b，打开a，压力开始恢复，022压力由低压切换为高压]\n");
                 collectDataFlag = false;
@@ -1881,7 +2033,6 @@ namespace 恒温测试机.UI
                 set_bit(ref doData[2], 0, false);//b 
                 control.InstantDo_Write(doData);
                 #endregion
-
                 
                 #region 热水压力恢复到初始压力，开始记录 5s 的数据
                 //测试标准：
@@ -1917,9 +2068,21 @@ namespace 恒温测试机.UI
                 collectDataFlag = true;
 
                 System.Threading.Thread.Sleep((int)(1000 * 5));//延时5s
-                //记录2806模板相关数据
-                model_2806.H_4_Tm = Tm;
-                model_2806.H_4_Tmdiff = Math.Round(Tm - model_2806.Tm, 2, MidpointRounding.AwayFromZero);
+                if (testStandard == TestStandardEnum.default2806)
+                {
+                    //记录2806模板相关数据
+                    model_2806.H_4_Tm = Tm;
+                    model_2806.H_4_Tmdiff = Math.Round(Tm - model_2806.Tm, 2, MidpointRounding.AwayFromZero);
+                }
+                else if (testStandard == TestStandardEnum.default1711)
+                {
+
+                }
+                else
+                {
+
+                }
+
                 collectDataFlag = false;
                 dt.Rows.Add("热水升压测试压力恢复数据采集完毕",
                     DateTime.Now,
@@ -1997,9 +2160,22 @@ namespace 恒温测试机.UI
                 index++;
                 collectDataFlag = true;
                 System.Threading.Thread.Sleep(1000 * 5);
-                //记录2806模板相关数据
-                model_2806.C_1_Tm = Tm;
-                model_2806.C_1_Tmdiff = Math.Round(Tm - model_2806.Tm, 2, MidpointRounding.AwayFromZero);
+                if (testStandard == TestStandardEnum.default2806)
+                {
+                    //记录2806模板相关数据
+                    model_2806.C_1_Tm = Tm;
+                    model_2806.C_1_Tmdiff = Math.Round(Tm - model_2806.Tm, 2, MidpointRounding.AwayFromZero);
+                }
+                else if (testStandard == TestStandardEnum.default1711)
+                {
+                    model_1111.C_1_Tm = Tm;
+                    model_1111.C_1_Tmdiff = Math.Round(Tm - model_1111.Tm, 2, MidpointRounding.AwayFromZero);
+                }
+                else
+                {
+
+                }
+                
                 System.Threading.Thread.Sleep((int)(1000 * (Properties.Settings.Default.t3 - 5)));
                 SystemInfoPrint("[t3 = " + Properties.Settings.Default.t3.ToString() + " s 冷水降压测试阶段结束，停止记录数据。关闭b，打开a，压力开始恢复，022压力由低压切换为高压]\n");
                 collectDataFlag = false;
@@ -2030,7 +2206,6 @@ namespace 恒温测试机.UI
                 control.InstantDo_Write(doData);
                 Write_short("125", Convert.ToInt16(Properties.Settings.Default.PumpCoolHigh012 * 500), 1);//低压转高压
                 #endregion
-
                 
                 #region 冷水压力恢复到初始压力，开始记录 5s 的数据
                 //测试标准：
@@ -2065,9 +2240,22 @@ namespace 恒温测试机.UI
                 index++;
                 collectDataFlag = true;
                 System.Threading.Thread.Sleep((int)(1000 * 5));//延时5s
-                //记录2806模板相关数据
-                model_2806.C_2_Tm = Tm;
-                model_2806.C_2_Tmdiff = Math.Round(Tm - model_2806.Tm, 2, MidpointRounding.AwayFromZero);
+                if (testStandard == TestStandardEnum.default2806)
+                {
+                    //记录2806模板相关数据
+                    model_2806.C_2_Tm = Tm;
+                    model_2806.C_2_Tmdiff = Math.Round(Tm - model_2806.Tm, 2, MidpointRounding.AwayFromZero);
+                }
+                else if (testStandard == TestStandardEnum.default1711)
+                {
+                    model_1111.C_2_Tm = Tm;
+                    model_1111.C_2_Tmdiff = Math.Round(Tm - model_1111.Tm, 2, MidpointRounding.AwayFromZero);
+                }
+                else
+                {
+
+                }
+                
                 collectDataFlag = false;
                 dt.Rows.Add("冷水降压测试压力恢复数据采集完毕",
                     DateTime.Now,
@@ -2151,9 +2339,21 @@ namespace 恒温测试机.UI
                 index++;
                 collectDataFlag = true;
                 System.Threading.Thread.Sleep(1000 * 5);
-                //记录2806模板相关数据
-                model_2806.C_3_Tm = Tm;
-                model_2806.C_3_Tmdiff = Math.Round(Tm - model_2806.Tm, 2, MidpointRounding.AwayFromZero);
+                if (testStandard == TestStandardEnum.default2806)
+                {
+                    //记录2806模板相关数据
+                    model_2806.C_3_Tm = Tm;
+                    model_2806.C_3_Tmdiff = Math.Round(Tm - model_2806.Tm, 2, MidpointRounding.AwayFromZero);
+                }
+                else if (testStandard == TestStandardEnum.default1711)
+                {
+
+                }
+                else
+                {
+
+                }
+                
                 System.Threading.Thread.Sleep((int)(1000 * (Properties.Settings.Default.t3 - 5)));
                 SystemInfoPrint("[t3 = " + Properties.Settings.Default.t3.ToString() + " s 冷水升压测试阶段结束，停止记录数据。关闭d，打开c，压力开始恢复，022压力由低压切换为高压]\n");
                 //停止收集数据,持续t3后
@@ -2218,9 +2418,21 @@ namespace 恒温测试机.UI
                 index++;
                 collectDataFlag = true;
                 System.Threading.Thread.Sleep((int)(1000 * 5));//延时5s
-                //记录2806模板相关数据
-                model_2806.C_4_Tm = Tm;
-                model_2806.C_4_Tmdiff = Math.Round(Tm - model_2806.Tm, 2, MidpointRounding.AwayFromZero);
+                if (testStandard == TestStandardEnum.default2806)
+                {
+                    //记录2806模板相关数据
+                    model_2806.C_4_Tm = Tm;
+                    model_2806.C_4_Tmdiff = Math.Round(Tm - model_2806.Tm, 2, MidpointRounding.AwayFromZero);
+                }
+                else if (testStandard == TestStandardEnum.default1711)
+                {
+
+                }
+                else
+                {
+
+                }
+                
                 collectDataFlag = false;
                 dt.Rows.Add("冷水升压测试压力恢复数据采集完毕",
                     DateTime.Now,
@@ -2263,7 +2475,7 @@ namespace 恒温测试机.UI
                 set_bit(ref doData[2], 4, false);//vh
                 set_bit(ref doData[2], 5, false);//vm
                 control.InstantDo_Write(doData);
-                dataReportAnalyseApp = new DataReportAnalyseApp(logicType, analyseDataDic, model_2806);
+                dataReportAnalyseApp = new DataReportAnalyseApp(logicType, analyseDataDic, model_2806,model_1111,testStandard);
                 if (analyseReportDic.ContainsKey(logicType))
                 {
                     analyseReportDic[logicType] = dataReportAnalyseApp.AnalyseResult();
@@ -2388,6 +2600,11 @@ namespace 恒温测试机.UI
                 index++;
                 collectDataFlag = true;
                 System.Threading.Thread.Sleep((int)(1000 * Properties.Settings.Default.t3));
+                if (testStandard == TestStandardEnum.default1711)
+                {
+                    model_1111.Cool_1_Tm = Tm;
+                    model_1111.Cool_1_Tmdiff = Math.Round((Tm - 40), 2, MidpointRounding.AwayFromZero);
+                }
                 SystemInfoPrint("[t3 = " + Properties.Settings.Default.t3.ToString() + " s 降温测试阶段结束，停止记录数据。关闭14，打开12]\n");
                 collectDataFlag = false;
                 dt.Rows.Add("降温测试数据采集完毕",
@@ -2431,7 +2648,7 @@ namespace 恒温测试机.UI
                         break;
                     System.Threading.Thread.Sleep((int)(100));
                 }
-                SystemInfoPrint("[温度达到设定值，开始记录 45s 的数据]\n");
+                SystemInfoPrint("[温度达到设定值，开始记录 40s 的数据]\n");
                 dt.Rows.Add("开始采集降温测试恢复数据",
                     DateTime.Now,
                                 0,
@@ -2449,7 +2666,12 @@ namespace 恒温测试机.UI
                 index++;
                 collectDataFlag = true;
 
-                System.Threading.Thread.Sleep((int)(1000 * 45));//延时40s
+                System.Threading.Thread.Sleep((int)(1000 * 40));//延时40s
+                if (testStandard == TestStandardEnum.default1711)
+                {
+                    model_1111.Cool_2_Tm = Tm;
+                    model_1111.Cool_2_Tmdiff = Math.Round((Tm - 38), 2, MidpointRounding.AwayFromZero);
+                }
                 collectDataFlag = false;
                 dt.Rows.Add("降温测试恢复数据采集完毕",
                     DateTime.Now,
@@ -2475,7 +2697,7 @@ namespace 恒温测试机.UI
                 SystemInfoPrint("[ 45s 的数据记录完毕]\n");
                 #endregion
 
-                dataReportAnalyseApp = new DataReportAnalyseApp(logicType, analyseDataDic, model_2806);
+                dataReportAnalyseApp = new DataReportAnalyseApp(logicType, analyseDataDic, model_2806,model_1111,testStandard);
                 if (analyseReportDic.ContainsKey(logicType))
                 {
                     analyseReportDic[logicType] = dataReportAnalyseApp.AnalyseResult();
@@ -2596,7 +2818,18 @@ namespace 恒温测试机.UI
                 startIndex = index;
                 index++;
                 collectDataFlag = true;
-                System.Threading.Thread.Sleep((int)(1000 * Properties.Settings.Default.t3));
+                System.Threading.Thread.Sleep(1000 * 5);
+                if (testStandard == TestStandardEnum.default1711)
+                {
+                    //记录1111模板相关数据
+                    model_1111.Steady_2_Tm = Tm;
+                    model_1111.Steady_2_Tmdiff = Math.Round(Tm - 36, 2, MidpointRounding.AwayFromZero);
+                }
+                else
+                {
+
+                }
+                System.Threading.Thread.Sleep((int)(1000 * (Properties.Settings.Default.t3 - 5)));
                 SystemInfoPrint("[t3 = " + Properties.Settings.Default.t3.ToString() + " s ，停止记录数据。]\n");
                 collectDataFlag = false;
                 dt.Rows.Add("36℃出水温度数据采集完毕",
@@ -2636,6 +2869,16 @@ namespace 恒温测试机.UI
                 bpq.write_coil(noForwardWriteAddress_A, false, 5);
                 SystemInfoPrint("【" + DateTime.Now.ToString() + "】" + "结束左转...");
                 System.Threading.Thread.Sleep((int)(1000 * 5));
+                if (testStandard == TestStandardEnum.default1711)
+                {
+                    //记录1111模板相关数据
+                    model_1111.Steady_1_Tm = Tm;
+                    model_1111.Steady_1_Tmdiff = Math.Round(Tm - 38, 2, MidpointRounding.AwayFromZero);
+                }
+                else
+                {
+
+                }
                 #endregion
 
                 #region 38℃ 到 40 ℃
@@ -2677,7 +2920,18 @@ namespace 恒温测试机.UI
                 startIndex = index;
                 index++;
                 collectDataFlag = true;
-                System.Threading.Thread.Sleep((int)(1000 * Properties.Settings.Default.t3));
+                System.Threading.Thread.Sleep(1000 * 5);
+                if (testStandard == TestStandardEnum.default1711)
+                {
+                    //记录1111模板相关数据
+                    model_1111.Steady_4_Tm = Tm;
+                    model_1111.Steady_4_Tmdiff = Math.Round(Tm - 40, 2, MidpointRounding.AwayFromZero);
+                }
+                else
+                {
+
+                }
+                System.Threading.Thread.Sleep((int)(1000 * (Properties.Settings.Default.t3 - 5)));
                 SystemInfoPrint("[t3 = " + Properties.Settings.Default.t3.ToString() + " s ，停止记录数据。]\n");
                 collectDataFlag = false;
                 dt.Rows.Add("40℃出水温度数据采集完毕",
@@ -2716,10 +2970,19 @@ namespace 恒温测试机.UI
                 //}
                 bpq.write_coil(forwardWriteAddress_A, false, 5);
                 SystemInfoPrint("【" + DateTime.Now.ToString() + "】" + "结束右转...");
+                if (testStandard == TestStandardEnum.default1711)
+                {
+                    //记录1111模板相关数据
+                    model_1111.Steady_3_Tm = Tm;
+                    model_1111.Steady_3_Tmdiff = Math.Round(Tm - 38, 2, MidpointRounding.AwayFromZero);
+                }
+                else
+                {
 
+                }
                 #endregion
 
-                dataReportAnalyseApp = new DataReportAnalyseApp(logicType, analyseDataDic, model_2806);
+                dataReportAnalyseApp = new DataReportAnalyseApp(logicType, analyseDataDic, model_2806,model_1111,testStandard);
                 if (analyseReportDic.ContainsKey(logicType))
                 {
                     analyseReportDic[logicType] = dataReportAnalyseApp.AnalyseResult();
@@ -2796,13 +3059,14 @@ namespace 恒温测试机.UI
                     return;
                 }
                 System.Threading.Thread.Sleep((int)(1000 * Properties.Settings.Default.t1));
+                var orgTm = Tm;
                 //TODO 电机控制
                 SystemInfoPrint("[t1 = " + Properties.Settings.Default.t1.ToString() + " s 计时结束，电机开始转动，开始流量减少测试]\n");
 
                 #endregion
 
                 #region 5-6s 内降低50%流量
-                //WaterOut.Value = (decimal)flowHalfPoint;
+                //WaterOut.Value = (decimal)flowHalfPoint;  //同步更新
                 var value = flowHalfPoint * 0.1;
                 AO_Func(0, value);            //输出模拟量
                 Properties.Settings.Default.WaterOut = WaterOut.Value;
@@ -2826,6 +3090,12 @@ namespace 恒温测试机.UI
                 index++;
                 collectDataFlag = true;
                 System.Threading.Thread.Sleep((int)(1000 * 6));
+                if (testStandard == TestStandardEnum.default1711)
+                {
+                    model_1111.FLow_1_Qm = Qm;
+                    model_1111.FLow_1_Tm = Tm;
+                    model_1111.FLow_1_Tmdiff = Math.Round((Tm - orgTm), 2, MidpointRounding.AwayFromZero);
+                }
                 SystemInfoPrint("流量减少测试阶段结束，停止记录数据。]\n");
                 collectDataFlag = false;
                 dt.Rows.Add("流量减少测试数据采集完毕",
@@ -2850,13 +3120,9 @@ namespace 恒温测试机.UI
                     StopPro();
                     return;
                 }
-                //TODO 电机控制
-
                 #endregion
 
                 #region T30秒后
-                //System.Threading.Thread.Sleep((int)(1000 * 30));
-                //SystemInfoPrint("T30s 计时结束]\n");
                 dt.Rows.Add("开始采集T30秒后温度稳定的数据",
                     DateTime.Now,
                                 0,
@@ -2874,7 +3140,12 @@ namespace 恒温测试机.UI
                 startIndex = index;
                 index++;
                 collectDataFlag = true;
-                System.Threading.Thread.Sleep((int)(1000 * 35));
+                System.Threading.Thread.Sleep((int)(1000 * 30));
+                if (testStandard == TestStandardEnum.default1711)
+                {
+                    model_1111.FLow_2_Tm = Tm;
+                    model_1111.FLow_2_Tmdiff = Math.Round((Tm - orgTm), 2, MidpointRounding.AwayFromZero);
+                }
                 SystemInfoPrint("温度稳定的数据采集完毕，停止记录数据。]\n");
                 collectDataFlag = false;
                 dt.Rows.Add("温度稳定的数据采集完毕",
@@ -2966,8 +3237,20 @@ namespace 恒温测试机.UI
                     return;
                 }
                 System.Threading.Thread.Sleep((int)(1000 * Properties.Settings.Default.t1));
-                SteadyTm = Tm;  //稳定的出水温度
-                SystemInfoPrint("[t1 = " + Properties.Settings.Default.t1.ToString() + " s 计时结束，关闭12，打开13,开始升温测试]\n");
+                if (testStandard == TestStandardEnum.default2806)
+                {
+                    model_2806.Up_Tm = Tm;
+                    model_2806.Up_Tmdiff = Math.Round(Tm - model_2806.Tm, 2, MidpointRounding.AwayFromZero);
+                }
+                else if (testStandard == TestStandardEnum.default1711)
+                {
+
+                }
+                else
+                {
+
+                }
+                SystemInfoPrint("[t1 = " + Properties.Settings.Default.t1.ToString() + " s 计时结束，关闭12，打开13]\n");
                 set_bit(ref doData[0], 6, false);//12
                 set_bit(ref doData[0], 7, true);//13
                 control.InstantDo_Write(doData);
@@ -2993,10 +3276,22 @@ namespace 恒温测试机.UI
                 index++;
                 collectDataFlag = true;
                 System.Threading.Thread.Sleep((int)(1000 * Properties.Settings.Default.t3));
-                //记录2806模板相关数据
-                model_2806.Up_Tm = Tm;
-                model_2806.Up_Tmdiff = Math.Round(Tm - model_2806.Tm, 2, MidpointRounding.AwayFromZero);
-                SystemInfoPrint("[t3 = " + Properties.Settings.Default.t3.ToString() + " s 内，出水温度与所设定温度的偏差]---->"+ model_2806.Up_Tmdiff+"℃\n");
+                if (testStandard == TestStandardEnum.default2806)
+                {
+                    //记录2806模板相关数据
+                    model_2806.Back_Tm = Tm;
+                    model_2806.Back_Tmdiff = Math.Round(Tm - model_2806.Tm, 2, MidpointRounding.AwayFromZero);
+                }
+                else if (testStandard == TestStandardEnum.default1711)
+                {
+
+                }
+                else
+                {
+
+                }
+                
+                SystemInfoPrint("[t3 = " + Properties.Settings.Default.t3.ToString() + " s 内，出水温度与所设定温度的偏差]---->"+ model_2806.Back_Tmdiff + "℃\n");
 
                 collectDataFlag = false;
                 dt.Rows.Add("t3秒内出水温度数据采集完毕",
@@ -3033,7 +3328,7 @@ namespace 恒温测试机.UI
                 {
                     analyseReportDic.Add(logicType, dataReportAnalyseApp.AnalyseResult());
                 }
-                SystemInfoPrint(analyseReportDic[logicType] + "\n");
+                //SystemInfoPrint(analyseReportDic[logicType] + "\n");
 
                 set_bit(ref doData[0], 5, false);//11、进冷水阀5-5    
                 set_bit(ref doData[0], 6, false);//12、进热水阀6 - 6
@@ -3096,13 +3391,6 @@ namespace 恒温测试机.UI
                 #endregion
 
                 #region 电机从0->90度
-                ////正传
-                //bpq.write_coil(forwardWriteAddress_A, true, 5);
-                //while (angleValue_A <= autoFindAngle_A)
-                //{
-                //    //等待角度达到 预设角度
-                //}
-                //bpq.write_coil(forwardWriteAddress_A, false, 5);
 
                 //左转
                 if (settingForm != null)
@@ -3165,7 +3453,7 @@ namespace 恒温测试机.UI
                                 index);
                 index++;
                 endIndex = index;
-                analyseDataDic.Add("t3秒内出水温度数据", DataTableUtils.SubDataTable(dt, startIndex, endIndex));
+                analyseDataDic.Add("T25秒内出水温度数据", DataTableUtils.SubDataTable(dt, startIndex, endIndex));
                 if (stopFlag)   //手动停止
                 {
                     StopPro();
@@ -5904,51 +6192,6 @@ namespace 恒温测试机.UI
         #endregion
 
 
-        private void Tm36Btn_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                tm36Angle_A = tm36Tb.Text.ToDouble();
-                SystemInfoPrint("写入36℃的角度：【" + tm36Angle_A + "】");
-
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("请输入正确的格式");
-                return;
-            }
-        }
-
-        private void Tm40Btn_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                tm40Angle_A = tm40Tb.Text.ToDouble();
-                SystemInfoPrint("写入40℃的角度：【" + tm40Angle_A + "】");
-
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("请输入正确的格式");
-                return;
-            }
-        }
-
-        public double flowHalfPoint = 0;
-
-        private void FlowHalfBtn_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                flowHalfPoint = flowHalfTb.Text.ToDouble();
-                SystemInfoPrint("写入流量50%的值：【" + flowHalfPoint + "】");
-
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("请输入正确的格式");
-                return;
-            }
-        }
+        
     }
 }

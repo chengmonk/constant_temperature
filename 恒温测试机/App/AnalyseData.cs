@@ -364,5 +364,29 @@ namespace 恒温测试机.App
             }
         }
 
+        public double MaxHeatTm(DataTable data)
+        {
+            if (data == null)
+            {
+                return 0;
+            }
+            data.Rows.RemoveAt(data.Rows.Count - 1);//移除末尾
+            double maxHetaTm = 0;
+            var isFirstRow = true;
+            foreach (DataRow row in data.Rows)
+            {
+                if (isFirstRow)
+                {
+                    isFirstRow = false;
+                    continue;
+                }
+                var currentTm = row["出水温度Tm"].AsDouble();
+                if (currentTm >= maxHetaTm)
+                {
+                    maxHetaTm = currentTm;
+                }
+            }
+            return maxHetaTm;
+        }
     }
 }
