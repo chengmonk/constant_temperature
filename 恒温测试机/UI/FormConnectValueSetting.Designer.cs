@@ -223,7 +223,7 @@
             this.noForwardBtn_A.Name = "noForwardBtn_A";
             this.noForwardBtn_A.Size = new System.Drawing.Size(89, 29);
             this.noForwardBtn_A.TabIndex = 33;
-            this.noForwardBtn_A.Text = "反传";
+            this.noForwardBtn_A.Text = "左转";
             this.noForwardBtn_A.UseVisualStyleBackColor = true;
             this.noForwardBtn_A.MouseDown += new System.Windows.Forms.MouseEventHandler(this.NoForwardBtn_A_MouseDown);
             this.noForwardBtn_A.MouseUp += new System.Windows.Forms.MouseEventHandler(this.NoForwardBtn_A_MouseUp);
@@ -234,7 +234,7 @@
             this.forwardBtn_A.Name = "forwardBtn_A";
             this.forwardBtn_A.Size = new System.Drawing.Size(90, 29);
             this.forwardBtn_A.TabIndex = 32;
-            this.forwardBtn_A.Text = "正传";
+            this.forwardBtn_A.Text = "右转";
             this.forwardBtn_A.UseVisualStyleBackColor = true;
             this.forwardBtn_A.MouseDown += new System.Windows.Forms.MouseEventHandler(this.ForwardBtn_A_MouseDown);
             this.forwardBtn_A.MouseUp += new System.Windows.Forms.MouseEventHandler(this.ForwardBtn_A_MouseUp);

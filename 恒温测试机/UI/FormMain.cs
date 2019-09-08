@@ -471,7 +471,7 @@ namespace 恒温测试机.UI
                 }
                 else
                 {
-                    systemInfoTb.AppendText("[时间:" + DateTime.Now.ToString("yyyy-MM-dd hh:mm:ss") + "] " + msg);
+                    systemInfoTb.AppendText("[时间:" + DateTime.Now.ToString() + "] " + msg);
                     systemInfoTb.AppendText("\r\n");
                 }
             }
@@ -1620,7 +1620,10 @@ namespace 恒温测试机.UI
                 runFlag = true;
                 graphFlag = true;
                 analyseDataDic = new Dictionary<string, DataTable>();
-
+                Console.WriteLine("冷水升压：--->" + (double)Properties.Settings.Default.PumpCoolHigh012);
+                Console.WriteLine("冷水降压：--->" + (double)Properties.Settings.Default.PumpCoolLow012);
+                Console.WriteLine("热水升压：--->" + (double)Properties.Settings.Default.PumpHotHigh022);
+                Console.WriteLine("热水降压：--->" + (double)Properties.Settings.Default.PumpHotLow022);
                 #region 启动a、c、11、011、12、012、022、021、vc、vh、vm 保持t1时间 然后关闭a 打开b
                 set_bit(ref doData[1], 7, true);//a
                 set_bit(ref doData[2], 0, false);//b  
@@ -1642,14 +1645,13 @@ namespace 恒温测试机.UI
                     StopPro();
                     return;
                 }
-
+                Write_short("125", Convert.ToInt16(Properties.Settings.Default.PumpHotLow022 * 500), 3);
+                Write_short("125", Convert.ToInt16(Properties.Settings.Default.PumpCoolLow012 * 500), 1);
                 System.Threading.Thread.Sleep((int)(1000 * Properties.Settings.Default.t1));
 
                 set_bit(ref doData[1], 7, false);//a
                 set_bit(ref doData[2], 0, true);//b            
                 control.InstantDo_Write(doData);
-                //022压力切换为低压 用485切换    
-                Write_short("125", Convert.ToInt16(Properties.Settings.Default.PumpHotLow022 * 500), 3);
                 SystemInfoPrint("[t1 = " + Properties.Settings.Default.t1.ToString() + " s 计时结束，关闭a打开b，开始压力变化测试-热水降压测试]\n");
                 if (stopFlag)   //手动停止
                 {
@@ -1718,6 +1720,8 @@ namespace 恒温测试机.UI
                 set_bit(ref doData[1], 7, true);//a
                 set_bit(ref doData[2], 0, false);//b 
                 control.InstantDo_Write(doData);
+                //022高压切换          
+                Write_short("125", Convert.ToInt16(Properties.Settings.Default.PumpHotHigh022 * 500), 3);
                 if (stopFlag)   //手动停止
                 {
                     StopPro();
@@ -1726,6 +1730,7 @@ namespace 恒温测试机.UI
                 //022压力由低压切换为高压   
                 #endregion
 
+                
                 #region 热水压力恢复到初始压力，开始记录 5s 的数据
                 //测试标准：
                 //1、T5 秒内混合水出水温度与所设定的温度偏差应 ≤ ±2 ℃
@@ -1736,6 +1741,7 @@ namespace 恒温测试机.UI
                     System.Threading.Thread.Sleep((int)(100));
                 }
                 SystemInfoPrint("[热水压力恢复到初始压力，开始记录 5s 的数据]\n");
+                
                 if (stopFlag)   //手动停止
                 {
                     StopPro();
@@ -1792,15 +1798,13 @@ namespace 恒温测试机.UI
                 #endregion
 
                 #region t1 同时 关闭a 打开b
-                System.Threading.Thread.Sleep((int)(1000 * Properties.Settings.Default.t1));
+                //System.Threading.Thread.Sleep((int)(1000 * Properties.Settings.Default.t1));
 
                 //022压力切换为高压 用485切换
                 set_bit(ref doData[1], 7, false);//a
                 set_bit(ref doData[2], 0, true);//b  
                 control.InstantDo_Write(doData);
-                //022高压切换          
-                Write_short("125", Convert.ToInt16(Properties.Settings.Default.PumpHotHigh022 * 500), 3);
-                SystemInfoPrint("[t1 = " + Properties.Settings.Default.t1.ToString() + " s 计时结束，关闭a打开b，开始压力变化测试-热水升压测试]\n");
+                SystemInfoPrint("关闭a打开b，开始压力变化测试-热水升压测试]\n");
                 if (stopFlag)   //手动停止
                 {
                     StopPro();
@@ -1808,7 +1812,7 @@ namespace 恒温测试机.UI
                 }
                 #endregion
 
-                #region 热水升压 持续t3后打开a同时关闭b  022压力切换为高压 用485切换
+                #region 热水升压 持续t3后打开a同时关闭b 
                 //测试标准：【TODO】
                 //1、T5 秒内超过 3℃的时间不大于 T1.5 秒
                 //2、T5 秒内低于 5℃的时间不大于 T1 秒
@@ -1878,6 +1882,7 @@ namespace 恒温测试机.UI
                 control.InstantDo_Write(doData);
                 #endregion
 
+                
                 #region 热水压力恢复到初始压力，开始记录 5s 的数据
                 //测试标准：
                 //1、T5 秒内混合水出水温度与所设定的温度偏差应 ≤ ±2 ℃
@@ -1943,23 +1948,10 @@ namespace 恒温测试机.UI
                 #endregion
 
                 #region t1 同时 关闭 c 打开d
-
-                set_bit(ref doData[2], 1, true);//c
-                set_bit(ref doData[2], 2, false);//d 
-                control.InstantDo_Write(doData);
-                if (stopFlag)   //手动停止
-                {
-                    StopPro();
-                    return;
-                }
-                System.Threading.Thread.Sleep((int)(1000 * Properties.Settings.Default.t1));
-                //012压力切换为低压 用485切换
                 set_bit(ref doData[2], 1, false);//c
                 set_bit(ref doData[2], 2, true);//d 
                 control.InstantDo_Write(doData);
-                //012输出低压 485输出 
-                Write_short("125", Convert.ToInt16(Properties.Settings.Default.PumpCoolLow012 * 500), 1);
-                SystemInfoPrint("[t1 = " + Properties.Settings.Default.t1.ToString() + " s 计时结束，关闭c打开d，开始压力变化测试-冷水降压测试]\n");
+                SystemInfoPrint("关闭c打开d，开始压力变化测试-冷水降压测试]\n");
                 if (stopFlag)   //手动停止
                 {
                     StopPro();
@@ -2036,8 +2028,10 @@ namespace 恒温测试机.UI
                 set_bit(ref doData[2], 1, true);//c
                 set_bit(ref doData[2], 2, false);//d 
                 control.InstantDo_Write(doData);
+                Write_short("125", Convert.ToInt16(Properties.Settings.Default.PumpCoolHigh012 * 500), 1);//低压转高压
                 #endregion
 
+                
                 #region 冷水压力恢复到初始压力，开始记录 5s 的数据
                 //测试标准：
                 //1、T5 秒内混合水出水温度与所设定的温度偏差应 ≤ ±2 ℃
@@ -2103,19 +2097,12 @@ namespace 恒温测试机.UI
 
                 #region t1 同时 关闭c 打开d
                 //冷水升压测试
-                set_bit(ref doData[2], 1, true);//c
-                set_bit(ref doData[2], 2, false);//d 
-                                                 //012输出高压 485输出
-
-                control.InstantDo_Write(doData);
-                System.Threading.Thread.Sleep((int)(1000 * Properties.Settings.Default.t1));
-
-                //012压力切换为高压 用485切换
                 set_bit(ref doData[2], 1, false);//c
                 set_bit(ref doData[2], 2, true);//d 
                 control.InstantDo_Write(doData);
-                Write_short("125", Convert.ToInt16(Properties.Settings.Default.PumpCoolHigh012 * 500), 1);
-                SystemInfoPrint("[t1 = " + Properties.Settings.Default.t1.ToString() + " s 计时结束，关闭c打开d，开始压力变化测试-冷水升压测试]\n");
+
+                //SystemInfoPrint("[t1 = " + Properties.Settings.Default.t1.ToString() + " s 计时结束，关闭c打开d，开始压力变化测试-冷水升压测试]\n");
+                SystemInfoPrint("关闭c打开d，开始压力变化测试-冷水升压测试]\n");
                 if (stopFlag)   //手动停止
                 {
                     StopPro();
@@ -2133,7 +2120,10 @@ namespace 恒温测试机.UI
                 {
                     if (Math.Abs(Pc - (double)Properties.Settings.Default.PumpCoolHigh012) <=
                         (double)Properties.Settings.Default.pressureThreshold)
+                    {
+                        Console.WriteLine("冷水升压：--->"+Pc);
                         break;
+                    }
                     System.Threading.Thread.Sleep((int)(100));
                 }
                 SystemInfoPrint("[压力达到设定值，开始记录冷水升压数据]\n");
@@ -2232,7 +2222,7 @@ namespace 恒温测试机.UI
                 model_2806.C_4_Tm = Tm;
                 model_2806.C_4_Tmdiff = Math.Round(Tm - model_2806.Tm, 2, MidpointRounding.AwayFromZero);
                 collectDataFlag = false;
-                dt.Rows.Add("冷水降压测试压力恢复数据采集完毕",
+                dt.Rows.Add("冷水升压测试压力恢复数据采集完毕",
                     DateTime.Now,
                                 0,
                                 0,
@@ -2282,7 +2272,7 @@ namespace 恒温测试机.UI
                 {
                     analyseReportDic.Add(logicType, dataReportAnalyseApp.AnalyseResult());
                 }
-                SystemInfoPrint(analyseReportDic[logicType] + "\n");
+                //SystemInfoPrint(analyseReportDic[logicType] + "\n");
                 runFlag = false;
                 graphFlag = false;
                 if (autoRunFlag)
@@ -3143,14 +3133,14 @@ namespace 恒温测试机.UI
                 analyseDataDic = new Dictionary<string, DataTable>();
 
                 MessageBox.Show("请确认电机已设置好相关参数！");
-
+                
                 #region 启动 a、c、11、011、12、012、vc、vh、vm
                 set_bit(ref doData[1], 7, true);//a
                 set_bit(ref doData[2], 1, true);//c
                 set_bit(ref doData[0], 5, true);//11
                 set_bit(ref doData[2], 7, true);//011
                 set_bit(ref doData[0], 6, true);//12
-                set_bit(ref doData[3], 0, true);//012
+                set_bit(ref doData[3], 1, true);//021
                 set_bit(ref doData[2], 3, true);//vc
                 set_bit(ref doData[2], 4, true);//vh
                 set_bit(ref doData[2], 5, true);//vm
@@ -3167,13 +3157,31 @@ namespace 恒温测试机.UI
                 #endregion
 
                 #region 电机从0->90度
-                //正传
-                bpq.write_coil(forwardWriteAddress_A, true, 5);
-                while (angleValue_A <= autoFindAngle_A)
+                ////正传
+                //bpq.write_coil(forwardWriteAddress_A, true, 5);
+                //while (angleValue_A <= autoFindAngle_A)
+                //{
+                //    //等待角度达到 预设角度
+                //}
+                //bpq.write_coil(forwardWriteAddress_A, false, 5);
+
+                //左转
+                if (settingForm != null)
                 {
-                    //等待角度达到 预设角度
+                    SystemInfoPrint("预设角度：--->"+settingForm.autoFindAngle_A);
+                    SystemInfoPrint("预设转速：--->"+settingForm.radioValue_A * 0.0001);
+                    var times = settingForm.autoFindAngle_A / (settingForm.radioValue_A * 0.0001);
+                    SystemInfoPrint("预计时间：--->"+ times);
+
+                    bpq.write_coil(noForwardWriteAddress_A, true, 5);
+                    Thread.Sleep((int)(1000 * times));
+                    //while (Math.Abs(settingForm.angleValue_A * 0.0001) <=settingForm.autoFindAngle_A)
+                    //{
+                    //    //等待角度达到 预设角度
+                    //}
+                    bpq.write_coil(noForwardWriteAddress_A, false, 5);
                 }
-                bpq.write_coil(forwardWriteAddress_A, false, 5);
+                
                 #endregion
 
                 #region 旋转到位置后，t2s后开始收集数据，
@@ -3246,7 +3254,7 @@ namespace 恒温测试机.UI
                 {
                     analyseReportDic.Add(logicType, dataReportAnalyseApp.AnalyseResult());
                 }
-                SystemInfoPrint(analyseReportDic[logicType] + "\n");
+                //SystemInfoPrint(analyseReportDic[logicType] + "\n");
                 runFlag = false;
                 graphFlag = false;
             }

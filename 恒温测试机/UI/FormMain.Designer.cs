@@ -708,7 +708,7 @@
             // 
             // systemInfoTb
             // 
-            this.systemInfoTb.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.systemInfoTb.Font = new System.Drawing.Font("微软雅黑", 12.75F);
             this.systemInfoTb.Location = new System.Drawing.Point(11, 32);
             this.systemInfoTb.Multiline = true;
             this.systemInfoTb.Name = "systemInfoTb";

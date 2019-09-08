@@ -51,10 +51,9 @@ namespace 恒温测试机.UI
         public string shutdownAddress_A = "2057";
 
         private string radioAddress_A = "6096";
-        private uint radioValue_A = 0;
+        public uint radioValue_A = 0;
         private string angleAddress_A = "4100";
         public int angleValue_A = 0;
-
         #endregion
 
         #region 伺服电机L  地址变量
@@ -441,21 +440,27 @@ namespace 恒温测试机.UI
 
         private void RadioBtn_A_Click(object sender, EventArgs e)
         {
-            uint val2 = (uint)(double.Parse(radioTb_A.Text) * 10000);
-
-            if (val2 < 0 || val2 > 200000)
+            try
             {
-                MessageBox.Show("请输入0-20 范围内的值");
-                radioTb_A.Text = "";
-            }
-            else if (isAutoFindAngle)
+                uint val2 = (uint)(double.Parse(radioTb_A.Text) * 10000);
+
+                if (val2 < 0 || val2 > 200000)
+                {
+                    MessageBox.Show("请输入0-20 范围内的值");
+                    radioTb_A.Text = "";
+                }
+                else if (isAutoFindAngle)
+                {
+                    return;
+                }
+                else
+                {
+                    formMain.Write_uint(radioAddress_A, val2, 5);
+                    SystemInfoPrint("写入：【" + radioAddress_A + "】【" + val2 + "】\n");
+                }
+            }catch(Exception ex)
             {
                 return;
-            }
-            else
-            {                
-                formMain.Write_uint(radioAddress_A, val2, 5);
-                SystemInfoPrint("写入：【" + radioAddress_A + "】【" + val2 + "】\n");
             }
         }
 
