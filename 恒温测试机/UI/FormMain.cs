@@ -1265,7 +1265,11 @@ namespace 恒温测试机.UI
                 model_2806.Tm = Tm;
 
                 var orgPc = Pc;//记录初始压力，压力恢复阶段作为判断条件
+                SystemInfoPrint("冷水初始压力：---->"+ orgPc);
+
                 var orgPh = Ph;
+                SystemInfoPrint("热水初始压力：---->" + orgPh);
+
                 var orgPm = Pm;
 
                 set_bit(ref doData[2], 3, false);//vc
@@ -1345,12 +1349,21 @@ namespace 恒温测试机.UI
 
                 #region 压力回复初始压力后，开始收集数据 T5  
                 //测试标准：混合水出水温度与所设定的温度偏差应 ≤ ±2 ℃  
+                bool coolPresureFlag = true;
                 for (; true;)
                 {//压力恢复到初始压力
                     //if (Math.Abs(Pc - (double)Properties.Settings.Default.CoolPump011) <= (double)Properties.Settings.Default.pressureThreshold)
                     //{
                     //    break;
                     //}
+                    if (coolPresureFlag) {
+                        Console.WriteLine("Pc:---->" + Pc);
+                        Console.WriteLine("pressureThreshold:---->" + (double)Properties.Settings.Default.pressureThreshold);
+                        Console.WriteLine("Qm5:---->" + Qm5);
+                        coolPresureFlag = false;
+                    }
+                    
+
                     if ((Math.Abs(Pc - orgPc) <= (double)Properties.Settings.Default.pressureThreshold) && (Math.Abs(Qm5) <= 0.1))//出水重量传感器里面的水排干净，压力恢复到之前的压力
                     {
                         break;
@@ -3054,6 +3067,7 @@ namespace 恒温测试机.UI
                 //记录2806模板相关数据
                 model_2806.Up_Tm = Tm;
                 model_2806.Up_Tmdiff = Math.Round(Tm - model_2806.Tm, 2, MidpointRounding.AwayFromZero);
+                SystemInfoPrint("[t3 = " + Properties.Settings.Default.t3.ToString() + " s 内，出水温度与所设定温度的偏差]---->"+ model_2806.Up_Tmdiff+"℃\n");
 
                 collectDataFlag = false;
                 dt.Rows.Add("t3秒内出水温度数据采集完毕",
@@ -3680,7 +3694,8 @@ namespace 恒温测试机.UI
                 //Log.Info(t.ToString("yyyy-MM-dd hh:mm:ss:fff"));
 
                 int dataIndex = 0;
-                for (int i = 0; i < m_dataScaled.Length; i += 16)
+                for (int i = 0; i < 1600; i += 16)
+                  //for (int i = 0; i < m_dataScaled.Length; i += 16)
                 {
                     Qc = Math.Round(m_dataScaled[i + 0], 2, MidpointRounding.AwayFromZero);// * 5;          流量的量程 1-5V 对应  0-50L/min
                     Qh = Math.Round(m_dataScaled[i + 1], 2, MidpointRounding.AwayFromZero);// * 5;
@@ -3745,6 +3760,9 @@ namespace 恒温测试机.UI
                     if (dataIndex >= 101)
                         dataIndex = 0;
                 }
+                //Console.WriteLine("dataIndex:---->" + dataIndex);
+                //Console.WriteLine("m_dataScaled.Length:---->" + m_dataScaled.Length);
+                
                 //Console.WriteLine("液面高度：" + Wh);
 
                 //用485 读取冷水、热水的流量共十个数据
@@ -3912,11 +3930,13 @@ namespace 恒温测试机.UI
                         }
                         if((doData[1].get_bit(7) == 1) && (doData[2].get_bit(0) == 0))//从热水泵的变频器读取
                         {
-                            Ph = 0;
+                            Ph = Math.Round(Read("8462", 2) / 500.0, 2, MidpointRounding.AwayFromZero);
+                            //Ph = Math.Round(Read("8193", 2) / 500.0, 2, MidpointRounding.AwayFromZero);
                         }
                         if ((doData[1].get_bit(7) == 0) && (doData[2].get_bit(0) == 1))//从热水变压泵的变频器读取
                         {
-                            Ph = 0;
+                            Ph = Math.Round(Read("8462", 3) / 500.0, 2, MidpointRounding.AwayFromZero);
+                            //Ph = Math.Round(Read("8193", 3) / 500.0, 2, MidpointRounding.AwayFromZero);
                         }
                     }
 
@@ -3933,11 +3953,13 @@ namespace 恒温测试机.UI
                         }
                         if ((doData[2].get_bit(1) == 1) && (doData[2].get_bit(2) == 0))//从冷水泵的变频器读取
                         {
-                            Pc = 0;
+                            Pc = Math.Round(Read("8462", 4) / 500.0, 2, MidpointRounding.AwayFromZero);
+                            //Pc = Math.Round(Read("8193", 4)/500.0, 2, MidpointRounding.AwayFromZero);
                         }
                         if ((doData[2].get_bit(1) == 0) && (doData[2].get_bit(2) == 1))//从冷水变压泵的变频器读取
                         {
-                            Pc = 0;
+                            Pc = Math.Round(Read("8462", 1) / 500.0, 2, MidpointRounding.AwayFromZero);
+                            //Pc = Math.Round(Read("8193", 1) / 500.0, 2, MidpointRounding.AwayFromZero);
                         }
                     }
                     Pm = Math.Round((sourceDataPm[3] + sourceDataPm[102]) * 0.5, 2, MidpointRounding.AwayFromZero) + (double)Properties.Settings.Default.PmAdjust;
