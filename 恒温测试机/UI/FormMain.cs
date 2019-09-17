@@ -3917,7 +3917,8 @@ namespace 恒温测试机.UI
         double[] tempHotFlow = new double[11];
         double[] CoolFlow = new double[100];//扩充后的数据
         double[] HotFlow = new double[100];
-
+        public static double coolWaterLevel=-1;
+        public static double hotWaterLevel = -1;
         private void WaveformAiCtrl1_DataReady(object sender, BfdAiEventArgs args)
         {
             ErrorCode err = ErrorCode.Success;
@@ -4011,8 +4012,12 @@ namespace 恒温测试机.UI
                 }
                 //Console.WriteLine("dataIndex:---->" + dataIndex);
                 //Console.WriteLine("m_dataScaled.Length:---->" + m_dataScaled.Length);
-                
-                //Console.WriteLine("液面高度：" + Wh);
+
+                //Console.WriteLine("液面高度：" + Wh);                
+
+                //用485 读取冷水、热水的液位
+                coolWaterLevel = Math.Round(bpq.read_short("4130", 5) / 4.0, 2);
+                hotWaterLevel = Math.Round(bpq.read_short("4131", 5) / 4.0, 2);
 
                 //用485 读取冷水、热水的流量共十个数据
 
